@@ -41,7 +41,7 @@
 .featured-video {
   margin: 0;
   padding: 0.5rem;
-  /* animation: scaleIn 0.8s ease; */ /* disabled for performance */
+  animation: scaleIn 0.8s ease;
 }
 
 .video-container {
@@ -52,7 +52,7 @@
   border-radius: 12px;
   overflow: hidden;
   border: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.4s ease;
   margin: 0;
   padding: 0;
   cursor: pointer;
@@ -210,7 +210,7 @@
 }
 
 .video-item {
-  /* animation: scaleIn 0.8s ease; */ /* disabled for performance */
+  animation: scaleIn 0.8s ease;
   margin: 0;
   padding: 0;
 }
@@ -845,217 +845,4 @@
       0 8px 20px rgba(0, 0, 0, 0.4),
       0 2px 6px rgba(255, 107, 0, 0.15);
   }
-}
-
-/* Large Desktop / Wide monitors (1240px and up) */
-@media (min-width: 1240px) {
-  .docs-wrapper {
-    max-width: 1440px;
-    margin: 2.5rem auto;
-    display: grid;
-    grid-template-columns: 2.4fr 1fr;
-    gap: 1.5rem;
-    align-items: start;
-    padding: 0 1rem;
-  }
-
-  /* Make featured video larger and more prominent */
-  .featured-video {
-    padding: 0;
-  }
-
-  .featured-video .video-container {
-    aspect-ratio: 16 / 9;
-    height: 620px;
-    border-radius: 14px;
-    overflow: hidden;
-  }
-
-  /* Stack regular videos vertically in a right column */
-  .regular-videos {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    align-self: start;
-    max-height: calc(100vh - 140px);
-    overflow-y: auto;
-    padding-right: 0.5rem;
-  }
-
-  .regular-videos .video-container {
-    aspect-ratio: 16 / 9;
-    height: 220px;
-    border-radius: 10px;
-  }
-
-  /* Slightly larger, clearer titles and controls for big screens */
-  .video-title {
-    font-size: 1.05rem;
-    top: 78%;
-    left: 2rem;
-    max-width: 320px;
-    padding: 0.8rem 1.2rem;
-  }
-
-  .featured-video .video-title {
-    font-size: 1.15rem;
-    max-width: 420px;
-    padding: 1rem 1.4rem;
-    left: 2.2rem;
-    border-left-width: 3px;
-  }
-
-  .play-button {
-    width: 120px;
-    height: 120px;
-  }
-
-  .featured-video .play-button {
-    width: 140px;
-    height: 140px;
-    padding-left: 10px;
-  }
-
-  .video-controls {
-    top: 2rem;
-    right: 2rem;
-  }
-
-  .control-btn {
-    width: 48px;
-    height: 48px;
-  }
-
-  .video-container:hover {
-    transform: translateY(-6px);
-  }
-}
-
-/* Ultra-wide: larger desktop (1600px and up) */
-@media (min-width: 1600px) {
-  .docs-wrapper {
-    max-width: 1680px;
-    margin: 3rem auto;
-    grid-template-columns: 3fr 1fr;
-    gap: 1.75rem;
-    padding: 0 1.5rem;
-  }
-
-  .featured-video .video-container {
-    height: 760px;
-    border-radius: 16px;
-  }
-
-  .regular-videos .video-container {
-    height: 260px;
-    border-radius: 12px;
-  }
-
-  .video-title {
-    font-size: 1.15rem;
-    top: 80%;
-    left: 2.6rem;
-    max-width: 380px;
-    padding: 0.9rem 1.3rem;
-  }
-
-  .featured-video .video-title {
-    font-size: 1.25rem;
-    max-width: 480px;
-    padding: 1.1rem 1.6rem;
-  }
-
-  .play-button { width: 140px; height: 140px; }
-  .featured-video .play-button { width: 160px; height: 160px; }
-}
-
-/* Extra ultra-wide / 20" monitors (1920px and up) */
-@media (min-width: 1920px) {
-  .docs-wrapper {
-    max-width: 2000px;
-    margin: 3.5rem auto;
-    grid-template-columns: 3.2fr 1fr;
-    gap: 2rem;
-    padding: 0 2rem;
-  }
-
-  .featured-video .video-container { height: 900px; }
-  .regular-videos .video-container { height: 320px; }
-
-  .video-title { font-size: 1.25rem; }
-  .featured-video .video-title { font-size: 1.35rem; }
-
-  .regular-videos { max-height: calc(100vh - 180px); }
-}
-
-/* Improved fluid large-screen layout (overrides above fixed max-widths) */
-@media (min-width: 1240px) {
-  :root {
-    --doc-side-padding: clamp(32px, 4vw, 160px);
-  }
-
-  .docs-wrapper {
-    /* allow wrapper to expand while keeping comfortable side gutters */
-    max-width: none;
-    width: calc(100% - (var(--doc-side-padding) * 2));
-    padding: 0 var(--doc-side-padding);
-    margin: 2.5rem auto;
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    gap: clamp(16px, 1.5vw, 48px);
-    align-items: start;
-  }
-
-  /* Featured video scales to viewport height but caps to avoid overgrowth */
-  .featured-video .video-container {
-    height: clamp(520px, 60vh, 920px);
-    aspect-ratio: auto;
-    border-radius: 14px;
-  }
-
-  /* Regular videos become a scrolling column with fluid heights */
-  .regular-videos {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(12px, 1.2vw, 28px);
-    max-height: calc(100vh - 160px);
-    overflow-y: auto;
-    padding-right: 0.5rem;
-  }
-
-  .regular-videos .video-container {
-    height: clamp(160px, 22vh, 360px);
-    aspect-ratio: auto;
-    border-radius: 10px;
-  }
-
-  /* Titles and controls scale smoothly with viewport width */
-  .video-title {
-    font-size: clamp(0.95rem, 0.9vw + 0.6rem, 1.35rem);
-    top: 78%;
-    left: clamp(16px, 2.2vw, 48px);
-    max-width: clamp(260px, 28vw, 520px);
-    padding: clamp(0.6rem, 0.6vw, 1.2rem);
-  }
-
-  .featured-video .video-title {
-    font-size: clamp(1.05rem, 1.1vw + 0.6rem, 1.6rem);
-    max-width: clamp(320px, 36vw, 700px);
-    left: clamp(20px, 2.6vw, 56px);
-  }
-
-  .play-button {
-    width: clamp(88px, 7vw, 180px);
-    height: clamp(88px, 7vw, 180px);
-  }
-
-  .featured-video .play-button {
-    width: clamp(110px, 9vw, 220px);
-    height: clamp(110px, 9vw, 220px);
-    padding-left: clamp(6px, 0.4vw, 14px);
-  }
-
-  .video-controls { top: clamp(12px, 1.2vw, 36px); right: clamp(12px, 1.2vw, 36px); }
-
-  .control-btn { width: clamp(40px, 2.6vw, 56px); height: clamp(40px, 2.6vw, 56px); }
 }
