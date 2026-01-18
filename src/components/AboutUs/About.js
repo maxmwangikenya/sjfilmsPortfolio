@@ -6,7 +6,6 @@ import {
   Users, 
   Award, 
   MapPin, 
-  Play,
   Zap,
   Target,
   Heart,
