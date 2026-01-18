@@ -1,6 +1,6 @@
-// src/components/AboutUs/AboutUs.js
+// src/components/AboutUs/About.js
 
-import { useState } from 'react';
+import React from 'react'; // Removed the unused { useState } import
 import { 
   Camera, 
   Film, 
@@ -55,59 +55,59 @@ function AboutUs() {
     {
       name: 'Youth Plus Africa',
       subtitle: 'Mastercard Foundation',
-      logo: '/Images/About%20us/youth%20plus%20africa%20logo.png'
+      logo: '/Images/About us/youth plus africa logo.png'
     },
     {
       name: 'Development Dynamics',
-      logo: '/Images/About%20us/development-dynamic.png'
+      logo: '/Images/About us/development-dynamic.png'
     },
     {
       name: 'Tumaini Trust Kenya',
-      logo: '/Images/About%20us/tumaini-trust-kenya.jpg'
+      logo: '/Images/About us/tumaini-trust-kenya.jpg'
     },
     {
       name: 'YellowMoon Ltd',
-      logo: '/Images/About%20us/yellow-moon-td.png'
+      logo: '/Images/About us/yellow-moon-td.png'
     },
     {
       name: 'Kenya Wine Agencies Limited',
       subtitle: 'KWAL',
-      logo: '/Images/About%20us/kenya-wine-agency%20ltd.jpg'
+      logo: '/Images/About us/kenya-wine-agency ltd.jpg'
     },
     {
       name: 'Densu',
-      logo: '/Images/About%20us/densu.png'
+      logo: '/Images/About us/densu.png'
     },
     {
       name: 'Safaricom PLC',
-      logo: '/Images/About%20us/safaricom.png'
+      logo: '/Images/About us/safaricom.png'
     },
     {
       name: 'Darling Africa',
-      logo: '/Images/About%20us/darling-africa.png.png'
+      logo: '/Images/About us/darling-africa.png.png'
     },
     {
       name: 'Kenya Wildlife Service',
       subtitle: 'KWS',
-      logo: '/Images/About%20us/kenya-wildlife-service.jfif'
+      logo: '/Images/About us/kenya-wildlife-service.jfif'
     },
     {
       name: 'Gigiri Social Club',
-      logo: '/Images/About%20us/gigiri-social-club.jfif'
+      logo: '/Images/About us/gigiri-social-club.jfif'
     },
     {
       name: 'Ministry of Tourism',
-      logo: '/Images/About%20us/ministry-of-tourism.png'
+      logo: '/Images/About us/ministry-of-tourism.png'
     },
     {
       name: 'Wildlife Training and Research Institute',
       subtitle: 'WRTI',
-      logo: '/Images/About%20us/wildlife%20training-and-research-institute.png'
+      logo: '/Images/About us/wildlife training-and-research-institute.png'
     },
     {
       name: 'Heineken',
       subtitle: 'HA',
-      logo: '/Images/About%20us/heineken-logo-png.png'
+      logo: '/Images/About us/heineken-logo-png.png'
     }
   ];
 
