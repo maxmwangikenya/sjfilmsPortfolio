@@ -1,4 +1,3 @@
-// src/components/CooperativeEvents/CooperativeEvents.js
 import React, { useState } from 'react';
 import './CooperativeEvents.css';
 
@@ -13,41 +12,33 @@ const CooperativeEvents = () => {
     setZoomedVideo(null);
   };
 
-const videos = [
-  {
-    id: 'utmHWPygcJo',
-    title: 'WRTI - Set-up'
-  },
-  {
-    id: 'K6q1KatBG9k',
-    title: 'WRTI Day 2 - Exhibitors'
-  },
-  {
-    id: 'f5Atpu22GEI',
-    title: 'YM Stanchart Marathon'
-  },
-  {
-    id: '5GWVF4lffn4',
-    title: "YM@ Nanai's Cafe Party"
-  }
-];
+  const videos = [
+    {
+      id: 'K6q1KatBG9k',
+      title: 'WRTI Day 2 - Exhibitors'
+    },
+    {
+      id: 'utmHWPygcJo',
+      title: 'WRTI - Set-up'
+    },
+    {
+      id: '5GWVF4lffn4',
+      title: "YM@ Nanai's Cafe Party"
+    },
+    {
+      id: 'f5Atpu22GEI',
+      title: 'YM Stanchart Marathon'
+    }
+  ];
 
   return (
     <div className="cooperative-events-page">
+      {/* Hero Full-Width Video - NOW: WRTI Day 2 - Exhibitors */}
       <section className="video-section hero-section">
-        <div 
-          className="video-container full-width clickable" 
-          onClick={() => openZoom(0)}
-        >
+        <div className="video-container full-width clickable" onClick={() => openZoom(0)}>
           {zoomedVideo === 0 && (
             <div className="custom-zoom-overlay" onClick={closeZoom}>
-              <button 
-                className="zoom-close-btn"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  closeZoom();
-                }}
-              >
+              <button className="zoom-close-btn" onClick={(e) => { e.stopPropagation(); closeZoom(); }}>
                 ✕
               </button>
               <div className="zoom-video-container">
@@ -65,8 +56,6 @@ const videos = [
           )}
           <iframe
             className="showcase-video"
-            width="100%"
-            height="100%"
             src={`https://www.youtube.com/embed/${videos[0].id}?controls=0&modestbranding=1&rel=0&showinfo=0`}
             title={videos[0].title}
             frameBorder="0"
@@ -87,21 +76,13 @@ const videos = [
         </div>
       </section>
 
+      {/* Split Section - NOW: WRTI Set-up (left) & YM@ Nanai's Cafe Party (right) */}
       <section className="video-section split-section">
         <div className="split-container">
-          <div 
-            className="video-container split-video clickable" 
-            onClick={() => openZoom(1)}
-          >
+          <div className="video-container split-video clickable" onClick={() => openZoom(1)}>
             {zoomedVideo === 1 && (
               <div className="custom-zoom-overlay" onClick={closeZoom}>
-                <button 
-                  className="zoom-close-btn"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    closeZoom();
-                  }}
-                >
+                <button className="zoom-close-btn" onClick={(e) => { e.stopPropagation(); closeZoom(); }}>
                   ✕
                 </button>
                 <div className="zoom-video-container">
@@ -119,8 +100,6 @@ const videos = [
             )}
             <iframe
               className="showcase-video"
-              width="100%"
-              height="100%"
               src={`https://www.youtube.com/embed/${videos[1].id}?controls=0&modestbranding=1&rel=0&showinfo=0`}
               title={videos[1].title}
               frameBorder="0"
@@ -139,19 +118,10 @@ const videos = [
               </div>
             </div>
           </div>
-          <div 
-            className="video-container split-video clickable" 
-            onClick={() => openZoom(2)}
-          >
+          <div className="video-container split-video clickable" onClick={() => openZoom(2)}>
             {zoomedVideo === 2 && (
               <div className="custom-zoom-overlay" onClick={closeZoom}>
-                <button 
-                  className="zoom-close-btn"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    closeZoom();
-                  }}
-                >
+                <button className="zoom-close-btn" onClick={(e) => { e.stopPropagation(); closeZoom(); }}>
                   ✕
                 </button>
                 <div className="zoom-video-container">
@@ -169,8 +139,6 @@ const videos = [
             )}
             <iframe
               className="showcase-video"
-              width="100%"
-              height="100%"
               src={`https://www.youtube.com/embed/${videos[2].id}?controls=0&modestbranding=1&rel=0&showinfo=0`}
               title={videos[2].title}
               frameBorder="0"
@@ -192,20 +160,12 @@ const videos = [
         </div>
       </section>
 
+      {/* Bottom Full-Width Video - NOW: YM Stanchart Marathon */}
       <section className="video-section bottom-section">
-        <div 
-          className="video-container full-width clickable" 
-          onClick={() => openZoom(3)}
-        >
+        <div className="video-container full-width clickable" onClick={() => openZoom(3)}>
           {zoomedVideo === 3 && (
             <div className="custom-zoom-overlay" onClick={closeZoom}>
-              <button 
-                className="zoom-close-btn"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  closeZoom();
-                }}
-              >
+              <button className="zoom-close-btn" onClick={(e) => { e.stopPropagation(); closeZoom(); }}>
                 ✕
               </button>
               <div className="zoom-video-container">
@@ -223,8 +183,6 @@ const videos = [
           )}
           <iframe
             className="showcase-video"
-            width="100%"
-            height="100%"
             src={`https://www.youtube.com/embed/${videos[3].id}?controls=0&modestbranding=1&rel=0&showinfo=0`}
             title={videos[3].title}
             frameBorder="0"

@@ -11,27 +11,18 @@ const BrandCampaigns = () => {
       title: 'BAWYC HQ',
     },
     {
-      id: 'pDWHfKHYO8Y',
-      title: 'Jason - Yes with Carrefour',
-    },
-    {
-      id: '-NI_Ofq5Wnw',
-      title: 'Safaricom @25 with YM',
+      id: 'YgG3X8pHI_s',
+      title: 'Victor x Cris - Krackles',
     },
     {
       id: 'Yt3wuaA7kI4',
       title: 'Spotify Wrapped 2025 - Maina Mind',
     },
     {
-      id: 'hSUgfp_HD7I',
-      title: 'Stephanie LFW with KCB',
-    },
-    {
-      id: 'YgG3X8pHI_s',
-      title: 'Victor x Cris - Krackles',
+      id: '-NI_Ofq5Wnw',
+      title: 'Safaricom @25 with YM',
     }
   ];
-
 
   const openFullscreen = (index) => {
     console.log('Opening fullscreen for video:', index);
@@ -67,7 +58,7 @@ const BrandCampaigns = () => {
         </div>
       )}
 
-      {/* Hero Section - Video 0 */}
+      {/* Hero Section - Video 0: BAWYC HQ */}
       <section className="video-section hero-section">
         <div 
           className="video-container full-width clickable" 
@@ -97,7 +88,7 @@ const BrandCampaigns = () => {
         </div>
       </section>
 
-      {/* Split Section - Videos 1 & 2 */}
+      {/* Split Section - Video 1: Victor x Cris & Video 2: Spotify Wrapped */}
       <section className="video-section split-section">
         <div className="split-container">
           <div 
@@ -156,7 +147,7 @@ const BrandCampaigns = () => {
         </div>
       </section>
 
-      {/* Bottom Section - Video 3 */}
+      {/* Bottom Section - Video 3: Safaricom @25 */}
       <section className="video-section bottom-section">
         <div 
           className="video-container full-width clickable" 
@@ -180,65 +171,6 @@ const BrandCampaigns = () => {
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M8 5v14l11-7L8 5z"/>
                 </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Second Split Section - Videos 4 & 5 */}
-      <section className="video-section split-section">
-        <div className="split-container">
-          <div 
-            className="video-container split-video clickable" 
-            onClick={() => openFullscreen(4)}
-          >
-            <iframe
-              className="showcase-video"
-              width="100%"
-              height="100%"
-              src={`https://www.youtube.com/embed/${videos[4].id}?controls=0&modestbranding=1&rel=0&showinfo=0`}
-              title={videos[4].title}
-              frameBorder="0"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              loading="lazy"
-            />
-            <div className="video-overlay">
-              <div className="video-info">
-                <h2 className="video-title">{videos[4].title}</h2>
-                <div className="play-indicator">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7L8 5z"/>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div 
-            className="video-container split-video clickable" 
-            onClick={() => openFullscreen(5)}
-          >
-            <iframe
-              className="showcase-video"
-              width="100%"
-              height="100%"
-              src={`https://www.youtube.com/embed/${videos[5].id}?controls=0&modestbranding=1&rel=0&showinfo=0`}
-              title={videos[5].title}
-              frameBorder="0"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              loading="lazy"
-            />
-            <div className="video-overlay">
-              <div className="video-info">
-                <h2 className="video-title">{videos[5].title}</h2>
-                <div className="play-indicator">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7L8 5z"/>
-                  </svg>
-                </div>
               </div>
             </div>
           </div>

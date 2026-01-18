@@ -1,44 +1,40 @@
-// src/components/LandingPage/LandingPage.js
 import React, { useState } from 'react';
 import './LandingPage.css';
 
 const LandingPage = () => {
   const [fullscreenVideo, setFullscreenVideo] = useState(null);
 
-const videos = [
-  {
-    id: 'A0U2Bj-MpeQ',
-    title: 'Capturing the breathtaking beauty of Kisii landscapes'
-  },
-  {
-    id: 'aj35BnvMUvg',
-    title: 'Celebrating 25 years of connectivity and innovation'
-  },
-  {
-    id: 'ivAO6RU2WIM',
-    title: 'High-energy marathon coverage with premium partners'
-  },
-  {
-    id: '77JEEOXayaI',
-    title: 'The vibrant aftermovie of Life of Solo event'
-  }
-];
-
+  const videos = [
+    {
+      id: 'aj35BnvMUvg',
+      title: 'Celebrating 25 years of connectivity and innovation'
+    },
+    {
+      id: 'A0U2Bj-MpeQ',
+      title: 'Capturing the breathtaking beauty of Kisii landscapes'
+    },
+    {
+      id: 'ivAO6RU2WIM',
+      title: 'High-energy marathon coverage with premium partners'
+    },
+    {
+      id: '77JEEOXayaI',
+      title: 'The vibrant aftermovie of Life of Solo event'
+    }
+  ];
 
   const openFullscreen = (index) => {
-    console.log('Opening fullscreen for video:', index);
     setFullscreenVideo(index);
   };
 
   const closeFullscreen = (e) => {
     e.stopPropagation();
-    console.log('Closing fullscreen');
     setFullscreenVideo(null);
   };
 
   return (
     <div className="landing-page">
-      {/* Fullscreen Video Overlay */}
+      {/* Fullscreen Overlay */}
       {fullscreenVideo !== null && (
         <div className="fullscreen-overlay" onClick={closeFullscreen}>
           <button className="close-button" onClick={closeFullscreen}>
@@ -48,8 +44,6 @@ const videos = [
           </button>
           <iframe
             className="fullscreen-video"
-            width="100%"
-            height="100%"
             src={`https://www.youtube.com/embed/${videos[fullscreenVideo].id}?autoplay=1&controls=1`}
             title={videos[fullscreenVideo].title}
             frameBorder="0"
@@ -59,16 +53,11 @@ const videos = [
         </div>
       )}
 
-      {/* Hero Section */}
+      {/* Hero Section — Carrefour Video */}
       <section className="video-section hero-section">
-        <div 
-          className="video-container full-width clickable" 
-          onClick={() => openFullscreen(0)}
-        >
+        <div className="video-container full-width clickable" onClick={() => openFullscreen(0)}>
           <iframe
             className="showcase-video"
-            width="100%"
-            height="100%"
             src={`https://www.youtube.com/embed/${videos[0].id}?controls=0&modestbranding=1&rel=0&showinfo=0`}
             title={videos[0].title}
             frameBorder="0"
@@ -77,10 +66,6 @@ const videos = [
             loading="lazy"
           />
           <div className="video-overlay">
-            {/* Added video description */}
-            <div className="video-description">
-              {videos[0].description}
-            </div>
             <div className="video-info">
               <h2 className="video-title">{videos[0].title}</h2>
               <div className="play-indicator">
@@ -93,17 +78,13 @@ const videos = [
         </div>
       </section>
 
-      {/* Split Section */}
+      {/* Split Section — Kisii + Marathon */}
       <section className="video-section split-section">
         <div className="split-container">
-          <div 
-            className="video-container split-video clickable" 
-            onClick={() => openFullscreen(1)}
-          >
+          {/* Left Video — Kisii — FULL COVER, NO OVERLAY */}
+          <div className="video-container split-video clickable" onClick={() => openFullscreen(1)}>
             <iframe
               className="showcase-video"
-              width="100%"
-              height="100%"
               src={`https://www.youtube.com/embed/${videos[1].id}?controls=0&modestbranding=1&rel=0&showinfo=0`}
               title={videos[1].title}
               frameBorder="0"
@@ -111,30 +92,18 @@ const videos = [
               allowFullScreen
               loading="lazy"
             />
-            <div className="video-overlay">
-              {/* Added video description */}
-              <div className="video-description">
-                {videos[1].description}
-              </div>
-              <div className="video-info">
-                <h2 className="video-title">{videos[1].title}</h2>
-                <div className="play-indicator">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7L8 5z"/>
-                  </svg>
-                </div>
-              </div>
+            {/* Play Button Only — No Background */}
+            <div className="play-indicator-only">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M8 5v14l11-7L8 5z"/>
+              </svg>
             </div>
           </div>
 
-          <div 
-            className="video-container split-video clickable" 
-            onClick={() => openFullscreen(2)}
-          >
+          {/* Right Video — Marathon — With Title */}
+          <div className="video-container split-video clickable" onClick={() => openFullscreen(2)}>
             <iframe
               className="showcase-video"
-              width="100%"
-              height="100%"
               src={`https://www.youtube.com/embed/${videos[2].id}?controls=0&modestbranding=1&rel=0&showinfo=0`}
               title={videos[2].title}
               frameBorder="0"
@@ -143,10 +112,6 @@ const videos = [
               loading="lazy"
             />
             <div className="video-overlay">
-              {/* Added video description */}
-              <div className="video-description">
-                {videos[2].description}
-              </div>
               <div className="video-info">
                 <h2 className="video-title">{videos[2].title}</h2>
                 <div className="play-indicator">
@@ -160,30 +125,21 @@ const videos = [
         </div>
       </section>
 
-      {/* Bottom Section */}
-      <section className="video-section bottom-section">
-        <div 
-          className="video-container full-width clickable" 
-          onClick={() => openFullscreen(3)}
-        >
+      {/* Bottom Section — Showreel */}
+      <section className="video-section bottom-section" style={{ marginTop: '80px' }}>
+        <div className="video-container full-width clickable" onClick={() => openFullscreen(3)}>
           <iframe
             className="showcase-video"
-            width="100%"
-            height="100%"
-            src={`https://www.youtube.com/embed/${videos[3].id}?controls=0&modestbranding=1&rel=0&showinfo=0`}
-            title={videos[3].title}
+            src="https://www.youtube.com/embed/LSEVMAv5zb8?controls=0&modestbranding=1&rel=0&showinfo=0&autoplay=0"
+            title="SJ Films Showreel"
             frameBorder="0"
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             loading="lazy"
           />
           <div className="video-overlay">
-            {/* Added video description */}
-            <div className="video-description">
-              {videos[3].description}
-            </div>
             <div className="video-info">
-              <h2 className="video-title">{videos[3].title}</h2>
+              <h2 className="video-title">SJ Films Showreel</h2>
               <div className="play-indicator">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M8 5v14l11-7L8 5z"/>

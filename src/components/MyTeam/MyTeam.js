@@ -159,18 +159,7 @@ function MyTeam() {
       </section>
 
       {/* Call to Action */}
-      <section className="cta-section">
-        <div className="cta-content">
-          <h2 className="cta-title">Ready to Work With Us?</h2>
-          <p className="cta-text">
-            Let's create something amazing together. Our team is ready to bring your vision to life.
-          </p>
-          <button className="cta-button">
-            <span>Get In Touch</span>
-            <Zap size={20} />
-          </button>
-        </div>
-      </section>
+
     </div>
   );
 }

@@ -1,6 +1,4 @@
-// src/components/AboutUs/About.js
-
-import React from 'react'; // Removed the unused { useState } import
+import React from 'react';
 import { 
   Camera, 
   Film, 
@@ -17,9 +15,6 @@ import {
 import './About.css';
 
 function AboutUs() {
-  // Note: removed hoveredClient since it's not being used
-  // const [hoveredClient, setHoveredClient] = useState(null);
-
   const stats = [
     { icon: Film, number: '500+', label: 'Projects Delivered' },
     { icon: Users, number: '20+', label: 'Major Clients' },
@@ -50,64 +45,64 @@ function AboutUs() {
     }
   ];
 
-  // Using absolute paths from the public folder
+  // Fixed client paths with encoded spaces and proper file names
   const clients = [
     {
       name: 'Youth Plus Africa',
       subtitle: 'Mastercard Foundation',
-      logo: '/Images/About us/youth plus africa logo.png'
+      logo: '/Images/About%20us/youth%20plus%20africa%20logo.png'
     },
     {
       name: 'Development Dynamics',
-      logo: '/Images/About us/development-dynamic.png'
+      logo: '/Images/About%20us/development%20dynamic.png'
     },
     {
       name: 'Tumaini Trust Kenya',
-      logo: '/Images/About us/tumaini-trust-kenya.jpg'
+      logo: '/Images/About%20us/tumaini%20trust%20kenya.jpg'
     },
     {
       name: 'YellowMoon Ltd',
-      logo: '/Images/About us/yellow-moon-td.png'
+      logo: '/Images/About%20us/yellow%20moon%20ltd.png'
     },
     {
       name: 'Kenya Wine Agencies Limited',
       subtitle: 'KWAL',
-      logo: '/Images/About us/kenya-wine-agency ltd.jpg'
+      logo: '/Images/About%20us/kenya%20wine%20agency%20ltd.jpg'
     },
     {
       name: 'Densu',
-      logo: '/Images/About us/densu.png'
+      logo: '/Images/About%20us/Densu.png'
     },
     {
       name: 'Safaricom PLC',
-      logo: '/Images/About us/safaricom.png'
+      logo: '/Images/About%20us/safaricom.png'
     },
     {
       name: 'Darling Africa',
-      logo: '/Images/About us/darling-africa.png.png'
+      logo: '/Images/About%20us/Darling%20africa.png'
     },
     {
       name: 'Kenya Wildlife Service',
       subtitle: 'KWS',
-      logo: '/Images/About us/kenya-wildlife-service.jfif'
+      logo: '/Images/About%20us/kenya%20wildlife%20service.jfif'
     },
     {
       name: 'Gigiri Social Club',
-      logo: '/Images/About us/gigiri-social-club.jfif'
+      logo: '/Images/About%20us/gigiri%20social%20club.jfif'
     },
     {
       name: 'Ministry of Tourism',
-      logo: '/Images/About us/ministry-of-tourism.png'
+      logo: '/Images/About%20us/ministry%20of%20tourism.png'
     },
     {
       name: 'Wildlife Training and Research Institute',
       subtitle: 'WRTI',
-      logo: '/Images/About us/wildlife training-and-research-institute.png'
+      logo: '/Images/About%20us/wildlife%20training%20and%20research%20institute.png'
     },
     {
       name: 'Heineken',
       subtitle: 'HA',
-      logo: '/Images/About us/heineken-logo-png.png'
+      logo: '/Images/About%20us/heineken-logo-png.png'
     }
   ];
 
@@ -146,10 +141,19 @@ function AboutUs() {
 
   return (
     <div className="aboutus-container">
-      {/* Hero Section */}
+      {/* Hero Section with Logo */}
       <section className="about-hero">
         <div className="hero-overlay"></div>
         <div className="hero-content">
+          {/* SJ Films Logo */}
+          <div className="company-logo-wrapper">
+            <img 
+              src="/Images/logo%20homepage/logo.png" 
+              alt="SJ Films Logo" 
+              className="company-logo"
+            />
+          </div>
+          
           <MapPin className="hero-icon" size={60} />
           <h1 className="hero-title">About SJ Films</h1>
           <p className="hero-location">
@@ -163,7 +167,7 @@ function AboutUs() {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Rest of the component remains the same */}
       <section className="stats-section">
         <div className="stats-container">
           {stats.map((stat, index) => {
@@ -179,7 +183,6 @@ function AboutUs() {
         </div>
       </section>
 
-      {/* Mission Statement */}
       <section className="mission-section">
         <div className="mission-content">
           <Film className="mission-icon" size={50} />
@@ -196,7 +199,6 @@ function AboutUs() {
         </div>
       </section>
 
-      {/* Services Grid */}
       <section className="services-section">
         <div className="section-header">
           <h2 className="section-title">What We Do</h2>
@@ -220,7 +222,6 @@ function AboutUs() {
         </div>
       </section>
 
-      {/* Values Section */}
       <section className="values-section">
         <div className="section-header">
           <h2 className="section-title">Our Values</h2>
@@ -242,7 +243,6 @@ function AboutUs() {
         </div>
       </section>
 
-      {/* Clients Section */}
       <section className="clients-section">
         <div className="section-header">
           <h2 className="section-title">Trusted By Leading Organizations</h2>
@@ -256,7 +256,6 @@ function AboutUs() {
             <div
               key={index}
               className="client-card"
-              // Removed hover event handlers since they're not being used
             >
               <div className="client-logo-wrapper">
                 <img 
@@ -278,22 +277,7 @@ function AboutUs() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="about-cta">
-        <div className="cta-content">
-          <Play className="cta-icon" size={60} />
-          <h2 className="cta-title">Ready to Tell Your Story?</h2>
-          <p className="cta-text">
-            Let's collaborate to create something extraordinary. Whether it's a documentary, 
-            corporate video, or brand campaign, we have the expertise and passion to bring 
-            your vision to life.
-          </p>
-          <button className="cta-button">
-            <span>Get Started</span>
-            <Zap size={20} />
-          </button>
-        </div>
-      </section>
+
     </div>
   );
 }

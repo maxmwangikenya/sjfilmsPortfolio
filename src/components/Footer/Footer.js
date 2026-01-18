@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Instagram, Youtube } from 'lucide-react';
-import logo from '../../logo.svg';
 import './Footer.css';
 
 function Footer() {
@@ -41,7 +40,7 @@ function Footer() {
             <div className="footer-column">
               <div className="footer-logo-section">
                 <img 
-                  src={logo} 
+                  src="/Images/logo homepage/logo.png" 
                   alt="SJ Films Logo" 
                   className="footer-logo"
                 />
