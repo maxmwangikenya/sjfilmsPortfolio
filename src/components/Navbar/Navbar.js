@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import logo from '../../logo.svg';
 import './Navbar.css';
 
 function Navbar() {
@@ -33,11 +34,11 @@ function Navbar() {
         <div className="navbar-container">
           {/* Logo - Far Left */}
           <Link to="/" className="logo-link">
-<img 
-  src="/Images/logo%20homepage/logo.png" 
-  alt="SJ Films Logo" 
-  className="navbar-logo"
-/>
+            <img 
+              src={logo} 
+              alt="SJ Films Logo" 
+              className="navbar-logo"
+            />
           </Link>
 
           {/* Desktop Navigation - Far Right */}

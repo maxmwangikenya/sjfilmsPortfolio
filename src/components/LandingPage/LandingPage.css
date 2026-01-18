@@ -156,12 +156,13 @@
 .showcase-video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  background: #000;
 }
 
 /* Video Loader */
@@ -235,95 +236,46 @@
 /* Video Title - Creative Styling */
 .video-title {
   position: absolute;
-  top: 70%;
-  left: 1.5rem;
-  transform: translateY(-50%);
+  bottom: 1.5rem;
+  left: 1rem;
   color: #ffffff;
-  font-size: 0.72rem;
-  font-weight: 500;
-  font-family: 'Space Grotesk', 'Outfit', sans-serif;
-  text-shadow: 
-    2px 2px 12px rgba(0, 0, 0, 0.95),
-    0 0 25px rgba(0, 0, 0, 0.8),
-    1px 1px 3px rgba(0, 0, 0, 0.9);
-  max-width: 220px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  max-width: 50%;
   z-index: 3;
-  opacity: 1;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  background: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.85) 0%,
-    rgba(20, 20, 20, 0.75) 50%,
-    rgba(0, 0, 0, 0.85) 100%
-  );
-  padding: 0.55rem 1rem;
-  border-radius: 8px;
-  border-left: 2.5px solid #ff6b00;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  line-height: 1.45;
-  letter-spacing: 0.5px;
-  box-shadow: 
-    0 4px 15px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  border-right: 1px solid rgba(255, 107, 0, 0.2);
-  border-bottom: 1px solid rgba(255, 107, 0, 0.15);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 /* Hover effect for desktop */
 .video-container:hover .video-title {
-  border-left-color: #ffffff;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 107, 0, 0.15) 0%,
-    rgba(0, 0, 0, 0.85) 100%
-  );
-  transform: translateY(-50%) translateX(5px);
-  box-shadow: 
-    0 6px 20px rgba(255, 107, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: none;
 }
 
 /* Featured video title */
 .featured-video .video-title {
-  font-size: 0.84rem;
-  top: 70%;
-  left: 2rem;
-  max-width: 260px;
-  padding: 0.65rem 1.2rem;
-  border-left-width: 3px;
-  letter-spacing: 0.6px;
+  font-size: 0.85rem;
 }
 
 /* Regular videos smaller title */
 .regular-videos .video-title {
-  font-size: 0.63rem;
-  top: 70%;
-  left: 1.25rem;
-  max-width: 180px;
-  padding: 0.45rem 0.85rem;
-  border-left-width: 2px;
-  letter-spacing: 0.4px;
+  font-size: 0.75rem;
 }
 
 /* Tablet View (1024px and below) */
 @media (max-width: 1024px) {
   .video-title {
-    font-size: 0.68rem;
-    top: 70%;
-    padding: 0.5rem 0.95rem;
-    max-width: 200px;
+    font-size: 0.72rem;
+    bottom: 1.2rem;
+    left: 0.9rem;
+    max-width: 50%;
   }
 
   .featured-video .video-title {
     font-size: 0.78rem;
-    max-width: 240px;
   }
 
   .regular-videos .video-title {
-    font-size: 0.6rem;
-    padding: 0.4rem 0.75rem;
-    max-width: 160px;
+    font-size: 0.68rem;
   }
 }
 /* Mobile View (768px and below) - Fixed for all videos */
