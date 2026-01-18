@@ -1,66 +1,39 @@
 // src/components/CooperativeEvents/CooperativeEvents.js
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import './CooperativeEvents.css';
 
 const CooperativeEvents = () => {
-  const videoRefs = useRef([]);
-  const [videosLoaded, setVideosLoaded] = useState([false, false, false, false]);
   const [zoomedVideo, setZoomedVideo] = useState(null);
 
-  const handleVideoLoad = (index) => {
-    setVideosLoaded(prev => {
-      const newState = [...prev];
-      newState[index] = true;
-      return newState;
-    });
-  };
-
-  // Handle click to open zoomed video (with sound)
   const openZoom = (index) => {
-    const video = videoRefs.current[index];
-    if (video) {
-      // Ensure video is ready
-      video.muted = false; // ✅ Enable sound
-      video.play().catch(err => console.log('Play failed:', err));
-    }
     setZoomedVideo(index);
   };
 
-  // Handle close: stop video and mute
   const closeZoom = () => {
-    if (zoomedVideo !== null) {
-      const video = videoRefs.current[zoomedVideo];
-      if (video) {
-        video.pause();
-        video.muted = true; // ✅ Mute immediately
-        video.currentTime = 0; // Optional: rewind
-      }
-    }
     setZoomedVideo(null);
   };
 
 const videos = [
   {
-    src: 'https://www.youtube.com/embed/utmHWPygcJo?autoplay=1&loop=1&playlist=utmHWPygcJo&controls=0&showinfo=0&rel=0&modestbranding=1',
+    id: 'utmHWPygcJo',
     title: 'WRTI - Set-up'
   },
   {
-    src: 'https://www.youtube.com/embed/K6q1KatBG9k?autoplay=1&loop=1&playlist=K6q1KatBG9k&controls=0&showinfo=0&rel=0&modestbranding=1',
+    id: 'K6q1KatBG9k',
     title: 'WRTI Day 2 - Exhibitors'
   },
   {
-    src: 'https://www.youtube.com/embed/f5Atpu22GEI?autoplay=1&loop=1&playlist=f5Atpu22GEI&controls=0&showinfo=0&rel=0&modestbranding=1',
+    id: 'f5Atpu22GEI',
     title: 'YM Stanchart Marathon'
   },
   {
-    src: 'https://www.youtube.com/embed/5GWVF4lffn4?autoplay=1&loop=1&playlist=5GWVF4lffn4&controls=0&showinfo=0&rel=0&modestbranding=1',
+    id: '5GWVF4lffn4',
     title: "YM@ Nanai's Cafe Party"
   }
 ];
 
   return (
     <div className="cooperative-events-page">
-      {/* Hero */}
       <section className="video-section hero-section">
         <div 
           className="video-container full-width clickable" 
@@ -78,32 +51,29 @@ const videos = [
                 ✕
               </button>
               <div className="zoom-video-container">
-                <video
-                  autoPlay
-                  muted={false}
-                  className="zoom-video"
-                  src={videos[0].src}
-                  controls
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={`https://www.youtube.com/embed/${videos[0].id}?autoplay=1&controls=1`}
+                  title={videos[0].title}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
                 />
               </div>
             </div>
           )}
-          {!videosLoaded[0] && (
-            <div className="video-loader">
-              <div className="loader-spinner"></div>
-              <p>Loading...</p>
-            </div>
-          )}
-          <video
-            ref={el => videoRefs.current[0] = el}
+          <iframe
             className="showcase-video"
-            muted={true} // ✅ Always muted in thumbnail
-            loop
-            playsInline
-            onLoadedData={() => handleVideoLoad(0)}
-          >
-            <source src={videos[0].src} type="video/mp4" />
-          </video>
+            width="100%"
+            height="100%"
+            src={`https://www.youtube.com/embed/${videos[0].id}?controls=0&modestbranding=1&rel=0&showinfo=0`}
+            title={videos[0].title}
+            frameBorder="0"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            loading="lazy"
+          />
           <div className="video-overlay">
             <div className="video-info">
               <h2 className="video-title">{videos[0].title}</h2>
@@ -117,7 +87,6 @@ const videos = [
         </div>
       </section>
 
-      {/* Split */}
       <section className="video-section split-section">
         <div className="split-container">
           <div 
@@ -136,32 +105,29 @@ const videos = [
                   ✕
                 </button>
                 <div className="zoom-video-container">
-                  <video
-                    autoPlay
-                    muted={false}
-                    className="zoom-video"
-                    src={videos[1].src}
-                    controls
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src={`https://www.youtube.com/embed/${videos[1].id}?autoplay=1&controls=1`}
+                    title={videos[1].title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
                   />
                 </div>
               </div>
             )}
-            {!videosLoaded[1] && (
-              <div className="video-loader">
-                <div className="loader-spinner"></div>
-                <p>Loading...</p>
-              </div>
-            )}
-            <video
-              ref={el => videoRefs.current[1] = el}
+            <iframe
               className="showcase-video"
-              muted={true}
-              loop
-              playsInline
-              onLoadedData={() => handleVideoLoad(1)}
-            >
-              <source src={videos[1].src} type="video/mp4" />
-            </video>
+              width="100%"
+              height="100%"
+              src={`https://www.youtube.com/embed/${videos[1].id}?controls=0&modestbranding=1&rel=0&showinfo=0`}
+              title={videos[1].title}
+              frameBorder="0"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
+            />
             <div className="video-overlay">
               <div className="video-info">
                 <h2 className="video-title">{videos[1].title}</h2>
@@ -189,32 +155,29 @@ const videos = [
                   ✕
                 </button>
                 <div className="zoom-video-container">
-                  <video
-                    autoPlay
-                    muted={false}
-                    className="zoom-video"
-                    src={videos[2].src}
-                    controls
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src={`https://www.youtube.com/embed/${videos[2].id}?autoplay=1&controls=1`}
+                    title={videos[2].title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
                   />
                 </div>
               </div>
             )}
-            {!videosLoaded[2] && (
-              <div className="video-loader">
-                <div className="loader-spinner"></div>
-                <p>Loading...</p>
-              </div>
-            )}
-            <video
-              ref={el => videoRefs.current[2] = el}
+            <iframe
               className="showcase-video"
-              muted={true}
-              loop
-              playsInline
-              onLoadedData={() => handleVideoLoad(2)}
-            >
-              <source src={videos[2].src} type="video/mp4" />
-            </video>
+              width="100%"
+              height="100%"
+              src={`https://www.youtube.com/embed/${videos[2].id}?controls=0&modestbranding=1&rel=0&showinfo=0`}
+              title={videos[2].title}
+              frameBorder="0"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
+            />
             <div className="video-overlay">
               <div className="video-info">
                 <h2 className="video-title">{videos[2].title}</h2>
@@ -229,7 +192,6 @@ const videos = [
         </div>
       </section>
 
-      {/* Bottom */}
       <section className="video-section bottom-section">
         <div 
           className="video-container full-width clickable" 
@@ -247,32 +209,29 @@ const videos = [
                 ✕
               </button>
               <div className="zoom-video-container">
-                <video
-                  autoPlay
-                  muted={false}
-                  className="zoom-video"
-                  src={videos[3].src}
-                  controls
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={`https://www.youtube.com/embed/${videos[3].id}?autoplay=1&controls=1`}
+                  title={videos[3].title}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
                 />
               </div>
             </div>
           )}
-          {!videosLoaded[3] && (
-            <div className="video-loader">
-              <div className="loader-spinner"></div>
-              <p>Loading...</p>
-            </div>
-          )}
-          <video
-            ref={el => videoRefs.current[3] = el}
+          <iframe
             className="showcase-video"
-            muted={true}
-            loop
-            playsInline
-            onLoadedData={() => handleVideoLoad(3)}
-          >
-            <source src={videos[3].src} type="video/mp4" />
-          </video>
+            width="100%"
+            height="100%"
+            src={`https://www.youtube.com/embed/${videos[3].id}?controls=0&modestbranding=1&rel=0&showinfo=0`}
+            title={videos[3].title}
+            frameBorder="0"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            loading="lazy"
+          />
           <div className="video-overlay">
             <div className="video-info">
               <h2 className="video-title">{videos[3].title}</h2>

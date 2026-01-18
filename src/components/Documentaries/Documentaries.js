@@ -1,66 +1,39 @@
 // src/components/Documentaries/Documentaries.js
-import { useState, useRef } from 'react';
-import { Play, Pause, Maximize2, Volume2, VolumeX } from 'lucide-react';
+import { useState } from 'react';
+import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import './Documentaries.css';
 
 function Documentaries() {
   const [isPlaying, setIsPlaying] = useState({});
   const [isMuted, setIsMuted] = useState({});
   const [fullscreenVideo, setFullscreenVideo] = useState(null);
-  const videoRefs = useRef({});
 
 const documentaries = [
   {
     id: 1,
     title: 'AJiry Kisii',
-    videoUrl: 'https://www.youtube.com/embed/JbF37EToGWg?autoplay=1&loop=1&playlist=JbF37EToGWg&controls=0&showinfo=0&rel=0&modestbranding=1',
+    youtubeId: 'JbF37EToGWg',
     isFeatured: true
   },
   {
     id: 2,
     title: 'AJiry Machakos',
-    videoUrl: 'https://www.youtube.com/embed/TOGXnJUkteA?autoplay=1&loop=1&playlist=TOGXnJUkteA&controls=0&showinfo=0&rel=0&modestbranding=1',
+    youtubeId: 'TOGXnJUkteA',
     isFeatured: false
   },
   {
     id: 3,
     title: 'The Story Of Janny Marangu',
-    videoUrl: 'https://www.youtube.com/embed/cN9sgUwkIms?autoplay=1&loop=1&playlist=cN9sgUwkIms&controls=0&showinfo=0&rel=0&modestbranding=1',
+    youtubeId: 'cN9sgUwkIms',
     isFeatured: false
   }
 ];
   const handlePlayPause = (id) => {
-    const video = videoRefs.current[id];
-    if (!video) return;
-
-    if (isPlaying[id]) {
-      video.pause();
-      setIsPlaying(prev => ({ ...prev, [id]: false }));
-    } else {
-      video.play();
-      setIsPlaying(prev => ({ ...prev, [id]: true }));
-    }
+    setIsPlaying(prev => ({ ...prev, [id]: !prev[id] }));
   };
 
   const handleMuteToggle = (id) => {
-    const video = videoRefs.current[id];
-    if (!video) return;
-    
-    video.muted = !video.muted;
     setIsMuted(prev => ({ ...prev, [id]: !prev[id] }));
-  };
-
-  const handleFullscreen = (id) => {
-    const video = videoRefs.current[id];
-    if (!video) return;
-
-    if (video.requestFullscreen) {
-      video.requestFullscreen();
-    } else if (video.webkitRequestFullscreen) {
-      video.webkitRequestFullscreen();
-    } else if (video.msRequestFullscreen) {
-      video.msRequestFullscreen();
-    }
   };
 
   const handleVideoClick = (doc) => {
@@ -79,12 +52,16 @@ const documentaries = [
             className="video-container"
             onClick={() => handleVideoClick(featuredDoc)}
           >
-            <video
-              ref={el => videoRefs.current[featuredDoc.id] = el}
+            <iframe
               className="video-player"
-              src={featuredDoc.videoUrl}
-              loop
-              playsInline
+              width="100%"
+              height="100%"
+              src={`https://www.youtube.com/embed/${featuredDoc.youtubeId}?controls=0&modestbranding=1&rel=0&showinfo=0`}
+              title={featuredDoc.title}
+              frameBorder="0"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
             />
             
             <div className="video-overlay">
@@ -118,15 +95,6 @@ const documentaries = [
               >
                 {isMuted[featuredDoc.id] ? <VolumeX size={22} /> : <Volume2 size={22} />}
               </button>
-              <button 
-                className="control-btn"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleFullscreen(featuredDoc.id);
-                }}
-              >
-                <Maximize2 size={22} />
-              </button>
             </div>
           </div>
         </div>
@@ -139,12 +107,16 @@ const documentaries = [
                 className="video-container"
                 onClick={() => handleVideoClick(doc)}
               >
-                <video
-                  ref={el => videoRefs.current[doc.id] = el}
+                <iframe
                   className="video-player"
-                  src={doc.videoUrl}
-                  loop
-                  playsInline
+                  width="100%"
+                  height="100%"
+                  src={`https://www.youtube.com/embed/${doc.youtubeId}?controls=0&modestbranding=1&rel=0&showinfo=0`}
+                  title={doc.title}
+                  frameBorder="0"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  loading="lazy"
                 />
                 
                 <div className="video-overlay">
@@ -178,15 +150,6 @@ const documentaries = [
                   >
                     {isMuted[doc.id] ? <VolumeX size={20} /> : <Volume2 size={20} />}
                   </button>
-                  <button 
-                    className="control-btn"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleFullscreen(doc.id);
-                    }}
-                  >
-                    <Maximize2 size={20} />
-                  </button>
                 </div>
               </div>
             </div>
@@ -194,7 +157,7 @@ const documentaries = [
         </div>
       </div>
 
-      {/* ✅ Fullscreen Overlay with TOP-RIGHT Close Button */}
+      {/* ✅ Fullscreen Overlay */}
       {fullscreenVideo && (
         <div 
           className="fullscreen-overlay"
@@ -212,16 +175,14 @@ const documentaries = [
           </button>
           
           <div className="fullscreen-video-container">
-            <video
-              autoPlay
-              muted={!!isMuted[fullscreenVideo.id]} // ✅ Not muted by default
-              onPlay={() => setIsPlaying(prev => ({ ...prev, [fullscreenVideo.id]: true }))}
-              onPause={() => setIsPlaying(prev => ({ ...prev, [fullscreenVideo.id]: false }))}
-              onEnded={() => setIsPlaying(prev => ({ ...prev, [fullscreenVideo.id]: false }))}
-              onClick={(e) => e.stopPropagation()}
-              className="fullscreen-video"
-              src={fullscreenVideo.videoUrl}
-              controls
+            <iframe
+              width="100%"
+              height="100%"
+              src={`https://www.youtube.com/embed/${fullscreenVideo.youtubeId}?autoplay=1&controls=1`}
+              title={fullscreenVideo.title}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
             />
           </div>
         </div>

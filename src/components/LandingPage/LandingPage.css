@@ -735,21 +735,7 @@
   }
 
   .video-title {
-    font-size: 0.65rem;
-    top: 65%;
-    left: 0.85rem;
-    max-width: 140px;
-    padding: 0.35rem 0.6rem;
-    border-left-width: 2px;
-  }
-
-  .split-video .video-title {
-    font-size: 0.58rem;
-    top: 60%;
-    left: 0.6rem;
-    max-width: 110px;
-    padding: 0.3rem 0.5rem;
-    border-left-width: 1.5px;
+    font-size: 0.9rem;
   }
 
   .play-indicator {
