@@ -33,11 +33,11 @@ function Navbar() {
         <div className="navbar-container">
           {/* Logo - Far Left */}
           <Link to="/" className="logo-link">
-            <img 
-              src="/images/logo.png" 
-              alt="SJ Films Logo" 
-              className="navbar-logo"
-            />
+<img 
+  src="/Images/logo%20homepage/logo.png" 
+  alt="SJ Films Logo" 
+  className="navbar-logo"
+/>
           </Link>
 
           {/* Desktop Navigation - Far Right */}

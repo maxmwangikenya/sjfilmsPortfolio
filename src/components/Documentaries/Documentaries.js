@@ -9,30 +9,26 @@ function Documentaries() {
   const [fullscreenVideo, setFullscreenVideo] = useState(null);
   const videoRefs = useRef({});
 
-  const documentaries = [
-    {
-      id: 1,
-      title: 'AJiry Kisii',
-      // subtitle: 'Landscape Trailer',
-      videoUrl: '/images/Documentaries/AJiry Kisii, Landscape Trailer.mp4',
-      isFeatured: true
-    },
-    {
-      id: 2,
-      title: 'AJiry Machakos',
-      // subtitle: 'Landscape Trailer',
-      videoUrl: '/images/Documentaries/AJiry Machakos, Landscape Trailer.mp4',
-      isFeatured: false
-    },
-    {
-      id: 3,
-      title: 'The Story Of Janny Marangu',
-      // subtitle: 'Personal Journey',
-      videoUrl: '/images/Documentaries/The Story Of Janny Marangu.mp4',
-      isFeatured: false
-    }
-  ];
-
+const documentaries = [
+  {
+    id: 1,
+    title: 'AJiry Kisii',
+    videoUrl: 'https://www.youtube.com/embed/JbF37EToGWg?autoplay=1&loop=1&playlist=JbF37EToGWg&controls=0&showinfo=0&rel=0&modestbranding=1',
+    isFeatured: true
+  },
+  {
+    id: 2,
+    title: 'AJiry Machakos',
+    videoUrl: 'https://www.youtube.com/embed/TOGXnJUkteA?autoplay=1&loop=1&playlist=TOGXnJUkteA&controls=0&showinfo=0&rel=0&modestbranding=1',
+    isFeatured: false
+  },
+  {
+    id: 3,
+    title: 'The Story Of Janny Marangu',
+    videoUrl: 'https://www.youtube.com/embed/cN9sgUwkIms?autoplay=1&loop=1&playlist=cN9sgUwkIms&controls=0&showinfo=0&rel=0&modestbranding=1',
+    isFeatured: false
+  }
+];
   const handlePlayPause = (id) => {
     const video = videoRefs.current[id];
     if (!video) return;

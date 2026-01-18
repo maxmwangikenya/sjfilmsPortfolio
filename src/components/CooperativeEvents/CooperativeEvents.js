@@ -39,24 +39,24 @@ const CooperativeEvents = () => {
     setZoomedVideo(null);
   };
 
-  const videos = [
-    {
-      src: '/images/CooperativeEvents/WRTI - Set-up.mp4',
-      title: 'WRTI - Set-up'
-    },
-    {
-      src: '/images/CooperativeEvents/WRTI Day 2 - Exhibitors Interviews.mp4',
-      title: 'WRTI Day 2 - Exhibitors'
-    },
-    {
-      src: '/images/CooperativeEvents/YM Stanchart Marathon with Savannah X Heineken (4).mp4',
-      title: 'YM Stanchart Marathon'
-    },
-    {
-      src: '/images/CooperativeEvents/YM@ NANAI\'S CAFE PARTY.mp4',
-      title: "YM@ Nanai's Cafe Party"
-    }
-  ];
+const videos = [
+  {
+    src: 'https://www.youtube.com/embed/utmHWPygcJo?autoplay=1&loop=1&playlist=utmHWPygcJo&controls=0&showinfo=0&rel=0&modestbranding=1',
+    title: 'WRTI - Set-up'
+  },
+  {
+    src: 'https://www.youtube.com/embed/K6q1KatBG9k?autoplay=1&loop=1&playlist=K6q1KatBG9k&controls=0&showinfo=0&rel=0&modestbranding=1',
+    title: 'WRTI Day 2 - Exhibitors'
+  },
+  {
+    src: 'https://www.youtube.com/embed/f5Atpu22GEI?autoplay=1&loop=1&playlist=f5Atpu22GEI&controls=0&showinfo=0&rel=0&modestbranding=1',
+    title: 'YM Stanchart Marathon'
+  },
+  {
+    src: 'https://www.youtube.com/embed/5GWVF4lffn4?autoplay=1&loop=1&playlist=5GWVF4lffn4&controls=0&showinfo=0&rel=0&modestbranding=1',
+    title: "YM@ Nanai's Cafe Party"
+  }
+];
 
   return (
     <div className="cooperative-events-page">

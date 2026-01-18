@@ -4,6 +4,12 @@ import './Footer.css';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
+  // change this founding year if SJ Films started in a different year
+  const foundingYear = 2016;
+  const ageYears = currentYear - foundingYear;
+  const yearDisplay = foundingYear && foundingYear < currentYear
+    ? `${foundingYear}–${currentYear} (${ageYears} yrs)`
+    : `${currentYear}`;
 
   const quickLinks = [
     { path: '/brand-campaigns', label: 'Brand Campaigns' },
@@ -34,7 +40,7 @@ function Footer() {
             <div className="footer-column">
               <div className="footer-logo-section">
                 <img 
-                  src="/images/logo.png" 
+                  src="/Images/logo%20homepage/logo.png" 
                   alt="SJ Films Logo" 
                   className="footer-logo"
                 />
@@ -121,7 +127,7 @@ function Footer() {
         <div className="footer-bottom">
           <div className="footer-bottom-content">
             <p className="copyright">
-              © {currentYear} SJ Films. All rights reserved.
+              © {yearDisplay} SJ Films. All rights reserved.
             </p>
             <div className="footer-legal">
               <Link to="/privacy" className="legal-link">Privacy Policy</Link>

@@ -6,38 +6,48 @@ import './MyTeam.css';
 function MyTeam() {
   const [hoveredMember, setHoveredMember] = useState(null);
 
-  const teamMembers = [
-    {
-      id: 1,
-      name: 'Solo Ndungu',
-      role: 'Director | Videographer | Editor',
-      image: '/images/myTeam/Solo Ndungu Director videographer editor.JPG',
-      bio: 'Visionary director with a passion for storytelling through compelling visuals. Expert in crafting cinematic experiences that captivate audiences.',
-      specialties: ['Creative Direction', 'Cinematography', 'Post-Production'],
-      icon: Film,
-      color: '#ff6b00'
-    },
-    {
-      id: 2,
-      name: 'Ian Wesanza',
-      role: 'Photographer',
-      image: '/images/myTeam/Ian Wesanga videographer.jpg',
-      bio: 'Skilled videographer with an eye for detail and motion. Specializes in dynamic camera work and capturing authentic moments.',
-      specialties: ['Camera Operation', 'Live Events', 'Documentary Style'],
-      icon: Camera,
-      color: '#00a8ff'
-    },
-    {
-      id: 3,
-      name: 'Kevin Mwangi',
-      role: 'Videographer',
-      image: '/images/myTeam/Kevin Mwangi videographer.JPG',
-      bio: 'Creative videographer bringing energy and innovation to every project. Masters the art of visual storytelling through unique perspectives.',
-      specialties: ['Brand Content', 'Commercial Videos', 'Creative Shots'],
-      icon: Edit3,
-      color: '#ffd700'
-    }
-  ];
+const teamMembers = [
+  {
+    id: 1,
+    name: 'Solo Ndungu',
+    role: 'Director | Videographer | Editor',
+    image: '/Images/myTeam/Solo%20Ndungu%20Director%20videographer%20editor.JPG',
+    bio: 'Visionary director with a passion for storytelling through compelling visuals. Expert in crafting cinematic experiences that captivate audiences.',
+    specialties: ['Creative Direction', 'Cinematography', 'Post-Production'],
+    icon: Film,
+    color: '#ff6b00'
+  },
+  {
+    id: 2,
+    name: 'Ian Wesanza',
+    role: 'Photographer',
+    image: '/Images/myTeam/Ian%20Wesanga%20videographer.jpg',
+    bio: 'Skilled videographer with an eye for detail and motion. Specializes in dynamic camera work and capturing authentic moments.',
+    specialties: ['Camera Operation', 'Live Events', 'Documentary Style'],
+    icon: Camera,
+    color: '#00a8ff'
+  },
+  {
+    id: 3,
+    name: 'Kevin Mwangi',
+    role: 'Videographer',
+    image: '/Images/myTeam/Kevin%20Mwangi%20videographer.JPG',
+    bio: 'Creative videographer bringing energy and innovation to every project. Masters the art of visual storytelling through unique perspectives.',
+    specialties: ['Brand Content', 'Commercial Videos', 'Creative Shots'],
+    icon: Edit3,
+    color: '#ffd700'
+  },
+  {
+    id: 4,
+    name: 'Shadrack Katuit',
+    role: 'Video Editor',
+    image: '/Images/myTeam/Shadrack-Katuit.jpeg',
+    bio: 'Detail-oriented video editor with a sharp eye for pacing, rhythm, and narrative flow. Skilled in transforming raw footage into polished, engaging stories.',
+    specialties: ['Color Grading', 'Motion Graphics', 'Audio Syncing'],
+    icon: Edit3,
+    color: '#7e57c2'
+  }
+];
 
   const stats = [
     { icon: Award, number: '100+', label: 'Projects Completed' },

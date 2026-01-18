@@ -1,4 +1,5 @@
 // src/components/AboutUs/AboutUs.js
+
 import { useState } from 'react';
 import { 
   Camera, 
@@ -50,65 +51,66 @@ function AboutUs() {
   ];
 
   // Using absolute paths from the public folder
-const clients = [
-  {
-    name: 'Youth Plus Africa',
-    subtitle: 'Mastercard Foundation',
-    logo: '/images/AboutUs/youth plus africa logo.png'  // Fixed: was incomplete
-  },
-  {
-    name: 'Development Dynamics',
-    logo: '/images/AboutUs/development dynamic.png'  // Fixed: removed dash, added AboutUs folder
-  },
-  {
-    name: 'Tumaini Trust Kenya',
-    logo: '/images/AboutUs/tumaini trust kenya.jpg'  // Fixed: added AboutUs folder
-  },
-  {
-    name: 'YellowMoon Ltd',
-    logo: '/images/AboutUs/yellow moon ltd.png'  // Fixed: added AboutUs folder
-  },
-  {
-    name: 'Kenya Wine Agencies Limited',
-    subtitle: 'KWAL',
-    logo: '/images/AboutUs/kenya wine agency ltd.jpg'  // Fixed: added AboutUs folder
-  },
-  {
-    name: 'Densu',
-    logo: '/images/AboutUs/Densu.png'  // Fixed: capital D, added AboutUs folder
-  },
-  {
-    name: 'Safaricom PLC',
-    logo: '/images/AboutUs/safaricom.png'  // Fixed: added AboutUs folder
-  },
-  {
-    name: 'Darling Africa',
-    logo: '/images/AboutUs/Darling africa.png'  // Fixed: capital D, added AboutUs folder
-  },
-  {
-    name: 'Kenya Wildlife Service',
-    subtitle: 'KWS',
-    logo: '/images/AboutUs/kenya wildlife service.jfif'  // Fixed: .jfif not .jpg, added AboutUs
-  },
-  {
-    name: 'Gigiri Social Club',
-    logo: '/images/AboutUs/gigiri social club.jfif'  // Fixed: .jfif not .jpg, added AboutUs
-  },
-  {
-    name: 'Ministry of Tourism',
-    logo: '/images/AboutUs/ministry of tourism.png'  // Fixed: added AboutUs folder
-  },
-  {
-    name: 'Wildlife Training and Research Institute',
-    subtitle: 'WRTI',
-    logo: '/images/AboutUs/wildlife training and research institute.png'  // Fixed: full name, added AboutUs
-  },
-  {
-    name: 'Heineken',
-    subtitle: 'HA',
-    logo: '/images/AboutUs/heineken-logo-png.png'  // Fixed: exact filename, added AboutUs
-  }
-];
+  const clients = [
+    {
+      name: 'Youth Plus Africa',
+      subtitle: 'Mastercard Foundation',
+      logo: '/Images/About%20us/youth%20plus%20africa%20logo.png'
+    },
+    {
+      name: 'Development Dynamics',
+      logo: '/Images/About%20us/development-dynamic.png'
+    },
+    {
+      name: 'Tumaini Trust Kenya',
+      logo: '/Images/About%20us/tumaini-trust-kenya.jpg'
+    },
+    {
+      name: 'YellowMoon Ltd',
+      logo: '/Images/About%20us/yellow-moon-td.png'
+    },
+    {
+      name: 'Kenya Wine Agencies Limited',
+      subtitle: 'KWAL',
+      logo: '/Images/About%20us/kenya-wine-agency%20ltd.jpg'
+    },
+    {
+      name: 'Densu',
+      logo: '/Images/About%20us/densu.png'
+    },
+    {
+      name: 'Safaricom PLC',
+      logo: '/Images/About%20us/safaricom.png'
+    },
+    {
+      name: 'Darling Africa',
+      logo: '/Images/About%20us/darling-africa.png.png'
+    },
+    {
+      name: 'Kenya Wildlife Service',
+      subtitle: 'KWS',
+      logo: '/Images/About%20us/kenya-wildlife-service.jfif'
+    },
+    {
+      name: 'Gigiri Social Club',
+      logo: '/Images/About%20us/gigiri-social-club.jfif'
+    },
+    {
+      name: 'Ministry of Tourism',
+      logo: '/Images/About%20us/ministry-of-tourism.png'
+    },
+    {
+      name: 'Wildlife Training and Research Institute',
+      subtitle: 'WRTI',
+      logo: '/Images/About%20us/wildlife%20training-and-research-institute.png'
+    },
+    {
+      name: 'Heineken',
+      subtitle: 'HA',
+      logo: '/Images/About%20us/heineken-logo-png.png'
+    }
+  ];
+
   const values = [
     {
       icon: Heart,

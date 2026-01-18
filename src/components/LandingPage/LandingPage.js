@@ -7,28 +7,24 @@ const LandingPage = () => {
   const [fullscreenVideo, setFullscreenVideo] = useState(null);
   const videoRefs = useRef([]);
 
-  const videos = [
-    {
-      src: '/images/homepagevideos/AJiry Kisii, Landscape Trailer.mp4',
-      // title: 'AJiry Kisii Landscape',
-      title: 'Capturing the breathtaking beauty of Kisii landscapes'
-    },
-    {
-      src: '/images/homepagevideos/Safaricom @25 with YM.mp4',
-      // title: 'Safaricom @25 with YM',
-      title: 'Celebrating 25 years of connectivity and innovation'
-    },
-    {
-      src: '/images/homepagevideos/YM Stanchart Marathon with Savannah X Heineken.mp4',
-      // title: 'YM Stanchart Marathon',
-      title: 'High-energy marathon coverage with premium partners'
-    },
-    {
-      src: '/images/homepagevideos/Tukutane Aftermovie - Life Of Solo (SjFilms).mp4',
-      // title: 'Tukutane Aftermovie',
-      title: 'The vibrant aftermovie of Life of Solo event'
-    }
-  ];
+const videos = [
+  {
+    src: 'https://www.youtube.com/embed/A0U2Bj-MpeQ?autoplay=1&loop=1&playlist=A0U2Bj-MpeQ&controls=0&showinfo=0&rel=0&modestbranding=1',
+    title: 'Capturing the breathtaking beauty of Kisii landscapes'
+  },
+  {
+    src: 'https://www.youtube.com/embed/aj35BnvMUvg?autoplay=1&loop=1&playlist=aj35BnvMUvg&controls=0&showinfo=0&rel=0&modestbranding=1',
+    title: 'Celebrating 25 years of connectivity and innovation'
+  },
+  {
+    src: 'https://www.youtube.com/embed/ivAO6RU2WIM?autoplay=1&loop=1&playlist=ivAO6RU2WIM&controls=0&showinfo=0&rel=0&modestbranding=1',
+    title: 'High-energy marathon coverage with premium partners'
+  },
+  {
+    src: 'https://www.youtube.com/embed/77JEEOXayaI?autoplay=1&loop=1&playlist=77JEEOXayaI&controls=0&showinfo=0&rel=0&modestbranding=1',
+    title: 'The vibrant aftermovie of Life of Solo event'
+  }
+];
 
   useEffect(() => {
     // Auto-play all videos when they're loaded

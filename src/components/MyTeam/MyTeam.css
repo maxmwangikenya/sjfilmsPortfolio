@@ -1,97 +1,32 @@
-/* src/components/MyTeam/MyTeam.css */
-
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Quicksand:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Righteous&family=Caveat:wght@400..700&family=Orbitron:wght@400..900&family=Fredoka+One&family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Bebas+Neue&display=swap');
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -1000px 0;
-  }
-  100% {
-    background-position: 1000px 0;
-  }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
 @keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.05);
-    opacity: 0.8;
-  }
-}
-
-@keyframes subtleGlow {
-  0%, 100% {
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.1), 0 0 10px rgba(255, 255, 255, 0.05);
-  }
-  50% {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 255, 255, 0.1);
-  }
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
 }
 
 .myteam-container {
   min-height: 100vh;
   background: linear-gradient(180deg, #000000 0%, #0a0a0a 50%, #000000 100%);
   color: white;
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
-/* Hero Section */
 .team-hero {
   position: relative;
   height: 60vh;
@@ -120,55 +55,27 @@
   animation: fadeInUp 1s ease;
 }
 
-/* 🎬 Creative Font: Permanent Marker (Handwritten style) */
 .hero-title {
   font-size: 4.5rem;
-  font-weight: 400;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   margin: 0 0 1rem;
-  background: linear-gradient(135deg, #ffffff 0%, #cccccc 50%, #ffffff 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 3s linear infinite;
-  font-family: 'Permanent Marker', cursive;
-  letter-spacing: 3px;
   line-height: 1.1;
+  color: white;
 }
 
 .hero-subtitle {
   font-size: 1.3rem;
   color: rgba(255, 255, 255, 0.9);
   margin: 0 0 2rem;
-  font-weight: 400;
-  letter-spacing: 1px;
-  font-family: 'Montserrat', sans-serif;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  font-weight: 400;
+  letter-spacing: 0.5px;
 }
 
-.hero-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.divider-line {
-  width: 100px;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #ffffff, transparent);
-  border-radius: 2px;
-}
-
-.divider-icon {
-  color: #ffffff;
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Stats Section */
 .stats-section {
   padding: 4rem 2rem;
   max-width: 1400px;
@@ -194,61 +101,27 @@
   backdrop-filter: blur(10px);
 }
 
-.stat-card:nth-child(1) { animation-delay: 0.1s; }
-.stat-card:nth-child(2) { animation-delay: 0.2s; }
-.stat-card:nth-child(3) { animation-delay: 0.3s; }
-.stat-card:nth-child(4) { animation-delay: 0.4s; }
-
-.stat-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
 .stat-card:hover {
   transform: translateY(-15px) scale(1.05);
   border-color: rgba(255, 255, 255, 0.5);
   box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
 }
 
-.stat-card:hover::before {
-  opacity: 1;
-}
-
-.stat-icon {
-  color: #ffffff;
-  margin-bottom: 1rem;
-  position: relative;
-  z-index: 1;
-}
-
-/* 🎬 Creative Font: Orbitron (Futuristic) */
 .stat-number {
   font-size: 3rem;
   font-weight: 700;
   margin: 0.5rem 0;
-  color: #ffffff;
-  font-family: 'Orbitron', sans-serif;
-  position: relative;
-  z-index: 1;
-  animation: subtleGlow 2s ease-in-out infinite;
+  color: #ff6b00;
 }
 
 .stat-label {
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.8);
   margin: 0;
-  position: relative;
-  z-index: 1;
-  font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   letter-spacing: 0.5px;
 }
 
-/* Team Members Section */
 .team-members-section {
   padding: 6rem 2rem;
   max-width: 1400px;
@@ -261,18 +134,14 @@
   animation: fadeInUp 0.8s ease;
 }
 
-/* 🎬 Creative Font: Righteous (Bold & Stylish) */
 .section-title {
   font-size: 3.5rem;
-  font-weight: 400;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   margin: 0 0 1rem;
   color: white;
-  font-family: 'Righteous', cursive;
-  letter-spacing: 2px;
-  background: linear-gradient(135deg, #ffffff, #cccccc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  line-height: 1.1;
 }
 
 .section-description {
@@ -281,8 +150,7 @@
   max-width: 700px;
   margin: 0 auto;
   line-height: 1.6;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .team-grid {
@@ -292,7 +160,6 @@
   perspective: 1000px;
 }
 
-/* Team Card with Flip Effect */
 .team-card {
   height: 500px;
   position: relative;
@@ -302,6 +169,7 @@
 .team-card:nth-child(1) { animation-delay: 0.2s; }
 .team-card:nth-child(2) { animation-delay: 0.4s; }
 .team-card:nth-child(3) { animation-delay: 0.6s; }
+.team-card:nth-child(4) { animation-delay: 0.8s; }
 
 .card-inner {
   position: relative;
@@ -327,7 +195,6 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
-/* Front Side */
 .card-front {
   background: rgba(10, 10, 10, 0.9);
   border: 2px solid rgba(255, 255, 255, 0.3);
@@ -352,59 +219,29 @@
   filter: contrast(1.2) brightness(1.1);
 }
 
-.image-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg, 
-    transparent 0%, 
-    rgba(255, 255, 255, 0.05) 50%,
-    rgba(0, 0, 0, 0.9) 100%
-  );
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.team-card:hover .image-overlay {
-  opacity: 1;
-}
-
-.member-icon {
-  color: #ffffff;
-  animation: float 2s ease-in-out infinite;
-}
-
 .member-info {
   padding: 1.5rem;
   text-align: center;
   background: rgba(0, 0, 0, 0.9);
 }
 
-/* 🎬 Creative Font: Bangers (Comic Book Style) */
 .member-name {
   font-size: 1.6rem;
-  font-weight: 400;
-  margin: 0 0 0.5rem;
-  color: white;
-  font-family: 'Bangers', cursive;
+  font-family: 'Bebas Neue', sans-serif;
   letter-spacing: 1.5px;
   text-transform: uppercase;
+  margin: 0 0 0.5rem;
+  color: white;
 }
 
 .member-role {
   font-size: 0.95rem;
-  font-weight: 500;
-  margin: 0;
-  letter-spacing: 1px;
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 600;
   color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
-/* Back Side */
 .card-back {
   background: linear-gradient(135deg, #0a0a0a 0%, #000000 100%);
   border: 3px solid rgba(255, 255, 255, 0.4);
@@ -415,24 +252,13 @@
   justify-content: center;
 }
 
-.back-content {
-  text-align: center;
-}
-
-.back-icon {
-  color: #ffffff;
-  margin-bottom: 1rem;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-/* 🎬 Creative Font: Fredoka One (Rounded & Fun) */
 .back-name {
   font-size: 1.8rem;
-  font-weight: 400;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
   margin: 0 0 1rem;
   color: white;
-  font-family: 'Fredoka One', cursive;
-  letter-spacing: 1px;
 }
 
 .back-bio {
@@ -440,13 +266,7 @@
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 1.5rem;
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 500;
-}
-
-.specialties {
-  text-align: left;
-  margin-top: 1.5rem;
+  font-weight: 400;
 }
 
 .specialties-title {
@@ -455,13 +275,6 @@
   color: white;
   margin-bottom: 0.75rem;
   letter-spacing: 0.5px;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.specialties-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
 }
 
 .specialty-item {
@@ -471,36 +284,15 @@
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 0.5rem;
-  font-family: 'Quicksand', sans-serif;
   font-weight: 500;
 }
 
-.specialty-bullet {
-  color: #ffffff;
-  font-size: 2rem;
-  line-height: 1;
-}
-
-/* CTA Section */
 .cta-section {
   padding: 6rem 2rem;
   text-align: center;
   background: rgba(255, 255, 255, 0.02);
   position: relative;
   overflow: hidden;
-}
-
-.cta-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
-  animation: pulse 8s ease-in-out infinite alternate;
 }
 
 .cta-content {
@@ -511,14 +303,13 @@
   z-index: 1;
 }
 
-/* 🎬 Creative Font: Caveat (Handwritten Style) */
 .cta-title {
   font-size: 3.5rem;
-  font-weight: 400;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   margin: 0 0 1rem;
   color: white;
-  font-family: 'Caveat', cursive;
-  letter-spacing: 1px;
   line-height: 1.2;
 }
 
@@ -527,160 +318,47 @@
   color: rgba(255, 255, 255, 0.9);
   margin: 0 0 2.5rem;
   line-height: 1.6;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 300;
+  font-weight: 400;
 }
 
-/* 🎬 Creative Font: Caveat for Button */
 .cta-button {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
   padding: 1.2rem 3rem;
-  background: transparent;
-  color: #ffffff;
-  border: 2px solid #ffffff;
+  background: #ff6b00;
+  color: white;
+  border: 2px solid #ff6b00;
   border-radius: 50px;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 600;
+  font-family: 'Inter', sans-serif;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-  font-family: 'Caveat', cursive;
-  letter-spacing: 1px;
-  animation: float 3s ease-in-out infinite;
-}
-
-.cta-button::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
-}
-
-.cta-button:hover::before {
-  width: 400px;
-  height: 400px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(255, 107, 0, 0.25);
 }
 
 .cta-button:hover {
   transform: translateY(-8px) scale(1.05);
-  box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(255, 107, 0, 0.4);
+  background: #e05a00;
+  border-color: #e05a00;
 }
 
-.cta-button span {
-  position: relative;
-  z-index: 1;
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
-  .hero-title {
-    font-size: 3rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1.1rem;
-  }
-
-  .section-title {
-    font-size: 2.5rem;
-  }
-
-  .section-description {
-    font-size: 1.1rem;
-  }
-
-  .team-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .cta-title {
-    font-size: 2.5rem;
-  }
-
-  .cta-text {
-    font-size: 1.1rem;
-  }
-
-  .cta-button {
-    font-size: 1.2rem;
-    padding: 1.1rem 2.5rem;
-  }
-
-  .stat-number {
-    font-size: 2.5rem;
-  }
+  .hero-title { font-size: 3rem; }
+  .section-title { font-size: 2.5rem; }
+  .cta-title { font-size: 2.5rem; }
+  .stat-number { font-size: 2.5rem; }
+  .team-grid { grid-template-columns: 1fr; gap: 2rem; }
 }
 
 @media (max-width: 480px) {
-  .hero-title {
-    font-size: 2.5rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1rem;
-  }
-
-  .stat-number {
-    font-size: 2.2rem;
-  }
-
-  .stat-label {
-    font-size: 0.95rem;
-  }
-
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .section-title {
-    font-size: 2.2rem;
-  }
-
-  .section-description {
-    font-size: 1rem;
-  }
-
-  .member-name {
-    font-size: 1.4rem;
-  }
-
-  .member-role {
-    font-size: 0.9rem;
-  }
-
-  .back-name {
-    font-size: 1.5rem;
-  }
-
-  .back-bio {
-    font-size: 0.9rem;
-  }
-
-  .specialty-item {
-    font-size: 0.85rem;
-  }
-
-  .cta-title {
-    font-size: 2.2rem;
-  }
-
-  .cta-text {
-    font-size: 1rem;
-  }
-
-  .cta-button {
-    font-size: 1.1rem;
-    padding: 1rem 2.2rem;
-  }
+  .hero-title { font-size: 2.5rem; }
+  .section-title { font-size: 2.2rem; }
+  .cta-title { font-size: 2.2rem; }
+  .member-name { font-size: 1.4rem; }
+  .back-name { font-size: 1.5rem; }
+  .stat-number { font-size: 2.2rem; }
 }

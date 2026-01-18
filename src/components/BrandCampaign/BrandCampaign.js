@@ -8,31 +8,31 @@ const BrandCampaigns = () => {
   const videoRefs = useRef([]);
 
   const videos = [
-    {
-      src: '/images/BrandCampaignsVideos/BAWYC HQ.mp4',
-      title: 'BAWYC HQ',
-    },
-    {
-      src: '/images/BrandCampaignsVideos/Jason - Yes with Carrefour.mp4',
-      title: 'Jason - Yes with Carrefour',
-    },
-    {
-      src: '/images/BrandCampaignsVideos/Safaricom @25 with YM (1).mp4',
-      title: 'Safaricom @25 with YM',
-    },
-    {
-      src: '/images/BrandCampaignsVideos/Spotify Wrapped 2025 - Maina Mind.mp4',
-      title: 'Spotify Wrapped 2025 - Maina Mind',
-    },
-    {
-      src: '/images/BrandCampaignsVideos/Stephanie LFW with KCB.mp4',
-      title: 'Stephanie LFW with KCB',
-    },
-    {
-      src: '/images/BrandCampaignsVideos/Victor x Cris - Krackles V2.mp4',
-      title: 'Victor x Cris - Krackles',
-    }
-  ];
+  {
+    src: 'https://youtube.com/shorts/kEQPkT6Gk-E?feature=share',
+    title: 'BAWYC HQ',
+  },
+  {
+    src: 'https://youtube.com/shorts/pDWHfKHYO8Y?feature=share',
+    title: 'Jason - Yes with Carrefour',
+  },
+  {
+    src: 'https://youtube.com/shorts/-NI_Ofq5Wnw?feature=share',
+    title: 'Safaricom @25 with YM',
+  },
+  {
+    src: 'https://youtube.com/shorts/Yt3wuaA7kI4?feature=share',
+    title: 'Spotify Wrapped 2025 - Maina Mind',
+  },
+  {
+    src: 'https://youtube.com/shorts/hSUgfp_HD7I?feature=share',
+    title: 'Stephanie LFW with KCB',
+  },
+  {
+    src: 'https://youtube.com/shorts/YgG3X8pHI_s?feature=share',
+    title: 'Victor x Cris - Krackles',
+  }
+];
 
   useEffect(() => {
     // Auto-play all videos when they're loaded

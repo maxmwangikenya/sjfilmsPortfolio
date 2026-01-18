@@ -1,70 +1,4 @@
-/* src/components/AboutUs/About.css */
-
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Archivo:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Prata&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Dancing+Script:wght@400..700&display=swap');
-
-/* ============================================ */
-/* NEW BOUNCING ANIMATIONS FOR LOGOS */
-/* ============================================ */
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0) scale(1); }
-  40% { transform: translateY(-20px) scale(1.05); }
-  60% { transform: translateY(-10px) scale(1.03); }
-}
-
-@keyframes bounceSlow {
-  0%, 100% { transform: translateY(0); }
-  30% { transform: translateY(-15px); }
-  70% { transform: translateY(-7px); }
-}
-
-@keyframes bounceSubtle {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-@keyframes bounceRotate {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  25% { transform: translateY(-15px) rotate(5deg); }
-  75% { transform: translateY(-5px) rotate(-5deg); }
-}
-
-@keyframes bouncePulse {
-  0%, 100% { transform: translateY(0) scale(1); }
-  33% { transform: translateY(-12px) scale(1.04); }
-  66% { transform: translateY(-4px) scale(1.02); }
-}
-
-@keyframes bounceFloat {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  20% { transform: translateY(-18px) rotate(2deg); }
-  40% { transform: translateY(5px) rotate(-1deg); }
-  60% { transform: translateY(-10px) rotate(1deg); }
-  80% { transform: translateY(-3px) rotate(-1deg); }
-}
-
-@keyframes bounceGlow {
-  0%, 100% { transform: translateY(0); filter: brightness(1.2) contrast(1.1); }
-  50% { transform: translateY(-15px); filter: brightness(1.4) contrast(1.3) drop-shadow(0 10px 15px rgba(168, 85, 247, 0.3)); }
-}
-
-@keyframes bounceStagger {
-  0%, 100% { transform: translateY(0); }
-  30% { transform: translateY(-12px); }
-  60% { transform: translateY(-4px); }
-}
-
-@keyframes bounceSpring {
-  0% { transform: translateY(0) scale(1); }
-  25% { transform: translateY(-20px) scale(1.1); }
-  50% { transform: translateY(0) scale(0.95); }
-  75% { transform: translateY(-10px) scale(1.05); }
-  100% { transform: translateY(0) scale(1); }
-}
-
-/* ============================================ */
-/* EXISTING ANIMATIONS */
-/* ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Bebas+Neue&display=swap');
 
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(40px); }
@@ -82,19 +16,15 @@
 }
 
 @keyframes glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }
-  50% { box-shadow: 0 0 40px rgba(168, 85, 247, 0.8), 0 0 60px rgba(139, 92, 246, 0.4); }
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 0, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(255, 107, 0, 0.8), 0 0 60px rgba(255, 107, 0, 0.4); }
 }
-
-/* ============================================ */
-/* LAYOUT SECTIONS */
-/* ============================================ */
 
 .aboutus-container {
   min-height: 100vh;
   background: linear-gradient(180deg, #000000 0%, #0a0a0a 50%, #000000 100%);
   color: white;
-  font-family: 'Archivo', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .about-hero {
@@ -118,15 +48,16 @@
 
 .hero-title {
   font-size: 3rem;
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
   margin-bottom: 1.5rem;
+  line-height: 1.1;
 }
 
-/* Stats Section */
 .stats-section {
   padding: 4rem 2rem;
-  background: linear-gradient(180deg, transparent 0%, rgba(168, 85, 247, 0.03) 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 107, 0, 0.03) 100%);
 }
 
 .stats-container {
@@ -148,10 +79,16 @@
 
 .stat-number {
   font-size: 2.25rem;
-  font-family: 'Prata', serif;
+  font-weight: 700;
+  color: #ff6b00;
 }
 
-/* Services Section */
+.stat-label {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
 .services-section {
   padding: 6rem 2rem;
   background: #000000;
@@ -175,25 +112,20 @@
 }
 
 .service-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
+  font-weight: 600;
   font-size: 1.2rem;
+  margin-bottom: 1rem;
 }
-
-/* ============================================ */
-/* CLIENTS SECTION - CORRECTED LOGO WRAPPER */
-/* ============================================ */
 
 .clients-section {
   padding: 6rem 2rem;
-  background: rgba(168, 85, 247, 0.02);
+  background: rgba(255, 107, 0, 0.02);
 }
 
 .clients-grid {
   max-width: 1400px;
   margin: 0 auto;
   display: grid;
-  /* Reduced minmax from 280px to 220px for a more compact row */
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 2rem;
 }
@@ -214,15 +146,14 @@
   position: relative;
 }
 
-/* 🎯 CORRECTED: REDUCED LOGO WRAPPER (Tight fit) */
 .client-logo-wrapper {
-  display: inline-flex; /* Shrinks container to image size */
-  width: auto;         /* Remove fixed width */
-  height: auto;        /* Remove fixed height */
-  min-height: 60px;    /* Optional: ensures some vertical alignment */
+  display: inline-flex;
+  width: auto;
+  height: auto;
+  min-height: 60px;
   align-items: center;
   justify-content: center;
-  padding: 8px 12px;   /* Tight padding for a cleaner look */
+  padding: 8px 12px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
@@ -233,52 +164,37 @@
 }
 
 .client-logo {
-  max-height: 45px;    /* Keeps logo size elegant */
-  max-width: 120px;    /* Prevents logos from being too wide */
+  max-height: 45px;
+  max-width: 120px;
   width: auto;
   height: auto;
   object-fit: contain;
   display: block;
-  /* Animation remains here as requested */
 }
 
-/* Hover State for Card & Wrapper */
 .client-card:hover {
   transform: translateY(-10px);
-  background: rgba(168, 85, 247, 0.08);
-  border-color: rgba(168, 85, 247, 0.4);
+  background: rgba(255, 107, 0, 0.08);
+  border-color: rgba(255, 107, 0, 0.4);
 }
 
 .client-card:hover .client-logo-wrapper {
-  background: rgba(168, 85, 247, 0.15);
+  background: rgba(255, 107, 0, 0.15);
   transform: scale(1.05);
-  border-color: rgba(168, 85, 247, 0.3);
+  border-color: rgba(255, 107, 0, 0.3);
 }
-
-/* Individual animation delays */
-.client-card:nth-child(1) .client-logo { animation: bounce 3s ease-in-out infinite 0.5s; }
-.client-card:nth-child(2) .client-logo { animation: bounceSlow 3.5s ease-in-out infinite 0.7s; }
-.client-card:nth-child(3) .client-logo { animation: bounceSubtle 2.8s ease-in-out infinite 0.9s; }
-.client-card:nth-child(4) .client-logo { animation: bounceRotate 3.2s ease-in-out infinite 1.1s; }
-.client-card:nth-child(5) .client-logo { animation: bouncePulse 3.4s ease-in-out infinite 1.3s; }
-.client-card:nth-child(6) .client-logo { animation: bounceFloat 4s ease-in-out infinite 1.5s; }
-.client-card:nth-child(7) .client-logo { animation: bounceGlow 3.6s ease-in-out infinite 1.7s; }
-.client-card:nth-child(8) .client-logo { animation: bounceStagger 3.3s ease-in-out infinite 1.9s; }
-.client-card:nth-child(9) .client-logo { animation: bounceSpring 4.2s ease-in-out infinite 2.1s; }
 
 .client-name {
   font-size: 1rem;
   color: white;
-  margin-bottom: 0.25rem;
   font-weight: 600;
 }
 
 .client-subtitle {
   font-size: 0.85rem;
-  color: rgba(168, 85, 247, 0.9);
+  color: rgba(255, 107, 0, 0.9);
 }
 
-/* CTA Section */
 .about-cta {
   padding: 6rem 2rem;
   text-align: center;
@@ -289,25 +205,35 @@
   margin: 0 auto;
   padding: 4rem 2rem;
   background: rgba(255, 255, 255, 0.03);
-  border: 2px solid rgba(168, 85, 247, 0.3);
+  border: 2px solid rgba(255, 107, 0, 0.3);
   border-radius: 30px;
 }
 
 .cta-button {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
   padding: 1rem 2.5rem;
-  background: #a855f7;
+  background: #ff6b00;
   color: white;
+  border: 2px solid #ff6b00;
   border-radius: 50px;
-  border: none;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   cursor: pointer;
-  animation: glow 3s infinite;
+  transition: all 0.4s ease;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(255, 107, 0, 0.25);
 }
 
-/* Responsive Fixes */
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
+  background: #e05a00;
+  border-color: #e05a00;
+}
+
 @media (max-width: 768px) {
   .clients-grid { grid-template-columns: repeat(2, 1fr); }
   .client-logo-wrapper { min-height: 50px; padding: 6px 10px; }
   .client-logo { max-height: 35px; }
+  .hero-title { font-size: 2.2rem; }
 }
