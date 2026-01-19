@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import './Navbar.css';
+import ContactForm from '../ContactForm/ContactForm';
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -53,9 +55,13 @@ function Navbar() {
               ))}
             </div>
             
-            <Link to="/book" className="book-now-btn">
+            {/* Desktop Book Now Button - Opens Contact Form */}
+            <button 
+              onClick={() => setIsContactFormOpen(true)}
+              className="book-now-btn"
+            >
               <span>Book Now</span>
-            </Link>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -88,15 +94,25 @@ function Navbar() {
               {link.label}
             </Link>
           ))}
-          <Link 
-            to="/book" 
+          
+          {/* Mobile Book Now Button - Opens Contact Form */}
+          <button 
             className="mobile-book-btn"
-            onClick={() => setMobileMenuOpen(false)}
+            onClick={() => {
+              setMobileMenuOpen(false);
+              setIsContactFormOpen(true);
+            }}
           >
             Book Now
-          </Link>
+          </button>
         </div>
       </div>
+
+      {/* Contact Form Modal */}
+      <ContactForm 
+        isOpen={isContactFormOpen} 
+        onClose={() => setIsContactFormOpen(false)} 
+      />
     </>
   );
 }
