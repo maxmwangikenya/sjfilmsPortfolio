@@ -1,4 +1,3 @@
-// src/components/BrandCampaigns/BrandCampaigns.js
 import React, { useState } from 'react';
 import './BrandCampaign.css';
 
@@ -68,22 +67,15 @@ const BrandCampaigns = () => {
             className="showcase-video"
             width="100%"
             height="100%"
-            src={`https://www.youtube.com/embed/${videos[0].id}?controls=0&modestbranding=1&rel=0&showinfo=0`}
+            src={`https://www.youtube.com/embed/${videos[0].id}?autoplay=1&mute=1&loop=1&playlist=${videos[0].id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
             title={videos[0].title}
             frameBorder="0"
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             loading="lazy"
           />
           <div className="video-overlay">
-            <div className="video-info">
-              <h2 className="video-title">{videos[0].title}</h2>
-              <div className="play-indicator">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M8 5v14l11-7L8 5z"/>
-                </svg>
-              </div>
-            </div>
+            <h2 className="video-title">{videos[0].title}</h2>
           </div>
         </div>
       </section>
@@ -99,22 +91,15 @@ const BrandCampaigns = () => {
               className="showcase-video"
               width="100%"
               height="100%"
-              src={`https://www.youtube.com/embed/${videos[1].id}?controls=0&modestbranding=1&rel=0&showinfo=0`}
+              src={`https://www.youtube.com/embed/${videos[1].id}?autoplay=1&mute=1&loop=1&playlist=${videos[1].id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
               title={videos[1].title}
               frameBorder="0"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               loading="lazy"
             />
             <div className="video-overlay">
-              <div className="video-info">
-                <h2 className="video-title">{videos[1].title}</h2>
-                <div className="play-indicator">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7L8 5z"/>
-                  </svg>
-                </div>
-              </div>
+              <h2 className="video-title">{videos[1].title}</h2>
             </div>
           </div>
 
@@ -126,22 +111,15 @@ const BrandCampaigns = () => {
               className="showcase-video"
               width="100%"
               height="100%"
-              src={`https://www.youtube.com/embed/${videos[2].id}?controls=0&modestbranding=1&rel=0&showinfo=0`}
+              src={`https://www.youtube.com/embed/${videos[2].id}?autoplay=1&mute=1&loop=1&playlist=${videos[2].id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
               title={videos[2].title}
               frameBorder="0"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               loading="lazy"
             />
             <div className="video-overlay">
-              <div className="video-info">
-                <h2 className="video-title">{videos[2].title}</h2>
-                <div className="play-indicator">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7L8 5z"/>
-                  </svg>
-                </div>
-              </div>
+              <h2 className="video-title">{videos[2].title}</h2>
             </div>
           </div>
         </div>
@@ -157,22 +135,15 @@ const BrandCampaigns = () => {
             className="showcase-video"
             width="100%"
             height="100%"
-            src={`https://www.youtube.com/embed/${videos[3].id}?controls=0&modestbranding=1&rel=0&showinfo=0`}
+            src={`https://www.youtube.com/embed/${videos[3].id}?autoplay=1&mute=1&loop=1&playlist=${videos[3].id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
             title={videos[3].title}
             frameBorder="0"
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             loading="lazy"
           />
           <div className="video-overlay">
-            <div className="video-info">
-              <h2 className="video-title">{videos[3].title}</h2>
-              <div className="play-indicator">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M8 5v14l11-7L8 5z"/>
-                </svg>
-              </div>
-            </div>
+            <h2 className="video-title">{videos[3].title}</h2>
           </div>
         </div>
       </section>

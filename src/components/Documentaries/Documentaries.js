@@ -1,40 +1,29 @@
-// src/components/Documentaries/Documentaries.js
 import { useState } from 'react';
-import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import './Documentaries.css';
 
 function Documentaries() {
-  const [isPlaying, setIsPlaying] = useState({});
-  const [isMuted, setIsMuted] = useState({});
   const [fullscreenVideo, setFullscreenVideo] = useState(null);
 
-const documentaries = [
-  {
-    id: 1,
-    title: 'AJiry Kisii',
-    youtubeId: 'JbF37EToGWg',
-    isFeatured: true
-  },
-  {
-    id: 2,
-    title: 'AJiry Machakos',
-    youtubeId: 'TOGXnJUkteA',
-    isFeatured: false
-  },
-  {
-    id: 3,
-    title: 'The Story Of Janny Marangu',
-    youtubeId: 'cN9sgUwkIms',
-    isFeatured: false
-  }
-];
-  const handlePlayPause = (id) => {
-    setIsPlaying(prev => ({ ...prev, [id]: !prev[id] }));
-  };
-
-  const handleMuteToggle = (id) => {
-    setIsMuted(prev => ({ ...prev, [id]: !prev[id] }));
-  };
+  const documentaries = [
+    {
+      id: 1,
+      title: 'AJiry Kisii',
+      youtubeId: 'JbF37EToGWg',
+      isFeatured: true
+    },
+    {
+      id: 2,
+      title: 'AJiry Machakos',
+      youtubeId: 'TOGXnJUkteA',
+      isFeatured: false
+    },
+    {
+      id: 3,
+      title: 'The Story Of Janny Marangu',
+      youtubeId: 'cN9sgUwkIms',
+      isFeatured: false
+    }
+  ];
 
   const handleVideoClick = (doc) => {
     setFullscreenVideo(doc);
@@ -56,45 +45,16 @@ const documentaries = [
               className="video-player"
               width="100%"
               height="100%"
-              src={`https://www.youtube.com/embed/${featuredDoc.youtubeId}?controls=0&modestbranding=1&rel=0&showinfo=0`}
+              src={`https://www.youtube.com/embed/${featuredDoc.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${featuredDoc.youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
               title={featuredDoc.title}
               frameBorder="0"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               loading="lazy"
             />
             
             <div className="video-overlay">
-              <button 
-                className="play-button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handlePlayPause(featuredDoc.id);
-                }}
-              >
-                {isPlaying[featuredDoc.id] ? (
-                  <Pause size={50} />
-                ) : (
-                  <Play size={50} />
-                )}
-              </button>
-            </div>
-
-            <div className="video-info">
               <h2 className="video-title">{featuredDoc.title}</h2>
-              <p className="video-subtitle">{featuredDoc.subtitle}</p>
-            </div>
-
-            <div className="video-controls">
-              <button 
-                className="control-btn"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleMuteToggle(featuredDoc.id);
-                }}
-              >
-                {isMuted[featuredDoc.id] ? <VolumeX size={22} /> : <Volume2 size={22} />}
-              </button>
             </div>
           </div>
         </div>
@@ -111,45 +71,16 @@ const documentaries = [
                   className="video-player"
                   width="100%"
                   height="100%"
-                  src={`https://www.youtube.com/embed/${doc.youtubeId}?controls=0&modestbranding=1&rel=0&showinfo=0`}
+                  src={`https://www.youtube.com/embed/${doc.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${doc.youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
                   title={doc.title}
                   frameBorder="0"
-                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   loading="lazy"
                 />
                 
                 <div className="video-overlay">
-                  <button 
-                    className="play-button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handlePlayPause(doc.id);
-                    }}
-                  >
-                    {isPlaying[doc.id] ? (
-                      <Pause size={40} />
-                    ) : (
-                      <Play size={40} />
-                    )}
-                  </button>
-                </div>
-
-                <div className="video-info">
                   <h3 className="video-title">{doc.title}</h3>
-                  <p className="video-subtitle">{doc.subtitle}</p>
-                </div>
-
-                <div className="video-controls">
-                  <button 
-                    className="control-btn"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleMuteToggle(doc.id);
-                    }}
-                  >
-                    {isMuted[doc.id] ? <VolumeX size={20} /> : <Volume2 size={20} />}
-                  </button>
                 </div>
               </div>
             </div>
@@ -157,13 +88,12 @@ const documentaries = [
         </div>
       </div>
 
-      {/* ✅ Fullscreen Overlay */}
+      {/* Fullscreen Overlay */}
       {fullscreenVideo && (
         <div 
           className="fullscreen-overlay"
           onClick={() => setFullscreenVideo(null)}
         >
-          {/* ✅ Close button in TOP-RIGHT */}
           <button 
             className="close-fullscreen-top-right"
             onClick={(e) => {

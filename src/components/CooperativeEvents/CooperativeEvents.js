@@ -33,7 +33,7 @@ const CooperativeEvents = () => {
 
   return (
     <div className="cooperative-events-page">
-      {/* Hero Full-Width Video - NOW: WRTI Day 2 - Exhibitors */}
+      {/* Hero Full-Width Video - WRTI Day 2 - Exhibitors */}
       <section className="video-section hero-section">
         <div className="video-container full-width clickable" onClick={() => openZoom(0)}>
           {zoomedVideo === 0 && (
@@ -56,27 +56,20 @@ const CooperativeEvents = () => {
           )}
           <iframe
             className="showcase-video"
-            src={`https://www.youtube.com/embed/${videos[0].id}?controls=0&modestbranding=1&rel=0&showinfo=0`}
+            src={`https://www.youtube.com/embed/${videos[0].id}?autoplay=1&mute=1&loop=1&playlist=${videos[0].id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
             title={videos[0].title}
             frameBorder="0"
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             loading="lazy"
           />
           <div className="video-overlay">
-            <div className="video-info">
-              <h2 className="video-title">{videos[0].title}</h2>
-              <div className="play-indicator">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M8 5v14l11-7L8 5z"/>
-                </svg>
-              </div>
-            </div>
+            <h2 className="video-title">{videos[0].title}</h2>
           </div>
         </div>
       </section>
 
-      {/* Split Section - NOW: WRTI Set-up (left) & YM@ Nanai's Cafe Party (right) */}
+      {/* Split Section - WRTI Set-up (left) & YM@ Nanai's Cafe Party (right) */}
       <section className="video-section split-section">
         <div className="split-container">
           <div className="video-container split-video clickable" onClick={() => openZoom(1)}>
@@ -99,23 +92,16 @@ const CooperativeEvents = () => {
               </div>
             )}
             <iframe
-              className="showcase-video"
-              src={`https://www.youtube.com/embed/${videos[1].id}?controls=0&modestbranding=1&rel=0&showinfo=0`}
+              className="showcase-video split-video-zoom-out"
+              src={`https://www.youtube.com/embed/${videos[1].id}?autoplay=1&mute=1&loop=1&playlist=${videos[1].id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
               title={videos[1].title}
               frameBorder="0"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               loading="lazy"
             />
             <div className="video-overlay">
-              <div className="video-info">
-                <h2 className="video-title">{videos[1].title}</h2>
-                <div className="play-indicator">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7L8 5z"/>
-                  </svg>
-                </div>
-              </div>
+              <h2 className="video-title">{videos[1].title}</h2>
             </div>
           </div>
           <div className="video-container split-video clickable" onClick={() => openZoom(2)}>
@@ -138,29 +124,22 @@ const CooperativeEvents = () => {
               </div>
             )}
             <iframe
-              className="showcase-video"
-              src={`https://www.youtube.com/embed/${videos[2].id}?controls=0&modestbranding=1&rel=0&showinfo=0`}
+              className="showcase-video split-video-zoom-out"
+              src={`https://www.youtube.com/embed/${videos[2].id}?autoplay=1&mute=1&loop=1&playlist=${videos[2].id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
               title={videos[2].title}
               frameBorder="0"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               loading="lazy"
             />
             <div className="video-overlay">
-              <div className="video-info">
-                <h2 className="video-title">{videos[2].title}</h2>
-                <div className="play-indicator">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7L8 5z"/>
-                  </svg>
-                </div>
-              </div>
+              <h2 className="video-title">{videos[2].title}</h2>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Bottom Full-Width Video - NOW: YM Stanchart Marathon */}
+      {/* Bottom Full-Width Video - YM Stanchart Marathon */}
       <section className="video-section bottom-section">
         <div className="video-container full-width clickable" onClick={() => openZoom(3)}>
           {zoomedVideo === 3 && (
@@ -183,22 +162,15 @@ const CooperativeEvents = () => {
           )}
           <iframe
             className="showcase-video"
-            src={`https://www.youtube.com/embed/${videos[3].id}?controls=0&modestbranding=1&rel=0&showinfo=0`}
+            src={`https://www.youtube.com/embed/${videos[3].id}?autoplay=1&mute=1&loop=1&playlist=${videos[3].id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
             title={videos[3].title}
             frameBorder="0"
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             loading="lazy"
           />
           <div className="video-overlay">
-            <div className="video-info">
-              <h2 className="video-title">{videos[3].title}</h2>
-              <div className="play-indicator">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M8 5v14l11-7L8 5z"/>
-                </svg>
-              </div>
-            </div>
+            <h2 className="video-title">{videos[3].title}</h2>
           </div>
         </div>
       </section>
