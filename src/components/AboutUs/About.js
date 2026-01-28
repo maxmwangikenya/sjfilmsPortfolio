@@ -2,35 +2,35 @@ import React from 'react';
 import { 
   Camera, 
   Film, 
-  Globe, 
-  Users, 
+  Edit3, 
   Award, 
+  Users, 
   MapPin, 
-  Zap,
+  Briefcase,
   Target,
   Heart,
-  Briefcase
+  Zap
 } from 'lucide-react';
 import './About.css';
 
-function AboutUs() {
+function About() {
   const stats = [
     { icon: Film, number: '500+', label: 'Projects Delivered' },
-    { icon: Users, number: '20+', label: 'Major Clients' },
-    { icon: Globe, number: '15+', label: 'Countries Reached' },
-    { icon: Award, number: '10+', label: 'Awards Won' }
+    { icon: Users, number: '50+', label: 'Happy Clients' },
+    { icon: Award, number: '10+', label: 'Awards Won' },
+    { icon: Zap, number: '5+', label: 'Years Experience' }
   ];
 
   const services = [
     {
       icon: Film,
       title: 'Documentary Production',
-      description: 'Compelling documentary storytelling that captures authentic narratives and preserves impactful moments.'
+      description: 'Compelling storytelling that captures authentic narratives and preserves impactful moments.'
     },
     {
       icon: Briefcase,
       title: 'Corporate Videography',
-      description: 'Professional corporate content that elevates your brand and communicates your message effectively.'
+      description: 'Professional content that elevates your brand and communicates effectively.'
     },
     {
       icon: Camera,
@@ -40,11 +40,49 @@ function AboutUs() {
     {
       icon: Target,
       title: 'Brand Campaigns',
-      description: 'Creative campaigns that resonate with your audience and drive meaningful engagement.'
+      description: 'Creative campaigns that resonate with audiences and drive meaningful engagement.'
     }
   ];
 
-  // Fixed client paths with encoded spaces and proper file names
+  const teamMembers = [
+    {
+      id: 1,
+      name: 'Solo Ndungu',
+      role: 'Director | Videographer | Editor',
+      image: '/Images/myTeam/Solo Ndungu Director videographer editor.JPG',
+      bio: 'Visionary director with a passion for storytelling through compelling visuals.',
+      specialties: ['Creative Direction', 'Cinematography', 'Post-Production'],
+      icon: Film
+    },
+    {
+      id: 2,
+      name: 'Ian Wesanza',
+      role: 'Photographer',
+      image: '/Images/myTeam/Ian Wesanga videographer.jpg',
+      bio: 'Skilled videographer with an eye for detail and capturing authentic moments.',
+      specialties: ['Camera Operation', 'Live Events', 'Documentary Style'],
+      icon: Camera
+    },
+    {
+      id: 3,
+      name: 'Kevin Mwangi',
+      role: 'Videographer',
+      image: '/Images/myTeam/Kevin Mwangi videographer.JPG',
+      bio: 'Creative videographer bringing energy and innovation to every project.',
+      specialties: ['Brand Content', 'Commercial Videos', 'Creative Shots'],
+      icon: Edit3
+    },
+    {
+      id: 4,
+      name: 'Shadrack Katuit',
+      role: 'Video Editor',
+      image: '/Images/myTeam/Shadrack-Katuit.jpeg',
+      bio: 'Detail-oriented editor transforming raw footage into polished, engaging stories.',
+      specialties: ['Color Grading', 'Motion Graphics', 'Audio Syncing'],
+      icon: Edit3
+    }
+  ];
+
   const clients = [
     {
       name: 'Youth Plus Africa',
@@ -109,26 +147,25 @@ function AboutUs() {
     {
       icon: Heart,
       title: 'Passion',
-      description: 'We pour our hearts into every project, ensuring each story is told with authenticity and emotion.'
+      description: 'We pour our hearts into every project with authenticity and emotion.'
     },
     {
       icon: Award,
       title: 'Excellence',
-      description: 'We maintain the highest standards in every aspect of production, from concept to final delivery.'
+      description: 'We maintain the highest standards from concept to final delivery.'
     },
     {
       icon: Users,
       title: 'Collaboration',
-      description: 'We work closely with our clients, treating every project as a partnership towards shared success.'
+      description: 'We work closely with clients as partners towards shared success.'
     },
     {
       icon: Zap,
       title: 'Innovation',
-      description: 'We embrace cutting-edge techniques and creative approaches to deliver fresh, impactful content.'
+      description: 'We embrace cutting-edge techniques to deliver fresh, impactful content.'
     }
   ];
 
-  // Helper function to handle image loading with fallback
   const handleImageError = (e, clientName) => {
     e.target.style.display = 'none';
     const placeholder = document.createElement('div');
@@ -139,12 +176,12 @@ function AboutUs() {
   };
 
   return (
-    <div className="aboutus-container">
+    <div className="about-container">
       {/* Hero Section with Logo */}
       <section className="about-hero">
         <div className="hero-overlay"></div>
         <div className="hero-content">
-          {/* SJ Films Logo */}
+          {/* SJ Films Logo - Always Visible */}
           <div className="company-logo-wrapper">
             <img 
               src="/Images/logo%20homepage/logo.png" 
@@ -153,7 +190,6 @@ function AboutUs() {
             />
           </div>
           
-          <MapPin className="hero-icon" size={60} />
           <h1 className="hero-title">About SJ Films</h1>
           <p className="hero-location">
             <MapPin size={20} />
@@ -166,7 +202,7 @@ function AboutUs() {
         </div>
       </section>
 
-      {/* Rest of the component remains the same */}
+      {/* Stats Section */}
       <section className="stats-section">
         <div className="stats-container">
           {stats.map((stat, index) => {
@@ -182,6 +218,7 @@ function AboutUs() {
         </div>
       </section>
 
+      {/* Mission Section */}
       <section className="mission-section">
         <div className="mission-content">
           <Film className="mission-icon" size={50} />
@@ -191,19 +228,13 @@ function AboutUs() {
             for development, corporate, and public-sector organizations, with the operational capacity 
             to deploy teams across Kenya and scale across Africa.
           </p>
-          <p className="mission-text">
-            Backed by a team of talented creatives, we bring your stories and visions to life, 
-            transforming ideas into powerful visual narratives that inspire and engage.
-          </p>
         </div>
       </section>
 
+      {/* Services Section */}
       <section className="services-section">
         <div className="section-header">
           <h2 className="section-title">What We Do</h2>
-          <p className="section-subtitle">
-            Comprehensive production services tailored to your needs
-          </p>
         </div>
         <div className="services-grid">
           {services.map((service, index) => {
@@ -221,12 +252,10 @@ function AboutUs() {
         </div>
       </section>
 
+      {/* Values Section */}
       <section className="values-section">
         <div className="section-header">
           <h2 className="section-title">Our Values</h2>
-          <p className="section-subtitle">
-            The principles that guide everything we do
-          </p>
         </div>
         <div className="values-grid">
           {values.map((value, index) => {
@@ -242,20 +271,70 @@ function AboutUs() {
         </div>
       </section>
 
+      {/* Team Section */}
+      <section className="team-section">
+        <div className="section-header">
+          <h2 className="section-title">Our Creative Team</h2>
+          <p className="section-subtitle">
+            Passionate storytellers, innovators, and visual artists dedicated to excellence
+          </p>
+        </div>
+
+        <div className="team-grid">
+          {teamMembers.map((member) => (
+            <div key={member.id} className="team-card">
+              <div className="card-inner">
+                {/* Front Side */}
+                <div className="card-front">
+                  <div className="image-wrapper">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="member-image"
+                    />
+                    <div className="image-overlay">
+                      <member.icon className="member-icon" size={48} />
+                    </div>
+                  </div>
+                  <div className="member-info">
+                    <h3 className="member-name">{member.name}</h3>
+                    <p className="member-role">{member.role}</p>
+                  </div>
+                </div>
+
+                {/* Back Side */}
+                <div className="card-back">
+                  <div className="back-content">
+                    <member.icon className="back-icon" size={40} />
+                    <h3 className="back-name">{member.name}</h3>
+                    <p className="back-bio">{member.bio}</p>
+                    <div className="specialties">
+                      <h4 className="specialties-title">Specialties:</h4>
+                      <ul className="specialties-list">
+                        {member.specialties.map((specialty, idx) => (
+                          <li key={idx} className="specialty-item">
+                            <span className="specialty-bullet">•</span>
+                            {specialty}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Clients Section */}
       <section className="clients-section">
         <div className="section-header">
           <h2 className="section-title">Trusted By Leading Organizations</h2>
-          <p className="section-subtitle">
-            We have delivered services to a diverse portfolio of corporate, development, 
-            and public-sector clients
-          </p>
         </div>
         <div className="clients-grid">
           {clients.map((client, index) => (
-            <div
-              key={index}
-              className="client-card"
-            >
+            <div key={index} className="client-card">
               <div className="client-logo-wrapper">
                 <img 
                   src={client.logo} 
@@ -275,10 +354,8 @@ function AboutUs() {
           ))}
         </div>
       </section>
-
-
     </div>
   );
 }
 
-export default AboutUs;
+export default About;

@@ -25,7 +25,6 @@ function Navbar() {
     { path: '/brand-campaigns', label: 'Campaigns' },
     { path: '/cooperative-events', label: 'Corporate Events' },
     { path: '/documentaries', label: 'Documentaries' },
-    { path: '/my-team', label: 'Team' }
   ];
 
   return (
