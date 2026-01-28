@@ -76,6 +76,24 @@
   letter-spacing: 0.5px;
 }
 
+.hero-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.divider-line {
+  width: 60px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.divider-icon {
+  color: #ff6b00;
+}
+
 .stats-section {
   padding: 4rem 2rem;
   max-width: 1400px;
@@ -105,6 +123,11 @@
   transform: translateY(-15px) scale(1.05);
   border-color: rgba(255, 255, 255, 0.5);
   box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+}
+
+.stat-icon {
+  color: #ff6b00;
+  margin-bottom: 1rem;
 }
 
 .stat-number {
@@ -212,11 +235,31 @@
   object-fit: cover;
   transition: transform 0.8s ease;
   filter: contrast(1.1) brightness(0.9);
+  border-radius: 25px 25px 0 0;
 }
 
 .team-card:hover .member-image {
   transform: scale(1.15);
   filter: contrast(1.2) brightness(1.1);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.team-card:hover .image-overlay {
+  opacity: 1;
+}
+
+.member-icon {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
 }
 
 .member-info {
@@ -252,6 +295,15 @@
   justify-content: center;
 }
 
+.back-content {
+  text-align: center;
+}
+
+.back-icon {
+  margin: 0 auto 1rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
 .back-name {
   font-size: 1.8rem;
   font-family: 'Bebas Neue', sans-serif;
@@ -269,12 +321,22 @@
   font-weight: 400;
 }
 
+.specialties {
+  text-align: left;
+}
+
 .specialties-title {
   font-size: 1rem;
   font-weight: 600;
   color: white;
   margin-bottom: 0.75rem;
   letter-spacing: 0.5px;
+}
+
+.specialties-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .specialty-item {
@@ -285,6 +347,11 @@
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 0.5rem;
   font-weight: 500;
+}
+
+.specialty-bullet {
+  font-size: 1.5rem;
+  line-height: 1;
 }
 
 .cta-section {

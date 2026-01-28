@@ -27,6 +27,24 @@ function Documentaries() {
 
   const handleVideoClick = (doc) => {
     setFullscreenVideo(doc);
+    
+    // Request fullscreen after a brief delay to ensure DOM is ready
+    setTimeout(() => {
+      const fullscreenContainer = document.querySelector('.fullscreen-overlay');
+      if (fullscreenContainer) {
+        if (fullscreenContainer.requestFullscreen) {
+          fullscreenContainer.requestFullscreen().catch(err => {
+            console.log('Fullscreen request failed:', err);
+          });
+        } else if (fullscreenContainer.webkitRequestFullscreen) {
+          fullscreenContainer.webkitRequestFullscreen();
+        } else if (fullscreenContainer.mozRequestFullScreen) {
+          fullscreenContainer.mozRequestFullScreen();
+        } else if (fullscreenContainer.msRequestFullscreen) {
+          fullscreenContainer.msRequestFullscreen();
+        }
+      }
+    }, 100);
   };
 
   const featuredDoc = documentaries.find(doc => doc.isFeatured);
@@ -92,12 +110,41 @@ function Documentaries() {
       {fullscreenVideo && (
         <div 
           className="fullscreen-overlay"
-          onClick={() => setFullscreenVideo(null)}
+          onClick={() => {
+            // Exit fullscreen
+            if (document.fullscreenElement) {
+              document.exitFullscreen().catch(err => {
+                console.log('Exit fullscreen failed:', err);
+              });
+            } else if (document.webkitFullscreenElement) {
+              document.webkitExitFullscreen();
+            } else if (document.mozFullScreenElement) {
+              document.mozCancelFullScreen();
+            } else if (document.msFullscreenElement) {
+              document.msExitFullscreen();
+            }
+            
+            setFullscreenVideo(null);
+          }}
         >
           <button 
             className="close-fullscreen-top-right"
             onClick={(e) => {
               e.stopPropagation();
+              
+              // Exit fullscreen
+              if (document.fullscreenElement) {
+                document.exitFullscreen().catch(err => {
+                  console.log('Exit fullscreen failed:', err);
+                });
+              } else if (document.webkitFullscreenElement) {
+                document.webkitExitFullscreen();
+              } else if (document.mozFullScreenElement) {
+                document.mozCancelFullScreen();
+              } else if (document.msFullscreenElement) {
+                document.msExitFullscreen();
+              }
+              
               setFullscreenVideo(null);
             }}
           >

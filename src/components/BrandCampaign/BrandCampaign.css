@@ -63,7 +63,7 @@
   animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: default;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-  border-radius: 8px;
+  border-radius: 16px;
 }
 
 .close-button {
@@ -172,26 +172,12 @@
   -webkit-backface-visibility: hidden;
   border-radius: 10px;
   background: #000;
-  transform: scale(1.5);
+  transform: scale(1.2);
   transform-origin: center center;
-  pointer-events: none;
 }
 
 .video-container:hover .showcase-video {
-  transform: scale(1.52);
-}
-
-/* Hide YouTube logo and branding */
-.video-container::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 100px;
-  height: 60px;
-  background: #000;
-  z-index: 10;
-  border-radius: 0 0 10px 0;
+  transform: scale(1.22);
 }
 
 /* Video Overlay - Always visible with title */
@@ -205,14 +191,14 @@
     180deg,
     rgba(0, 0, 0, 0.3) 0%,
     rgba(0, 0, 0, 0.1) 50%,
-    rgba(0, 0, 0, 0.8) 100%
+    rgba(0, 0, 0, 0.7) 100%
   );
   display: flex;
   align-items: flex-end;
   padding: 2.5rem;
   opacity: 1;
   transition: opacity 0.4s ease;
-  z-index: 15;
+  z-index: 2;
   border-radius: inherit;
   pointer-events: none;
 }
@@ -222,7 +208,7 @@
     180deg,
     rgba(0, 0, 0, 0.4) 0%,
     rgba(0, 0, 0, 0.2) 50%,
-    rgba(0, 0, 0, 0.85) 100%
+    rgba(0, 0, 0, 0.8) 100%
   );
 }
 
@@ -237,7 +223,7 @@
   left: 1.5rem;
   max-width: 70%;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
-  z-index: 20;
+  z-index: 3;
   opacity: 1;
   transition: all 0.3s ease;
   letter-spacing: 0.3px;

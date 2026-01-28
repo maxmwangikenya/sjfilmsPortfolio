@@ -21,8 +21,8 @@ function Navbar() {
   const isActive = (path) => location.pathname === path;
 
   const navLinks = [
-    { path: '/about', label: 'About Us' },
-    { path: '/brand-campaigns', label: 'Brand Campaigns' },
+    { path: '/about', label: 'About' },
+    { path: '/brand-campaigns', label: 'Campaigns' },
     { path: '/cooperative-events', label: 'Corporate Events' },
     { path: '/documentaries', label: 'Documentaries' },
     { path: '/my-team', label: 'Team' }
