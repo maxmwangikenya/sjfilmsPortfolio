@@ -6,13 +6,9 @@ import ContactForm from '../ContactForm/ContactForm';
 
 function Footer() {
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
-  const currentYear = new Date().getFullYear();
-  // change this founding year if SJ Films started in a different year
-  const foundingYear = 2016;
-  const ageYears = currentYear - foundingYear;
-  const yearDisplay = foundingYear && foundingYear < currentYear
-    ? `${foundingYear}–${currentYear} (${ageYears} yrs)`
-    : `${currentYear}`;
+
+  // FIXED: Displays only 2026
+  const yearDisplay = '2026';
 
   const quickLinks = [
     { path: '/brand-campaigns', label: 'Brand Campaigns' },

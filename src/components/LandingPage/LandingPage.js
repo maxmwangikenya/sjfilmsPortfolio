@@ -6,20 +6,20 @@ const LandingPage = () => {
 
   const videos = [
     {
-      id: 'aj35BnvMUvg',
-      title: 'Celebrating 25 years of connectivity and innovation'
+      id: '78n8VpI1x3w',
+      title: ' Mama`s House'
     },
     {
-      id: 'A0U2Bj-MpeQ',
-      title: 'Capturing the breathtaking beauty of Kisii landscapes'
+      id: 'KLF-16EwrKk', 
+      title: 'Gigiri Social Club'
     },
     {
       id: 'ivAO6RU2WIM',
       title: 'High-energy marathon coverage with premium partners'
     },
     {
-      id: '77JEEOXayaI',
-      title: 'The vibrant aftermovie of Life of Solo event'
+      id: 'nQ1kJvSL8mw',
+      title: 'Farova by Savara'
     }
   ];
 
@@ -34,7 +34,7 @@ const LandingPage = () => {
 
   return (
     <div className="landing-page">
-      {/* Fullscreen Overlay */}
+      {/* Fullscreen Overlay - SPACE-FIXED URLs */}
       {fullscreenVideo !== null && (
         <div className="fullscreen-overlay" onClick={closeFullscreen}>
           <button className="close-button" onClick={closeFullscreen}>
@@ -53,7 +53,7 @@ const LandingPage = () => {
         </div>
       )}
 
-      {/* Hero Section — Carrefour Video */}
+      {/* Hero Section */}
       <section className="video-section hero-section">
         <div className="video-container full-width clickable" onClick={() => openFullscreen(0)}>
           <iframe
@@ -71,10 +71,10 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Split Section — Kisii + Marathon */}
+      {/* Split Section — UPDATED LEFT VIDEO */}
       <section className="video-section split-section">
         <div className="split-container">
-          {/* Left Video — Kisii */}
+          {/* LEFT VIDEO - REPLACED */}
           <div className="video-container split-video clickable" onClick={() => openFullscreen(1)}>
             <iframe
               className="showcase-video"
@@ -90,7 +90,7 @@ const LandingPage = () => {
             </div>
           </div>
 
-          {/* Right Video — Marathon */}
+          {/* Right Video — Marathon (unchanged) */}
           <div className="video-container split-video clickable" onClick={() => openFullscreen(2)}>
             <iframe
               className="showcase-video"
@@ -113,15 +113,15 @@ const LandingPage = () => {
         <div className="video-container full-width clickable" onClick={() => openFullscreen(3)}>
           <iframe
             className="showcase-video"
-            src="https://www.youtube.com/embed/LSEVMAv5zb8?autoplay=1&mute=1&loop=1&playlist=LSEVMAv5zb8&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1"
-            title="SJ Films Showreel"
+            src={`https://www.youtube.com/embed/${videos[3].id}?autoplay=1&mute=1&loop=1&playlist=${videos[3].id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
+            title={videos[3].title}
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             loading="lazy"
           />
           <div className="video-overlay">
-            <h2 className="video-title">SJ Films Showreel</h2>
+            <h2 className="video-title">{videos[3].title}</h2>
           </div>
         </div>
       </section>
