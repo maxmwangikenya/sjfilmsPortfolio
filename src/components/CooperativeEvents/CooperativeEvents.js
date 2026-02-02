@@ -12,6 +12,13 @@ const CooperativeEvents = () => {
     setZoomedVideo(null);
   };
 
+  const handleKey = (e, index) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openZoom(index);
+    }
+  }; 
+
   const videos = [
     {
       id: 'K6q1KatBG9k',
@@ -42,7 +49,7 @@ const CooperativeEvents = () => {
     <div className="cooperative-events-page">
       {/* Hero Full-Width Video - WRTI Day 2 - Exhibitors */}
       <section className="video-section hero-section">
-        <div className={`video-container full-width clickable ${loaded[0] ? 'loaded' : ''}`} onClick={() => openZoom(0)}>
+        <div className={`video-container full-width clickable ${loaded[0] ? 'loaded' : ''}`} onClick={() => openZoom(0)} tabIndex={0} role="button" onKeyDown={(e) => handleKey(e, 0)}>
           {zoomedVideo === 0 && (
             <div className="custom-zoom-overlay" onClick={closeZoom}>
               <button className="zoom-close-btn" onClick={(e) => { e.stopPropagation(); closeZoom(); }}>
@@ -55,6 +62,7 @@ const CooperativeEvents = () => {
                   src={`https://www.youtube.com/embed/${videos[0].id}?autoplay=1&controls=1`}
                   title={videos[0].title}
                   frameBorder="0"
+                  onLoad={() => onIframeLoad(0)}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
@@ -69,7 +77,6 @@ const CooperativeEvents = () => {
             onLoad={() => onIframeLoad(0)}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            loading="lazy"
           />
           <div className="video-overlay">
             <h2 className="video-title">{videos[0].title}</h2>
@@ -80,7 +87,7 @@ const CooperativeEvents = () => {
       {/* Split Section - WRTI Set-up (left) & YM@ Nanai's Cafe Party (right) */}
       <section className="video-section split-section">
         <div className="split-container">
-          <div className={`video-container split-video clickable ${loaded[1] ? 'loaded' : ''}`} onClick={() => openZoom(1)}>
+          <div className={`video-container split-video clickable ${loaded[1] ? 'loaded' : ''}`} onClick={() => openZoom(1)} tabIndex={0} role="button" onKeyDown={(e) => handleKey(e, 1)}>
             {zoomedVideo === 1 && (
               <div className="custom-zoom-overlay" onClick={closeZoom}>
                 <button className="zoom-close-btn" onClick={(e) => { e.stopPropagation(); closeZoom(); }}>
@@ -93,6 +100,7 @@ const CooperativeEvents = () => {
                     src={`https://www.youtube.com/embed/${videos[1].id}?autoplay=1&controls=1`}
                     title={videos[1].title}
                     frameBorder="0"
+                    onLoad={() => onIframeLoad(1)}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   />
@@ -107,13 +115,12 @@ const CooperativeEvents = () => {
               onLoad={() => onIframeLoad(1)}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              loading="lazy"
             />
             <div className="video-overlay">
               <h2 className="video-title">{videos[1].title}</h2>
             </div>
           </div>
-          <div className={`video-container split-video clickable ${loaded[2] ? 'loaded' : ''}`} onClick={() => openZoom(2)}>
+          <div className={`video-container split-video clickable ${loaded[2] ? 'loaded' : ''}`} onClick={() => openZoom(2)} tabIndex={0} role="button" onKeyDown={(e) => handleKey(e, 2)}>
             {zoomedVideo === 2 && (
               <div className="custom-zoom-overlay" onClick={closeZoom}>
                 <button className="zoom-close-btn" onClick={(e) => { e.stopPropagation(); closeZoom(); }}>
@@ -126,6 +133,7 @@ const CooperativeEvents = () => {
                     src={`https://www.youtube.com/embed/${videos[2].id}?autoplay=1&controls=1`}
                     title={videos[2].title}
                     frameBorder="0"
+                    onLoad={() => onIframeLoad(2)}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   />
@@ -140,7 +148,6 @@ const CooperativeEvents = () => {
               onLoad={() => onIframeLoad(2)}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              loading="lazy"
             />
             <div className="video-overlay">
               <h2 className="video-title">{videos[2].title}</h2>
@@ -151,7 +158,7 @@ const CooperativeEvents = () => {
 
       {/* Bottom Full-Width Video - YM Stanchart Marathon */}
       <section className="video-section bottom-section">
-        <div className={`video-container full-width clickable ${loaded[3] ? 'loaded' : ''}`} onClick={() => openZoom(3)}>
+        <div className={`video-container full-width clickable ${loaded[3] ? 'loaded' : ''}`} onClick={() => openZoom(3)} tabIndex={0} role="button" onKeyDown={(e) => handleKey(e, 3)}>
           {zoomedVideo === 3 && (
             <div className="custom-zoom-overlay" onClick={closeZoom}>
               <button className="zoom-close-btn" onClick={(e) => { e.stopPropagation(); closeZoom(); }}>
@@ -164,6 +171,7 @@ const CooperativeEvents = () => {
                   src={`https://www.youtube.com/embed/${videos[3].id}?autoplay=1&controls=1`}
                   title={videos[3].title}
                   frameBorder="0"
+                  onLoad={() => onIframeLoad(3)}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
@@ -178,7 +186,6 @@ const CooperativeEvents = () => {
             onLoad={() => onIframeLoad(3)}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            loading="lazy"
           />
           <div className="video-overlay">
             <h2 className="video-title">{videos[3].title}</h2>

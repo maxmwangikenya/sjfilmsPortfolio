@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './BrandCampaign.css';
 
+
 const BrandCampaigns = () => {
   const [fullscreenVideo, setFullscreenVideo] = useState(null);
 
@@ -44,6 +45,13 @@ const BrandCampaigns = () => {
     console.log('Closing fullscreen');
     setFullscreenVideo(null);
   };
+  
+  const handleKey = (e, index) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openFullscreen(index);
+    }
+  }; 
 
   return (
     <div className="brand-campaigns-page">
@@ -62,6 +70,7 @@ const BrandCampaigns = () => {
             src={`https://www.youtube.com/embed/${videos[fullscreenVideo].id}?autoplay=1&controls=1`}
             title={videos[fullscreenVideo].title}
             frameBorder="0"
+            onLoad={() => onIframeLoad(fullscreenVideo)}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
@@ -73,18 +82,18 @@ const BrandCampaigns = () => {
         <div 
           className={`video-container full-width clickable ${loaded[0] ? 'loaded' : ''}`} 
           onClick={() => openFullscreen(0)}
+          tabIndex={0}
+          role="button"
+          onKeyDown={(e) => handleKey(e, 0)}
         >
           <iframe
             className="showcase-video"
-            width="100%"
-            height="100%"
             src={`https://www.youtube.com/embed/${videos[0].id}?autoplay=1&mute=1&loop=1&playlist=${videos[0].id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
             title={videos[0].title}
             frameBorder="0"
             onLoad={() => onIframeLoad(0)}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            loading="lazy"
           />
           <div className="video-overlay">
             <h2 className="video-title">{videos[0].title}</h2>
@@ -98,18 +107,18 @@ const BrandCampaigns = () => {
           <div 
             className={`video-container split-video clickable ${loaded[1] ? 'loaded' : ''}`} 
             onClick={() => openFullscreen(1)}
+            tabIndex={0}
+            role="button"
+            onKeyDown={(e) => handleKey(e, 1)}
           >
             <iframe
               className="showcase-video"
-              width="100%"
-              height="100%"
               src={`https://www.youtube.com/embed/${videos[1].id}?autoplay=1&mute=1&loop=1&playlist=${videos[1].id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
               title={videos[1].title}
               frameBorder="0"
               onLoad={() => onIframeLoad(1)}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              loading="lazy"
             />
             <div className="video-overlay">
               <h2 className="video-title">{videos[1].title}</h2>
@@ -119,18 +128,18 @@ const BrandCampaigns = () => {
           <div 
             className={`video-container split-video clickable ${loaded[2] ? 'loaded' : ''}`} 
             onClick={() => openFullscreen(2)}
+            tabIndex={0}
+            role="button"
+            onKeyDown={(e) => handleKey(e, 2)}
           >
             <iframe
               className="showcase-video"
-              width="100%"
-              height="100%"
               src={`https://www.youtube.com/embed/${videos[2].id}?autoplay=1&mute=1&loop=1&playlist=${videos[2].id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
               title={videos[2].title}
               frameBorder="0"
               onLoad={() => onIframeLoad(2)}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              loading="lazy"
             />
             <div className="video-overlay">
               <h2 className="video-title">{videos[2].title}</h2>
@@ -144,23 +153,23 @@ const BrandCampaigns = () => {
         <div 
           className={`video-container full-width clickable ${loaded[3] ? 'loaded' : ''}`} 
           onClick={() => openFullscreen(3)}
+          tabIndex={0}
+          role="button"
+          onKeyDown={(e) => handleKey(e, 3)}
         >
           <iframe
             className="showcase-video"
-            width="100%"
-            height="100%"
             src={`https://www.youtube.com/embed/${videos[3].id}?autoplay=1&mute=1&loop=1&playlist=${videos[3].id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
             title={videos[3].title}
             frameBorder="0"
             onLoad={() => onIframeLoad(3)}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            loading="lazy"
           />
           <div className="video-overlay">
             <h2 className="video-title">{videos[3].title}</h2>
           </div>
-        </div>
+        </div> 
       </section>
     </div>
   );

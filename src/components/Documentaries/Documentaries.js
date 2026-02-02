@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './Documentaries.css';
 
+
 function Documentaries() {
   const [fullscreenVideo, setFullscreenVideo] = useState(null);
 
@@ -54,6 +55,13 @@ function Documentaries() {
     }, 100);
   };
 
+  const handleKey = (e, doc) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleVideoClick(doc);
+    }
+  }; 
+
   const featuredDoc = documentaries.find(doc => doc.isFeatured);
   const regularDocs = documentaries.filter(doc => !doc.isFeatured);
 
@@ -65,18 +73,18 @@ function Documentaries() {
           <div 
             className={`video-container ${loaded[featuredDoc.youtubeId] ? 'loaded' : ''}`}
             onClick={() => handleVideoClick(featuredDoc)}
+            tabIndex={0}
+            role="button"
+            onKeyDown={(e) => handleKey(e, featuredDoc)}
           >
             <iframe
               className="video-player"
-              width="100%"
-              height="100%"
               src={`https://www.youtube.com/embed/${featuredDoc.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${featuredDoc.youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
               title={featuredDoc.title}
               frameBorder="0"
               onLoad={() => onIframeLoad(featuredDoc.youtubeId)}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              loading="lazy"
             />
             
             <div className="video-overlay">
@@ -92,18 +100,18 @@ function Documentaries() {
               <div 
                 className={`video-container ${loaded[doc.youtubeId] ? 'loaded' : ''}`}
                 onClick={() => handleVideoClick(doc)}
+                tabIndex={0}
+                role="button"
+                onKeyDown={(e) => handleKey(e, doc)}
               >
                 <iframe
                   className="video-player"
-                  width="100%"
-                  height="100%"
                   src={`https://www.youtube.com/embed/${doc.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${doc.youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
                   title={doc.title}
                   frameBorder="0"
                   onLoad={() => onIframeLoad(doc.youtubeId)}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
-                  loading="lazy"
                 />
                 
                 <div className="video-overlay">
@@ -167,6 +175,7 @@ function Documentaries() {
               src={`https://www.youtube.com/embed/${fullscreenVideo.youtubeId}?autoplay=1&controls=1`}
               title={fullscreenVideo.title}
               frameBorder="0"
+              onLoad={() => onIframeLoad(fullscreenVideo.youtubeId)}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />

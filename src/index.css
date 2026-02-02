@@ -35,3 +35,16 @@ code {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Custom cursor: use site logo for interactive elements */
+/* NOTE: Cursor uses public asset; injected into public/index.html instead to avoid webpack resolving the path. */
+/* Add cursor CSS in 'public/index.html' using: */
+/*
+.clickable,
+.logo-link,
+.nav-link,
+.mobile-nav-link,
+button {
+  cursor: url('%PUBLIC_URL%/Images/logo%20homepage/logo.png') 16 16, pointer;
+}
+*/

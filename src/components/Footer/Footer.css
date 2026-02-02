@@ -221,7 +221,7 @@
 /* Contact Info */
 .footer-contact li {
   display: flex;
-  align-items: flex-start;
+  align-items: center; /* center icons with text */
   gap: 0.75rem;
   margin-bottom: 1rem;
   color: rgba(255, 255, 255, 0.7);
@@ -395,8 +395,63 @@
     text-align: left;
   }
 
+  /* Contact column: keep positioned on the right but stack items neatly under heading */
   .footer-column:nth-child(4) {
     text-align: right;
+  }
+
+  /* Stack contact items as a two-column grid: text (right-aligned) | icon (fixed) */
+  .footer-column:nth-child(4) .footer-contact {
+    display: grid;
+    grid-auto-rows: auto;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+  }
+
+  .footer-column:nth-child(4) .footer-contact li {
+    display: grid;
+    grid-template-columns: 1fr auto; /* text | icon */
+    align-items: center;
+    gap: 0.75rem;
+    justify-items: end; /* keep items flush to the right */
+  }
+
+  .footer-column:nth-child(4) .footer-contact li span {
+    display: block;
+    text-align: right;
+    overflow-wrap: anywhere;
+  }
+
+  .footer-column:nth-child(4) .footer-contact li svg {
+    margin-left: 0.5rem;
+    margin-right: 0;
+  }
+
+  /* Align social icons to the right of the column */
+  .footer-column:nth-child(4) .social-links {
+    justify-content: flex-end;
+  }
+
+  /* Responsive: center contact column on narrow screens */
+  @media (max-width: 768px) {
+    .footer-column:nth-child(4) {
+      text-align: center;
+    }
+    .footer-column:nth-child(4) .footer-contact {
+      align-items: center;
+    }
+    .footer-column:nth-child(4) .footer-contact li {
+      display: flex;
+      justify-content: center;
+      text-align: left;
+      gap: 0.5rem;
+    }
+    .footer-column:nth-child(4) .footer-contact li span {
+      text-align: left;
+    }
+    .footer-column:nth-child(4) .social-links {
+      justify-content: center;
+    }
   }
 
   .footer-contact,

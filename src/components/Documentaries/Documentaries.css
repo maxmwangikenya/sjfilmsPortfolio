@@ -68,6 +68,7 @@
     0 4px 12px rgba(255, 107, 0, 0.2);
 }
 
+/* Video with original scale structure - HOVER SCALE DISABLED */
 .video-player {
   width: 100%;
   height: 100%;
@@ -86,41 +87,20 @@
   pointer-events: none;
 }
 
+/* Disable hover scale - keep at 1.5 */
 .video-container:hover .video-player {
-  transform: scale(1.52);
+  transform: scale(1.5);
 }
 
-/* Hide YouTube logo and branding (subtle) */
-.video-container::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 100px;
-  height: 60px;
-  background: linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.6));
-  z-index: 10;
-  border-radius: 0 0 25px 0;
-  transition: opacity .35s ease, visibility .35s;
-  opacity: 1;
-  pointer-events: none;
-}
-
-/* Hide the branding patch once the iframe has loaded */
-.video-container.loaded::after {
-  opacity: 0;
-  visibility: hidden;
-}
-
-/* Video Overlay - Always visible with title */
+/* Video Overlay - LIGHTER GRADIENT */
 .video-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.05) 0%,
     rgba(0, 0, 0, 0.1) 50%,
-    rgba(0, 0, 0, 0.8) 100%
+    rgba(0, 0, 0, 0.4) 100%
   );
   display: flex;
   align-items: flex-end;
@@ -136,9 +116,9 @@
 .video-container:hover .video-overlay {
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.4) 0%,
-    rgba(0, 0, 0, 0.2) 50%,
-    rgba(0, 0, 0, 0.85) 100%
+    rgba(0, 0, 0, 0.08) 0%,
+    rgba(0, 0, 0, 0.15) 50%,
+    rgba(0, 0, 0, 0.5) 100%
   );
 }
 
@@ -325,10 +305,6 @@
   .fullscreen-video-container iframe {
     border-radius: 20px;
   }
-
-  .video-container::after {
-    border-radius: 0 0 20px 0;
-  }
 }
 
 /* Mobile View (768px and below) */
@@ -363,10 +339,6 @@
 
   .fullscreen-video-container iframe {
     border-radius: 15px;
-  }
-
-  .video-container::after {
-    border-radius: 0 0 15px 0;
   }
 
   .video-title {
@@ -427,10 +399,6 @@
     border-radius: 12px;
   }
 
-  .video-container::after {
-    border-radius: 0 0 12px 0;
-  }
-
   .video-title {
     font-size: 0.65rem;
     bottom: 0.85rem;
@@ -488,10 +456,6 @@
   .fullscreen-video-container iframe {
     border-radius: 10px;
   }
-
-  .video-container::after {
-    border-radius: 0 0 10px 0;
-  }
   
   .video-title {
     font-size: 0.6rem;
@@ -537,10 +501,6 @@
   .fullscreen-video-container iframe {
     border-radius: 8px;
   }
-
-  .video-container::after {
-    border-radius: 0 0 8px 0;
-  }
   
   .video-title {
     font-size: 0.55rem;
@@ -558,12 +518,13 @@
   }
 }
 
-/* Touch device optimizations */
+/* Touch device optimizations - HOVER SCALE DISABLED */
 @media (hover: none) and (pointer: coarse) {
   .video-container:hover {
     transform: none;
   }
   
+  /* Keep base scale on touch devices */
   .video-container:hover .video-player {
     transform: scale(1.5);
   }
