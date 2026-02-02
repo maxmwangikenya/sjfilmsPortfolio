@@ -23,6 +23,17 @@ const BrandCampaigns = () => {
     }
   ];
 
+  // track iframe load state so the branding hide can fade away
+  const [loaded, setLoaded] = useState(() => Array(videos.length).fill(false));
+
+  const onIframeLoad = (index) => {
+    setLoaded((prev) => {
+      const copy = [...prev];
+      copy[index] = true;
+      return copy;
+    });
+  };
+
   const openFullscreen = (index) => {
     console.log('Opening fullscreen for video:', index);
     setFullscreenVideo(index);
@@ -60,7 +71,7 @@ const BrandCampaigns = () => {
       {/* Hero Section - Video 0: BAWYC HQ */}
       <section className="video-section hero-section">
         <div 
-          className="video-container full-width clickable" 
+          className={`video-container full-width clickable ${loaded[0] ? 'loaded' : ''}`} 
           onClick={() => openFullscreen(0)}
         >
           <iframe
@@ -70,6 +81,7 @@ const BrandCampaigns = () => {
             src={`https://www.youtube.com/embed/${videos[0].id}?autoplay=1&mute=1&loop=1&playlist=${videos[0].id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
             title={videos[0].title}
             frameBorder="0"
+            onLoad={() => onIframeLoad(0)}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             loading="lazy"
@@ -84,7 +96,7 @@ const BrandCampaigns = () => {
       <section className="video-section split-section">
         <div className="split-container">
           <div 
-            className="video-container split-video clickable" 
+            className={`video-container split-video clickable ${loaded[1] ? 'loaded' : ''}`} 
             onClick={() => openFullscreen(1)}
           >
             <iframe
@@ -94,6 +106,7 @@ const BrandCampaigns = () => {
               src={`https://www.youtube.com/embed/${videos[1].id}?autoplay=1&mute=1&loop=1&playlist=${videos[1].id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
               title={videos[1].title}
               frameBorder="0"
+              onLoad={() => onIframeLoad(1)}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               loading="lazy"
@@ -104,7 +117,7 @@ const BrandCampaigns = () => {
           </div>
 
           <div 
-            className="video-container split-video clickable" 
+            className={`video-container split-video clickable ${loaded[2] ? 'loaded' : ''}`} 
             onClick={() => openFullscreen(2)}
           >
             <iframe
@@ -114,6 +127,7 @@ const BrandCampaigns = () => {
               src={`https://www.youtube.com/embed/${videos[2].id}?autoplay=1&mute=1&loop=1&playlist=${videos[2].id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
               title={videos[2].title}
               frameBorder="0"
+              onLoad={() => onIframeLoad(2)}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               loading="lazy"
@@ -128,7 +142,7 @@ const BrandCampaigns = () => {
       {/* Bottom Section - Video 3: Safaricom @25 */}
       <section className="video-section bottom-section">
         <div 
-          className="video-container full-width clickable" 
+          className={`video-container full-width clickable ${loaded[3] ? 'loaded' : ''}`} 
           onClick={() => openFullscreen(3)}
         >
           <iframe
@@ -138,6 +152,7 @@ const BrandCampaigns = () => {
             src={`https://www.youtube.com/embed/${videos[3].id}?autoplay=1&mute=1&loop=1&playlist=${videos[3].id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
             title={videos[3].title}
             frameBorder="0"
+            onLoad={() => onIframeLoad(3)}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             loading="lazy"

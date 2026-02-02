@@ -7,7 +7,7 @@ const LandingPage = () => {
   const videos = [
     {
       id: '78n8VpI1x3w',
-      title: ' Mama`s House'
+      title: 'Mama`s House'
     },
     {
       id: 'KLF-16EwrKk', 
@@ -22,6 +22,17 @@ const LandingPage = () => {
       title: 'Farova by Savara'
     }
   ];
+
+  // track whether each iframe has finished loading so we can hide the placeholder overlay
+  const [loaded, setLoaded] = useState(() => Array(videos.length).fill(false));
+
+  const onIframeLoad = (index) => {
+    setLoaded((prev) => {
+      const copy = [...prev];
+      copy[index] = true;
+      return copy;
+    });
+  };
 
   const openFullscreen = (index) => {
     setFullscreenVideo(index);
@@ -55,12 +66,13 @@ const LandingPage = () => {
 
       {/* Hero Section */}
       <section className="video-section hero-section">
-        <div className="video-container full-width clickable" onClick={() => openFullscreen(0)}>
+        <div className={`video-container full-width clickable ${loaded[0] ? 'loaded' : ''}`} onClick={() => openFullscreen(0)}>
           <iframe
             className="showcase-video"
             src={`https://www.youtube.com/embed/${videos[0].id}?autoplay=1&mute=1&loop=1&playlist=${videos[0].id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
             title={videos[0].title}
             frameBorder="0"
+            onLoad={() => onIframeLoad(0)}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             loading="lazy"
@@ -71,16 +83,17 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Split Section — UPDATED LEFT VIDEO */}
+      {/* Split Section */}
       <section className="video-section split-section">
         <div className="split-container">
-          {/* LEFT VIDEO - REPLACED */}
-          <div className="video-container split-video clickable" onClick={() => openFullscreen(1)}>
+          {/* Left Video */}
+          <div className={`video-container split-video clickable ${loaded[1] ? 'loaded' : ''}`} onClick={() => openFullscreen(1)}>
             <iframe
               className="showcase-video"
               src={`https://www.youtube.com/embed/${videos[1].id}?autoplay=1&mute=1&loop=1&playlist=${videos[1].id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
               title={videos[1].title}
               frameBorder="0"
+              onLoad={() => onIframeLoad(1)}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               loading="lazy"
@@ -90,13 +103,14 @@ const LandingPage = () => {
             </div>
           </div>
 
-          {/* Right Video — Marathon (unchanged) */}
-          <div className="video-container split-video clickable" onClick={() => openFullscreen(2)}>
+          {/* Right Video */}
+          <div className={`video-container split-video clickable ${loaded[2] ? 'loaded' : ''}`} onClick={() => openFullscreen(2)}>
             <iframe
               className="showcase-video"
               src={`https://www.youtube.com/embed/${videos[2].id}?autoplay=1&mute=1&loop=1&playlist=${videos[2].id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
               title={videos[2].title}
               frameBorder="0"
+              onLoad={() => onIframeLoad(2)}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               loading="lazy"
@@ -108,14 +122,15 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Bottom Section — Showreel */}
-      <section className="video-section bottom-section" style={{ marginTop: '80px' }}>
-        <div className="video-container full-width clickable" onClick={() => openFullscreen(3)}>
+      {/* Bottom Section - REMOVED MARGIN */}
+      <section className="video-section bottom-section">
+        <div className={`video-container full-width clickable ${loaded[3] ? 'loaded' : ''}`} onClick={() => openFullscreen(3)}>
           <iframe
             className="showcase-video"
             src={`https://www.youtube.com/embed/${videos[3].id}?autoplay=1&mute=1&loop=1&playlist=${videos[3].id}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
             title={videos[3].title}
             frameBorder="0"
+            onLoad={() => onIframeLoad(3)}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             loading="lazy"

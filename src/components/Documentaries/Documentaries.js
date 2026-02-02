@@ -25,6 +25,13 @@ function Documentaries() {
     }
   ];
 
+  // track iframe load state keyed by youtubeId
+  const [loaded, setLoaded] = useState({});
+
+  const onIframeLoad = (youtubeId) => {
+    setLoaded(prev => ({ ...prev, [youtubeId]: true }));
+  };
+
   const handleVideoClick = (doc) => {
     setFullscreenVideo(doc);
     
@@ -56,7 +63,7 @@ function Documentaries() {
         {/* Featured Video - Large */}
         <div className="featured-video">
           <div 
-            className="video-container"
+            className={`video-container ${loaded[featuredDoc.youtubeId] ? 'loaded' : ''}`}
             onClick={() => handleVideoClick(featuredDoc)}
           >
             <iframe
@@ -66,6 +73,7 @@ function Documentaries() {
               src={`https://www.youtube.com/embed/${featuredDoc.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${featuredDoc.youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
               title={featuredDoc.title}
               frameBorder="0"
+              onLoad={() => onIframeLoad(featuredDoc.youtubeId)}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               loading="lazy"
@@ -82,7 +90,7 @@ function Documentaries() {
           {regularDocs.map((doc) => (
             <div key={doc.id} className="video-item">
               <div 
-                className="video-container"
+                className={`video-container ${loaded[doc.youtubeId] ? 'loaded' : ''}`}
                 onClick={() => handleVideoClick(doc)}
               >
                 <iframe
@@ -92,6 +100,7 @@ function Documentaries() {
                   src={`https://www.youtube.com/embed/${doc.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${doc.youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
                   title={doc.title}
                   frameBorder="0"
+                  onLoad={() => onIframeLoad(doc.youtubeId)}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   loading="lazy"
