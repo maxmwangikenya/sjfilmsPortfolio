@@ -6,8 +6,8 @@ const BrandCampaigns = () => {
 
   const videos = [
     {
-      id: 'kEQPkT6Gk-E',
-      title: 'BAWYC HQ',
+      id: 'iHEZTMiZJkI',
+      title: 'Baileys with Tara',
     },
     {
       id: 'YgG3X8pHI_s',
