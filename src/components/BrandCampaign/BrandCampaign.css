@@ -16,7 +16,7 @@
 .video-section {
   width: 100%;
   position: relative;
-  padding: 8px 16px;
+  padding: 0 16px; /* remove vertical spacing */
 }
 
 /* Remove padding from sections after first */
@@ -275,7 +275,7 @@
 /* Tablet */
 @media (max-width: 1024px) {
   .video-section {
-    padding: 6px 12px;
+    padding: 0 12px; /* remove vertical spacing */
   }
 
   .video-section + .video-section {
@@ -334,7 +334,7 @@
 /* Mobile Large */
 @media (max-width: 768px) {
   .video-section {
-    padding: 5px 10px;
+    padding: 0 10px; /* remove vertical spacing */
   }
 
   .video-section + .video-section {
@@ -412,7 +412,7 @@
 /* Mobile Medium */
 @media (max-width: 480px) {
   .video-section {
-    padding: 4px 8px;
+    padding: 0 8px; /* remove vertical spacing */
   }
 
   .video-section + .video-section {
@@ -491,7 +491,7 @@
 /* Mobile Small */
 @media (max-width: 360px) {
   .video-section {
-    padding: 3px 6px;
+    padding: 0 6px; /* remove vertical spacing */
   }
 
   .video-section + .video-section {

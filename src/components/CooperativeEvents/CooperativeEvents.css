@@ -293,7 +293,7 @@
 /* Mobile Large */
 @media (max-width: 768px) {
   .video-section {
-    padding: 5px 10px;
+    padding: 0 8px; /* remove vertical spacing */
   }
 
   .video-section + .video-section {
@@ -302,7 +302,7 @@
 
   .split-container,
   .triple-container {
-    gap: 5px;
+    gap: 0; /* remove gap */
   }
 
   .video-container.split-video {

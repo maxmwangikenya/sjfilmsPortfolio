@@ -116,14 +116,15 @@
   width: 100%;
 }
 
+/* REDUCED BOOK NOW BUTTON - DESKTOP */
 .book-now-btn {
-  padding: 0.4rem 1rem; /* slightly smaller */
+  padding: 0.25rem 0.8rem; /* REDUCED: was 0.4rem 1rem */
   background: #ff6b00;
   color: white;
   border: 2px solid #ff6b00;
-  border-radius: 50px;
+  border-radius: 40px; /* REDUCED: was 50px */
   font-weight: 400;
-  font-size: 0.9rem;
+  font-size: 0.8rem; /* REDUCED: was 0.9rem */
   letter-spacing: 1px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -133,7 +134,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 3px 10px rgba(255, 107, 0, 0.18);
+  box-shadow: 0 2px 8px rgba(255, 107, 0, 0.15); /* REDUCED shadow */
 }
 
 .book-now-btn::before {
@@ -150,13 +151,13 @@
 }
 
 .book-now-btn:hover::before {
-  width: 220px; /* smaller ripple */
-  height: 220px;
+  width: 100px; /* REDUCED: was 120px */
+  height: 100px;
 }
 
 .book-now-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(255, 107, 0, 0.25);
+  transform: translateY(-2px); /* REDUCED: was -3px */
+  box-shadow: 0 6px 16px rgba(255, 107, 0, 0.2);
   background: #e05a00;
   border-color: #e05a00;
 }
@@ -271,15 +272,16 @@
   border-left-color: #ff6b00;
 }
 
+/* REDUCED BOOK NOW BUTTON - MOBILE MENU */
 .mobile-book-btn {
   margin-top: 1.5rem;
-  padding: 1.1rem 2rem;
+  padding: 0.8rem 1.5rem; /* REDUCED: was 1.1rem 2rem */
   background: #ff6b00;
   color: white;
   border: 2px solid #ff6b00;
-  border-radius: 50px;
+  border-radius: 40px; /* REDUCED: was 50px */
   font-weight: 400;
-  font-size: 1.1rem;
+  font-size: 1rem; /* REDUCED: was 1.1rem */
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
@@ -288,12 +290,12 @@
   justify-content: center;
   text-align: center;
   letter-spacing: 1px;
-  box-shadow: 0 4px 15px rgba(255, 107, 0, 0.25);
+  box-shadow: 0 3px 12px rgba(255, 107, 0, 0.2); /* REDUCED shadow */
 }
 
 .mobile-book-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 30px rgba(255, 107, 0, 0.4);
+  transform: scale(1.03); /* REDUCED: was 1.05 */
+  box-shadow: 0 8px 24px rgba(255, 107, 0, 0.35);
   background: #e05a00;
   border-color: #e05a00;
 }
@@ -328,10 +330,11 @@
     padding: clamp(8px, 0.6vw, 14px) 0;
   }
 
+  /* REDUCED BOOK NOW BUTTON - LARGE SCREENS */
   .book-now-btn {
-    padding: clamp(0.65rem, 0.8vw, 1.2rem) clamp(1.6rem, 2.6vw, 3rem);
-    font-size: clamp(1rem, 0.9vw, 1.2rem);
-    border-radius: clamp(40px, 3vw, 64px);
+    padding: clamp(0.35rem, 0.6vw, 0.8rem) clamp(1rem, 2vw, 2rem); /* REDUCED clamp values */
+    font-size: clamp(0.75rem, 0.75vw, 0.9rem); /* REDUCED font sizes */
+    border-radius: clamp(32px, 2.5vw, 48px); /* REDUCED border radius */
   }
 
   .nav-link:hover { transform: translateY(-3px); }

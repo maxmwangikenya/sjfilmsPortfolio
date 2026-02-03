@@ -317,8 +317,8 @@
 /* Small Mobile View (480px and below) */
 @media (max-width: 480px) {
   .videos-row {
-    gap: 4px;
-    padding: 4px;
+    gap: 0; /* remove gap */
+    padding: 0 4px; /* remove vertical spacing */
   }
 
   .video-container {
