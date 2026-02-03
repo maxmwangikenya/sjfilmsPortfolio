@@ -588,7 +588,623 @@
   .close-button {
     transition: none;
   }
+/* ========================================
+   BRAND CAMPAIGNS - PERFECTED STYLES
+   ======================================== */
 
+/* Base Reset & Container */
+.brand-campaigns-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #000;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Section Spacing - MODIFIED */
+.video-section {
+  width: 100%;
+  position: relative;
+  padding: 0 16px; /* remove vertical spacing */
+}
+
+/* Remove padding from sections after first */
+.video-section + .video-section {
+  padding-top: 0;
+}
+
+.video-section:first-child {
+  padding-top: 0;
+}
+
+.video-section:last-child {
+  padding-bottom: 0;
+}
+
+.video-section.bottom-section::before {
+  display: none !important;
+  content: none !important;
+  height: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Split Container (2 videos) */
+.split-container {
+  display: flex;
+  width: 100%;
+  gap: 0;
+  flex-direction: row;
+}
+
+/* Triple Container (3 videos) - ALWAYS HORIZONTAL */
+.triple-container {
+  display: flex;
+  width: 100%;
+  gap: 0;
+  flex-direction: row; /* Always row, never column */
+  overflow: hidden;
+}
+
+/* Video Container - UNIFORM BORDER RADIUS */
+.video-container {
+  position: relative;
+  overflow: hidden;
+  background: #000;
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    0 2px 8px rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+}
+
+/* Full Width Videos */
+.video-container.full-width {
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  max-height: 900px;
+}
+
+/* Split Videos - PERFECT 50/50 */
+.video-container.split-video {
+  flex: 1;
+  width: 50%;
+  height: 70vh;
+  min-height: 500px;
+  max-height: 700px;
+}
+
+/* Triple Videos - PERFECT 33/33/33 with visual separation */
+.video-container.triple-video {
+  flex: 1;
+  width: 33.333%; /* Always 33.333% on all screens */
+  height: 60vh;
+  min-height: 450px;
+  max-height: 650px;
+  border-radius: 0;
+}
+
+/* First video in triple container - left rounded */
+.triple-container .video-container.triple-video:first-child {
+  border-radius: 16px 0 0 16px;
+}
+
+/* Middle video in triple container - no radius */
+.triple-container .video-container.triple-video:nth-child(2) {
+  border-radius: 0;
+}
+
+/* Last video in triple container - right rounded */
+.triple-container .video-container.triple-video:last-child {
+  border-radius: 0 16px 16px 0;
+}
+
+/* Ensure the video and overlay match the container radius */
+.video-container.triple-video .showcase-video,
+.video-container.triple-video .video-overlay {
+  border-radius: inherit;
+}
+
+.showcase-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 16px;
+  background: #000;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: scale(1.5);
+  transform-origin: center center;
+  pointer-events: none;
+}
+
+.video-container:hover .showcase-video {
+  transform: scale(1.53);
+}
+
+/* Video Overlay - GRADIENT */
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+  display: flex;
+  align-items: flex-end;
+  padding: 32px;
+  opacity: 1;
+  transition: all 0.4s ease;
+  z-index: 15;
+  border-radius: 16px;
+  pointer-events: none;
+}
+
+.video-container:hover .video-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.15) 50%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
+}
+
+/* Video Title - ALWAYS VISIBLE */
+.video-title {
+  color: #ffffff;
+  font-size: calc(1rem + 3px);
+  font-weight: 500;
+  margin: 0;
+  position: absolute;
+  bottom: 32px;
+  left: 32px;
+  max-width: 70%;
+  text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.95);
+  z-index: 20;
+  opacity: 1;
+  transition: all 0.3s ease;
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+  pointer-events: none;
+} 
+
+.video-container:hover .video-title {
+  text-shadow: 2px 2px 16px rgba(0, 0, 0, 1);
+  transform: translateY(-4px);
+}
+
+/* Smaller title for triple videos */
+.video-container.triple-video .video-title {
+  font-size: 0.85rem;
+  bottom: 24px;
+  left: 24px;
+}
+
+/* ========================================
+   FULLSCREEN OVERLAY
+   ======================================== */
+
+.fullscreen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.98);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fullscreen-video {
+  width: 95vw;
+  height: 95vh;
+  max-width: 1600px;
+  max-height: 900px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+  border-radius: 12px;
+}
+
+.close-button {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10001;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0;
+}
+
+.close-button:hover {
+  background: rgba(255, 107, 0, 0.9);
+  border-color: #ff6b00;
+  transform: scale(1.1) rotate(90deg);
+  box-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - MAINTAIN 3-COLUMN LAYOUT
+   ======================================== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .video-section {
+    padding: 0 12px;
+  }
+
+  .video-section + .video-section {
+    padding-top: 0;
+  }
+
+  .split-container,
+  .triple-container {
+    gap: 0;
+    flex-direction: row; /* Always row */
+  }
+
+  .video-container.split-video {
+    width: 50%;
+  }
+
+  .video-container.triple-video {
+    width: 33.333%; /* Maintain 3-column layout */
+  }
+
+  .triple-container .video-container.triple-video:first-child {
+    border-radius: 14px 0 0 14px;
+  }
+  
+  .triple-container .video-container.triple-video:last-child {
+    border-radius: 0 14px 14px 0;
+  }
+
+  .video-title {
+    font-size: 0.95rem;
+    bottom: 24px;
+    left: 24px;
+  }
+
+  .video-container.triple-video .video-title {
+    font-size: 0.75rem;
+    bottom: 20px;
+    left: 20px;
+  }
+
+  .video-overlay {
+    padding: 24px;
+  }
+
+  .video-container,
+  .video-overlay,
+  .showcase-video {
+    border-radius: 14px;
+  }
+}
+
+/* Mobile Large */
+@media (max-width: 768px) {
+  .video-section {
+    padding: 0 10px;
+  }
+
+  .video-section + .video-section {
+    padding-top: 0;
+  }
+
+  .split-container,
+  .triple-container {
+    gap: 0;
+    flex-direction: row; /* Always row */
+  }
+
+  .video-container.split-video {
+    width: 50%;
+    height: 50vh;
+    min-height: 350px;
+    max-height: 500px;
+  }
+
+  .video-container.triple-video {
+    width: 33.333%; /* Maintain 3-column layout */
+    height: 45vh;
+    min-height: 300px;
+    max-height: 450px;
+  }
+
+  .video-container.full-width {
+    height: 65vh;
+    min-height: 400px;
+    max-height: 600px;
+  }
+
+  .triple-container .video-container.triple-video:first-child {
+    border-radius: 12px 0 0 12px;
+  }
+  
+  .triple-container .video-container.triple-video:last-child {
+    border-radius: 0 12px 12px 0;
+  }
+
+  .video-title {
+    font-size: 0.85rem;
+    bottom: 20px;
+    left: 20px;
+  }
+
+  .video-container.triple-video .video-title {
+    font-size: 0.65rem;
+    bottom: 16px;
+    left: 16px;
+  }
+
+  .video-overlay {
+    padding: 20px;
+  }
+
+  .video-container,
+  .video-overlay,
+  .showcase-video {
+    border-radius: 12px;
+  }
+
+  .close-button {
+    top: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Mobile Medium - CRITICAL: MAINTAIN 3-COLUMN LAYOUT */
+@media (max-width: 480px) {
+  .video-section {
+    padding: 0 8px;
+  }
+
+  .video-section + .video-section {
+    padding-top: 0;
+  }
+
+  .split-container,
+  .triple-container {
+    gap: 0;
+    flex-direction: row; /* ALWAYS ROW - NO STACKING */
+  }
+
+  .video-container.split-video {
+    width: 50%;
+    height: 40vh;
+    min-height: 280px;
+    max-height: 400px;
+  }
+
+  .video-container.triple-video {
+    width: 33.333%; /* CRITICAL: Maintain 3-column layout on mobile */
+    height: 40vh;
+    min-height: 280px;
+    max-height: 400px;
+    border-radius: 0 !important;
+  }
+
+  .video-container.full-width {
+    height: 55vh;
+    min-height: 320px;
+    max-height: 500px;
+  }
+
+  /* Maintain horizontal border radius pattern */
+  .triple-container .video-container.triple-video:first-child {
+    border-radius: 10px 0 0 10px !important; /* Left edges only */
+  }
+  
+  .triple-container .video-container.triple-video:nth-child(2) {
+    border-radius: 0 !important; /* No radius on touching edges */
+  }
+  
+  .triple-container .video-container.triple-video:last-child {
+    border-radius: 0 10px 10px 0 !important; /* Right edges only */
+  }
+
+  .video-title {
+    font-size: 0.75rem;
+    bottom: 16px;
+    left: 16px;
+  }
+
+  .video-container.triple-video .video-title {
+    font-size: 0.75rem;
+    bottom: 16px;
+    left: 16px;
+  }
+
+  .video-overlay {
+    padding: 16px;
+  }
+
+  .video-container,
+  .video-overlay,
+  .showcase-video {
+    border-radius: 10px;
+  }
+}
+
+/* Mobile Small - CRITICAL: MAINTAIN 3-COLUMN LAYOUT */
+@media (max-width: 360px) {
+  .video-section {
+    padding: 0 6px;
+  }
+
+  .video-section + .video-section {
+    padding-top: 0;
+  }
+
+  .split-container,
+  .triple-container {
+    gap: 0;
+    flex-direction: row; /* ALWAYS ROW - NO STACKING */
+  }
+
+  .video-container.split-video,
+  .video-container.triple-video {
+    width: 33.333%; /* CRITICAL: Maintain 3-column layout */
+    height: 35vh;
+    min-height: 240px;
+    max-height: 350px;
+  }
+
+  .video-container.full-width {
+    height: 50vh;
+    min-height: 280px;
+    max-height: 450px;
+  }
+
+  /* Maintain horizontal border radius pattern */
+  .triple-container .video-container.triple-video:first-child {
+    border-radius: 8px 0 0 8px !important; /* Left edges only */
+  }
+  
+  .triple-container .video-container.triple-video:nth-child(2) {
+    border-radius: 0 !important; /* No radius on touching edges */
+  }
+  
+  .triple-container .video-container.triple-video:last-child {
+    border-radius: 0 8px 8px 0 !important; /* Right edges only */
+  }
+
+  .video-title {
+    font-size: 0.7rem;
+    bottom: 12px;
+    left: 12px;
+  }
+
+  .video-overlay {
+    padding: 12px;
+  }
+
+  .video-container,
+  .video-overlay,
+  .showcase-video {
+    border-radius: 8px;
+  }
+
+  .close-button {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* ========================================
+   LARGE SCREENS (4K, Ultra-wide) 
+   ======================================== */
+
+@media (min-width: 1920px) {
+  .video-container.full-width {
+    height: 100vh;
+    min-height: 700px;
+    max-height: 1000px;
+  }
+
+  .video-container.triple-video {
+    height: 65vh;
+    min-height: 500px;
+    max-height: 750px;
+  }
+
+  .video-container.split-video {
+    height: 75vh;
+    min-height: 550px;
+    max-height: 800px;
+  }
+
+  .triple-container .video-container.triple-video:first-child {
+    border-radius: 20px 0 0 20px;
+  }
+  
+  .triple-container .video-container.triple-video:last-child {
+    border-radius: 0 20px 20px 0;
+  }
+
+  .video-container,
+  .video-overlay,
+  .showcase-video {
+    border-radius: 20px;
+  }
+}
+
+/* ========================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ======================================== */
+
+@media (hover: none) and (pointer: coarse) {
+  .video-container:active {
+    transform: scale(0.98);
+  }
+
+  .video-container:hover .showcase-video {
+    transform: scale(1.5);
+  }
+
+  .video-overlay {
+    opacity: 1;
+  }
+}
+
+/* ========================================
+   PERFORMANCE OPTIMIZATIONS
+   ======================================== */
+
+.showcase-video,
+.video-overlay,
+.video-title {
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video-container,
+  .showcase-video,
+  .video-overlay,
+  .video-title,
+  .close-button {
+    transition: none;
+  }
+
+  .video-container:hover .showcase-video {
+    transform: scale(1.5);
+  }
+}
   .video-container:hover .showcase-video {
     transform: scale(1.5);
   }
