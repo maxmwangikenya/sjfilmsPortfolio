@@ -84,25 +84,17 @@
   display: block;
   border-radius: 16px;
   background: #000;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
+  transition: none; /* no transform to preserve clarity */
+  will-change: auto;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  transform: scale(1.5);
+  transform: none;
   transform-origin: center center;
   pointer-events: none;
 }
 
 .video-container:hover .showcase-video {
-  transform: scale(1.53);
-}
-
-/* Removed bottom-right branding box per request */
-/* (No pseudo-element here so videos are fully visible) */
-
-/* Video Overlay - GRADIENT */
-.video-overlay {
-  position: absolute;
+  transform: none;
   top: 0;
   left: 0;
   right: 0;
@@ -135,7 +127,7 @@
 /* Video Title - ALWAYS VISIBLE */
 .video-title {
   color: #ffffff;
-  font-size: 1rem;
+  font-size: calc(1rem + 3px);
   font-weight: 500;
   margin: 0;
   position: absolute;
@@ -149,7 +141,7 @@
   letter-spacing: 0.3px;
   line-height: 1.5;
   pointer-events: none;
-}
+} 
 
 .video-container:hover .video-title {
   text-shadow: 2px 2px 16px rgba(0, 0, 0, 1);

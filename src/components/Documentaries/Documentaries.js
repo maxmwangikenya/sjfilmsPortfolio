@@ -8,21 +8,13 @@ function Documentaries() {
   const documentaries = [
     {
       id: 1,
-      title: 'AJiry Kisii',
+      title: 'AJiry by Mastercard Foundation - Kisii, County',
       youtubeId: '_QDNf5Hme3k',
-      isFeatured: true
     },
     {
       id: 2,
-      title: 'AJiry Machakos',
-      youtubeId: 'TOGXnJUkteA',
-      isFeatured: false
-    },
-    {
-      id: 3,
-      title: 'The Story Of Janny Marangu',
-      youtubeId: 'cN9sgUwkIms',
-      isFeatured: false
+      title: 'The Story Of Janny Marangu - Tumaini Trust Kenya',
+      youtubeId: 'qwU35GGST1E',
     }
   ];
 
@@ -62,40 +54,12 @@ function Documentaries() {
     }
   }; 
 
-  const featuredDoc = documentaries.find(doc => doc.isFeatured);
-  const regularDocs = documentaries.filter(doc => !doc.isFeatured);
-
   return (
     <div className="documentaries-container">
       <div className="docs-wrapper">
-        {/* Featured Video - Large */}
-        <div className="featured-video">
-          <div 
-            className={`video-container ${loaded[featuredDoc.youtubeId] ? 'loaded' : ''}`}
-            onClick={() => handleVideoClick(featuredDoc)}
-            tabIndex={0}
-            role="button"
-            onKeyDown={(e) => handleKey(e, featuredDoc)}
-          >
-            <iframe
-              className="video-player"
-              src={`https://www.youtube.com/embed/${featuredDoc.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${featuredDoc.youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1`}
-              title={featuredDoc.title}
-              frameBorder="0"
-              onLoad={() => onIframeLoad(featuredDoc.youtubeId)}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-            
-            <div className="video-overlay">
-              <h2 className="video-title">{featuredDoc.title}</h2>
-            </div>
-          </div>
-        </div>
-
-        {/* Regular Videos - Two Below */}
-        <div className="regular-videos">
-          {regularDocs.map((doc) => (
+        {/* Two Videos Side by Side */}
+        <div className="videos-row">
+          {documentaries.map((doc) => (
             <div key={doc.id} className="video-item">
               <div 
                 className={`video-container ${loaded[doc.youtubeId] ? 'loaded' : ''}`}

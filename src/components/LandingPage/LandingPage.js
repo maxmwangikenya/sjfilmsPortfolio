@@ -7,7 +7,7 @@ const LandingPage = () => {
   const videos = [
     { id: '78n8VpI1x3w', title: " Mama`s House" },
     { id: 'KLF-16EwrKk', title: 'Gigiri Social Club' },
-    { id: 'ivAO6RU2WIM', title: 'High-energy marathon coverage with premium partners' },
+    { id: '0or1Q3YCDv8', title: '2025 Cohort Launch - Densu' },
     { id: 'nQ1kJvSL8mw', title: 'Farova by Savara' }
   ];
 
