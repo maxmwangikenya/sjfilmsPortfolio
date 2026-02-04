@@ -334,9 +334,9 @@
   }
 
   .video-container.full-width {
-    height: 36vh;
-    min-height: 230px;
-    max-height: 350px;
+    height: 35vh;
+    min-height: 260px;
+    max-height: 400px;
   }
 
   .video-title {
@@ -410,9 +410,9 @@
   }
 
   .video-container.full-width {
-    height: 28vh;
-    min-height: 180px;
-    max-height: 280px;
+    height: 26vh;
+    min-height: 200px;
+    max-height: 320px;
   }
 
   .video-title {
@@ -479,9 +479,9 @@
   }
 
   .video-container.full-width {
-    height: 25vh;
-    min-height: 160px;
-    max-height: 250px;
+    height: 24vh;
+    min-height: 180px;
+    max-height: 280px;
   }
 
   .video-title {
