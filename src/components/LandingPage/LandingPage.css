@@ -308,7 +308,7 @@ body {
   }
 }
 
-/* Mobile Large */
+/* Mobile Large - UPDATED WITH INCREASED MIDDLE VIDEOS */
 @media (max-width: 768px) {
   .video-section {
     padding: 0;
@@ -338,15 +338,15 @@ body {
 
   .video-container.split-video {
     width: 50%;
-    height: 26vh;
-    min-height: 180px;
-    max-height: 260px;
+    height: 28vh;
+    min-height: 200px;
+    max-height: 300px;
   }
 
   .video-container.full-width {
-    height: 50vh;
-    min-height: 300px;
-    max-height: 450px;
+    height: 36vh;
+    min-height: 230px;
+    max-height: 350px;
   }
 
   .video-title {
@@ -380,7 +380,7 @@ body {
   }
 }
 
-/* Mobile Medium */
+/* Mobile Medium - UPDATED WITH INCREASED MIDDLE VIDEOS */
 @media (max-width: 480px) {
   .video-section {
     padding: 0;
@@ -410,15 +410,15 @@ body {
 
   .video-container.split-video {
     width: 50%;
-    height: 19vh;
-    min-height: 140px;
-    max-height: 210px;
+    height: 21vh;
+    min-height: 170px;
+    max-height: 250px;
   }
 
   .video-container.full-width {
-    height: 40vh;
-    min-height: 240px;
-    max-height: 380px;
+    height: 28vh;
+    min-height: 180px;
+    max-height: 280px;
   }
 
   .video-title {
@@ -445,7 +445,7 @@ body {
   }
 }
 
-/* Mobile Small */
+/* Mobile Small - UPDATED WITH INCREASED MIDDLE VIDEOS */
 @media (max-width: 360px) {
   .video-section {
     padding: 0;
@@ -475,15 +475,15 @@ body {
 
   .video-container.split-video {
     width: 50%;
-    height: 34vh;
-    min-height: 240px;
-    max-height: 340px;
+    height: 19vh;
+    min-height: 150px;
+    max-height: 220px;
   }
 
   .video-container.full-width {
-    height: 35vh;
-    min-height: 200px;
-    max-height: 320px;
+    height: 25vh;
+    min-height: 160px;
+    max-height: 250px;
   }
 
   .video-title {

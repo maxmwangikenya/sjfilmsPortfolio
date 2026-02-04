@@ -281,19 +281,21 @@
   }
 }
 
-/* Mobile View (768px and below) */
+/* Mobile View (768px and below) - INCREASED SIZE */
 @media (max-width: 768px) {
   .videos-row {
-    gap: 5px;
-    padding: 5px;
+    gap: 0;
+    padding: 0;
+    margin: 0;
   }
 
   .video-container {
-    border-radius: 12px;
+    border-radius: 0;
+    aspect-ratio: 16 / 10; /* Taller aspect ratio for more height */
   }
 
   .video-player {
-    border-radius: 12px;
+    border-radius: 0;
   }
 
   .video-title {
@@ -323,19 +325,21 @@
   }
 }
 
-/* Small Mobile View (480px and below) */
+/* Small Mobile View (480px and below) - INCREASED SIZE */
 @media (max-width: 480px) {
   .videos-row {
-    gap: 0; /* remove gap */
-    padding: 0 4px; /* remove vertical spacing */
+    gap: 0;
+    padding: 0;
+    margin: 0;
   }
 
   .video-container {
-    border-radius: 10px;
+    border-radius: 0;
+    aspect-ratio: 16 / 11; /* Even taller aspect ratio */
   }
 
   .video-player {
-    border-radius: 10px;
+    border-radius: 0;
   }
 
   .video-title {
@@ -365,19 +369,21 @@
   }
 }
 
-/* Extra Small Mobile (360px and below) */
+/* Extra Small Mobile (360px and below) - INCREASED SIZE */
 @media (max-width: 360px) {
   .videos-row {
-    gap: 3px;
-    padding: 3px;
+    gap: 0;
+    padding: 0;
+    margin: 0;
   }
 
   .video-container {
-    border-radius: 8px;
+    border-radius: 0;
+    aspect-ratio: 16 / 12; /* Tallest aspect ratio */
   }
 
   .video-player {
-    border-radius: 8px;
+    border-radius: 0;
   }
 
   .video-title {
@@ -402,16 +408,18 @@
 /* Very Small Mobile (320px and below) */
 @media (max-width: 320px) {
   .videos-row {
-    gap: 3px;
-    padding: 3px;
+    gap: 0;
+    padding: 0;
+    margin: 0;
   }
 
   .video-container {
-    border-radius: 8px;
+    border-radius: 0;
+    aspect-ratio: 16 / 12;
   }
 
   .video-player {
-    border-radius: 8px;
+    border-radius: 0;
   }
 
   .video-title {

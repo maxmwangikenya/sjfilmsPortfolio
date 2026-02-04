@@ -92,7 +92,7 @@
   max-height: 650px;
 }
 
-..showcase-video {
+.showcase-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -290,51 +290,61 @@
   }
 }
 
-/* Mobile Large */
+/* Mobile Large - MATCHING LANDING PAGE EXACTLY */
 @media (max-width: 768px) {
   .video-section {
-    padding: 0 8px; /* remove vertical spacing */
+    padding: 0;
+    margin: 0;
   }
 
   .video-section + .video-section {
     padding-top: 0;
+    margin-top: 0;
+  }
+
+  .video-section:first-child {
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  .video-section:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
   }
 
   .split-container,
   .triple-container {
-    gap: 0; /* remove gap */
+    gap: 0;
+    padding: 0;
+    margin: 0;
   }
 
   .video-container.split-video {
     width: 50%;
-    height: 50vh;
-    min-height: 350px;
-    max-height: 500px;
+    height: 35vh;
+    min-height: 260px;
+    max-height: 400px;
   }
 
   .video-container.triple-video {
     width: 33.333%;
-    height: 45vh;
-    min-height: 300px;
-    max-height: 450px;
+    height: 35vh;
+    min-height: 260px;
+    max-height: 400px;
   }
 
   .video-container.full-width {
-    height: 65vh;
-    min-height: 400px;
-    max-height: 600px;
+    height: 36vh;
+    min-height: 230px;
+    max-height: 350px;
   }
 
   .video-title {
     font-size: 0.85rem;
-    bottom: 20px;
-    left: 20px;
   }
 
   .video-container.triple-video .video-title {
     font-size: 0.65rem;
-    bottom: 16px;
-    left: 16px;
   }
 
   .video-overlay {
@@ -344,7 +354,7 @@
   .video-container,
   .video-overlay,
   .showcase-video {
-    border-radius: 12px;
+    border-radius: 0;
   }
 
   .close-button {
@@ -355,52 +365,62 @@
   }
 }
 
-/* Mobile Medium */
+/* Mobile Medium - MATCHING LANDING PAGE EXACTLY */
 @media (max-width: 480px) {
   .video-section {
-    padding: 4px 8px;
+    padding: 0;
+    margin: 0;
   }
 
   .video-section + .video-section {
     padding-top: 0;
+    margin-top: 0;
+  }
+
+  .video-section:first-child {
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  .video-section:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
   }
 
   .split-container,
   .triple-container {
-    gap: 4px;
+    gap: 0;
+    padding: 0;
+    margin: 0;
     flex-direction: row;
   }
 
   .video-container.split-video {
     width: 50%;
-    height: 40vh;
-    min-height: 280px;
-    max-height: 400px;
+    height: 26vh;
+    min-height: 200px;
+    max-height: 320px;
   }
 
   .video-container.triple-video {
     width: 33.333%;
-    height: 40vh;
-    min-height: 280px;
-    max-height: 400px;
+    height: 26vh;
+    min-height: 200px;
+    max-height: 320px;
   }
 
   .video-container.full-width {
-    height: 55vh;
-    min-height: 320px;
-    max-height: 500px;
+    height: 28vh;
+    min-height: 180px;
+    max-height: 280px;
   }
 
   .video-title {
     font-size: 0.75rem;
-    bottom: 16px;
-    left: 16px;
   }
 
   .video-container.triple-video .video-title {
     font-size: 0.75rem;
-    bottom: 16px;
-    left: 16px;
   }
 
   .video-overlay {
@@ -410,50 +430,62 @@
   .video-container,
   .video-overlay,
   .showcase-video {
-    border-radius: 10px;
+    border-radius: 0;
   }
 }
 
-/* Mobile Small */
+/* Mobile Small - MATCHING LANDING PAGE EXACTLY */
 @media (max-width: 360px) {
   .video-section {
-    padding: 3px 6px;
+    padding: 0;
+    margin: 0;
   }
 
   .video-section + .video-section {
     padding-top: 0;
+    margin-top: 0;
+  }
+
+  .video-section:first-child {
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  .video-section:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
   }
 
   .split-container,
   .triple-container {
-    gap: 3px;
+    gap: 0;
+    padding: 0;
+    margin: 0;
     flex-direction: row;
   }
 
   .video-container.split-video {
     width: 50%;
-    height: 35vh;
-    min-height: 240px;
-    max-height: 350px;
+    height: 24vh;
+    min-height: 180px;
+    max-height: 280px;
   }
 
   .video-container.triple-video {
     width: 33.333%;
-    height: 35vh;
-    min-height: 240px;
-    max-height: 350px;
+    height: 24vh;
+    min-height: 180px;
+    max-height: 280px;
   }
 
   .video-container.full-width {
-    height: 50vh;
-    min-height: 280px;
-    max-height: 450px;
+    height: 25vh;
+    min-height: 160px;
+    max-height: 250px;
   }
 
   .video-title {
     font-size: 0.7rem;
-    bottom: 12px;
-    left: 12px;
   }
 
   .video-overlay {
@@ -463,7 +495,7 @@
   .video-container,
   .video-overlay,
   .showcase-video {
-    border-radius: 8px;
+    border-radius: 0;
   }
 
   .close-button {
