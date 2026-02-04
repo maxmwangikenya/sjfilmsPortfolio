@@ -1,9 +1,10 @@
 /* ========================================
-   LANDING PAGE - PERFECTED STYLES
+   CORPORATE EVENTS — EXACT LANDING PAGE STYLING
+   (Same look + same mobile sizing/zoom)
    ======================================== */
 
 /* Base Reset & Container */
-.landing-page {
+.corporate-events-page {
   width: 100vw;
   min-height: 100vh;
   background: #000;
@@ -14,13 +15,7 @@
   position: relative;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
-/* Section Spacing - WITH PADDING FOR BORDER RADIUS */
+/* Section Spacing — WITH PADDING FOR BORDER RADIUS */
 .video-section {
   width: 100%;
   position: relative;
@@ -40,15 +35,16 @@ body {
   padding-bottom: 0;
 }
 
-/* Split Container */
-.split-container {
+/* Containers */
+.split-container,
+.triple-container {
   display: flex;
   width: 100%;
   gap: 0;
   flex-direction: row;
 }
 
-/* Video Container - UNIFORM BORDER RADIUS */
+/* Video Container — UNIFORM BORDER RADIUS */
 .video-container {
   position: relative;
   overflow: hidden;
@@ -77,7 +73,16 @@ body {
   height: 55vh;
   min-height: 500px;
   max-height: 700px;
-} 
+}
+
+/* Triple Videos - PERFECT 33/33/33 (same style) */
+.video-container.triple-video {
+  flex: 1;
+  width: 33.333%;
+  height: 55vh;
+  min-height: 500px;
+  max-height: 700px;
+}
 
 /* Video with MAINTAINED scale(1.5) structure across ALL screen sizes */
 .showcase-video {
@@ -102,7 +107,7 @@ body {
   transform: scale(1.5);
 }
 
-/* Video Overlay - LIGHTER GRADIENT */
+/* Video Overlay - LIGHTER GRADIENT (Landing) */
 .video-overlay {
   position: absolute;
   top: 0;
@@ -147,7 +152,7 @@ body {
   object-fit: cover;
 }
 
-/* Video Title - ALWAYS VISIBLE */
+/* Video Title - ALWAYS VISIBLE (Landing) */
 .video-title {
   color: #ffffff;
   font-size: 1rem;
@@ -170,7 +175,7 @@ body {
 }
 
 /* ========================================
-   FULLSCREEN OVERLAY
+   FULLSCREEN OVERLAY (Landing)
    ======================================== */
 
 .fullscreen-overlay {
@@ -189,12 +194,8 @@ body {
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .fullscreen-video {
@@ -234,109 +235,63 @@ body {
 }
 
 /* ========================================
-   RESPONSIVE DESIGN
-   Video structure (scale 1.5) maintained across ALL breakpoints
+   RESPONSIVE DESIGN (Landing exact)
    ======================================== */
 
 /* Large Monitors (1440px and above) */
 @media (min-width: 1440px) {
-  .video-container.full-width {
-    max-height: 1000px;
-  }
+  .video-container.full-width { max-height: 1000px; }
+  .video-container.split-video { max-height: 800px; }
 
-  .video-container.split-video {
-    max-height: 800px;
-  }
-
-  .showcase-video {
-    transform: scale(1.5);
-  }
-
-  .video-container:hover .showcase-video {
-    transform: scale(1.5);
-  }
+  .showcase-video { transform: scale(1.5); }
+  .video-container:hover .showcase-video { transform: scale(1.5); }
 }
 
 /* Tablet */
 @media (max-width: 1024px) {
-  .video-section {
-    padding: 0 12px;
-  }
+  .video-section { padding: 0 12px; }
 
-  .video-section + .video-section {
-    padding-top: 0;
-  }
+  .video-section + .video-section { padding-top: 0; }
+  .video-section:first-child { padding-top: 0; }
+  .video-section:last-child { padding-bottom: 0; }
 
-  .video-section:first-child {
-    padding-top: 0;
-  }
+  .split-container,
+  .triple-container { gap: 0; }
 
-  .video-section:last-child {
-    padding-bottom: 0;
-  }
+  .video-container.split-video { width: 50%; }
 
-  .split-container {
-    gap: 0;
-  }
-
-  .video-container.split-video {
-    width: 50%;
-  }
-
-  .video-title {
-    font-size: 0.95rem;
-  }
-
-  .video-overlay {
-    padding: 24px;
-  }
+  .video-title { font-size: 0.95rem; }
+  .video-overlay { padding: 24px; }
 
   .video-container,
   .video-overlay,
-  .showcase-video {
-    border-radius: 14px;
-  }
+  .showcase-video { border-radius: 14px; }
 
-  .showcase-video {
-    transform: scale(1.5);
-  }
-
-  .video-container:hover .showcase-video {
-    transform: scale(1.5);
-  }
+  .showcase-video { transform: scale(1.5); }
+  .video-container:hover .showcase-video { transform: scale(1.5); }
 }
 
-/* Mobile Large - INCREASED VIDEO SCALE ONLY */
+/* Mobile Large */
 @media (max-width: 768px) {
-  .video-section {
-    padding: 0;
-    margin: 0;
-  }
+  .video-section { padding: 0; margin: 0; }
 
-  .video-section + .video-section {
-    padding-top: 0;
-    margin-top: 0;
-  }
+  .video-section + .video-section { padding-top: 0; margin-top: 0; }
+  .video-section:first-child { padding-top: 0; margin-top: 0; }
+  .video-section:last-child { padding-bottom: 0; margin-bottom: 0; }
 
-  .video-section:first-child {
-    padding-top: 0;
-    margin-top: 0;
-  }
+  .split-container,
+  .triple-container { gap: 0; padding: 0; margin: 0; }
 
-  .video-section:last-child {
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  .split-container {
-    gap: 0;
-    padding: 0;
-    margin: 0;
-  }
-
-  /* CONTAINER SIZE REMAINS THE SAME */
+  /* CONTAINER SIZE (Landing) */
   .video-container.split-video {
     width: 50%;
+    height: 16vh;
+    min-height: 130px;
+    max-height: 180px;
+  }
+
+  .video-container.triple-video {
+    width: 33.333%;
     height: 16vh;
     min-height: 130px;
     max-height: 180px;
@@ -348,19 +303,12 @@ body {
     max-height: 500px;
   }
 
-  .video-title {
-    font-size: 0.85rem;
-  }
-
-  .video-overlay {
-    padding: 20px;
-  }
+  .video-title { font-size: 0.85rem; }
+  .video-overlay { padding: 20px; }
 
   .video-container,
   .video-overlay,
-  .showcase-video {
-    border-radius: 0;
-  }
+  .showcase-video { border-radius: 0; }
 
   .close-button {
     top: 20px;
@@ -369,56 +317,41 @@ body {
     height: 48px;
   }
 
-  /* SIGNIFICANTLY INCREASED SCALE FOR SPLIT VIDEO - MORE ZOOM */
-  .video-container.split-video .showcase-video {
-    transform: scale(2.8); /* INCREASED from 2.2 */
+  /* MOBILE ZOOM (Landing) */
+  .video-container.split-video .showcase-video,
+  .video-container.split-video:hover .showcase-video,
+  .video-container.triple-video .showcase-video,
+  .video-container.triple-video:hover .showcase-video {
+    transform: scale(2.8);
   }
 
-  .video-container.split-video:hover .showcase-video {
-    transform: scale(2.8); /* INCREASED from 2.2 */
-  }
-
-  /* MAINTAIN scale(1.5) for full-width videos */
-  .video-container.full-width .showcase-video {
-    transform: scale(1.5);
-  }
-
+  .video-container.full-width .showcase-video,
   .video-container.full-width:hover .showcase-video {
     transform: scale(1.5);
   }
 }
 
-/* Mobile Medium - INCREASED VIDEO SCALE ONLY */
+/* Mobile Medium */
 @media (max-width: 480px) {
-  .video-section {
-    padding: 0;
-    margin: 0;
-  }
+  .video-section { padding: 0; margin: 0; }
 
-  .video-section + .video-section {
-    padding-top: 0;
-    margin-top: 0;
-  }
+  .video-section + .video-section { padding-top: 0; margin-top: 0; }
+  .video-section:first-child { padding-top: 0; margin-top: 0; }
+  .video-section:last-child { padding-bottom: 0; margin-bottom: 0; }
 
-  .video-section:first-child {
-    padding-top: 0;
-    margin-top: 0;
-  }
+  .split-container,
+  .triple-container { gap: 0; padding: 0; margin: 0; }
 
-  .video-section:last-child {
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  .split-container {
-    gap: 0;
-    padding: 0;
-    margin: 0;
-  }
-
-  /* CONTAINER SIZE REMAINS THE SAME */
+  /* CONTAINER SIZE (Landing) */
   .video-container.split-video {
     width: 50%;
+    height: 20vh;
+    min-height: 220px;
+    max-height: 300px;
+  }
+
+  .video-container.triple-video {
+    width: 33.333%;
     height: 20vh;
     min-height: 220px;
     max-height: 300px;
@@ -430,70 +363,48 @@ body {
     max-height: 400px;
   }
 
-  .video-title {
-    font-size: 0.75rem;
-  }
-
-  .video-overlay {
-    padding: 16px;
-  }
+  .video-title { font-size: 0.75rem; }
+  .video-overlay { padding: 16px; }
 
   .video-container,
   .video-overlay,
-  .showcase-video {
-    border-radius: 0;
+  .showcase-video { border-radius: 0; }
+
+  /* MOBILE ZOOM (Landing) */
+  .video-container.split-video .showcase-video,
+  .video-container.split-video:hover .showcase-video,
+  .video-container.triple-video .showcase-video,
+  .video-container.triple-video:hover .showcase-video {
+    transform: scale(2.8);
   }
 
-  /* SIGNIFICANTLY INCREASED SCALE FOR SPLIT VIDEO - MORE ZOOM */
-  .video-container.split-video .showcase-video {
-    transform: scale(2.8); /* INCREASED from 2.2 */
-  }
-
-  .video-container.split-video:hover .showcase-video {
-    transform: scale(2.8); /* INCREASED from 2.2 */
-  }
-
-  /* MAINTAIN scale(1.5) for full-width videos */
-  .video-container.full-width .showcase-video {
-    transform: scale(1.5);
-  }
-
+  .video-container.full-width .showcase-video,
   .video-container.full-width:hover .showcase-video {
     transform: scale(1.5);
   }
 }
 
-/* Mobile Small - INCREASED VIDEO SCALE ONLY */
+/* Mobile Small */
 @media (max-width: 360px) {
-  .video-section {
-    padding: 0;
-    margin: 0;
-  }
+  .video-section { padding: 0; margin: 0; }
 
-  .video-section + .video-section {
-    padding-top: 0;
-    margin-top: 0;
-  }
+  .video-section + .video-section { padding-top: 0; margin-top: 0; }
+  .video-section:first-child { padding-top: 0; margin-top: 0; }
+  .video-section:last-child { padding-bottom: 0; margin-bottom: 0; }
 
-  .video-section:first-child {
-    padding-top: 0;
-    margin-top: 0;
-  }
+  .split-container,
+  .triple-container { gap: 0; padding: 0; margin: 0; }
 
-  .video-section:last-child {
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-
-  .split-container {
-    gap: 0;
-    padding: 0;
-    margin: 0;
-  }
-
-  /* CONTAINER SIZE REMAINS THE SAME */
+  /* CONTAINER SIZE (Landing) */
   .video-container.split-video {
     width: 50%;
+    height: 11vh;
+    min-height: 100px;
+    max-height: 140px;
+  }
+
+  .video-container.triple-video {
+    width: 33.333%;
     height: 11vh;
     min-height: 100px;
     max-height: 140px;
@@ -505,39 +416,27 @@ body {
     max-height: 350px;
   }
 
-  .video-title {
-    font-size: 0.7rem;
-  }
-
-  .video-overlay {
-    padding: 12px;
-  }
+  .video-title { font-size: 0.7rem; }
+  .video-overlay { padding: 12px; }
 
   .video-container,
   .video-overlay,
-  .showcase-video {
-    border-radius: 0;
-  }
+  .showcase-video { border-radius: 0; }
 
   .close-button {
     width: 44px;
     height: 44px;
   }
 
-  /* SIGNIFICANTLY INCREASED SCALE FOR SPLIT VIDEO - MORE ZOOM */
-  .video-container.split-video .showcase-video {
-    transform: scale(2.8); /* INCREASED from 2.2 */
+  /* MOBILE ZOOM (Landing) */
+  .video-container.split-video .showcase-video,
+  .video-container.split-video:hover .showcase-video,
+  .video-container.triple-video .showcase-video,
+  .video-container.triple-video:hover .showcase-video {
+    transform: scale(2.8);
   }
 
-  .video-container.split-video:hover .showcase-video {
-    transform: scale(2.8); /* INCREASED from 2.2 */
-  }
-
-  /* MAINTAIN scale(1.5) for full-width videos */
-  .video-container.full-width .showcase-video {
-    transform: scale(1.5);
-  }
-
+  .video-container.full-width .showcase-video,
   .video-container.full-width:hover .showcase-video {
     transform: scale(1.5);
   }
@@ -546,27 +445,23 @@ body {
 /* ========================================
    TOUCH DEVICE OPTIMIZATIONS
    ======================================== */
-
 @media (hover: none) and (pointer: coarse) {
-  .video-container:active {
-    transform: scale(0.98);
-  }
-
-  .video-overlay {
-    opacity: 1;
-  }
+  .video-container:active { transform: scale(0.98); }
+  .video-overlay { opacity: 1; }
 }
 
 /* ========================================
    PERFORMANCE OPTIMIZATIONS
    ======================================== */
-
 .showcase-video,
 .video-overlay,
 .video-title {
   will-change: transform, opacity;
 }
 
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
 @media (prefers-reduced-motion: reduce) {
   .video-container,
   .showcase-video,

@@ -1,49 +1,71 @@
 /* ========================================
-   CORPORATE EVENTS - UNIFIED (PHONE MATCHES LANDING PAGE)
+   CORPORATE EVENTS — UNIFIED WITH LANDING PAGE
+   (PHONE VIEW MATCHES LANDING EXACTLY)
    ======================================== */
 
 /* Base Reset & Container */
 .corporate-events-page {
-  width: 100%;
+  width: 100vw;
   min-height: 100vh;
   background: #000;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
+  display: block;
+  position: relative;
 }
 
-/* Section Spacing (Desktop default) */
+/* ========================================
+   SECTION SPACING (DESKTOP / TABLET)
+   ======================================== */
 .video-section {
   width: 100%;
   position: relative;
-  padding: 4px 10px;
+  padding: 0 16px;
 }
 
-.video-section + .video-section { padding-top: 0; }
-.video-section:first-child { padding-top: 0; }
-.video-section:last-child { padding-bottom: 0; }
+.video-section + .video-section {
+  padding-top: 0;
+}
 
-/* Containers */
+.video-section:first-child {
+  padding-top: 0;
+}
+
+.video-section:last-child {
+  padding-bottom: 0;
+}
+
+/* ========================================
+   CONTAINERS
+   ======================================== */
 .split-container,
 .triple-container {
   display: flex;
   width: 100%;
-  gap: 6px;
+  gap: 0;
   flex-direction: row;
 }
 
-/* Video Container */
+/* ========================================
+   VIDEO CONTAINER — SAME CORE AS LANDING
+   ======================================== */
 .video-container {
   position: relative;
   overflow: hidden;
   background: #000;
-  border-radius: 14px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.45),
-              0 2px 6px rgba(255,255,255,0.03);
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    0 2px 8px rgba(255, 255, 255, 0.03);
   cursor: pointer;
+  display: block;
 }
 
-/* Desktop Sizes */
+/* ========================================
+   DESKTOP / LARGE SCREENS
+   ======================================== */
 .video-container.full-width {
   width: 100%;
   height: 85vh;
@@ -67,7 +89,9 @@
   max-height: 560px;
 }
 
-/* Video — ALWAYS FILL CONTAINER */
+/* ========================================
+   VIDEO ELEMENT — LANDING PAGE SCALE LOGIC
+   ======================================== */
 .showcase-video {
   position: absolute;
   inset: 0;
@@ -80,7 +104,6 @@
   background: #000;
   pointer-events: none;
 
-  /* Desktop/default: match landing style */
   transform: scale(1.5);
   transform-origin: center center;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -89,26 +112,30 @@
   -webkit-backface-visibility: hidden;
 }
 
-/* keep hover subtle on desktop (optional) */
+/* Desktop hover (subtle only) */
 .video-container:hover .showcase-video {
   transform: scale(1.53);
 }
 
-/* Overlay */
+/* ========================================
+   OVERLAY — SAME FEEL AS LANDING
+   ======================================== */
 .video-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0,0,0,0.05) 0%,
-    rgba(0,0,0,0.55) 100%
+    rgba(0, 0, 0, 0.05) 0%,
+    rgba(0, 0, 0, 0.55) 100%
   );
   padding: 18px;
   border-radius: inherit;
   pointer-events: none;
 }
 
-/* Title */
+/* ========================================
+   TITLE
+   ======================================== */
 .video-title {
   position: absolute;
   bottom: 14px;
@@ -116,12 +143,12 @@
   color: #fff;
   font-size: 0.75rem;
   max-width: 70%;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
   pointer-events: none;
 }
 
 /* ========================================
-   TABLET (keep your existing intent)
+   TABLET (UNCHANGED INTENT)
    ======================================== */
 @media (max-width: 1024px) {
   .video-container.full-width {
@@ -141,10 +168,16 @@
     min-height: 280px;
     max-height: 420px;
   }
+
+  .video-container,
+  .video-overlay,
+  .showcase-video {
+    border-radius: 14px;
+  }
 }
 
 /* =========================================================
-   MOBILE LARGE (<=768px) — COPIED FROM LANDING PAGE
+   MOBILE LARGE (≤768px) — EXACT LANDING PAGE BEHAVIOR
    ========================================================= */
 @media (max-width: 768px) {
   .video-section {
@@ -157,15 +190,13 @@
     gap: 0;
     padding: 0;
     margin: 0;
-    flex-direction: row;
   }
 
-  /* Landing Page sizes */
+  /* Landing sizes */
   .video-container.full-width {
     height: 50vh;
     min-height: 350px;
     max-height: 500px;
-    border-radius: 0;
   }
 
   .video-container.split-video {
@@ -173,7 +204,6 @@
     height: 16vh;
     min-height: 130px;
     max-height: 180px;
-    border-radius: 0;
   }
 
   .video-container.triple-video {
@@ -181,12 +211,20 @@
     height: 16vh;
     min-height: 130px;
     max-height: 180px;
+  }
+
+  /* Edge-to-edge */
+  .video-container,
+  .video-overlay,
+  .showcase-video {
     border-radius: 0;
   }
 
-  /* Landing Page mobile zoom behavior */
+  /* Landing zoom logic */
   .video-container.split-video .showcase-video,
-  .video-container.split-video:hover .showcase-video {
+  .video-container.split-video:hover .showcase-video,
+  .video-container.triple-video .showcase-video,
+  .video-container.triple-video:hover .showcase-video {
     transform: scale(2.8);
   }
 
@@ -195,29 +233,14 @@
     transform: scale(1.5);
   }
 
-  /* edge-to-edge */
-  .video-container,
-  .video-overlay,
-  .showcase-video {
-    border-radius: 0;
-  }
-
   .video-overlay { padding: 20px; }
   .video-title { font-size: 0.85rem; }
 }
 
 /* =========================================================
-   MOBILE MEDIUM (<=480px) — COPIED FROM LANDING PAGE
+   MOBILE MEDIUM (≤480px) — EXACT LANDING PAGE BEHAVIOR
    ========================================================= */
 @media (max-width: 480px) {
-  .split-container,
-  .triple-container {
-    gap: 0;
-    padding: 0;
-    margin: 0;
-  }
-
-  /* Landing Page sizes */
   .video-container.full-width {
     height: 40vh;
     min-height: 280px;
@@ -238,9 +261,10 @@
     max-height: 300px;
   }
 
-  /* Landing Page zoom behavior */
   .video-container.split-video .showcase-video,
-  .video-container.split-video:hover .showcase-video {
+  .video-container.triple-video .showcase-video,
+  .video-container.split-video:hover .showcase-video,
+  .video-container.triple-video:hover .showcase-video {
     transform: scale(2.8);
   }
 
@@ -259,10 +283,9 @@
 }
 
 /* =========================================================
-   MOBILE SMALL (<=360px) — COPIED FROM LANDING PAGE
+   MOBILE SMALL (≤360px) — EXACT LANDING PAGE BEHAVIOR
    ========================================================= */
 @media (max-width: 360px) {
-  /* Landing Page sizes */
   .video-container.full-width {
     height: 35vh;
     min-height: 240px;
@@ -283,9 +306,10 @@
     max-height: 140px;
   }
 
-  /* Keep split zoom bold */
   .video-container.split-video .showcase-video,
-  .video-container.split-video:hover .showcase-video {
+  .video-container.triple-video .showcase-video,
+  .video-container.split-video:hover .showcase-video,
+  .video-container.triple-video:hover .showcase-video {
     transform: scale(2.8);
   }
 
@@ -307,15 +331,20 @@
    TOUCH DEVICES
    ======================================== */
 @media (hover: none) and (pointer: coarse) {
-  .video-container:active { transform: scale(0.97); }
+  .video-container:active {
+    transform: scale(0.97);
+  }
 
-  /* do not change scale on hover for touch */
-  .video-container:hover .showcase-video { transform: inherit; }
+  .video-overlay {
+    opacity: 1;
+  }
 }
 
 /* ========================================
    REDUCED MOTION
    ======================================== */
 @media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; }
+  * {
+    transition: none !important;
+  }
 }
