@@ -1,5 +1,6 @@
 /* ========================================
    BRAND CAMPAIGNS - PERFECTED STYLES
+   (Mobile sizes duplicated from Landing Page)
    ======================================== */
 
 /* Base Reset & Container */
@@ -12,25 +13,16 @@
   padding: 0;
 }
 
-/* Section Spacing - MODIFIED */
+/* Section Spacing */
 .video-section {
   width: 100%;
   position: relative;
-  padding: 0; /* no spacing, videos edge to edge */
+  padding: 0; /* edge-to-edge */
   margin: 0;
 }
 
-/* Remove padding from sections after first */
-.video-section + .video-section {
-  padding: 0;
-  margin: 0;
-}
-
-.video-section:first-child {
-  padding: 0;
-  margin: 0;
-}
-
+.video-section + .video-section,
+.video-section:first-child,
 .video-section:last-child {
   padding: 0;
   margin: 0;
@@ -56,11 +48,11 @@
   display: flex;
   width: 100%;
   gap: 0;
-  flex-direction: row; /* Always row, never column */
+  flex-direction: row;
   overflow: hidden;
 }
 
-/* Video Container - UNIFORM BORDER RADIUS */
+/* Video Container */
 .video-container {
   position: relative;
   overflow: hidden;
@@ -71,6 +63,7 @@
     0 10px 30px rgba(0, 0, 0, 0.5),
     0 2px 8px rgba(255, 255, 255, 0.03);
   cursor: pointer;
+  display: block;
 }
 
 /* Full Width Videos */
@@ -90,27 +83,23 @@
   max-height: 700px;
 }
 
-/* Triple Videos - PERFECT 33/33/33 with visual separation */
+/* Triple Videos - PERFECT 33/33/33 */
 .video-container.triple-video {
   flex: 1;
-  width: 33.333%; /* Always 33.333% on all screens */
+  width: 33.333%;
   height: 60vh;
   min-height: 450px;
   max-height: 650px;
   border-radius: 0;
 }
 
-/* First video in triple container - left rounded */
+/* Triple edge rounding (desktop/tablet) */
 .triple-container .video-container.triple-video:first-child {
   border-radius: 16px 0 0 16px;
 }
-
-/* Middle video in triple container - no radius */
 .triple-container .video-container.triple-video:nth-child(2) {
   border-radius: 0;
 }
-
-/* Last video in triple container - right rounded */
 .triple-container .video-container.triple-video:last-child {
   border-radius: 0 16px 16px 0;
 }
@@ -121,6 +110,7 @@
   border-radius: inherit;
 }
 
+/* Video (default scale behavior) */
 .showcase-video {
   width: 100%;
   height: 100%;
@@ -142,13 +132,10 @@
   transform: scale(1.53);
 }
 
-/* Video Overlay - GRADIENT */
+/* Overlay */
 .video-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0.25) 0%,
@@ -174,7 +161,7 @@
   );
 }
 
-/* Video Title - ALWAYS VISIBLE */
+/* Video Title */
 .video-title {
   color: #ffffff;
   font-size: calc(1rem + 3px);
@@ -191,7 +178,7 @@
   letter-spacing: 0.3px;
   line-height: 1.5;
   pointer-events: none;
-} 
+}
 
 .video-container:hover .video-title {
   text-shadow: 2px 2px 16px rgba(0, 0, 0, 1);
@@ -211,10 +198,7 @@
 
 .fullscreen-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: rgba(0, 0, 0, 0.98);
   z-index: 10000;
   display: flex;
@@ -225,12 +209,8 @@
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .fullscreen-video {
@@ -270,7 +250,7 @@
 }
 
 /* ========================================
-   RESPONSIVE DESIGN - MAINTAIN 3-COLUMN LAYOUT
+   RESPONSIVE DESIGN
    ======================================== */
 
 /* Tablet */
@@ -279,14 +259,10 @@
     padding: 0 12px;
   }
 
-  .video-section + .video-section {
-    padding-top: 0;
-  }
-
   .split-container,
   .triple-container {
     gap: 0;
-    flex-direction: row; /* Always row */
+    flex-direction: row;
   }
 
   .video-container.split-video {
@@ -294,13 +270,12 @@
   }
 
   .video-container.triple-video {
-    width: 33.333%; /* Maintain 3-column layout */
+    width: 33.333%;
   }
 
   .triple-container .video-container.triple-video:first-child {
     border-radius: 14px 0 0 14px;
   }
-  
   .triple-container .video-container.triple-video:last-child {
     border-radius: 0 14px 14px 0;
   }
@@ -328,26 +303,13 @@
   }
 }
 
-/* Mobile Large - UPDATED TO MATCH LANDING PAGE */
+/* =========================================================
+   MOBILE LARGE (<=768px) — COPIED FROM LANDING PAGE SIZES
+   ========================================================= */
 @media (max-width: 768px) {
   .video-section {
     padding: 0;
     margin: 0;
-  }
-
-  .video-section + .video-section {
-    padding-top: 0;
-    margin-top: 0;
-  }
-
-  .video-section:first-child {
-    padding-top: 0;
-    margin-top: 0;
-  }
-
-  .video-section:last-child {
-    padding-bottom: 0;
-    margin-bottom: 0;
   }
 
   .split-container,
@@ -355,39 +317,50 @@
     gap: 0;
     padding: 0;
     margin: 0;
-    flex-direction: row; /* Always row */
+    flex-direction: row; /* keep row */
   }
 
+  /* ✅ Landing Page sizes */
   .video-container.split-video {
     width: 50%;
-    height: 26vh;
-    min-height: 220px;
-    max-height: 300px;
-  }
-
-  .video-container.triple-video {
-    width: 33.333%; /* Maintain 3-column layout */
-    height: 26vh;
-    min-height: 180px;
-    max-height: 260px;
+    height: 16vh;
+    min-height: 130px;
+    max-height: 180px;
   }
 
   .video-container.full-width {
     height: 50vh;
-    min-height: 300px;
-    max-height: 450px;
+    min-height: 350px;
+    max-height: 500px;
   }
 
-  .triple-container .video-container.triple-video:first-child {
+  /* Keep triple as row; match landing compact feel */
+  .video-container.triple-video {
+    width: 33.333%;
+    height: 16vh;
+    min-height: 130px;
+    max-height: 180px;
     border-radius: 0;
   }
-  
-  .triple-container .video-container.triple-video:nth-child(2) {
+
+  /* edge-to-edge on mobile */
+  .video-container,
+  .video-overlay,
+  .showcase-video {
     border-radius: 0;
   }
-  
-  .triple-container .video-container.triple-video:last-child {
-    border-radius: 0;
+
+  /* ✅ Landing Page zoom behavior */
+  .video-container.split-video .showcase-video {
+    transform: scale(2.8);
+  }
+  .video-container.split-video:hover .showcase-video {
+    transform: scale(2.8);
+  }
+
+  .video-container.full-width .showcase-video,
+  .video-container.full-width:hover .showcase-video {
+    transform: scale(1.5);
   }
 
   .video-title {
@@ -402,12 +375,6 @@
     padding: 20px;
   }
 
-  .video-container,
-  .video-overlay,
-  .showcase-video {
-    border-radius: 0;
-  }
-
   .close-button {
     top: 20px;
     right: 20px;
@@ -416,79 +383,38 @@
   }
 }
 
-/* Mobile Medium - UPDATED TO MATCH LANDING PAGE */
+/* =========================================================
+   MOBILE MEDIUM (<=480px) — COPIED FROM LANDING PAGE SIZES
+   ========================================================= */
 @media (max-width: 480px) {
-  .video-section {
-    padding: 0;
-    margin: 0;
-  }
-
-  .video-section + .video-section {
-    padding-top: 0;
-    margin-top: 0;
-  }
-
-  .video-section:first-child {
-    padding-top: 0;
-    margin-top: 0;
-  }
-
-  .video-section:last-child {
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-
   .split-container,
   .triple-container {
     gap: 0;
     padding: 0;
     margin: 0;
-    flex-direction: row; /* ALWAYS ROW - NO STACKING */
+    flex-direction: row;
   }
 
+  /* ✅ Landing Page sizes */
   .video-container.split-video {
     width: 50%;
-    height: 19vh;
-    min-height: 140px;
-    max-height: 210px;
-  }
-
-  .video-container.triple-video {
-    width: 33.333%; /* CRITICAL: Maintain 3-column layout on mobile */
-    height: 19vh;
-    min-height: 140px;
-    max-height: 210px;
+    height: 20vh;
+    min-height: 220px;
+    max-height: 300px;
   }
 
   .video-container.full-width {
     height: 40vh;
-    min-height: 240px;
-    max-height: 380px;
+    min-height: 280px;
+    max-height: 400px;
   }
 
-  /* No border radius on mobile - edge to edge */
-  .triple-container .video-container.triple-video:first-child {
+  .video-container.triple-video {
+    width: 33.333%;
+    height: 20vh;
+    min-height: 220px;
+    max-height: 300px;
     border-radius: 0;
-  }
-  
-  .triple-container .video-container.triple-video:nth-child(2) {
-    border-radius: 0;
-  }
-  
-  .triple-container .video-container.triple-video:last-child {
-    border-radius: 0;
-  }
-
-  .video-title {
-    font-size: 0.75rem;
-  }
-
-  .video-container.triple-video .video-title {
-    font-size: 0.75rem;
-  }
-
-  .video-overlay {
-    padding: 16px;
   }
 
   .video-container,
@@ -496,63 +422,76 @@
   .showcase-video {
     border-radius: 0;
   }
+
+  /* ✅ Landing Page zoom behavior */
+  .video-container.split-video .showcase-video,
+  .video-container.split-video:hover .showcase-video {
+    transform: scale(2.8);
+  }
+
+  .video-container.full-width .showcase-video,
+  .video-container.full-width:hover .showcase-video {
+    transform: scale(1.5);
+  }
+
+  .video-title {
+    font-size: 0.75rem;
+  }
+
+  .video-overlay {
+    padding: 16px;
+  }
 }
 
-/* Mobile Small - UPDATED TO MATCH LANDING PAGE */
+/* =========================================================
+   MOBILE SMALL (<=360px) — COPIED FROM LANDING PAGE SIZES
+   ========================================================= */
 @media (max-width: 360px) {
-  .video-section {
-    padding: 0;
-    margin: 0;
-  }
-
-  .video-section + .video-section {
-    padding-top: 0;
-    margin-top: 0;
-  }
-
-  .video-section:first-child {
-    padding-top: 0;
-    margin-top: 0;
-  }
-
-  .video-section:last-child {
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-
   .split-container,
   .triple-container {
     gap: 0;
     padding: 0;
     margin: 0;
-    flex-direction: row; /* ALWAYS ROW - NO STACKING */
+    flex-direction: row;
   }
 
-  .video-container.split-video,
-  .video-container.triple-video {
-    width: 33.333%; /* CRITICAL: Maintain 3-column layout */
-    height: 18vh;
-    min-height: 110px;
-    max-height: 180px;
+  /* ✅ Landing Page sizes */
+  .video-container.split-video {
+    width: 50%;
+    height: 11vh;
+    min-height: 100px;
+    max-height: 140px;
   }
 
   .video-container.full-width {
     height: 35vh;
-    min-height: 200px;
-    max-height: 320px;
+    min-height: 240px;
+    max-height: 350px;
   }
 
-  /* No border radius on mobile - edge to edge */
-  .triple-container .video-container.triple-video:first-child {
+  .video-container.triple-video {
+    width: 33.333%;
+    height: 11vh;
+    min-height: 100px;
+    max-height: 140px;
     border-radius: 0;
   }
-  
-  .triple-container .video-container.triple-video:nth-child(2) {
+
+  .video-container,
+  .video-overlay,
+  .showcase-video {
     border-radius: 0;
   }
-  
-  .triple-container .video-container.triple-video:last-child {
-    border-radius: 0;
+
+  /* ✅ Landing Page zoom behavior */
+  .video-container.split-video .showcase-video,
+  .video-container.split-video:hover .showcase-video {
+    transform: scale(2.8);
+  }
+
+  .video-container.full-width .showcase-video,
+  .video-container.full-width:hover .showcase-video {
+    transform: scale(1.5);
   }
 
   .video-title {
@@ -563,12 +502,6 @@
     padding: 12px;
   }
 
-  .video-container,
-  .video-overlay,
-  .showcase-video {
-    border-radius: 0;
-  }
-
   .close-button {
     width: 44px;
     height: 44px;
@@ -576,54 +509,11 @@
 }
 
 /* ========================================
-   LARGE SCREENS (4K, Ultra-wide) 
-   ======================================== */
-
-@media (min-width: 1920px) {
-  .video-container.full-width {
-    height: 100vh;
-    min-height: 700px;
-    max-height: 1000px;
-  }
-
-  .video-container.triple-video {
-    height: 65vh;
-    min-height: 500px;
-    max-height: 750px;
-  }
-
-  .video-container.split-video {
-    height: 75vh;
-    min-height: 550px;
-    max-height: 800px;
-  }
-
-  .triple-container .video-container.triple-video:first-child {
-    border-radius: 20px 0 0 20px;
-  }
-  
-  .triple-container .video-container.triple-video:last-child {
-    border-radius: 0 20px 20px 0;
-  }
-
-  .video-container,
-  .video-overlay,
-  .showcase-video {
-    border-radius: 20px;
-  }
-}
-
-/* ========================================
    TOUCH DEVICE OPTIMIZATIONS
    ======================================== */
-
 @media (hover: none) and (pointer: coarse) {
   .video-container:active {
     transform: scale(0.98);
-  }
-
-  .video-container:hover .showcase-video {
-    transform: scale(1.5);
   }
 
   .video-overlay {
@@ -634,7 +524,6 @@
 /* ========================================
    PERFORMANCE OPTIMIZATIONS
    ======================================== */
-
 .showcase-video,
 .video-overlay,
 .video-title {
@@ -648,9 +537,5 @@
   .video-title,
   .close-button {
     transition: none;
-  }
-
-  .video-container:hover .showcase-video {
-    transform: scale(1.5);
   }
 }
