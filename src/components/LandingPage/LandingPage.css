@@ -475,9 +475,9 @@ body {
 
   .video-container.split-video {
     width: 50%;
-    height: 18vh;
-    min-height: 110px;
-    max-height: 180px;
+    height: 34vh;
+    min-height: 240px;
+    max-height: 340px;
   }
 
   .video-container.full-width {
