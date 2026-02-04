@@ -1,5 +1,6 @@
+```css
 /* ========================================
-   CORPORATE EVENTS - SMALLER MOBILE DIVS
+   CORPORATE EVENTS - MOBILE FIT ADJUSTED (MORE HEIGHT)
    ======================================== */
 
 /* Base Reset & Container */
@@ -67,11 +68,14 @@
   max-height: 560px;
 }
 
-/* Video */
+/* Video — ALWAYS FILL CONTAINER */
 .showcase-video {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
   border-radius: inherit;
   background: #000;
@@ -111,11 +115,13 @@
     min-height: 380px;
     max-height: 560px;
   }
+
   .video-container.split-video {
     height: 42vh;
     min-height: 300px;
     max-height: 440px;
   }
+
   .video-container.triple-video {
     height: 38vh;
     min-height: 280px;
@@ -124,56 +130,56 @@
 }
 
 /* ========================================
-   MOBILE LARGE — SMALLER
+   MOBILE LARGE — MORE HEIGHT
    ======================================== */
 @media (max-width: 768px) {
   .video-section { padding: 0 8px; }
 
   .split-container,
-  .triple-container { gap: 3px; }
+  .triple-container { gap: 4px; }
 
   .video-container.full-width {
-    height: 28vh;
-    min-height: 190px;
-    max-height: 260px;
+    height: 38vh;
+    min-height: 260px;
+    max-height: 340px;
   }
 
   .video-container.split-video {
-    height: 20vh;
-    min-height: 140px;
-    max-height: 200px;
+    height: 28vh;
+    min-height: 200px;
+    max-height: 270px;
   }
 
   .video-container.triple-video {
-    height: 18vh;
-    min-height: 130px;
-    max-height: 190px;
+    height: 26vh;
+    min-height: 190px;
+    max-height: 250px;
   }
 }
 
 /* ========================================
-   MOBILE MEDIUM — EVEN SMALLER
+   MOBILE MEDIUM — MORE HEIGHT
    ======================================== */
 @media (max-width: 480px) {
   .split-container,
-  .triple-container { gap: 2px; }
+  .triple-container { gap: 3px; }
 
   .video-container.full-width {
-    height: 24vh;
-    min-height: 170px;
-    max-height: 230px;
+    height: 34vh;
+    min-height: 240px;
+    max-height: 320px;
   }
 
   .video-container.split-video {
-    height: 18vh;
-    min-height: 125px;
-    max-height: 175px;
+    height: 26vh;
+    min-height: 185px;
+    max-height: 250px;
   }
 
   .video-container.triple-video {
-    height: 16vh;
-    min-height: 120px;
-    max-height: 165px;
+    height: 24vh;
+    min-height: 175px;
+    max-height: 235px;
   }
 
   .video-title {
@@ -184,20 +190,20 @@
 }
 
 /* ========================================
-   MOBILE SMALL — VERY COMPACT
+   MOBILE SMALL — MORE HEIGHT
    ======================================== */
 @media (max-width: 360px) {
   .video-container.full-width {
-    height: 22vh;
-    min-height: 155px;
-    max-height: 210px;
+    height: 32vh;
+    min-height: 220px;
+    max-height: 290px;
   }
 
   .video-container.split-video,
   .video-container.triple-video {
-    height: 16vh;
-    min-height: 115px;
-    max-height: 160px;
+    height: 24vh;
+    min-height: 170px;
+    max-height: 230px;
   }
 
   .video-title { font-size: 0.6rem; }
