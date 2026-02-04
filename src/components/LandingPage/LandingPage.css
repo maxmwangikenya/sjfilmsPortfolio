@@ -1,22 +1,30 @@
 /* ========================================
-   CORPORATE EVENTS - PERFECTED STYLES
+   LANDING PAGE - PERFECTED STYLES
    ======================================== */
 
 /* Base Reset & Container */
-.corporate-events-page {
-  width: 100%;
+.landing-page {
+  width: 100vw;
   min-height: 100vh;
   background: #000;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
+  display: block;
+  position: relative;
 }
 
-/* Section Spacing - MODIFIED */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Section Spacing - WITH PADDING FOR BORDER RADIUS */
 .video-section {
   width: 100%;
   position: relative;
-  padding: 8px 16px;
+  padding: 0 16px;
 }
 
 /* Remove padding from sections after first */
@@ -32,26 +40,11 @@
   padding-bottom: 0;
 }
 
-.video-section.bottom-section::before {
-  display: none !important;
-  content: none !important;
-  height: 0 !important;
-  margin-bottom: 0 !important;
-}
-
-/* Split Container (2 videos) */
+/* Split Container */
 .split-container {
   display: flex;
   width: 100%;
-  gap: 8px;
-  flex-direction: row;
-}
-
-/* Triple Container (3 videos) - ADDED GAP SO ALL 3 ARE VISIBLE */
-.triple-container {
-  display: flex;
-  width: 100%;
-  gap: 8px;
+  gap: 0;
   flex-direction: row;
 }
 
@@ -62,36 +55,31 @@
   background: #000;
   border-radius: 16px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(255, 255, 255, 0.03);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    0 2px 8px rgba(255, 255, 255, 0.03);
   cursor: pointer;
+  display: block;
 }
 
-/* Full Width Videos - DESKTOP REMAINS THE SAME */
+/* Full Width Videos */
 .video-container.full-width {
   width: 100%;
   height: 100vh;
-  min-height: 800px;
-  max-height: 1100px;
+  min-height: 600px;
+  max-height: 900px;
 }
 
 /* Split Videos - PERFECT 50/50 */
 .video-container.split-video {
   flex: 1;
   width: 50%;
-  height: 70vh;
+  height: 55vh;
   min-height: 500px;
   max-height: 700px;
-}
+} 
 
-/* Triple Videos - PERFECT 33/33/33 */
-.video-container.triple-video {
-  flex: 1;
-  width: 33.333%;
-  height: 60vh;
-  min-height: 450px;
-  max-height: 650px;
-}
-
+/* Video with MAINTAINED scale(1.5) structure across ALL screen sizes */
 .showcase-video {
   width: 100%;
   height: 100%;
@@ -100,20 +88,21 @@
   display: block;
   border-radius: 16px;
   background: #000;
-  transition: none;
-  will-change: auto;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  transform: none;
+  transform: scale(1.5);
   transform-origin: center center;
   pointer-events: none;
 }
 
+/* Disable hover scale - keep at 1.5 */
 .video-container:hover .showcase-video {
-  transform: none;
+  transform: scale(1.5);
 }
 
-/* Video Overlay - GRADIENT */
+/* Video Overlay - LIGHTER GRADIENT */
 .video-overlay {
   position: absolute;
   top: 0;
@@ -122,16 +111,18 @@
   bottom: 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.04) 0%,
-    rgba(0, 0, 0, 0.08) 50%,
-    rgba(0, 0, 0, 0.36) 100%
+    rgba(0, 0, 0, 0.05) 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.4) 100%
   );
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
   padding: 32px;
   opacity: 1;
-  transition: all 0.4s ease;
-  z-index: 15;
+  transition: all 0.25s ease;
+  z-index: 90;
   border-radius: 16px;
   pointer-events: none;
 }
@@ -139,41 +130,43 @@
 .video-container:hover .video-overlay {
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.08) 0%,
     rgba(0, 0, 0, 0.15) 50%,
-    rgba(0, 0, 0, 0.85) 100%
+    rgba(0, 0, 0, 0.5) 100%
   );
+}
+
+/* Ensure iframe fills the container */
+.video-container iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  object-fit: cover;
 }
 
 /* Video Title - ALWAYS VISIBLE */
 .video-title {
   color: #ffffff;
-  font-size: calc(1rem + 3px);
+  font-size: 1rem;
   font-weight: 500;
   margin: 0;
-  position: absolute;
-  bottom: 32px;
-  left: 32px;
   max-width: 70%;
   text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.95);
-  z-index: 20;
+  z-index: 70;
   opacity: 1;
   transition: all 0.3s ease;
   letter-spacing: 0.3px;
   line-height: 1.5;
   pointer-events: none;
+  position: relative;
 }
 
 .video-container:hover .video-title {
   text-shadow: 2px 2px 16px rgba(0, 0, 0, 1);
   transform: translateY(-4px);
-}
-
-/* Smaller title for triple videos */
-.video-container.triple-video .video-title {
-  font-size: 0.85rem;
-  bottom: 24px;
-  left: 24px;
 }
 
 /* ========================================
@@ -242,41 +235,56 @@
 
 /* ========================================
    RESPONSIVE DESIGN
+   Video structure (scale 1.5) maintained across ALL breakpoints
    ======================================== */
 
-/* Tablet - DESKTOP REMAINS THE SAME */
+/* Large Monitors (1440px and above) */
+@media (min-width: 1440px) {
+  .video-container.full-width {
+    max-height: 1000px;
+  }
+
+  .video-container.split-video {
+    max-height: 800px;
+  }
+
+  .showcase-video {
+    transform: scale(1.5);
+  }
+
+  .video-container:hover .showcase-video {
+    transform: scale(1.5);
+  }
+}
+
+/* Tablet */
 @media (max-width: 1024px) {
   .video-section {
-    padding: 6px 12px;
+    padding: 0 12px;
   }
 
   .video-section + .video-section {
     padding-top: 0;
   }
 
-  .split-container,
-  .triple-container {
-    gap: 6px;
+  .video-section:first-child {
+    padding-top: 0;
+  }
+
+  .video-section:last-child {
+    padding-bottom: 0;
+  }
+
+  .split-container {
+    gap: 0;
   }
 
   .video-container.split-video {
     width: 50%;
   }
 
-  .video-container.triple-video {
-    width: 33.333%;
-  }
-
   .video-title {
     font-size: 0.95rem;
-    bottom: 24px;
-    left: 24px;
-  }
-
-  .video-container.triple-video .video-title {
-    font-size: 0.75rem;
-    bottom: 20px;
-    left: 20px;
   }
 
   .video-overlay {
@@ -288,9 +296,17 @@
   .showcase-video {
     border-radius: 14px;
   }
+
+  .showcase-video {
+    transform: scale(1.5);
+  }
+
+  .video-container:hover .showcase-video {
+    transform: scale(1.5);
+  }
 }
 
-/* Mobile Large - REDUCED HEIGHT */
+/* Mobile Large - INCREASED VIDEO SCALE ONLY */
 @media (max-width: 768px) {
   .video-section {
     padding: 0;
@@ -312,41 +328,28 @@
     margin-bottom: 0;
   }
 
-  .split-container,
-  .triple-container {
+  .split-container {
     gap: 0;
     padding: 0;
     margin: 0;
   }
 
-  /* REDUCED HEIGHT FOR SPLIT/TRIPLE VIDEOS */
+  /* CONTAINER SIZE REMAINS THE SAME */
   .video-container.split-video {
     width: 50%;
-    height: 22vh; /* REDUCED from 28vh */
-    min-height: 160px; /* REDUCED from 200px */
-    max-height: 250px; /* REDUCED from 300px */
+    height: 16vh;
+    min-height: 130px;
+    max-height: 180px;
   }
 
-  .video-container.triple-video {
-    width: 33.333%;
-    height: 22vh; /* REDUCED from 28vh */
-    min-height: 160px; /* REDUCED from 200px */
-    max-height: 250px; /* REDUCED from 300px */
-  }
-
-  /* REDUCED HEIGHT FOR FIRST AND LAST VIDEOS */
   .video-container.full-width {
-    height: 50vh; /* REDUCED from 75vh */
-    min-height: 350px; /* REDUCED from 500px */
-    max-height: 500px; /* REDUCED from 700px */
+    height: 50vh;
+    min-height: 350px;
+    max-height: 500px;
   }
 
   .video-title {
     font-size: 0.85rem;
-  }
-
-  .video-container.triple-video .video-title {
-    font-size: 0.65rem;
   }
 
   .video-overlay {
@@ -365,9 +368,27 @@
     width: 48px;
     height: 48px;
   }
+
+  /* SIGNIFICANTLY INCREASED SCALE FOR SPLIT VIDEO - MORE ZOOM */
+  .video-container.split-video .showcase-video {
+    transform: scale(2.8); /* INCREASED from 2.2 */
+  }
+
+  .video-container.split-video:hover .showcase-video {
+    transform: scale(2.8); /* INCREASED from 2.2 */
+  }
+
+  /* MAINTAIN scale(1.5) for full-width videos */
+  .video-container.full-width .showcase-video {
+    transform: scale(1.5);
+  }
+
+  .video-container.full-width:hover .showcase-video {
+    transform: scale(1.5);
+  }
 }
 
-/* Mobile Medium - REDUCED HEIGHT */
+/* Mobile Medium - INCREASED VIDEO SCALE ONLY */
 @media (max-width: 480px) {
   .video-section {
     padding: 0;
@@ -389,41 +410,27 @@
     margin-bottom: 0;
   }
 
-  .split-container,
-  .triple-container {
+  .split-container {
     gap: 0;
     padding: 0;
     margin: 0;
-    flex-direction: row;
   }
 
-  /* REDUCED HEIGHT FOR SPLIT/TRIPLE VIDEOS */
+  /* CONTAINER SIZE REMAINS THE SAME */
   .video-container.split-video {
     width: 50%;
-    height: 18vh; /* REDUCED from 21vh */
-    min-height: 140px; /* REDUCED from 170px */
-    max-height: 220px; /* REDUCED from 250px */
+    height: 20vh;
+    min-height: 220px;
+    max-height: 300px;
   }
 
-  .video-container.triple-video {
-    width: 33.333%;
-    height: 18vh; /* REDUCED from 21vh */
-    min-height: 140px; /* REDUCED from 170px */
-    max-height: 220px; /* REDUCED from 250px */
-  }
-
-  /* REDUCED HEIGHT FOR FIRST AND LAST VIDEOS */
   .video-container.full-width {
-    height: 40vh; /* REDUCED from 65vh */
-    min-height: 280px; /* REDUCED from 420px */
-    max-height: 400px; /* REDUCED from 600px */
+    height: 40vh;
+    min-height: 280px;
+    max-height: 400px;
   }
 
   .video-title {
-    font-size: 0.75rem;
-  }
-
-  .video-container.triple-video .video-title {
     font-size: 0.75rem;
   }
 
@@ -436,9 +443,27 @@
   .showcase-video {
     border-radius: 0;
   }
+
+  /* SIGNIFICANTLY INCREASED SCALE FOR SPLIT VIDEO - MORE ZOOM */
+  .video-container.split-video .showcase-video {
+    transform: scale(2.8); /* INCREASED from 2.2 */
+  }
+
+  .video-container.split-video:hover .showcase-video {
+    transform: scale(2.8); /* INCREASED from 2.2 */
+  }
+
+  /* MAINTAIN scale(1.5) for full-width videos */
+  .video-container.full-width .showcase-video {
+    transform: scale(1.5);
+  }
+
+  .video-container.full-width:hover .showcase-video {
+    transform: scale(1.5);
+  }
 }
 
-/* Mobile Small - REDUCED HEIGHT */
+/* Mobile Small - INCREASED VIDEO SCALE ONLY */
 @media (max-width: 360px) {
   .video-section {
     padding: 0;
@@ -460,34 +485,24 @@
     margin-bottom: 0;
   }
 
-  .split-container,
-  .triple-container {
+  .split-container {
     gap: 0;
     padding: 0;
     margin: 0;
-    flex-direction: row;
   }
 
-  /* REDUCED HEIGHT FOR SPLIT/TRIPLE VIDEOS */
+  /* CONTAINER SIZE REMAINS THE SAME */
   .video-container.split-video {
     width: 50%;
-    height: 16vh; /* REDUCED from 19vh */
-    min-height: 130px; /* REDUCED from 150px */
-    max-height: 200px; /* REDUCED from 220px */
+    height: 11vh;
+    min-height: 100px;
+    max-height: 140px;
   }
 
-  .video-container.triple-video {
-    width: 33.333%;
-    height: 16vh; /* REDUCED from 19vh */
-    min-height: 130px; /* REDUCED from 150px */
-    max-height: 200px; /* REDUCED from 220px */
-  }
-
-  /* REDUCED HEIGHT FOR FIRST AND LAST VIDEOS */
   .video-container.full-width {
-    height: 35vh; /* REDUCED from 60vh */
-    min-height: 240px; /* REDUCED from 380px */
-    max-height: 350px; /* REDUCED from 550px */
+    height: 35vh;
+    min-height: 240px;
+    max-height: 350px;
   }
 
   .video-title {
@@ -508,6 +523,24 @@
     width: 44px;
     height: 44px;
   }
+
+  /* SIGNIFICANTLY INCREASED SCALE FOR SPLIT VIDEO - MORE ZOOM */
+  .video-container.split-video .showcase-video {
+    transform: scale(2.8); /* INCREASED from 2.2 */
+  }
+
+  .video-container.split-video:hover .showcase-video {
+    transform: scale(2.8); /* INCREASED from 2.2 */
+  }
+
+  /* MAINTAIN scale(1.5) for full-width videos */
+  .video-container.full-width .showcase-video {
+    transform: scale(1.5);
+  }
+
+  .video-container.full-width:hover .showcase-video {
+    transform: scale(1.5);
+  }
 }
 
 /* ========================================
@@ -517,10 +550,6 @@
 @media (hover: none) and (pointer: coarse) {
   .video-container:active {
     transform: scale(0.98);
-  }
-
-  .video-container:hover .showcase-video {
-    transform: scale(1.5);
   }
 
   .video-overlay {
@@ -545,9 +574,5 @@
   .video-title,
   .close-button {
     transition: none;
-  }
-
-  .video-container:hover .showcase-video {
-    transform: scale(1.5);
   }
 }

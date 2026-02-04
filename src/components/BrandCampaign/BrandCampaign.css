@@ -361,8 +361,8 @@
   .video-container.split-video {
     width: 50%;
     height: 26vh;
-    min-height: 180px;
-    max-height: 260px;
+    min-height: 220px;
+    max-height: 300px;
   }
 
   .video-container.triple-video {

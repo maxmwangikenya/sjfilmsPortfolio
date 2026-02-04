@@ -290,7 +290,7 @@
   }
 }
 
-/* Mobile Large - MATCHING LANDING PAGE EXACTLY */
+/* Mobile Large - REDUCED HEIGHTS */
 @media (max-width: 768px) {
   .video-section {
     padding: 0;
@@ -321,22 +321,22 @@
 
   .video-container.split-video {
     width: 50%;
-    height: 35vh;
-    min-height: 260px;
-    max-height: 400px;
+    height: 28vh;
+    min-height: 220px;
+    max-height: 340px;
   }
 
   .video-container.triple-video {
     width: 33.333%;
-    height: 35vh;
-    min-height: 260px;
-    max-height: 400px;
+    height: 28vh;
+    min-height: 220px;
+    max-height: 340px;
   }
 
   .video-container.full-width {
-    height: 35vh;
-    min-height: 260px;
-    max-height: 400px;
+    height: 28vh;
+    min-height: 220px;
+    max-height: 340px;
   }
 
   .video-title {
@@ -365,7 +365,7 @@
   }
 }
 
-/* Mobile Medium - MATCHING LANDING PAGE EXACTLY */
+/* Mobile Medium - REDUCED HEIGHTS */
 @media (max-width: 480px) {
   .video-section {
     padding: 0;
@@ -397,22 +397,22 @@
 
   .video-container.split-video {
     width: 50%;
-    height: 26vh;
-    min-height: 200px;
-    max-height: 320px;
+    height: 22vh;
+    min-height: 180px;
+    max-height: 280px;
   }
 
   .video-container.triple-video {
     width: 33.333%;
-    height: 26vh;
-    min-height: 200px;
-    max-height: 320px;
+    height: 22vh;
+    min-height: 180px;
+    max-height: 280px;
   }
 
   .video-container.full-width {
-    height: 26vh;
-    min-height: 200px;
-    max-height: 320px;
+    height: 22vh;
+    min-height: 180px;
+    max-height: 280px;
   }
 
   .video-title {
@@ -434,7 +434,7 @@
   }
 }
 
-/* Mobile Small - MATCHING LANDING PAGE EXACTLY */
+/* Mobile Small - REDUCED HEIGHTS */
 @media (max-width: 360px) {
   .video-section {
     padding: 0;
@@ -466,22 +466,22 @@
 
   .video-container.split-video {
     width: 50%;
-    height: 24vh;
-    min-height: 180px;
-    max-height: 280px;
+    height: 20vh;
+    min-height: 160px;
+    max-height: 240px;
   }
 
   .video-container.triple-video {
     width: 33.333%;
-    height: 24vh;
-    min-height: 180px;
-    max-height: 280px;
+    height: 20vh;
+    min-height: 160px;
+    max-height: 240px;
   }
 
   .video-container.full-width {
-    height: 24vh;
-    min-height: 180px;
-    max-height: 280px;
+    height: 20vh;
+    min-height: 160px;
+    max-height: 240px;
   }
 
   .video-title {
