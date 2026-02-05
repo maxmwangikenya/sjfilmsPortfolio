@@ -1,16 +1,9 @@
-/* ========================================
-   CORPORATE EVENTS — UNIFIED WITH LANDING PAGE (WHOLE FILE)
-   Based on your PERFECT Brand Campaigns CSS
-   + Fix first video under navbar
-   + Bigger triple tiles on desktop
-   + NO SPACES between triple tiles (touching)
-   + Keep border radius separation look
-   + Better iframe fill (cover crop) on triple row
-   ======================================== */
+/* 
+   CORPORATE EVENTS */
 
 :root {
-  --navbar-height: 80px; /* adjust to match your navbar */
-  --desktop-gap: 16px;   /* kept for reference, but triple row uses gap:0 now */
+  --navbar-height: 80px; 
+  --desktop-gap: 16px;   
   --desktop-radius: 16px;
 }
 
@@ -51,7 +44,6 @@ body {
   padding-bottom: 0;
 }
 
-/* ✅ FIX FIRST VIDEO: push first section below navbar (your JSX has no hero class) */
 .corporate-events-page > .video-section:first-of-type {
   padding-top: var(--navbar-height);
 }
@@ -249,15 +241,13 @@ body {
   box-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
 }
 
-/* ========================================
-   ✅ DESKTOP/LAPTOP: TRIPLE ROW TOUCHING (NO SPACES)
-   + Keep radius separation look
-   + Better iframe crop for portrait/shorts
-   ======================================== */
+/*
+   DESKTOP/LAPTOP: TRIPLE ROW TOUCHING (NO SPACES)
+  */
 @media (min-width: 1025px) {
   /* Triple row is the SECOND section in your JSX */
   .corporate-events-page > .video-section:nth-of-type(2) .triple-container {
-    gap: 0; /* ✅ removed spaces */
+    gap: 0; 
   }
 
   .corporate-events-page > .video-section:nth-of-type(2) .video-container.triple-video {
@@ -269,7 +259,7 @@ body {
     border-radius: inherit;
   }
 
-  /* ✅ If a video is portrait/shorts, force a cover-like crop */
+  
   .corporate-events-page > .video-section:nth-of-type(2) .video-container.triple-video iframe.showcase-video {
     top: 50%;
     left: 50%;

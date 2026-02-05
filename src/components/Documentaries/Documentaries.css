@@ -33,7 +33,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
-  gap: 0; /* 🔥 removes space between videos */
+  gap: 0; 
 }
 
 /* Remove wrapper sizing issues */
@@ -154,7 +154,7 @@
 @media (max-width: 768px) {
   .videos-row {
     grid-template-columns: 1fr;
-    gap: 0; /* 🔥 critical */
+    gap: 0; 
   }
 
   .video-container {
@@ -166,7 +166,7 @@
 
   /* Remove radius overlap */
   .video-container:not(:first-child) {
-    margin-top: -14px; /* 🔥 pulls videos together */
+    margin-top: -14px; 
   }
 
   .video-overlay {

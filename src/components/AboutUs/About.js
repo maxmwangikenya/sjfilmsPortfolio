@@ -1,11 +1,11 @@
 import React from 'react';
-import { 
-  Camera, 
-  Film, 
-  Edit3, 
-  Award, 
-  Users, 
-  MapPin, 
+import {
+  Camera,
+  Film,
+  Edit3,
+  Award,
+  Users,
+  MapPin,
   Briefcase,
   Target,
   Heart,
@@ -25,7 +25,8 @@ function About() {
     {
       icon: Film,
       title: 'Documentary Production',
-      description: 'Compelling storytelling that captures authentic narratives and preserves impactful moments.'
+      description:
+        'Compelling storytelling that captures authentic narratives and preserves impactful moments.'
     },
     {
       icon: Briefcase,
@@ -97,10 +98,14 @@ function About() {
       name: 'Tumaini Trust Kenya',
       logo: '/Images/About%20us/tumaini%20trust%20kenya.jpg'
     },
+
+    // ✅ Dark badge for white logo
     {
       name: 'YellowMoon Ltd',
-      logo: '/Images/About%20us/yellow%20moon%20ltd.png'
+      logoTheme: 'dark',
+      logo: '/Images/About%20us/yellow%20moon%20ltd%20(2).png'
     },
+
     {
       name: 'Kenya Wine Agencies Limited',
       subtitle: 'KWAL',
@@ -123,10 +128,14 @@ function About() {
       subtitle: 'KWS',
       logo: '/Images/About%20us/kenya%20wildlife%20service.jfif'
     },
+
+    // ✅ Dark badge for white logo
     {
       name: 'Gigiri Social Club',
-      logo: '/Images/About%20us/gigiri%20social%20club.jfif'
+      logoTheme: 'dark',
+      logo: '/Images/About%20us/gigiri%20social%20club.png'
     },
+
     {
       name: 'Ministry of Tourism',
       logo: '/Images/About%20us/ministry%20of%20tourism.png'
@@ -138,8 +147,11 @@ function About() {
     },
     {
       name: 'Heineken',
-      subtitle: 'HA',
-      logo: '/Images/About%20us/heineken-logo-png.png'
+      logo: '/Images/About%20us/heineken-logo-png%20(2).png'
+    },
+    {
+      name: 'Savara',
+      logo: '/Images/About%20us/Savanna-logo-2.png'
     }
   ];
 
@@ -166,6 +178,8 @@ function About() {
     }
   ];
 
+  const isSvg = (path = '') => path.toLowerCase().trim().endsWith('.svg');
+
   const handleImageError = (e, clientName) => {
     e.target.style.display = 'none';
     const placeholder = document.createElement('div');
@@ -177,19 +191,17 @@ function About() {
 
   return (
     <div className="about-container">
-      {/* Hero Section with Logo */}
       <section className="about-hero">
         <div className="hero-overlay"></div>
         <div className="hero-content">
-          {/* SJ Films Logo - Always Visible */}
           <div className="company-logo-wrapper">
-            <img 
-              src="/Images/logo%20homepage/logo.png" 
-              alt="SJ Films Logo" 
+            <img
+              src="/Images/logo%20homepage/logo.png"
+              alt="SJ Films Logo"
               className="company-logo"
             />
           </div>
-          
+
           <h1 className="hero-title">About SJ Films</h1>
           <p className="hero-location">
             <MapPin size={20} />
@@ -202,7 +214,6 @@ function About() {
         </div>
       </section>
 
-      {/* Stats Section */}
       <section className="stats-section">
         <div className="stats-container">
           {stats.map((stat, index) => {
@@ -218,20 +229,18 @@ function About() {
         </div>
       </section>
 
-      {/* Mission Section */}
       <section className="mission-section">
         <div className="mission-content">
           <Film className="mission-icon" size={50} />
           <h2 className="section-title">Our Mission</h2>
           <p className="mission-text">
-            We bring proven experience delivering high-impact documentary and corporate storytelling 
-            for development, corporate, and public-sector organizations, with the operational capacity 
+            We bring proven experience delivering high-impact documentary and corporate storytelling
+            for development, corporate, and public-sector organizations, with the operational capacity
             to deploy teams across Kenya and scale across Africa.
           </p>
         </div>
       </section>
 
-      {/* Services Section */}
       <section className="services-section">
         <div className="section-header">
           <h2 className="section-title">What We Do</h2>
@@ -252,7 +261,6 @@ function About() {
         </div>
       </section>
 
-      {/* Values Section */}
       <section className="values-section">
         <div className="section-header">
           <h2 className="section-title">Our Values</h2>
@@ -271,7 +279,6 @@ function About() {
         </div>
       </section>
 
-      {/* Team Section */}
       <section className="team-section">
         <div className="section-header">
           <h2 className="section-title">Our Creative Team</h2>
@@ -284,14 +291,9 @@ function About() {
           {teamMembers.map((member) => (
             <div key={member.id} className="team-card">
               <div className="card-inner">
-                {/* Front Side */}
                 <div className="card-front">
                   <div className="image-wrapper">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="member-image"
-                    />
+                    <img src={member.image} alt={member.name} className="member-image" />
                     <div className="image-overlay">
                       <member.icon className="member-icon" size={48} />
                     </div>
@@ -302,7 +304,6 @@ function About() {
                   </div>
                 </div>
 
-                {/* Back Side */}
                 <div className="card-back">
                   <div className="back-content">
                     <member.icon className="back-icon" size={40} />
@@ -327,31 +328,40 @@ function About() {
         </div>
       </section>
 
-      {/* Clients Section */}
       <section className="clients-section">
         <div className="section-header">
           <h2 className="section-title">Trusted By Leading Organizations</h2>
         </div>
+
         <div className="clients-grid">
-          {clients.map((client, index) => (
-            <div key={index} className="client-card">
-              <div className="client-logo-wrapper">
-                <img 
-                  src={client.logo} 
-                  alt={`${client.name} logo`}
-                  className="client-logo"
-                  loading="lazy"
-                  onError={(e) => handleImageError(e, client.name)}
-                />
+          {clients.map((client, index) => {
+            const svg = isSvg(client.logo);
+
+            return (
+              <div key={index} className="client-card">
+                <div
+                  className={[
+                    'client-logo-wrapper',
+                    svg ? 'is-svg' : '',
+                    client.logoTheme === 'dark' ? 'logo-dark' : ''
+                  ].join(' ')}
+                >
+                  <img
+                    src={client.logo}
+                    alt={`${client.name} logo`}
+                    className={`client-logo ${svg ? 'svg-logo' : ''}`}
+                    loading="lazy"
+                    onError={(e) => handleImageError(e, client.name)}
+                  />
+                </div>
+
+                <div className="client-info">
+                  <h4 className="client-name">{client.name}</h4>
+                  {client.subtitle && <p className="client-subtitle">{client.subtitle}</p>}
+                </div>
               </div>
-              <div className="client-info">
-                <h4 className="client-name">{client.name}</h4>
-                {client.subtitle && (
-                  <p className="client-subtitle">{client.subtitle}</p>
-                )}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
     </div>

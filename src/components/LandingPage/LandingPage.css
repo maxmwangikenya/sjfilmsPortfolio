@@ -1,14 +1,10 @@
-/* =========================================================
-   LANDING PAGE — FULL CSS (Desktop fullscreen + touching tiles
-   separated ONLY by inner border radius)
-   ========================================================= */
+/*
+   LANDING PAGE  */
 
-/* ---------- OPTIONAL: set this to your real navbar height ---------- */
 :root {
-  --navbar-height: 80px; /* change to 64px / 72px / etc. */
+  --navbar-height: 80px; 
 }
 
-/* ---------- Page base ---------- */
 .landing-page {
   width: 100vw;
   min-height: 100vh;
@@ -23,7 +19,7 @@
 .video-section {
   width: 100%;
   position: relative;
-  padding: 0 16px; /* default for tablet */
+  padding: 0 16px; 
 }
 
 .video-section + .video-section {
@@ -39,7 +35,6 @@
   flex-direction: row;
 }
 
-/* ---------- Video container styling ---------- */
 .video-container {
   position: relative;
   overflow: hidden;
@@ -53,7 +48,6 @@
   display: block;
 }
 
-/* iframe fills container */
 .video-container iframe {
   position: absolute;
   inset: 0;
@@ -64,7 +58,6 @@
   object-fit: cover;
 }
 
-/* Zoom / crop behavior */
 .showcase-video {
   width: 100%;
   height: 100%;
@@ -83,12 +76,10 @@
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Keep fixed zoom */
 .video-container:hover .showcase-video {
   transform: scale(1.5);
 }
 
-/* Overlay */
 .video-overlay {
   position: absolute;
   inset: 0;
@@ -119,7 +110,6 @@
   );
 }
 
-/* Title */
 .video-title {
   color: #fff;
   font-size: 1rem;
@@ -142,24 +132,18 @@
   transform: translateY(-4px);
 }
 
-/* =========================================================
-   DESKTOP / LAPTOP (touching tiles, edge-to-edge, navbar overlay)
-   Assumes your JSX uses:
-   hero-section, split-section, bottom-section
-   ========================================================= */
+/* 
+   DESKTOP */
 @media (min-width: 1025px) {
-  /* Navbar overlay: no top padding on page */
   .landing-page {
     padding-top: 0;
   }
 
-  /* Remove desktop gutters: full-bleed sections */
   .video-section {
     padding: 0;
     margin: 0;
   }
 
-  /* -------- HERO (full screen, behind navbar) -------- */
   .hero-section {
     padding: 0;
     margin: 0;
@@ -180,7 +164,6 @@
     border-radius: 0;
   }
 
-  /* -------- SPLIT SECTION (two tiles touch, inner corners rounded) -------- */
   .split-section {
     padding: 0;
     margin: 0;
@@ -204,26 +187,22 @@
     border-radius: 0; /* base */
   }
 
-  /* LEFT tile: round only inner seam */
   .split-section .video-container.split-video:first-child {
     border-top-right-radius: 22px;
     border-bottom-right-radius: 22px;
   }
 
-  /* RIGHT tile: round only inner seam */
   .split-section .video-container.split-video:last-child {
     border-top-left-radius: 22px;
     border-bottom-left-radius: 22px;
   }
 
-  /* inherit rounding for children */
   .split-section .video-container iframe,
   .split-section .video-container .showcase-video,
   .split-section .video-container .video-overlay {
     border-radius: inherit;
   }
 
-  /* -------- BOTTOM (full screen, edge-to-edge) -------- */
   .bottom-section {
     padding: 0;
     margin: 0;
@@ -245,16 +224,14 @@
   }
 }
 
-/* Large monitors */
 @media (min-width: 1440px) {
   .video-title {
     font-size: 1.05rem;
   }
 }
 
-/* =========================================================
-   FULLSCREEN OVERLAY
-   ========================================================= */
+/* 
+   FULLSCREEN OVERLAY */
 .fullscreen-overlay {
   position: fixed;
   inset: 0;
@@ -308,9 +285,8 @@
   box-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
 }
 
-/* =========================================================
-   TABLET (keep your current feel)
-   ========================================================= */
+/* 
+   TABLET */
 @media (max-width: 1024px) {
   .video-section {
     padding: 0 12px;
@@ -343,9 +319,8 @@
   }
 }
 
-/* =========================================================
-   MOBILE (compact sizing + strong zoom on split)
-   ========================================================= */
+/* 
+   MOBILE*/
 @media (max-width: 768px) {
   .video-section {
     padding: 0;
@@ -468,7 +443,6 @@
   }
 }
 
-/* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
   .video-container:active {
     transform: scale(0.98);
@@ -478,14 +452,12 @@
   }
 }
 
-/* Performance */
 .showcase-video,
 .video-overlay,
 .video-title {
   will-change: transform, opacity;
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .video-container,
   .showcase-video,
