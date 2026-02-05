@@ -1,8 +1,16 @@
 /* ========================================
-   BRAND CAMPAIGNS — UNIFIED WITH LANDING PAGE (WHOLE FILE)
-   ======================================== */
+   BRAND CAMPAIGNS — UNIFIED WITH LANDING PAGE
+   FULLSCREEN + SEAMLESS TILES
+======================================== */
 
-/* Base Reset & Container */
+/* ---------- ROOT ---------- */
+
+:root {
+  --radius-desktop: 22px;
+}
+
+/* ---------- BASE ---------- */
+
 .brand-campaigns-page {
   width: 100vw;
   min-height: 100vh;
@@ -10,7 +18,6 @@
   overflow-x: hidden;
   margin: 0;
   padding: 0;
-  display: block;
   position: relative;
 }
 
@@ -20,260 +27,174 @@ body {
   overflow-x: hidden;
 }
 
-/* Section Spacing — SAME AS LANDING (padding for border radius on desktop/tablet) */
+/* ---------- SECTIONS ---------- */
+
 .video-section {
   width: 100%;
-  position: relative;
-  padding: 0 16px;
+  padding: 0;
+  margin: 0;
 }
 
-/* Remove padding from sections after first */
 .video-section + .video-section {
-  padding-top: 0;
+  margin-top: 0;
 }
 
-.video-section:first-child {
-  padding-top: 0;
-}
+/* ---------- CONTAINERS ---------- */
 
-.video-section:last-child {
-  padding-bottom: 0;
-}
-
-/* Containers */
 .split-container,
 .triple-container {
   display: flex;
   width: 100%;
+  height: 100%;
   gap: 0;
-  flex-direction: row;
 }
 
-/* Video Container — SAME AS LANDING */
+/* ---------- VIDEO TILE ---------- */
+
 .video-container {
   position: relative;
   overflow: hidden;
   background: #000;
-  border-radius: 16px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.5),
-    0 2px 8px rgba(255, 255, 255, 0.03);
   cursor: pointer;
-  display: block;
 }
 
-/* Full Width Videos */
-.video-container.full-width {
-  width: 100%;
-  height: 100vh;
-  min-height: 600px;
-  max-height: 900px;
-}
+/* IFRAME FILL */
 
-/* Split Videos - PERFECT 50/50 */
-.video-container.split-video {
-  flex: 1;
-  width: 50%;
-  height: 55vh;
-  min-height: 500px;
-  max-height: 700px;
-}
-
-/* Triple Videos - 33.333% each */
-.video-container.triple-video {
-  flex: 1;
-  width: 33.333%;
-  height: 55vh;
-  min-height: 500px;
-  max-height: 700px;
-}
-
-/* Video with MAINTAINED scale(1.5) structure across ALL screen sizes */
-.showcase-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  border-radius: 16px;
-  background: #000;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  transform: scale(1.5);
-  transform-origin: center center;
-  pointer-events: none;
-}
-
-/* Disable hover scale - keep at 1.5 */
-.video-container:hover .showcase-video {
-  transform: scale(1.5);
-}
-
-/* Overlay — SAME AS LANDING */
-.video-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.05) 0%,
-    rgba(0, 0, 0, 0.1) 50%,
-    rgba(0, 0, 0, 0.4) 100%
-  );
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 32px;
-  opacity: 1;
-  transition: all 0.25s ease;
-  z-index: 90;
-  border-radius: 16px;
-  pointer-events: none;
-}
-
-.video-container:hover .video-overlay {
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.08) 0%,
-    rgba(0, 0, 0, 0.15) 50%,
-    rgba(0, 0, 0, 0.5) 100%
-  );
-}
-
-/* Ensure iframe fills the container */
 .video-container iframe {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
-  display: block;
+}
+
+/* ---------- ZOOM LOOK ---------- */
+
+.showcase-video {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-}
-
-/* Video Title - ALWAYS VISIBLE */
-.video-title {
-  color: #ffffff;
-  font-size: 1rem;
-  font-weight: 500;
-  margin: 0;
-  max-width: 70%;
-  text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.95);
-  z-index: 70;
-  opacity: 1;
-  transition: all 0.3s ease;
-  letter-spacing: 0.3px;
-  line-height: 1.5;
+  transform: scale(1.5);
+  transform-origin: center;
   pointer-events: none;
-  position: relative;
 }
 
-.video-container:hover .video-title {
-  text-shadow: 2px 2px 16px rgba(0, 0, 0, 1);
-  transform: translateY(-4px);
+.video-container:hover .showcase-video {
+  transform: scale(1.5);
 }
 
-/* ========================================
-   FULLSCREEN OVERLAY (same as landing)
-   ======================================== */
+/* ---------- OVERLAY ---------- */
 
-.fullscreen-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.98);
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.fullscreen-video {
-  width: 95vw;
-  height: 95vh;
-  max-width: 1600px;
-  max-height: 900px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
-  border-radius: 12px;
-}
-
-.close-button {
+.video-overlay {
   position: absolute;
-  top: 32px;
-  right: 32px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  width: 56px;
-  height: 56px;
+  inset: 0;
+  background: linear-gradient(
+    rgba(0,0,0,0.05),
+    rgba(0,0,0,0.15),
+    rgba(0,0,0,0.45)
+  );
   display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 10001;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 0;
+  align-items: flex-end;
+  padding: 32px;
+  pointer-events: none;
 }
 
-.close-button:hover {
-  background: rgba(255, 107, 0, 0.9);
-  border-color: #ff6b00;
-  transform: scale(1.1) rotate(90deg);
-  box-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
+/* ---------- TITLE ---------- */
+
+.video-title {
+  color: white;
+  font-size: 1rem;
+  max-width: 70%;
+  text-shadow: 0 0 12px rgba(0,0,0,0.9);
 }
 
-/* ========================================
-   RESPONSIVE DESIGN (matching landing logic)
-   ======================================== */
+/* =========================================================
+   DESKTOP / LAPTOP
+========================================================= */
 
-/* Large Monitors */
-@media (min-width: 1440px) {
+@media (min-width: 1025px) {
+
+  /* ---------- FULLSCREEN ROW ---------- */
+
+  .video-section {
+    height: 100vh;
+  }
+
+  /* ---------- FULL WIDTH ---------- */
+
   .video-container.full-width {
-    max-height: 1000px;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  /* ---------- SPLIT (2) ---------- */
+
+  .video-container.split-video {
+    flex: 1;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .video-container.split-video:first-child {
+    border-top-right-radius: var(--radius-desktop);
+    border-bottom-right-radius: var(--radius-desktop);
+  }
+
+  .video-container.split-video:last-child {
+    border-top-left-radius: var(--radius-desktop);
+    border-bottom-left-radius: var(--radius-desktop);
+  }
+
+  /* ---------- TRIPLE (3) ---------- */
+
+  .video-container.triple-video {
+    flex: 1;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .video-container.triple-video:first-child {
+    border-top-right-radius: var(--radius-desktop);
+    border-bottom-right-radius: var(--radius-desktop);
+  }
+
+  .video-container.triple-video:nth-child(2) {
+    border-radius: var(--radius-desktop);
+  }
+
+  .video-container.triple-video:last-child {
+    border-top-left-radius: var(--radius-desktop);
+    border-bottom-left-radius: var(--radius-desktop);
+  }
+
+  /* inherit rounding */
+
+  .video-container,
+  .video-container iframe,
+  .video-overlay,
+  .showcase-video {
+    border-radius: inherit;
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1024px) {
+
+  .video-section {
+    height: auto;
+  }
+
+  .video-container.full-width {
+    height: 60vh;
   }
 
   .video-container.split-video,
   .video-container.triple-video {
-    max-height: 800px;
-  }
-
-  .showcase-video {
-    transform: scale(1.5);
-  }
-
-  .video-container:hover .showcase-video {
-    transform: scale(1.5);
-  }
-}
-
-/* Tablet */
-@media (max-width: 1024px) {
-  .video-section {
-    padding: 0 12px;
-  }
-
-  .split-container,
-  .triple-container {
-    gap: 0;
-  }
-
-  .video-title {
-    font-size: 0.95rem;
-  }
-
-  .video-overlay {
-    padding: 24px;
+    height: 40vh;
   }
 
   .video-container,
@@ -281,66 +202,27 @@ body {
   .showcase-video {
     border-radius: 14px;
   }
-
-  .showcase-video {
-    transform: scale(1.5);
-  }
-
-  .video-container:hover .showcase-video {
-    transform: scale(1.5);
-  }
 }
 
-/* Mobile Large */
+/* =========================================================
+   MOBILE
+========================================================= */
+
 @media (max-width: 768px) {
-  .video-section {
-    padding: 0;
-    margin: 0;
-  }
-
-  .video-section + .video-section {
-    padding-top: 0;
-    margin-top: 0;
-  }
-
-  .video-section:first-child {
-    padding-top: 0;
-    margin-top: 0;
-  }
-
-  .video-section:last-child {
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
 
   .split-container,
   .triple-container {
-    gap: 0;
-    padding: 0;
-    margin: 0;
-  }
-
-  /* Container size stays the same (Landing Page sizes) */
-  .video-container.split-video,
-  .video-container.triple-video {
-    width: 50%;
-    height: 16vh;
-    min-height: 130px;
-    max-height: 180px;
+    flex-direction: row;
   }
 
   .video-container.full-width {
     height: 50vh;
-    min-height: 350px;
-    max-height: 500px;
   }
 
-  .video-title {
-    font-size: 0.85rem;
-  }
-
-  .video-overlay {
-    padding: 20px;
+  .video-container.split-video,
+  .video-container.triple-video {
+    width: 50%;
+    height: 18vh;
   }
 
   .video-container,
@@ -349,138 +231,45 @@ body {
     border-radius: 0;
   }
 
-  .close-button {
-    top: 20px;
-    right: 20px;
-    width: 48px;
-    height: 48px;
-  }
-
-  /* Increased zoom on mobile for split/triple like landing */
+  /* extra zoom */
   .video-container.split-video .showcase-video,
   .video-container.triple-video .showcase-video {
     transform: scale(2.8);
   }
-
-  .video-container.full-width .showcase-video {
-    transform: scale(1.5);
-  }
-
-  .video-container.split-video:hover .showcase-video,
-  .video-container.triple-video:hover .showcase-video {
-    transform: scale(2.8);
-  }
-
-  .video-container.full-width:hover .showcase-video {
-    transform: scale(1.5);
-  }
 }
 
-/* Mobile Medium */
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
 @media (max-width: 480px) {
-  /* Landing Page sizes */
+
   .video-container.split-video,
   .video-container.triple-video {
-    width: 50%;
-    height: 20vh;
-    min-height: 220px;
-    max-height: 300px;
+    height: 22vh;
   }
 
   .video-container.full-width {
     height: 40vh;
-    min-height: 280px;
-    max-height: 400px;
-  }
-
-  .video-title {
-    font-size: 0.75rem;
-  }
-
-  .video-overlay {
-    padding: 16px;
-  }
-
-  .video-container.split-video .showcase-video,
-  .video-container.triple-video .showcase-video,
-  .video-container.split-video:hover .showcase-video,
-  .video-container.triple-video:hover .showcase-video {
-    transform: scale(2.8);
-  }
-
-  .video-container.full-width .showcase-video,
-  .video-container.full-width:hover .showcase-video {
-    transform: scale(1.5);
   }
 }
 
-/* Mobile Small */
-@media (max-width: 360px) {
-  .video-container.split-video,
-  .video-container.triple-video {
-    width: 50%;
-    height: 11vh;
-    min-height: 100px;
-    max-height: 140px;
-  }
+/* =========================================================
+   TOUCH
+========================================================= */
 
-  .video-container.full-width {
-    height: 35vh;
-    min-height: 240px;
-    max-height: 350px;
-  }
-
-  .video-title {
-    font-size: 0.7rem;
-  }
-
-  .video-overlay {
-    padding: 12px;
-  }
-
-  .close-button {
-    width: 44px;
-    height: 44px;
-  }
-
-  .video-container.split-video .showcase-video,
-  .video-container.triple-video .showcase-video,
-  .video-container.split-video:hover .showcase-video,
-  .video-container.triple-video:hover .showcase-video {
-    transform: scale(2.8);
-  }
-
-  .video-container.full-width .showcase-video,
-  .video-container.full-width:hover .showcase-video {
-    transform: scale(1.5);
-  }
-}
-
-/* Touch Device Optimizations */
 @media (hover: none) and (pointer: coarse) {
   .video-container:active {
-    transform: scale(0.98);
-  }
-
-  .video-overlay {
-    opacity: 1;
+    transform: scale(0.97);
   }
 }
 
-/* Performance Optimizations */
-.showcase-video,
-.video-overlay,
-.video-title {
-  will-change: transform, opacity;
-}
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
 
-/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  .video-container,
-  .showcase-video,
-  .video-overlay,
-  .video-title,
-  .close-button {
-    transition: none;
+  * {
+    transition: none !important;
   }
 }

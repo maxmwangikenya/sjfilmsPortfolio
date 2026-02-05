@@ -1,38 +1,33 @@
-/* ========================================
-   CORPORATE EVENTS — EXACT LANDING PAGE STYLING
-   (Same look + same mobile sizing/zoom)
-   ======================================== */
+/* =========================================================
+   LANDING PAGE — FULL CSS (Desktop fullscreen + touching tiles
+   separated ONLY by inner border radius)
+   ========================================================= */
 
-/* Base Reset & Container */
-.corporate-events-page {
+/* ---------- OPTIONAL: set this to your real navbar height ---------- */
+:root {
+  --navbar-height: 80px; /* change to 64px / 72px / etc. */
+}
+
+/* ---------- Page base ---------- */
+.landing-page {
   width: 100vw;
   min-height: 100vh;
   background: #000;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
-  display: block;
   position: relative;
 }
 
-/* Section Spacing — WITH PADDING FOR BORDER RADIUS */
+/* Every section wrapper */
 .video-section {
   width: 100%;
   position: relative;
-  padding: 0 16px;
+  padding: 0 16px; /* default for tablet */
 }
 
-/* Remove padding from sections after first */
 .video-section + .video-section {
   padding-top: 0;
-}
-
-.video-section:first-child {
-  padding-top: 0;
-}
-
-.video-section:last-child {
-  padding-bottom: 0;
 }
 
 /* Containers */
@@ -44,7 +39,7 @@
   flex-direction: row;
 }
 
-/* Video Container — UNIFORM BORDER RADIUS */
+/* ---------- Video container styling ---------- */
 .video-container {
   position: relative;
   overflow: hidden;
@@ -58,62 +53,45 @@
   display: block;
 }
 
-/* Full Width Videos */
-.video-container.full-width {
+/* iframe fills container */
+.video-container iframe {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: 100vh;
-  min-height: 600px;
-  max-height: 900px;
+  height: 100%;
+  border: 0;
+  display: block;
+  object-fit: cover;
 }
 
-/* Split Videos - PERFECT 50/50 */
-.video-container.split-video {
-  flex: 1;
-  width: 50%;
-  height: 55vh;
-  min-height: 500px;
-  max-height: 700px;
-}
-
-/* Triple Videos - PERFECT 33/33/33 (same style) */
-.video-container.triple-video {
-  flex: 1;
-  width: 33.333%;
-  height: 55vh;
-  min-height: 500px;
-  max-height: 700px;
-}
-
-/* Video with MAINTAINED scale(1.5) structure across ALL screen sizes */
+/* Zoom / crop behavior */
 .showcase-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
-  border-radius: 16px;
   background: #000;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+
   transform: scale(1.5);
   transform-origin: center center;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
   pointer-events: none;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Disable hover scale - keep at 1.5 */
+/* Keep fixed zoom */
 .video-container:hover .showcase-video {
   transform: scale(1.5);
 }
 
-/* Video Overlay - LIGHTER GRADIENT (Landing) */
+/* Overlay */
 .video-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0.05) 0%,
@@ -128,7 +106,7 @@
   opacity: 1;
   transition: all 0.25s ease;
   z-index: 90;
-  border-radius: 16px;
+  border-radius: inherit;
   pointer-events: none;
 }
 
@@ -141,20 +119,9 @@
   );
 }
 
-/* Ensure iframe fills the container */
-.video-container iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  display: block;
-  object-fit: cover;
-}
-
-/* Video Title - ALWAYS VISIBLE (Landing) */
+/* Title */
 .video-title {
-  color: #ffffff;
+  color: #fff;
   font-size: 1rem;
   font-weight: 500;
   margin: 0;
@@ -174,16 +141,122 @@
   transform: translateY(-4px);
 }
 
-/* ========================================
-   FULLSCREEN OVERLAY (Landing)
-   ======================================== */
+/* =========================================================
+   DESKTOP / LAPTOP (touching tiles, edge-to-edge, navbar overlay)
+   Assumes your JSX uses:
+   hero-section, split-section, bottom-section
+   ========================================================= */
+@media (min-width: 1025px) {
+  /* Navbar overlay: no top padding on page */
+  .landing-page {
+    padding-top: 0;
+  }
 
+  /* Remove desktop gutters: full-bleed sections */
+  .video-section {
+    padding: 0;
+    margin: 0;
+  }
+
+  /* -------- HERO (full screen, behind navbar) -------- */
+  .hero-section {
+    padding: 0;
+    margin: 0;
+  }
+
+  .hero-section .video-container.full-width {
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    height: 100dvh;
+    border-radius: 0;
+    min-height: unset;
+    max-height: none;
+  }
+
+  .hero-section .video-overlay,
+  .hero-section .showcase-video {
+    border-radius: 0;
+  }
+
+  /* -------- SPLIT SECTION (two tiles touch, inner corners rounded) -------- */
+  .split-section {
+    padding: 0;
+    margin: 0;
+  }
+
+  .split-section .split-container {
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    height: 100dvh;
+    display: flex;
+    gap: 0; /* NO gaps */
+  }
+
+  .split-section .video-container.split-video {
+    flex: 1;
+    width: 50%;
+    height: 100%;
+    min-height: unset;
+    max-height: none;
+    border-radius: 0; /* base */
+  }
+
+  /* LEFT tile: round only inner seam */
+  .split-section .video-container.split-video:first-child {
+    border-top-right-radius: 22px;
+    border-bottom-right-radius: 22px;
+  }
+
+  /* RIGHT tile: round only inner seam */
+  .split-section .video-container.split-video:last-child {
+    border-top-left-radius: 22px;
+    border-bottom-left-radius: 22px;
+  }
+
+  /* inherit rounding for children */
+  .split-section .video-container iframe,
+  .split-section .video-container .showcase-video,
+  .split-section .video-container .video-overlay {
+    border-radius: inherit;
+  }
+
+  /* -------- BOTTOM (full screen, edge-to-edge) -------- */
+  .bottom-section {
+    padding: 0;
+    margin: 0;
+  }
+
+  .bottom-section .video-container.full-width {
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    height: 100dvh;
+    border-radius: 0;
+    min-height: unset;
+    max-height: none;
+  }
+
+  .bottom-section .video-overlay,
+  .bottom-section .showcase-video {
+    border-radius: 0;
+  }
+}
+
+/* Large monitors */
+@media (min-width: 1440px) {
+  .video-title {
+    font-size: 1.05rem;
+  }
+}
+
+/* =========================================================
+   FULLSCREEN OVERLAY
+   ========================================================= */
 .fullscreen-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: rgba(0, 0, 0, 0.98);
   z-index: 10000;
   display: flex;
@@ -234,55 +307,57 @@
   box-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
 }
 
-/* ========================================
-   RESPONSIVE DESIGN (Landing exact)
-   ======================================== */
-
-/* Large Monitors (1440px and above) */
-@media (min-width: 1440px) {
-  .video-container.full-width { max-height: 1000px; }
-  .video-container.split-video { max-height: 800px; }
-
-  .showcase-video { transform: scale(1.5); }
-  .video-container:hover .showcase-video { transform: scale(1.5); }
-}
-
-/* Tablet */
+/* =========================================================
+   TABLET (keep your current feel)
+   ========================================================= */
 @media (max-width: 1024px) {
-  .video-section { padding: 0 12px; }
-
-  .video-section + .video-section { padding-top: 0; }
-  .video-section:first-child { padding-top: 0; }
-  .video-section:last-child { padding-bottom: 0; }
+  .video-section {
+    padding: 0 12px;
+  }
 
   .split-container,
-  .triple-container { gap: 0; }
+  .triple-container {
+    gap: 0;
+  }
 
-  .video-container.split-video { width: 50%; }
+  .video-title {
+    font-size: 0.95rem;
+  }
 
-  .video-title { font-size: 0.95rem; }
-  .video-overlay { padding: 24px; }
+  .video-overlay {
+    padding: 24px;
+  }
 
   .video-container,
-  .video-overlay,
-  .showcase-video { border-radius: 14px; }
+  .video-overlay {
+    border-radius: 14px;
+  }
 
-  .showcase-video { transform: scale(1.5); }
-  .video-container:hover .showcase-video { transform: scale(1.5); }
+  .showcase-video {
+    transform: scale(1.5);
+  }
+
+  .video-container:hover .showcase-video {
+    transform: scale(1.5);
+  }
 }
 
-/* Mobile Large */
+/* =========================================================
+   MOBILE (compact sizing + strong zoom on split)
+   ========================================================= */
 @media (max-width: 768px) {
-  .video-section { padding: 0; margin: 0; }
-
-  .video-section + .video-section { padding-top: 0; margin-top: 0; }
-  .video-section:first-child { padding-top: 0; margin-top: 0; }
-  .video-section:last-child { padding-bottom: 0; margin-bottom: 0; }
+  .video-section {
+    padding: 0;
+    margin: 0;
+  }
 
   .split-container,
-  .triple-container { gap: 0; padding: 0; margin: 0; }
+  .triple-container {
+    gap: 0;
+    padding: 0;
+    margin: 0;
+  }
 
-  /* CONTAINER SIZE (Landing) */
   .video-container.split-video {
     width: 50%;
     height: 16vh;
@@ -290,25 +365,25 @@
     max-height: 180px;
   }
 
-  .video-container.triple-video {
-    width: 33.333%;
-    height: 16vh;
-    min-height: 130px;
-    max-height: 180px;
-  }
-
   .video-container.full-width {
+    width: 100%;
     height: 50vh;
     min-height: 350px;
     max-height: 500px;
   }
 
-  .video-title { font-size: 0.85rem; }
-  .video-overlay { padding: 20px; }
+  .video-title {
+    font-size: 0.85rem;
+  }
+
+  .video-overlay {
+    padding: 20px;
+  }
 
   .video-container,
-  .video-overlay,
-  .showcase-video { border-radius: 0; }
+  .video-overlay {
+    border-radius: 0;
+  }
 
   .close-button {
     top: 20px;
@@ -317,11 +392,8 @@
     height: 48px;
   }
 
-  /* MOBILE ZOOM (Landing) */
   .video-container.split-video .showcase-video,
-  .video-container.split-video:hover .showcase-video,
-  .video-container.triple-video .showcase-video,
-  .video-container.triple-video:hover .showcase-video {
+  .video-container.split-video:hover .showcase-video {
     transform: scale(2.8);
   }
 
@@ -331,27 +403,8 @@
   }
 }
 
-/* Mobile Medium */
 @media (max-width: 480px) {
-  .video-section { padding: 0; margin: 0; }
-
-  .video-section + .video-section { padding-top: 0; margin-top: 0; }
-  .video-section:first-child { padding-top: 0; margin-top: 0; }
-  .video-section:last-child { padding-bottom: 0; margin-bottom: 0; }
-
-  .split-container,
-  .triple-container { gap: 0; padding: 0; margin: 0; }
-
-  /* CONTAINER SIZE (Landing) */
   .video-container.split-video {
-    width: 50%;
-    height: 20vh;
-    min-height: 220px;
-    max-height: 300px;
-  }
-
-  .video-container.triple-video {
-    width: 33.333%;
     height: 20vh;
     min-height: 220px;
     max-height: 300px;
@@ -363,48 +416,27 @@
     max-height: 400px;
   }
 
-  .video-title { font-size: 0.75rem; }
-  .video-overlay { padding: 16px; }
-
-  .video-container,
-  .video-overlay,
-  .showcase-video { border-radius: 0; }
-
-  /* MOBILE ZOOM (Landing) */
-  .video-container.split-video .showcase-video,
-  .video-container.split-video:hover .showcase-video,
-  .video-container.triple-video .showcase-video,
-  .video-container.triple-video:hover .showcase-video {
-    transform: scale(2.8);
+  .video-title {
+    font-size: 0.75rem;
   }
 
-  .video-container.full-width .showcase-video,
-  .video-container.full-width:hover .showcase-video {
-    transform: scale(1.5);
+  .video-overlay {
+    padding: 16px;
+  }
+
+  .video-container,
+  .video-overlay {
+    border-radius: 0;
+  }
+
+  .video-container.split-video .showcase-video,
+  .video-container.split-video:hover .showcase-video {
+    transform: scale(2.8);
   }
 }
 
-/* Mobile Small */
 @media (max-width: 360px) {
-  .video-section { padding: 0; margin: 0; }
-
-  .video-section + .video-section { padding-top: 0; margin-top: 0; }
-  .video-section:first-child { padding-top: 0; margin-top: 0; }
-  .video-section:last-child { padding-bottom: 0; margin-bottom: 0; }
-
-  .split-container,
-  .triple-container { gap: 0; padding: 0; margin: 0; }
-
-  /* CONTAINER SIZE (Landing) */
   .video-container.split-video {
-    width: 50%;
-    height: 11vh;
-    min-height: 100px;
-    max-height: 140px;
-  }
-
-  .video-container.triple-video {
-    width: 33.333%;
     height: 11vh;
     min-height: 100px;
     max-height: 140px;
@@ -416,52 +448,43 @@
     max-height: 350px;
   }
 
-  .video-title { font-size: 0.7rem; }
-  .video-overlay { padding: 12px; }
+  .video-title {
+    font-size: 0.7rem;
+  }
 
-  .video-container,
-  .video-overlay,
-  .showcase-video { border-radius: 0; }
+  .video-overlay {
+    padding: 12px;
+  }
 
   .close-button {
     width: 44px;
     height: 44px;
   }
 
-  /* MOBILE ZOOM (Landing) */
   .video-container.split-video .showcase-video,
-  .video-container.split-video:hover .showcase-video,
-  .video-container.triple-video .showcase-video,
-  .video-container.triple-video:hover .showcase-video {
+  .video-container.split-video:hover .showcase-video {
     transform: scale(2.8);
   }
+}
 
-  .video-container.full-width .showcase-video,
-  .video-container.full-width:hover .showcase-video {
-    transform: scale(1.5);
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .video-container:active {
+    transform: scale(0.98);
+  }
+  .video-overlay {
+    opacity: 1;
   }
 }
 
-/* ========================================
-   TOUCH DEVICE OPTIMIZATIONS
-   ======================================== */
-@media (hover: none) and (pointer: coarse) {
-  .video-container:active { transform: scale(0.98); }
-  .video-overlay { opacity: 1; }
-}
-
-/* ========================================
-   PERFORMANCE OPTIMIZATIONS
-   ======================================== */
+/* Performance */
 .showcase-video,
 .video-overlay,
 .video-title {
   will-change: transform, opacity;
 }
 
-/* ========================================
-   REDUCED MOTION
-   ======================================== */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .video-container,
   .showcase-video,
