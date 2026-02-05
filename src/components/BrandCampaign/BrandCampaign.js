@@ -81,7 +81,7 @@ const BrandCampaigns = () => {
             allowFullScreen
           />
           <div className="video-overlay">
-            <h2 className="video-title">{videos[0].title}</h2>
+            <p className="video-title">{videos[0].title}</p>
           </div>
         </div>
       </section>
@@ -99,7 +99,7 @@ const BrandCampaigns = () => {
               allowFullScreen
             />
             <div className="video-overlay">
-              <h2 className="video-title">{videos[1].title}</h2>
+              <p className="video-title">{videos[1].title}</p>
             </div>
           </div>
 
@@ -113,7 +113,7 @@ const BrandCampaigns = () => {
               allowFullScreen
             />
             <div className="video-overlay">
-              <h2 className="video-title">{videos[2].title}</h2>
+              <p className="video-title">{videos[2].title}</p>
             </div>
           </div>
 
@@ -127,7 +127,7 @@ const BrandCampaigns = () => {
               allowFullScreen
             />
             <div className="video-overlay">
-              <h2 className="video-title">{videos[3].title}</h2>
+              <p className="video-title">{videos[3].title}</p>
             </div>
           </div>
         </div>
@@ -145,7 +145,7 @@ const BrandCampaigns = () => {
             allowFullScreen
           />
           <div className="video-overlay">
-            <h2 className="video-title">{videos[4].title}</h2>
+            <p className="video-title">{videos[4].title}</p>
           </div>
         </div>
       </section>
@@ -163,7 +163,7 @@ const BrandCampaigns = () => {
               allowFullScreen
             />
             <div className="video-overlay">
-              <h2 className="video-title">{videos[5].title}</h2>
+              <p className="video-title">{videos[5].title}</p>
             </div>
           </div>
 
@@ -177,7 +177,7 @@ const BrandCampaigns = () => {
               allowFullScreen
             />
             <div className="video-overlay">
-              <h2 className="video-title">{videos[6].title}</h2>
+              <p className="video-title">{videos[6].title}</p>
             </div>
           </div>
 
@@ -191,7 +191,7 @@ const BrandCampaigns = () => {
               allowFullScreen
             />
             <div className="video-overlay">
-              <h2 className="video-title">{videos[7].title}</h2>
+              <p className="video-title">{videos[7].title}</p>
             </div>
           </div>
         </div>

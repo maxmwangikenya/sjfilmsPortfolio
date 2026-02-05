@@ -134,6 +134,7 @@
   line-height: 1.5;
   pointer-events: none;
   position: relative;
+   text-transform: none;
 }
 
 .video-container:hover .video-title {

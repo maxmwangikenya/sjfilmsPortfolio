@@ -56,7 +56,7 @@ const LandingPage = () => {
             loading="lazy"
           />
           <div className="video-overlay">
-            <h2 className="video-title">{videos[0].title}</h2>
+            <p className="video-title">{videos[0].title}</p>
           </div>
         </div>
       </section>
@@ -79,7 +79,7 @@ const LandingPage = () => {
               loading="lazy"
             />
             <div className="video-overlay">
-              <h2 className="video-title">{videos[1].title}</h2>
+              <p className="video-title">{videos[1].title}</p>
             </div>
           </div>
 
@@ -98,7 +98,7 @@ const LandingPage = () => {
               loading="lazy"
             />
             <div className="video-overlay">
-              <h2 className="video-title">{videos[2].title}</h2>
+              <p className="video-title">{videos[2].title}</p>
             </div>
           </div>
         </div>
@@ -120,7 +120,7 @@ const LandingPage = () => {
             loading="lazy"
           />
           <div className="video-overlay">
-            <h2 className="video-title">{videos[3].title}</h2>
+            <p className="video-title">{videos[3].title}</p>
           </div>
         </div>
       </section>

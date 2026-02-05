@@ -14,33 +14,38 @@ function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const isActive = (path) => location.pathname === path;
 
+
   const navLinks = [
     { path: '/about', label: 'About' },
     { path: '/brand-campaigns', label: 'Campaigns' },
     { path: '/cooperative-events', label: 'Corporate Events' },
     { path: '/documentaries', label: 'Documentaries' },
+    { path: '/photos', label: 'Photos' }   
   ];
 
   return (
     <>
+      {/* NAVBAR */}
       <nav className={`custom-navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
         <div className="navbar-container">
-          {/* Logo - Far Left */}
+
+          {/* Logo */}
           <Link to="/" className="logo-link">
-            <img 
-              src="/Images/logo homepage/logo.png" 
-              alt="SJ Films Logo" 
+            <img
+              src="/Images/logo homepage/logo.png"
+              alt="SJ Films Logo"
               className="navbar-logo"
             />
           </Link>
 
-          {/* Desktop Navigation - Far Right */}
+          {/* Desktop Links */}
           <div className="nav-desktop">
             <div className="nav-links-group">
               {navLinks.map((link) => (
@@ -53,9 +58,9 @@ function Navbar() {
                 </Link>
               ))}
             </div>
-            
-            {/* Desktop Book Now Button - Opens Contact Form */}
-            <button 
+
+            {/* Book Now Button */}
+            <button
               onClick={() => setIsContactFormOpen(true)}
               className="book-now-btn"
             >
@@ -64,7 +69,7 @@ function Navbar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button 
+          <button
             className="mobile-menu-btn"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
@@ -74,13 +79,13 @@ function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
-      <div 
+      {/*MOBILE OVERLAY*/}
+      <div
         className={`mobile-overlay ${mobileMenuOpen ? 'open' : ''}`}
         onClick={() => setMobileMenuOpen(false)}
       />
 
-      {/* Mobile Menu */}
+      {/* MOBILE MENU */}
       <div className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`}>
         <div className="mobile-menu-content">
           {navLinks.map((link) => (
@@ -93,9 +98,9 @@ function Navbar() {
               {link.label}
             </Link>
           ))}
-          
-          {/* Mobile Book Now Button - Opens Contact Form */}
-          <button 
+
+          {/* Mobile Book Now */}
+          <button
             className="mobile-book-btn"
             onClick={() => {
               setMobileMenuOpen(false);
@@ -107,10 +112,10 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Contact Form Modal */}
-      <ContactForm 
-        isOpen={isContactFormOpen} 
-        onClose={() => setIsContactFormOpen(false)} 
+      {/* CONTACT FORM */}
+      <ContactForm
+        isOpen={isContactFormOpen}
+        onClose={() => setIsContactFormOpen(false)}
       />
     </>
   );

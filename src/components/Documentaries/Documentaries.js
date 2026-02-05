@@ -79,7 +79,7 @@ function Documentaries() {
                 />
                 
                 <div className="video-overlay">
-                  <h3 className="video-title">{doc.title}</h3>
+                  <p className="video-title">{doc.title}</p>
                 </div>
               </div>
             </div>
