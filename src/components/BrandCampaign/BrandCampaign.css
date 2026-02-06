@@ -1,12 +1,13 @@
 /*
-   BRAND CAMPAIGNS 
- */
-
+   BRAND CAMPAIGNS
+*/
 
 :root {
   --radius-desktop: 22px;
-}
 
+  /* ✅ tiny gap between the 3 videos (laptop/desktop only) */
+  --tile-gap-desktop: 12px;
+}
 
 .brand-campaigns-page {
   width: 100vw;
@@ -43,7 +44,7 @@ body {
   display: flex;
   width: 100%;
   height: 100%;
-  gap: 0;
+  gap: 0; /* default */
 }
 
 /* ---------- VIDEO TILE ---------- */
@@ -56,7 +57,6 @@ body {
 }
 
 /* IFRAME FILL */
-
 .video-container iframe {
   position: absolute;
   inset: 0;
@@ -105,68 +105,46 @@ body {
   text-shadow: 0 0 12px rgba(0,0,0,0.9);
 }
 
-/*
+/* =========================================================
    DESKTOP / LAPTOP
-\ */
+========================================================= */
 
 @media (min-width: 1025px) {
-
-  /* ---------- FULLSCREEN ROW ---------- */
 
   .video-section {
     height: 100vh;
   }
 
-  /* ---------- FULL WIDTH ---------- */
+  /* ✅ tiny separation (only on laptop/desktop) */
+  .split-container,
+  .triple-container {
+    gap: var(--tile-gap-desktop);
+    padding: var(--tile-gap-desktop);
+    box-sizing: border-box;
+  }
 
+  /* ---------- FULL WIDTH ---------- */
   .video-container.full-width {
     width: 100%;
     height: 100%;
-    border-radius: 0;
-  }
-
-  /* ---------- SPLIT (2) ---------- */
-
-  .video-container.split-video {
-    flex: 1;
-    height: 100%;
-    border-radius: 0;
-  }
-
-  .video-container.split-video:first-child {
-    border-top-right-radius: var(--radius-desktop);
-    border-bottom-right-radius: var(--radius-desktop);
-  }
-
-  .video-container.split-video:last-child {
-    border-top-left-radius: var(--radius-desktop);
-    border-bottom-left-radius: var(--radius-desktop);
-  }
-
-  /* ---------- TRIPLE (3) ---------- */
-
-  .video-container.triple-video {
-    flex: 1;
-    height: 100%;
-    border-radius: 0;
-  }
-
-  .video-container.triple-video:first-child {
-    border-top-right-radius: var(--radius-desktop);
-    border-bottom-right-radius: var(--radius-desktop);
-  }
-
-  .video-container.triple-video:nth-child(2) {
     border-radius: var(--radius-desktop);
   }
 
-  .video-container.triple-video:last-child {
-    border-top-left-radius: var(--radius-desktop);
-    border-bottom-left-radius: var(--radius-desktop);
+  /* ---------- SPLIT (2) ---------- */
+  .video-container.split-video {
+    flex: 1;
+    height: 100%;
+    border-radius: var(--radius-desktop);
   }
 
-  /* inherit rounding */
+  /* ---------- TRIPLE (3) ---------- */
+  .video-container.triple-video {
+    flex: 1;
+    height: 100%;
+    border-radius: var(--radius-desktop);
+  }
 
+  /* inherit rounding everywhere */
   .video-container,
   .video-container iframe,
   .video-overlay,
@@ -175,9 +153,9 @@ body {
   }
 }
 
-/* 
+/*
    TABLET
- */
+*/
 
 @media (max-width: 1024px) {
 
@@ -235,7 +213,7 @@ body {
   }
 }
 
-/* 
+/*
    SMALL MOBILE
 */
 
@@ -251,8 +229,9 @@ body {
   }
 }
 
-/* 
-   TOUCH*/
+/*
+   TOUCH
+*/
 
 @media (hover: none) and (pointer: coarse) {
   .video-container:active {
@@ -260,8 +239,9 @@ body {
   }
 }
 
-/* 
-   REDUCED MOTION*/
+/*
+   REDUCED MOTION
+*/
 
 @media (prefers-reduced-motion: reduce) {
   * {

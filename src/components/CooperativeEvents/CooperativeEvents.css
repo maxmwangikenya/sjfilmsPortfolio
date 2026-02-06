@@ -6,6 +6,9 @@
 :root {
   --navbar-height: 80px;
   --radius-desktop: 22px;
+  --radius-triple: 16px; /* ✅ NEW: 16px radius for triple videos */
+
+  --tile-gap-desktop: 12px;
 }
 
 .corporate-events-page {
@@ -167,7 +170,6 @@ body {
   z-index: 95;
 }
 
-
 /*
    DESKTOP / LAPTOP (1025px and above)  
  */
@@ -215,8 +217,24 @@ body {
     border-bottom-left-radius: var(--radius-desktop);
   }
 
+  /* ✅ ADD GAP BETWEEN TRIPLE VIDEOS */
+  .corporate-events-page .triple-container {
+    gap: var(--tile-gap-desktop); /* 12px gap */
+  }
+
+  /* ✅ 16px BORDER RADIUS FOR TRIPLE VIDEOS */
   .corporate-events-page .video-container.triple-video {
-    border-radius: var(--radius-desktop);
+    border-radius: 0;
+  }
+
+  .corporate-events-page .video-container.triple-video:first-child {
+    border-top-left-radius: var(--radius-triple); /* 16px */
+    border-bottom-left-radius: var(--radius-triple); /* 16px */
+  }
+
+  .corporate-events-page .video-container.triple-video:last-child {
+    border-top-right-radius: var(--radius-triple); /* 16px */
+    border-bottom-right-radius: var(--radius-triple); /* 16px */
   }
 
   .corporate-events-page .video-container,
