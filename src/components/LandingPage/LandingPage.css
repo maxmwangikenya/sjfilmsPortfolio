@@ -3,7 +3,7 @@
   --navbar-height: 80px;
   --radius-desktop: 22px;
 
-  /* NEW: spacing between tiles on large screens */
+  
   --tile-gap-desktop: 18px;
 }
 
@@ -42,7 +42,7 @@ body {
   display: flex;
   width: 100%;
   height: 100%;
-  gap: 0; /* default (mobile/tablet keeps touch) */
+  gap: 0; 
 }
 
 /* ---------- VIDEO TILE ---------- */
@@ -67,7 +67,7 @@ body {
   border: 0;
 }
 
-/* ---------- ZOOM LOOK ---------- */
+
 
 .showcase-video {
   width: 100%;
@@ -144,13 +144,9 @@ body {
   transform: translateY(-4px);
 }
 
-/* =========================================================
-   DESKTOP / LAPTOP (1025px and above)
-   - Make tiles look separated (gap + radius on each tile)
-========================================================= */
 
 @media (min-width: 1025px) {
-  /* ---------- FULLSCREEN ROW ---------- */
+ 
   .video-section {
     height: 100vh;
   }
@@ -181,7 +177,7 @@ body {
   .video-container.triple-video {
     flex: 1;
     height: 100%;
-    border-radius: var(--radius-desktop); /* NEW */
+    border-radius: var(--radius-desktop); 
   }
 
   /* ---------- INHERIT ROUNDING + CLIP EVERYTHING ---------- */
@@ -197,9 +193,7 @@ body {
   }
 }
 
-/* =========================================================
-   LARGER LAPTOP (1440px+)
-========================================================= */
+
 
 @media (min-width: 1440px) {
   .video-title {
@@ -216,9 +210,7 @@ body {
   }
 }
 
-/* =========================================================
-   TABLET
-========================================================= */
+
 
 @media (max-width: 1024px) {
   .video-section {
@@ -255,9 +247,7 @@ body {
   }
 }
 
-/* =========================================================
-   MOBILE
-========================================================= */
+
 
 @media (max-width: 768px) {
   .video-section {
@@ -313,9 +303,7 @@ body {
   }
 }
 
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
+
 
 @media (max-width: 480px) {
   .video-container.split-video {
@@ -344,9 +332,6 @@ body {
   }
 }
 
-/* =========================================================
-   EXTRA SMALL MOBILE
-========================================================= */
 
 @media (max-width: 360px) {
   .video-container.split-video {
@@ -375,9 +360,7 @@ body {
   }
 }
 
-/* =========================================================
-   FULLSCREEN OVERLAY
-========================================================= */
+
 
 .fullscreen-overlay {
   position: fixed;
@@ -432,9 +415,7 @@ body {
   box-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
 }
 
-/* =========================================================
-   TOUCH DEVICES
-========================================================= */
+
 
 @media (hover: none) and (pointer: coarse) {
   .video-container:active {
@@ -445,9 +426,7 @@ body {
   }
 }
 
-/* =========================================================
-   PERFORMANCE
-========================================================= */
+
 
 .showcase-video,
 .video-overlay,
@@ -455,9 +434,7 @@ body {
   will-change: transform, opacity;
 }
 
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
+
 
 @media (prefers-reduced-motion: reduce) {
   .video-container,

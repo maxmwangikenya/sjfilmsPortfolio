@@ -1,3 +1,4 @@
+/* src/components/CooperativeEvents/CooperativeEvents.css */
 /* 
    CORPORATE EVENTS (MATCHES PERFECT LANDING PAGE)
 */
@@ -35,7 +36,7 @@ body {
   margin-top: 0;
 }
 
-/* Push the FIRST section below navbar (same idea as your corporate page) */
+/* Push the FIRST section below navbar */
 .corporate-events-page > .video-section:first-of-type {
   padding-top: var(--navbar-height);
 }
@@ -72,7 +73,7 @@ body {
   border: 0;
 }
 
-/* ---------- ZOOM LOOK ---------- */
+/* ---------- ZOOM LOOK (applies to iframe OR img) ---------- */
 
 .corporate-events-page .showcase-video {
   width: 100%;
@@ -151,50 +152,59 @@ body {
   transform: translateY(-4px);
 }
 
-/* =========================================================
-   DESKTOP / LAPTOP (1025px and above)  ✅ NO OVERLAP
-========================================================= */
+/* Optional: little badge for Shorts */
+.corporate-events-page .video-container.is-short::after {
+  content: "SHORT";
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(255, 0, 0, 0.9);
+  color: #fff;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  letter-spacing: 1px;
+  z-index: 95;
+}
+
+
+/*
+   DESKTOP / LAPTOP (1025px and above)  
+ */
 
 @media (min-width: 1025px) {
 
-  /* Each section is one fullscreen row (prevents overlap) */
   .corporate-events-page .video-section {
     height: 100vh;
   }
 
-  /* FIRST section: account for navbar padding-top */
   .corporate-events-page > .video-section:first-of-type {
     height: 100vh;
     padding-top: var(--navbar-height);
   }
 
-  /* Full width tiles fill their section */
   .corporate-events-page .video-container.full-width {
     width: 100%;
     height: 100%;
     border-radius: 0;
   }
 
-  /* If first section is full width, make its tile fit below navbar */
   .corporate-events-page > .video-section:first-of-type .video-container.full-width {
     height: calc(100vh - var(--navbar-height));
   }
 
-  /* Triple tiles fill their section */
   .corporate-events-page .video-container.triple-video {
     flex: 1;
     height: 100%;
     border-radius: 0;
   }
 
-  /* Split tiles (if used) */
   .corporate-events-page .video-container.split-video {
     flex: 1;
     height: 100%;
     border-radius: 0;
   }
 
-  /* Rounded inner corners (same style as your landing) */
   .corporate-events-page .video-container.split-video:first-child {
     border-top-right-radius: var(--radius-desktop);
     border-bottom-right-radius: var(--radius-desktop);
@@ -205,12 +215,10 @@ body {
     border-bottom-left-radius: var(--radius-desktop);
   }
 
-  /* Optional: slight rounding for triple tiles (you can remove if you want sharp edges) */
   .corporate-events-page .video-container.triple-video {
     border-radius: var(--radius-desktop);
   }
 
-  /* Inherit rounding everywhere */
   .corporate-events-page .video-container,
   .corporate-events-page .video-container iframe,
   .corporate-events-page .video-overlay,
@@ -219,25 +227,24 @@ body {
   }
 }
 
-/* =========================================================
+/* 
    LARGER LAPTOP (1440px+)
-========================================================= */
+ */
 
 @media (min-width: 1440px) {
   .corporate-events-page .video-title {
     font-size: 1.05rem;
   }
 
-  /* Match your perfect landing feel on big screens */
   .corporate-events-page .showcase-video,
   .corporate-events-page .video-container:hover .showcase-video {
     transform: scale(2.5);
   }
 }
 
-/* =========================================================
+/* 
    TABLET
-========================================================= */
+*/
 
 @media (max-width: 1024px) {
 
@@ -276,9 +283,9 @@ body {
   }
 }
 
-/* =========================================================
+/* 
    MOBILE
-========================================================= */
+ */
 
 @media (max-width: 768px) {
 
@@ -336,9 +343,9 @@ body {
   }
 }
 
-/* =========================================================
+/*
    SMALL MOBILE
-========================================================= */
+ */
 
 @media (max-width: 480px) {
 
@@ -376,9 +383,9 @@ body {
   }
 }
 
-/* =========================================================
+/*
    EXTRA SMALL MOBILE
-========================================================= */
+ */
 
 @media (max-width: 360px) {
 
@@ -416,9 +423,9 @@ body {
   }
 }
 
-/* =========================================================
+/* 
    FULLSCREEN OVERLAY (same as landing)
-========================================================= */
+ */
 
 .fullscreen-overlay {
   position: fixed;
@@ -473,9 +480,9 @@ body {
   box-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
 }
 
-/* =========================================================
+/* 
    TOUCH DEVICES
-========================================================= */
+*/
 
 @media (hover: none) and (pointer: coarse) {
   .video-container:active {
@@ -486,9 +493,9 @@ body {
   }
 }
 
-/* =========================================================
+/* 
    PERFORMANCE
-========================================================= */
+ */
 
 .showcase-video,
 .video-overlay,
@@ -496,9 +503,9 @@ body {
   will-change: transform, opacity;
 }
 
-/* =========================================================
+/* 
    REDUCED MOTION
-========================================================= */
+ */
 
 @media (prefers-reduced-motion: reduce) {
   .video-container,
