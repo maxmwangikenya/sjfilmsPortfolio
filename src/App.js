@@ -13,6 +13,7 @@ const CooperativeEvents = lazy(() => import('./components/CooperativeEvents/Coop
 const MyTeam = lazy(() => import('./components/MyTeam/MyTeam'));
 const Documentaries = lazy(() => import('./components/Documentaries/Documentaries'));
 const AboutUs = lazy(() => import('./components/AboutUs/About'));
+const Photography = lazy(() => import('./components/Photography/Photography')); 
 
 // Loading component
 const LoadingFallback = () => (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/cooperative-events" element={<CooperativeEvents />} />
             <Route path="/my-team" element={<MyTeam />} />
             <Route path="/documentaries" element={<Documentaries />} />
+            <Route path="/photography" element={<Photography />} /> 
           </Routes>
         </Suspense>
       </main>
