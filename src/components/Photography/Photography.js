@@ -6,6 +6,26 @@ const Photography = () => {
   const categories = useMemo(
     () => [
       {
+        title: "WRTI Conference",
+        folder: "WRTI conference",
+        photos: [
+          "WRTI Conference-258.jpg",
+          "WRTI Conference-381.jpg",
+          "WRTI Conference-401.jpg",
+          "WRTI Conference-414.jpg",
+        ],
+      },
+            {
+        title: "University Fund",
+        folder: "University Fund",
+        photos: [
+          "20251014100746_IMG_9168.jpg",
+          "The Universites funds-143.jpg",
+          "The Universites funds-281.jpg",
+          "The Universites funds-55.jpg",
+        ],
+      },
+      {
         title: "Gigiri Social",
         folder: "Gigiri Social",
         photos: [
@@ -21,26 +41,6 @@ const Photography = () => {
           "Padel Tournament-522.jpg",
           "Padel Tournament-584.jpg",
           "Padel Tournament-74.jpg",
-        ],
-      },
-      {
-        title: "University Fund",
-        folder: "University Fund",
-        photos: [
-          "20251014100746_IMG_9168.jpg",
-          "The Universites funds-143.jpg",
-          "The Universites funds-281.jpg",
-          "The Universites funds-55.jpg",
-        ],
-      },
-      {
-        title: "WRTI Conference",
-        folder: "WRTI conference",
-        photos: [
-          "WRTI Conference-258.jpg",
-          "WRTI Conference-381.jpg",
-          "WRTI Conference-401.jpg",
-          "WRTI Conference-414.jpg",
         ],
       },
     ],
