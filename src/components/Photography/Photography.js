@@ -37,7 +37,6 @@ const Photography = () => {
         title: "WRTI Conference",
         folder: "WRTI conference",
         photos: [
-          "WRTI Conference-181.jpg",
           "WRTI Conference-258.jpg",
           "WRTI Conference-381.jpg",
           "WRTI Conference-401.jpg",
