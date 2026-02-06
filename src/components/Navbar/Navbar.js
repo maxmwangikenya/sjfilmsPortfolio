@@ -27,7 +27,7 @@ function Navbar() {
     { path: '/brand-campaigns', label: 'Campaigns' },
     { path: '/cooperative-events', label: 'Corporate Events' },
     { path: '/documentaries', label: 'Documentaries' },
-    { path: '/photos', label: 'Photos' }   
+    { path: '/photos', label: 'Photography' }   
   ];
 
   return (
