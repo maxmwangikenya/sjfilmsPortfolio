@@ -1,12 +1,31 @@
-/*
+/* =========================================================
    BRAND CAMPAIGNS
-*/
+   - HERO first video FULL BLEED (touch far left/right)
+   - Remove black gaps by oversizing iframe in px (hero only)
+   - NO hover zoom/shrink changes (static)
+========================================================= */
 
 :root {
+  --navbar-height: 80px;
   --radius-desktop: 22px;
+  --tile-gap-desktop: 18px;
 
-  /* ✅ tiny gap between the 3 videos (laptop/desktop only) */
-  --tile-gap-desktop: 12px;
+  /* default zooms for non-hero sections */
+  --zoom-full: 1.22;
+  --zoom-triple: 1.45;
+
+  /* hero base zoom (small) */
+  --zoom-hero: 1.05;
+}
+
+/* ================= BASE ================= */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: #000;
 }
 
 .brand-campaigns-page {
@@ -17,234 +36,298 @@
   margin: 0;
   padding: 0;
   position: relative;
+  padding-top: var(--navbar-height);
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
-/* ---------- SECTIONS ---------- */
+/* ================= SECTIONS ================= */
 
 .video-section {
   width: 100%;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
-.video-section + .video-section {
-  margin-top: 0;
+.hero-section {
+  height: calc(100vh - var(--navbar-height));
 }
 
-/* ---------- CONTAINERS ---------- */
+.full-section {
+  height: 100vh;
+}
 
-.split-container,
+.triple-section {
+  height: 100vh;
+}
+
+/* ================= CONTAINERS ================= */
+
 .triple-container {
-  display: flex;
   width: 100%;
   height: 100%;
-  gap: 0; /* default */
+  display: flex;
+  box-sizing: border-box;
+  gap: var(--tile-gap-desktop);
+  padding: var(--tile-gap-desktop);
 }
 
-/* ---------- VIDEO TILE ---------- */
+/* ================= VIDEO TILE ================= */
 
 .video-container {
   position: relative;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   background: #000;
   cursor: pointer;
 }
 
-/* IFRAME FILL */
+/* full width tiles */
+.video-container.full-width {
+  width: 100%;
+  height: 100%;
+}
+
+/* triple tiles */
+.video-container.triple-video {
+  flex: 1;
+  height: 100%;
+}
+
+/* ================= DESKTOP RADIUS ================= */
+
+@media (min-width: 1025px) {
+  .video-container.full-width,
+  .video-container.triple-video {
+    border-radius: var(--radius-desktop);
+  }
+
+  .video-container,
+  .video-container iframe,
+  .video-overlay {
+    border-radius: inherit;
+  }
+}
+
+/* ================= HERO FULL BLEED ================= */
+/* Force ONLY the first hero tile to touch edges */
+.hero-section .video-container.hero-video {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  border-radius: 0 !important;
+}
+
+.hero-section .video-container.hero-video iframe,
+.hero-section .video-container.hero-video .video-overlay {
+  border-radius: 0 !important;
+}
+
+/* ================= IFRAME BASE ================= */
+
 .video-container iframe {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
-}
-
-/* ---------- ZOOM LOOK ---------- */
-
-.showcase-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.5);
-  transform-origin: center;
   pointer-events: none;
+  transform-origin: center center;
+
+  /* ✅ remove any hover transitions */
+  transition: none !important;
 }
 
-.video-container:hover .showcase-video {
-  transform: scale(1.5);
+/* ================= STATIC (NO HOVER CHANGE) ================= */
+
+.video-container:hover iframe {
+  transform: none !important;
 }
 
-/* ---------- OVERLAY ---------- */
+/* Re-apply transforms so hover never changes anything */
+.video-container.full-width:not(.hero-video) iframe {
+  transform: scale(var(--zoom-full));
+}
+.video-container.full-width:not(.hero-video):hover iframe {
+  transform: scale(var(--zoom-full)) !important;
+}
+
+.video-container.triple-video iframe {
+  transform: scale(var(--zoom-triple));
+}
+.video-container.triple-video:hover iframe {
+  transform: scale(var(--zoom-triple)) !important;
+}
+
+/* ================= HERO FIRST VIDEO FIX ================= */
+/*
+  The black gaps left/right on some laptops come from YouTube’s internal
+  aspect handling. Scaling the iframe scales the black bars too.
+  Fix: oversize iframe in PX only for the first hero video and center it.
+*/
+.video-container.hero-video iframe {
+  transform: scale(var(--zoom-hero));
+}
+.video-container.hero-video:hover iframe {
+  transform: scale(var(--zoom-hero)) !important;
+}
+
+/* ✅ ONLY FIRST VIDEO gets extra width in px to kill side gaps */
+.video-container.hero-first iframe {
+  width: calc(100% + 1000px);   /* increase width in px */
+  left: -500px;               /* center the extra width */
+  height: calc(100% + 140px); /* also reduce any top/bottom bars */
+  top: -70px;
+  transform: scale(var(--zoom-hero)) !important;
+}
+
+/* ================= OVERLAY ================= */
 
 .video-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    rgba(0,0,0,0.05),
-    rgba(0,0,0,0.15),
-    rgba(0,0,0,0.45)
-  );
+  z-index: 5;
   display: flex;
   align-items: flex-end;
-  padding: 32px;
+  padding: 28px;
   pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.02),
+    rgba(0, 0, 0, 0.55)
+  );
 }
-
-/* ---------- TITLE ---------- */
 
 .video-title {
-  color: white;
+  margin: 0;
+  color: #fff;
   font-size: 1rem;
-  max-width: 70%;
-  text-shadow: 0 0 12px rgba(0,0,0,0.9);
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  text-shadow: 0 8px 22px rgba(0, 0, 0, 0.9);
+  max-width: 85%;
 }
 
-/* =========================================================
-   DESKTOP / LAPTOP
-========================================================= */
+/* ================= TABLET ================= */
 
-@media (min-width: 1025px) {
+@media (max-width: 1024px) {
+  :root {
+    --radius-desktop: 16px;
+    --tile-gap-desktop: 12px;
 
-  .video-section {
-    height: 100vh;
+    --zoom-hero: 1.03;
+    --zoom-full: 1.18;
+    --zoom-triple: 1.55;
   }
 
-  /* ✅ tiny separation (only on laptop/desktop) */
-  .split-container,
+  .video-overlay {
+    padding: 18px;
+  }
+
+  .video-title {
+    font-size: 0.95rem;
+  }
+
+  .video-container.hero-first iframe {
+    width: calc(100% + 280px);
+    left: -140px;
+    height: calc(100% + 120px);
+    top: -60px;
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+  :root {
+    --tile-gap-desktop: 10px;
+
+    --zoom-hero: 1.02;
+    --zoom-full: 1.12;
+    --zoom-triple: 1.65;
+  }
+
   .triple-container {
     gap: var(--tile-gap-desktop);
     padding: var(--tile-gap-desktop);
-    box-sizing: border-box;
   }
 
-  /* ---------- FULL WIDTH ---------- */
-  .video-container.full-width {
-    width: 100%;
-    height: 100%;
-    border-radius: var(--radius-desktop);
+  .video-title {
+    font-size: 0.9rem;
   }
 
-  /* ---------- SPLIT (2) ---------- */
-  .video-container.split-video {
-    flex: 1;
-    height: 100%;
-    border-radius: var(--radius-desktop);
+  /* keep hero full-bleed on mobile */
+  .hero-section .video-container.hero-video {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    border-radius: 0 !important;
   }
 
-  /* ---------- TRIPLE (3) ---------- */
-  .video-container.triple-video {
-    flex: 1;
-    height: 100%;
-    border-radius: var(--radius-desktop);
-  }
-
-  /* inherit rounding everywhere */
-  .video-container,
-  .video-container iframe,
-  .video-overlay,
-  .showcase-video {
-    border-radius: inherit;
+  .video-container.hero-first iframe {
+    width: calc(100% + 180px);
+    left: -90px;
+    height: calc(100% + 100px);
+    top: -50px;
   }
 }
 
-/*
-   TABLET
-*/
+/* ================= FULLSCREEN ================= */
 
-@media (max-width: 1024px) {
-
-  .video-section {
-    height: auto;
-  }
-
-  .video-container.full-width {
-    height: 60vh;
-  }
-
-  .video-container.split-video,
-  .video-container.triple-video {
-    height: 40vh;
-  }
-
-  .video-container,
-  .video-overlay,
-  .showcase-video {
-    border-radius: 14px;
-  }
+.fullscreen-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.98);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  animation: fadeIn 0.25s ease;
 }
 
-/*
-   MOBILE
-*/
-
-@media (max-width: 768px) {
-
-  .split-container,
-  .triple-container {
-    flex-direction: row;
-  }
-
-  .video-container.full-width {
-    height: 50vh;
-  }
-
-  .video-container.split-video,
-  .video-container.triple-video {
-    width: 50%;
-    height: 18vh;
-  }
-
-  .video-container,
-  .video-overlay,
-  .showcase-video {
-    border-radius: 0;
-  }
-
-  /* extra zoom */
-  .video-container.split-video .showcase-video,
-  .video-container.triple-video .showcase-video {
-    transform: scale(2.8);
-  }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/*
-   SMALL MOBILE
-*/
-
-@media (max-width: 480px) {
-
-  .video-container.split-video,
-  .video-container.triple-video {
-    height: 22vh;
-  }
-
-  .video-container.full-width {
-    height: 40vh;
-  }
+.fullscreen-video {
+  width: 95vw;
+  height: 95vh;
+  max-width: 1600px;
+  max-height: 900px;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
 }
 
-/*
-   TOUCH
-*/
-
-@media (hover: none) and (pointer: coarse) {
-  .video-container:active {
-    transform: scale(0.97);
-  }
+.close-button {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10001;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0;
 }
 
-/*
-   REDUCED MOTION
-*/
+.close-button:hover {
+  background: rgba(255, 107, 0, 0.9);
+  border-color: #ff6b00;
+  transform: scale(1.1) rotate(90deg);
+  box-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
+}
 
 @media (prefers-reduced-motion: reduce) {
-  * {
+  .close-button {
     transition: none !important;
   }
 }

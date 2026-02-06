@@ -1,14 +1,23 @@
-/* src/components/CooperativeEvents/CooperativeEvents.css */
-/* 
-   CORPORATE EVENTS (MATCHES PERFECT LANDING PAGE)
-*/
+/* =========================================================
+   CORPORATE EVENTS (MATCH LANDING PAGE FEEL)
+========================================================= */
 
 :root {
   --navbar-height: 80px;
   --radius-desktop: 22px;
-  --radius-triple: 16px; /* ✅ NEW: 16px radius for triple videos */
+  --tile-gap-desktop: 18px;
 
-  --tile-gap-desktop: 12px;
+  /* Cover zoom for iframe "fill" */
+  --zoom-triple: 1.45;
+}
+
+/* ================= BASE ================= */
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: #000;
 }
 
 .corporate-events-page {
@@ -16,59 +25,94 @@
   min-height: 100vh;
   background: #000;
   overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-  position: relative;
-}
 
-body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
-/* ---------- SECTIONS ---------- */
-
-.corporate-events-page .video-section {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-
-.corporate-events-page .video-section + .video-section {
-  margin-top: 0;
-}
-
-/* Push the FIRST section below navbar */
-.corporate-events-page > .video-section:first-of-type {
+  /* push below navbar */
   padding-top: var(--navbar-height);
 }
 
-/* ---------- CONTAINERS ---------- */
+/* ================= SECTIONS ================= */
 
-.corporate-events-page .split-container,
-.corporate-events-page .triple-container {
-  display: flex;
+.video-section {
   width: 100%;
-  height: 100%;
-  gap: 0;
+  margin: 0;
+  padding: 0;
 }
 
-/* ---------- VIDEO TILE ---------- */
+/* Full screen sections */
+.top-section {
+  height: calc(100vh - var(--navbar-height));
+}
 
-.corporate-events-page .video-container {
+.triple-section {
+  height: 100vh;
+}
+
+.bottom-section {
+  height: 100vh;
+}
+
+/* ================= CONTAINERS ================= */
+
+.triple-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  box-sizing: border-box;
+
+  /* tiny gaps like landing page */
+  gap: var(--tile-gap-desktop);
+  padding: var(--tile-gap-desktop);
+}
+
+/* ================= VIDEO TILE ================= */
+
+.video-container {
   position: relative;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   background: #000;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.5),
-    0 2px 8px rgba(255, 255, 255, 0.03);
 }
 
-/* IFRAME FILL */
-.corporate-events-page .video-container iframe {
+/* Radius desktop */
+@media (min-width: 1025px) {
+  .video-container.full-width,
+  .video-container.triple-video {
+    border-radius: var(--radius-desktop);
+  }
+
+  .video-overlay {
+    border-radius: inherit;
+  }
+}
+
+.video-container.triple-video {
+  flex: 1;
+}
+
+/* ================= VIDEO DISPLAY ================= */
+/* Default stage system (good for top/bottom) */
+
+.video-stage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #000;
+}
+
+.video-stage-inner {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: 16 / 9;
+  position: relative;
+  background: #000;
+}
+
+.video-stage-inner iframe {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -76,374 +120,108 @@ body {
   border: 0;
 }
 
-/* ---------- ZOOM LOOK (applies to iframe OR img) ---------- */
+/* =========================================================
+   ✅ TRIPLE VIDEOS: TRUE "FILL" (COVER) LIKE LANDING PAGE
+   - disable the 16:9 constraint
+   - make iframe fill tile and zoom to cover
+========================================================= */
 
-.corporate-events-page .showcase-video {
+.video-container.triple-video .video-stage {
+  display: block;     /* stop centering box */
+}
+
+.video-container.triple-video .video-stage-inner {
+  aspect-ratio: unset;     /* remove 16:9 constraint */
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  background: #000;
-
-  transform: scale(1.5);
-  transform-origin: center center;
-
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  will-change: transform;
-  pointer-events: none;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.corporate-events-page .video-container:hover .showcase-video {
-  transform: scale(1.5);
-}
-
-/* ---------- OVERLAY ---------- */
-
-.corporate-events-page .video-overlay {
+  max-width: none;
+  max-height: none;
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.05) 0%,
-    rgba(0, 0, 0, 0.15) 50%,
-    rgba(0, 0, 0, 0.45) 100%
-  );
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 32px;
-  opacity: 1;
-  transition: all 0.25s ease;
-  z-index: 90;
+}
+
+.video-container.triple-video .video-stage-inner iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+
+  /* iframe "cover" technique */
+  transform: scale(var(--zoom-triple));
+  transform-origin: center center;
+
   pointer-events: none;
 }
 
-.corporate-events-page .video-container:hover .video-overlay {
+/* ================= OVERLAY ================= */
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  align-items: flex-end;
+  padding: 28px;
+  pointer-events: none;
+
   background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.08) 0%,
-    rgba(0, 0, 0, 0.15) 50%,
-    rgba(0, 0, 0, 0.5) 100%
+    to bottom,
+    rgba(0, 0, 0, 0.02),
+    rgba(0, 0, 0, 0.55)
   );
 }
 
-/* ---------- TITLE ---------- */
-
-.corporate-events-page .video-title {
+.video-title {
+  margin: 0;
   color: #fff;
   font-size: 1rem;
   font-weight: 500;
-  margin: 0;
-  max-width: 70%;
-  text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.95);
-  z-index: 70;
-  opacity: 1;
-  transition: all 0.3s ease;
-  letter-spacing: 0.3px;
-  line-height: 1.5;
-  pointer-events: none;
-  position: relative;
-  text-transform: none;
+  letter-spacing: 0.2px;
+  text-shadow: 0 8px 22px rgba(0, 0, 0, 0.9);
+  max-width: 90%;
 }
 
-.corporate-events-page .video-container:hover .video-title {
-  text-shadow: 2px 2px 16px rgba(0, 0, 0, 1);
-  transform: translateY(-4px);
-}
-
-/* Optional: little badge for Shorts */
-.corporate-events-page .video-container.is-short::after {
-  content: "SHORT";
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  background: rgba(255, 0, 0, 0.9);
-  color: #fff;
-  font-size: 11px;
-  padding: 4px 8px;
-  border-radius: 6px;
-  letter-spacing: 1px;
-  z-index: 95;
-}
-
-/*
-   DESKTOP / LAPTOP (1025px and above)  
- */
-
-@media (min-width: 1025px) {
-
-  .corporate-events-page .video-section {
-    height: 100vh;
-  }
-
-  .corporate-events-page > .video-section:first-of-type {
-    height: 100vh;
-    padding-top: var(--navbar-height);
-  }
-
-  .corporate-events-page .video-container.full-width {
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
-  }
-
-  .corporate-events-page > .video-section:first-of-type .video-container.full-width {
-    height: calc(100vh - var(--navbar-height));
-  }
-
-  .corporate-events-page .video-container.triple-video {
-    flex: 1;
-    height: 100%;
-    border-radius: 0;
-  }
-
-  .corporate-events-page .video-container.split-video {
-    flex: 1;
-    height: 100%;
-    border-radius: 0;
-  }
-
-  .corporate-events-page .video-container.split-video:first-child {
-    border-top-right-radius: var(--radius-desktop);
-    border-bottom-right-radius: var(--radius-desktop);
-  }
-
-  .corporate-events-page .video-container.split-video:last-child {
-    border-top-left-radius: var(--radius-desktop);
-    border-bottom-left-radius: var(--radius-desktop);
-  }
-
-  /* ✅ ADD GAP BETWEEN TRIPLE VIDEOS */
-  .corporate-events-page .triple-container {
-    gap: var(--tile-gap-desktop); /* 12px gap */
-  }
-
-  /* ✅ 16px BORDER RADIUS FOR TRIPLE VIDEOS */
-  .corporate-events-page .video-container.triple-video {
-    border-radius: 0;
-  }
-
-  .corporate-events-page .video-container.triple-video:first-child {
-    border-top-left-radius: var(--radius-triple); /* 16px */
-    border-bottom-left-radius: var(--radius-triple); /* 16px */
-  }
-
-  .corporate-events-page .video-container.triple-video:last-child {
-    border-top-right-radius: var(--radius-triple); /* 16px */
-    border-bottom-right-radius: var(--radius-triple); /* 16px */
-  }
-
-  .corporate-events-page .video-container,
-  .corporate-events-page .video-container iframe,
-  .corporate-events-page .video-overlay,
-  .corporate-events-page .showcase-video {
-    border-radius: inherit;
-  }
-}
-
-/* 
-   LARGER LAPTOP (1440px+)
- */
-
-@media (min-width: 1440px) {
-  .corporate-events-page .video-title {
-    font-size: 1.05rem;
-  }
-
-  .corporate-events-page .showcase-video,
-  .corporate-events-page .video-container:hover .showcase-video {
-    transform: scale(2.5);
-  }
-}
-
-/* 
-   TABLET
-*/
+/* ================= TABLET ================= */
 
 @media (max-width: 1024px) {
-
-  .corporate-events-page .video-section {
-    height: auto;
+  :root {
+    --radius-desktop: 16px;
+    --tile-gap-desktop: 12px;
+    --zoom-triple: 1.55;
   }
 
-  .corporate-events-page .video-container.full-width {
-    height: 60vh;
+  .video-overlay {
+    padding: 18px;
   }
 
-  .corporate-events-page .video-container.split-video {
-    height: 40vh;
-  }
-
-  .corporate-events-page .video-container.triple-video {
-    height: 40vh;
-  }
-
-  .corporate-events-page .video-container,
-  .corporate-events-page .video-overlay {
-    border-radius: 14px;
-  }
-
-  .corporate-events-page .showcase-video,
-  .corporate-events-page .video-container:hover .showcase-video {
-    transform: scale(1.5);
-  }
-
-  .corporate-events-page .video-title {
+  .video-title {
     font-size: 0.95rem;
   }
-
-  .corporate-events-page .video-overlay {
-    padding: 24px;
-  }
 }
 
-/* 
-   MOBILE
- */
+/* ================= MOBILE ================= */
+/* Keep the 3 videos in a row OR stack them. 
+   You asked “next to each other” so we keep row, but increase zoom slightly. */
 
 @media (max-width: 768px) {
-
-  .corporate-events-page .video-section {
-    padding: 0;
-    margin: 0;
+  :root {
+    --tile-gap-desktop: 10px;
+    --zoom-triple: 1.7;
   }
 
-  .corporate-events-page .split-container,
-  .corporate-events-page .triple-container {
-    gap: 0;
-    padding: 0;
-    margin: 0;
+  .triple-container {
+    padding: var(--tile-gap-desktop);
+    gap: var(--tile-gap-desktop);
   }
 
-  .corporate-events-page .video-container.full-width {
-    width: 100%;
-    height: 50vh;
-    min-height: 350px;
-    max-height: 500px;
-  }
-
-  .corporate-events-page .video-container.split-video,
-  .corporate-events-page .video-container.triple-video {
-    width: 50%;
-    height: 18vh;
-    min-height: 130px;
-    max-height: 180px;
-  }
-
-  .corporate-events-page .video-container,
-  .corporate-events-page .video-overlay,
-  .corporate-events-page .showcase-video {
-    border-radius: 0;
-  }
-
-  .corporate-events-page .video-title {
-    font-size: 0.85rem;
-  }
-
-  .corporate-events-page .video-overlay {
-    padding: 20px;
-  }
-
-  .corporate-events-page .video-container.split-video .showcase-video,
-  .corporate-events-page .video-container.triple-video .showcase-video,
-  .corporate-events-page .video-container.split-video:hover .showcase-video,
-  .corporate-events-page .video-container.triple-video:hover .showcase-video {
-    transform: scale(2.8);
-  }
-
-  .corporate-events-page .video-container.full-width .showcase-video,
-  .corporate-events-page .video-container.full-width:hover .showcase-video {
-    transform: scale(1.5);
+  /* optional: slightly reduce section height so nav feels better on small screens */
+  .triple-section {
+    height: 100vh;
   }
 }
 
-/*
-   SMALL MOBILE
- */
-
-@media (max-width: 480px) {
-
-  .corporate-events-page .video-container.split-video,
-  .corporate-events-page .video-container.triple-video {
-    height: 22vh;
-    min-height: 220px;
-    max-height: 300px;
-  }
-
-  .corporate-events-page .video-container.full-width {
-    height: 40vh;
-    min-height: 280px;
-    max-height: 400px;
-  }
-
-  .corporate-events-page .video-title {
-    font-size: 0.75rem;
-  }
-
-  .corporate-events-page .video-overlay {
-    padding: 16px;
-  }
-
-  .corporate-events-page .video-container.split-video .showcase-video,
-  .corporate-events-page .video-container.triple-video .showcase-video,
-  .corporate-events-page .video-container.split-video:hover .showcase-video,
-  .corporate-events-page .video-container.triple-video:hover .showcase-video {
-    transform: scale(2.8);
-  }
-
-  .corporate-events-page .video-container.full-width .showcase-video,
-  .corporate-events-page .video-container.full-width:hover .showcase-video {
-    transform: scale(1.5);
-  }
-}
-
-/*
-   EXTRA SMALL MOBILE
- */
-
-@media (max-width: 360px) {
-
-  .corporate-events-page .video-container.split-video,
-  .corporate-events-page .video-container.triple-video {
-    height: 11vh;
-    min-height: 100px;
-    max-height: 140px;
-  }
-
-  .corporate-events-page .video-container.full-width {
-    height: 35vh;
-    min-height: 240px;
-    max-height: 350px;
-  }
-
-  .corporate-events-page .video-title {
-    font-size: 0.7rem;
-  }
-
-  .corporate-events-page .video-overlay {
-    padding: 12px;
-  }
-
-  .corporate-events-page .video-container.split-video .showcase-video,
-  .corporate-events-page .video-container.triple-video .showcase-video,
-  .corporate-events-page .video-container.split-video:hover .showcase-video,
-  .corporate-events-page .video-container.triple-video:hover .showcase-video {
-    transform: scale(2.8);
-  }
-
-  .corporate-events-page .video-container.full-width .showcase-video,
-  .corporate-events-page .video-container.full-width:hover .showcase-video {
-    transform: scale(1.5);
-  }
-}
-
-/* 
-   FULLSCREEN OVERLAY (same as landing)
- */
+/* ================= FULLSCREEN ================= */
 
 .fullscreen-overlay {
   position: fixed;
@@ -454,7 +232,7 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  animation: fadeIn 0.3s ease;
+  animation: fadeIn 0.25s ease;
 }
 
 @keyframes fadeIn {
@@ -467,8 +245,8 @@ body {
   height: 95vh;
   max-width: 1600px;
   max-height: 900px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
   border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
 }
 
 .close-button {
@@ -498,38 +276,7 @@ body {
   box-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
 }
 
-/* 
-   TOUCH DEVICES
-*/
-
-@media (hover: none) and (pointer: coarse) {
-  .video-container:active {
-    transform: scale(0.98);
-  }
-  .video-overlay {
-    opacity: 1;
-  }
-}
-
-/* 
-   PERFORMANCE
- */
-
-.showcase-video,
-.video-overlay,
-.video-title {
-  will-change: transform, opacity;
-}
-
-/* 
-   REDUCED MOTION
- */
-
 @media (prefers-reduced-motion: reduce) {
-  .video-container,
-  .showcase-video,
-  .video-overlay,
-  .video-title,
   .close-button {
     transition: none !important;
   }

@@ -4,69 +4,81 @@ import './CooperativeEvents.css';
 const CorporateEvents = () => {
   const [fullscreenVideo, setFullscreenVideo] = useState(null);
 
-  // Add type: "short" for Shorts videos
   const videos = [
     {
       id: 'orSkwGpcc70',
       title: 'Wildlife and Training Institute Conference 2025 - Day 1 Set Up',
-      type: 'video',
     },
     {
       id: 'DqTsWadIHW0',
       title: 'YM Stanchart Marathon with Savannah X Heineken',
-      type: 'video',
     },
     {
       id: 'KCq66d00-tc',
       title: 'Gigiri Social Club - Launch',
-      type: 'video', 
     },
     {
       id: 'AxwpTJWI7ZU',
       title: "YM@ NANAI'S CAFE PARTY",
-      type: 'video',
     },
     {
       id: 'gdXG2XXJ0t4',
       title: 'Wildlife Research and Training Institute - Exhibitors Day 2 2025',
-      type: 'video',
-    }
+    },
   ];
 
-  // Handle click logic
-  const handleVideoClick = (index) => {
-    const video = videos[index];
-
-    if (video.type === 'short') {
-      window.open(
-        `https://www.youtube.com/shorts/${video.id}`,
-        '_blank'
-      );
-    } else {
-      setFullscreenVideo(index);
-    }
-  };
+  const openFullscreen = (index) => setFullscreenVideo(index);
 
   const closeFullscreen = (e) => {
     e.stopPropagation();
     setFullscreenVideo(null);
   };
 
+  // Preview URL (minimize hover UI)
+  const buildPreviewSrc = (id) =>
+    `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}` +
+    `&controls=0&modestbranding=1&rel=0&iv_load_policy=3&fs=0&showinfo=0`;
+
+  // Fullscreen URL (keep controls, still reduce branding/related)
+  const buildFullscreenSrc = (id) =>
+    `https://www.youtube.com/embed/${id}?autoplay=1&controls=1` +
+    `&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0`;
+
+  // Reusable stage wrapper to prevent cropping (contain behavior from CSS)
+  const VideoStage = ({ video, className, onClick }) => (
+    <div className={className} onClick={onClick}>
+      <div className="video-stage">
+        <div className="video-stage-inner">
+          <iframe
+            src={buildPreviewSrc(video.id)}
+            title={video.title}
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <div className="video-overlay">
+        <p className="video-title">{video.title}</p>
+      </div>
+    </div>
+  );
+
   return (
     <div className="corporate-events-page">
-
-      {/* ---------- FULLSCREEN OVERLAY ---------- */}
       {fullscreenVideo !== null && (
         <div className="fullscreen-overlay" onClick={closeFullscreen}>
-          <button className="close-button" onClick={closeFullscreen}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-              <path d="M18 6L6 18M6 6l12 12" />
+          <button className="close-button" onClick={closeFullscreen} aria-label="Close">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
+              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
             </svg>
           </button>
 
           <iframe
             className="fullscreen-video"
-            src={`https://www.youtube.com/embed/${videos[fullscreenVideo].id}?autoplay=1&controls=1`}
+            src={buildFullscreenSrc(videos[fullscreenVideo].id)}
             title={videos[fullscreenVideo].title}
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -75,76 +87,37 @@ const CorporateEvents = () => {
         </div>
       )}
 
-      {/* ---------- VIDEO 1 (FULL WIDTH) ---------- */}
-      <section className="video-section">
-        <div
-          className="video-container full-width clickable"
-          onClick={() => handleVideoClick(0)}
-        >
-          <iframe
-            className="showcase-video"
-            src={`https://www.youtube.com/embed/${videos[0].id}?autoplay=1&mute=1&loop=1&playlist=${videos[0].id}&controls=0&modestbranding=1&rel=0`}
-            title={videos[0].title}
-            frameBorder="0"
-            allow="autoplay; encrypted-media"
-            allowFullScreen
-          />
-
-          <div className="video-overlay">
-            <p className="video-title">{videos[0].title}</p>
-          </div>
-        </div>
+      {/* TOP (full screen) */}
+      <section className="video-section top-section">
+        <VideoStage
+          video={videos[0]}
+          className="video-container full-width clickable top-video"
+          onClick={() => openFullscreen(0)}
+        />
       </section>
 
-      {/* ---------- VIDEOS 2,3,4 ---------- */}
-      <section className="video-section">
+      {/* MIDDLE (full screen) - 3 videos */}
+      <section className="video-section triple-section">
         <div className="triple-container">
-
           {[1, 2, 3].map((i) => (
-            <div
+            <VideoStage
               key={i}
+              video={videos[i]}
               className="video-container triple-video clickable"
-              onClick={() => handleVideoClick(i)}
-            >
-              <iframe
-                className="showcase-video"
-                src={`https://www.youtube.com/embed/${videos[i].id}?autoplay=1&mute=1&loop=1&playlist=${videos[i].id}&controls=0&modestbranding=1&rel=0`}
-                title={videos[i].title}
-                frameBorder="0"
-                allow="autoplay; encrypted-media"
-                allowFullScreen
-              />
-
-              <div className="video-overlay">
-                <p className="video-title">{videos[i].title}</p>
-              </div>
-            </div>
+              onClick={() => openFullscreen(i)}
+            />
           ))}
-
         </div>
       </section>
 
-      {/* ---------- VIDEO 5 (FULL WIDTH) ---------- */}
-      <section className="video-section">
-        <div
-          className="video-container full-width clickable"
-          onClick={() => handleVideoClick(4)}
-        >
-          <iframe
-            className="showcase-video"
-            src={`https://www.youtube.com/embed/${videos[4].id}?autoplay=1&mute=1&loop=1&playlist=${videos[4].id}&controls=0&modestbranding=1&rel=0`}
-            title={videos[4].title}
-            frameBorder="0"
-            allow="autoplay; encrypted-media"
-            allowFullScreen
-          />
-
-          <div className="video-overlay">
-            <p className="video-title">{videos[4].title}</p>
-          </div>
-        </div>
+      {/* BOTTOM (full screen) */}
+      <section className="video-section bottom-section">
+        <VideoStage
+          video={videos[4]}
+          className="video-container full-width clickable bottom-video"
+          onClick={() => openFullscreen(4)}
+        />
       </section>
-
     </div>
   );
 };

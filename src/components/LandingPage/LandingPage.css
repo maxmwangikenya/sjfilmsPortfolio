@@ -1,8 +1,20 @@
-/* LANDING PAGE */
+/* =========================================================
+   LANDING PAGE (FULL VIEWPORT SECTIONS + NO CROPPING)
+========================================================= */
+
 :root {
   --navbar-height: 80px;
   --radius-desktop: 22px;
   --tile-gap-desktop: 18px;
+}
+
+/* ================= BASE ================= */
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: #000;
 }
 
 .landing-page {
@@ -10,57 +22,95 @@
   min-height: 100vh;
   background: #000;
   overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-  position: relative;
-
-  /* ✅ FIX: push content below a fixed/sticky navbar */
   padding-top: var(--navbar-height);
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
+/* ================= SECTIONS ================= */
+/* Each section fills the screen (minus navbar for first) */
+
+.hero-section {
+  height: calc(100vh - var(--navbar-height));
 }
 
-/* ---------- SECTIONS ---------- */
+.split-section {
+  height: 100vh;
+}
+
+.bottom-section {
+  height: 100vh;
+}
 
 .video-section {
   width: 100%;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
-.video-section + .video-section {
-  margin-top: 0;
-}
+/* ================= CONTAINERS ================= */
 
-/* ---------- CONTAINERS ---------- */
-
-.split-container,
-.triple-container {
-  display: flex;
+.split-container {
   width: 100%;
   height: 100%;
+  display: flex;
   gap: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* ---------- VIDEO TILE ---------- */
+/* ================= VIDEO TILE ================= */
 
 .video-container {
   position: relative;
-  overflow: hidden;
   background: #000;
+  overflow: hidden;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.5),
-    0 2px 8px rgba(255, 255, 255, 0.03);
+  width: 100%;
+  height: 100%;
 }
 
-/* IFRAME FILL */
-.video-container iframe {
+/* Rounded corners desktop only */
+@media (min-width: 1025px) {
+  .video-container.full-width,
+  .video-container.split-video {
+    border-radius: var(--radius-desktop);
+  }
+
+  .split-container {
+    /* ✅ keeps only the horizontal spacing, no vertical gaps */
+    padding: 0 var(--tile-gap-desktop);
+    gap: var(--tile-gap-desktop);
+  }
+}
+
+/* ================= VIDEO DISPLAY (NO CROPPING) ================= */
+/*
+  We DO NOT scale or translate the iframe.
+  Instead we keep a 16:9 "stage" inside each tile,
+  so the whole video is visible.
+*/
+
+.video-stage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #000;
+}
+
+/* The iframe is placed inside a 16:9 box */
+.video-stage-inner {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  position: relative;
+}
+
+/* Fill the 16:9 inner box */
+.video-stage-inner iframe {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -68,297 +118,74 @@ body {
   border: 0;
 }
 
-.showcase-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  background: #000;
-
-  /* keep your zoom as-is */
-  transform: scale(1.5);
-  transform-origin: center center;
-
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  will-change: transform;
-  pointer-events: none;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.video-container:hover .showcase-video {
-  transform: scale(1.5);
-}
-
-/* ---------- OVERLAY ---------- */
+/* ================= OVERLAY ================= */
 
 .video-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.05) 0%,
-    rgba(0, 0, 0, 0.15) 50%,
-    rgba(0, 0, 0, 0.45) 100%
-  );
+  z-index: 5;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 32px;
-  opacity: 1;
-  transition: all 0.25s ease;
-  z-index: 90;
+  align-items: flex-end;
+  padding: 28px;
   pointer-events: none;
-}
-
-.video-container:hover .video-overlay {
   background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.08) 0%,
-    rgba(0, 0, 0, 0.15) 50%,
-    rgba(0, 0, 0, 0.5) 100%
+    to bottom,
+    rgba(0, 0, 0, 0.02),
+    rgba(0, 0, 0, 0.55)
   );
 }
-
-/* ---------- TITLE ---------- */
 
 .video-title {
+  margin: 0;
   color: #fff;
   font-size: 1rem;
   font-weight: 500;
-  margin: 0;
-  max-width: 70%;
-  text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.95);
-  z-index: 70;
-  opacity: 1;
-  transition: all 0.3s ease;
-  letter-spacing: 0.3px;
-  line-height: 1.5;
-  pointer-events: none;
-  position: relative;
-  text-transform: none;
+  letter-spacing: 0.2px;
+  text-shadow: 0 8px 22px rgba(0,0,0,0.9);
+  max-width: 80%;
 }
 
-.video-container:hover .video-title {
-  text-shadow: 2px 2px 16px rgba(0, 0, 0, 1);
-  transform: translateY(-4px);
+/* ================= MIDDLE LAYOUT ================= */
+
+.video-container.split-video {
+  flex: 1;
+  height: 100%;
 }
 
-@media (min-width: 1025px) {
-  .video-section {
-    height: 100vh;
-  }
-
-  /* ✅ IMPORTANT: first section should be 100vh minus navbar */
-  .video-section:first-of-type {
-    height: calc(100vh - var(--navbar-height));
-  }
-
-  .split-container,
-  .triple-container {
-    gap: var(--tile-gap-desktop);
-    padding: var(--tile-gap-desktop);
-    box-sizing: border-box;
-  }
-
-  .video-container.full-width {
-    width: 100%;
-    height: 100%;
-    border-radius: var(--radius-desktop);
-  }
-
-  .video-container.split-video {
-    flex: 1;
-    height: 100%;
-    border-radius: var(--radius-desktop);
-  }
-
-  .video-container.triple-video {
-    flex: 1;
-    height: 100%;
-    border-radius: var(--radius-desktop);
-  }
-
-  .video-container {
-    overflow: hidden;
-  }
-
-  .video-container,
-  .video-container iframe,
-  .video-overlay,
-  .showcase-video {
-    border-radius: inherit;
-  }
-}
-
-@media (min-width: 1440px) {
-  .video-title {
-    font-size: 1.05rem;
-  }
-
-  .showcase-video {
-    transform: scale(2.5);
-  }
-
-  .video-container:hover .showcase-video {
-    transform: scale(2.5);
-  }
-}
+/* ================= MOBILE ================= */
 
 @media (max-width: 1024px) {
-  .video-section {
-    height: auto;
-  }
-
-  .video-container.full-width {
-    height: 60vh;
-  }
-
-  .video-container.split-video {
-    height: 40vh;
-  }
-
-  .video-container,
-  .video-overlay {
-    border-radius: 14px;
-  }
-
-  .showcase-video {
-    transform: scale(1.5);
-  }
-
-  .video-container:hover .showcase-video {
-    transform: scale(1.5);
-  }
-
-  .video-title {
-    font-size: 0.95rem;
-  }
-
-  .video-overlay {
-    padding: 24px;
-  }
-}
-
-@media (max-width: 768px) {
-  .video-section {
+  .split-container {
     padding: 0;
-    margin: 0;
-  }
-
-  .split-container,
-  .triple-container {
-    flex-direction: row;
     gap: 0;
-    padding: 0;
-    margin: 0;
   }
 
-  .video-container.full-width {
-    width: 100%;
-    height: 50vh;
-    min-height: 350px;
-    max-height: 500px;
-  }
-
+  .video-container.full-width,
   .video-container.split-video {
-    width: 50%;
-    height: 18vh;
-    min-height: 130px;
-    max-height: 180px;
-  }
-
-  .video-container,
-  .video-overlay,
-  .showcase-video {
     border-radius: 0;
   }
 
-  .video-title {
-    font-size: 0.85rem;
-  }
-
   .video-overlay {
-    padding: 20px;
-  }
-
-  .video-container.split-video .showcase-video,
-  .video-container.split-video:hover .showcase-video {
-    transform: scale(2.8);
-  }
-
-  .video-container.full-width .showcase-video,
-  .video-container.full-width:hover .showcase-video {
-    transform: scale(1.5);
-  }
-}
-
-@media (max-width: 480px) {
-  .video-container.split-video {
-    height: 22vh;
-    min-height: 220px;
-    max-height: 300px;
-  }
-
-  .video-container.full-width {
-    height: 40vh;
-    min-height: 280px;
-    max-height: 400px;
+    padding: 18px;
   }
 
   .video-title {
-    font-size: 0.75rem;
-  }
-
-  .video-overlay {
-    padding: 16px;
-  }
-
-  .video-container.split-video .showcase-video,
-  .video-container.split-video:hover .showcase-video {
-    transform: scale(2.8);
+    font-size: 0.9rem;
   }
 }
 
-@media (max-width: 360px) {
-  .video-container.split-video {
-    height: 11vh;
-    min-height: 100px;
-    max-height: 140px;
-  }
-
-  .video-container.full-width {
-    height: 35vh;
-    min-height: 240px;
-    max-height: 350px;
-  }
-
-  .video-title {
-    font-size: 0.7rem;
-  }
-
-  .video-overlay {
-    padding: 12px;
-  }
-
-  .video-container.split-video .showcase-video,
-  .video-container.split-video:hover .showcase-video {
-    transform: scale(2.8);
-  }
-}
+/* ================= FULLSCREEN OVERLAY ================= */
 
 .fullscreen-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.98);
+  background: rgba(0,0,0,0.98);
   z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  animation: fadeIn 0.3s ease;
+  animation: fadeIn 0.25s ease;
 }
 
 @keyframes fadeIn {
@@ -371,58 +198,19 @@ body {
   height: 95vh;
   max-width: 1600px;
   max-height: 900px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
   border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
 }
 
 .close-button {
   position: absolute;
   top: 32px;
   right: 32px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
   width: 56px;
   height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  border: 2px solid rgba(255,255,255,0.3);
   cursor: pointer;
-  transition: all 0.3s ease;
   z-index: 10001;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 0;
-}
-
-.close-button:hover {
-  background: rgba(255, 107, 0, 0.9);
-  border-color: #ff6b00;
-  transform: scale(1.1) rotate(90deg);
-  box-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
-}
-
-@media (hover: none) and (pointer: coarse) {
-  .video-container:active {
-    transform: scale(0.98);
-  }
-  .video-overlay {
-    opacity: 1;
-  }
-}
-
-.showcase-video,
-.video-overlay,
-.video-title {
-  will-change: transform, opacity;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .video-container,
-  .showcase-video,
-  .video-overlay,
-  .video-title,
-  .close-button {
-    transition: none !important;
-  }
 }
