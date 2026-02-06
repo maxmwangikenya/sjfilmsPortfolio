@@ -2,7 +2,6 @@ import React, { useMemo, useState } from "react";
 import "./Photography.css";
 
 const Photography = () => {
-  // ✅ Your three categories + files (exact names)
   const categories = useMemo(
     () => [
       {
@@ -47,13 +46,10 @@ const Photography = () => {
     []
   );
 
-  // ✅ Lightbox (click any image)
   const [lightboxSrc, setLightboxSrc] = useState(null);
   const [lightboxAlt, setLightboxAlt] = useState("");
 
   const buildPublicUrl = (categoryFolder, filename) => {
-    // Images are in: public/Images/Photography/<folder>/<file>
-    // encodeURI fixes spaces in folder & filenames
     const rawPath = `/Images/Photography/${categoryFolder}/${filename}`;
     return encodeURI(rawPath);
   };
