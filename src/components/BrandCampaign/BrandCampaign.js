@@ -14,8 +14,8 @@ const BrandCampaigns = () => {
       title: 'Taji by Darling Kenya Campaign',
     },
     {
-      id: 'EspgpfnoqGg',
-      title: 'Multi-currency card with KCB (Campaign) Stephanie Ng\'ang\'a',
+      id: 'pPi4hI1EjpU',
+      title: 'Artcaffe Baileys (Campaign) Tara Nicole',
     },
     {
       id: 'EBsIT-m69yI',
