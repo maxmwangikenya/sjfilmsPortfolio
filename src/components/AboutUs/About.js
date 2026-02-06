@@ -234,9 +234,7 @@ function About() {
           <Film className="mission-icon" size={50} />
           <h2 className="section-title">Our Mission</h2>
           <p className="mission-text">
-            We bring proven experience delivering high-impact documentary and corporate storytelling
-            for development, corporate, and public-sector organizations, with the operational capacity
-            to deploy teams across Kenya and scale across Africa.
+            At SJ Films, we believe stories carry time, place, and memory. Our work blends cinematic craft with documentary honesty, creating films that feel lived-in, intentional, and human. From intimate narratives to large-scale productions, we approach every project with patience, precision, and purpose.
           </p>
         </div>
       </section>
