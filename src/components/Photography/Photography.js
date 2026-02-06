@@ -15,7 +15,7 @@ const Photography = () => {
         ],
       },
             {
-        title: "University Fund",
+        title: "Universities Fund",
         folder: "University Fund",
         photos: [
           "20251014100746_IMG_9168.jpg",
