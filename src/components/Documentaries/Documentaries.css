@@ -5,9 +5,10 @@
 :root {
   --navbar-height: 80px;
   --radius-desktop: 22px;
+
+  /* ✅ small gap between the 2 videos on laptop/desktop */
+  --desktop-gap: 14px;
 }
-
-
 
 .documentaries-container {
   background: #000;
@@ -23,19 +24,17 @@
   padding: 0;
 }
 
-
 .videos-row {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
-  gap: 0;
+  gap: 0; /* default */
 }
 
 /* Remove wrapper sizing issues */
 .video-item {
   display: contents;
 }
-
 
 .video-container {
   position: relative;
@@ -44,8 +43,6 @@
   overflow: hidden;
   cursor: pointer;
 }
-
-
 
 .video-player,
 .video-container iframe {
@@ -62,8 +59,6 @@
   /* Prevent YouTube UI */
   pointer-events: none;
 }
-
-
 
 .video-overlay {
   position: absolute;
@@ -91,24 +86,25 @@
 ========================================================= */
 
 @media (min-width: 1025px) {
-  
+
+  /* ✅ add a small space between the 2 videos */
   .videos-row {
     height: 85svh;
+    gap: var(--desktop-gap);
+    padding: 0 var(--desktop-gap); /* gives breathing room at edges too */
   }
 
   .video-container {
     height: 100%;
   }
 
-  /* Only outer edges rounded */
+  /* ✅ keep the radius on BOTH tiles (still looks like 2 rounded cards) */
   .videos-row .video-container:first-child {
-    border-top-right-radius: var(--radius-desktop);
-    border-bottom-right-radius: var(--radius-desktop);
+    border-radius: var(--radius-desktop);
   }
 
   .videos-row .video-container:last-child {
-    border-top-left-radius: var(--radius-desktop);
-    border-bottom-left-radius: var(--radius-desktop);
+    border-radius: var(--radius-desktop);
   }
 
   .video-overlay {
@@ -116,15 +112,15 @@
   }
 }
 
-
-
 @media (min-width: 1440px) {
   .videos-row {
     height: 78svh; /* tuned for larger laptop screens */
+    gap: calc(var(--desktop-gap) + 6px); /* a tiny bit more space on large screens */
+    padding: 0 calc(var(--desktop-gap) + 6px);
   }
 }
 
-/* 
+/*
    TABLET
 */
 
@@ -180,7 +176,7 @@
   }
 }
 
-/* 
+/*
    SMALL MOBILE
  */
 
@@ -206,7 +202,7 @@
   }
 }
 
-/* 
+/*
    FULLSCREEN PLAYER
  */
 
