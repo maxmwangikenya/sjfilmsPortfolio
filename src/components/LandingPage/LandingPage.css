@@ -2,8 +2,6 @@
 :root {
   --navbar-height: 80px;
   --radius-desktop: 22px;
-
-  
   --tile-gap-desktop: 18px;
 }
 
@@ -15,6 +13,9 @@
   margin: 0;
   padding: 0;
   position: relative;
+
+  /* ✅ FIX: push content below a fixed/sticky navbar */
+  padding-top: var(--navbar-height);
 }
 
 body {
@@ -42,7 +43,7 @@ body {
   display: flex;
   width: 100%;
   height: 100%;
-  gap: 0; 
+  gap: 0;
 }
 
 /* ---------- VIDEO TILE ---------- */
@@ -67,8 +68,6 @@ body {
   border: 0;
 }
 
-
-
 .showcase-video {
   width: 100%;
   height: 100%;
@@ -76,8 +75,11 @@ body {
   object-position: center;
   display: block;
   background: #000;
+
+  /* keep your zoom as-is */
   transform: scale(1.5);
   transform-origin: center center;
+
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   will-change: transform;
@@ -144,14 +146,16 @@ body {
   transform: translateY(-4px);
 }
 
-
 @media (min-width: 1025px) {
- 
   .video-section {
     height: 100vh;
   }
 
-  /* NEW: create separation between tiles on large screens */
+  /* ✅ IMPORTANT: first section should be 100vh minus navbar */
+  .video-section:first-of-type {
+    height: calc(100vh - var(--navbar-height));
+  }
+
   .split-container,
   .triple-container {
     gap: var(--tile-gap-desktop);
@@ -159,28 +163,24 @@ body {
     box-sizing: border-box;
   }
 
-  /* If you have a full-width row and still want padding around it */
   .video-container.full-width {
     width: 100%;
     height: 100%;
-    border-radius: var(--radius-desktop); /* NEW */
+    border-radius: var(--radius-desktop);
   }
 
-  /* Split tiles */
   .video-container.split-video {
     flex: 1;
     height: 100%;
-    border-radius: var(--radius-desktop); /* NEW */
+    border-radius: var(--radius-desktop);
   }
 
-  /* Triple tiles (if you use them) */
   .video-container.triple-video {
     flex: 1;
     height: 100%;
-    border-radius: var(--radius-desktop); 
+    border-radius: var(--radius-desktop);
   }
 
-  /* ---------- INHERIT ROUNDING + CLIP EVERYTHING ---------- */
   .video-container {
     overflow: hidden;
   }
@@ -193,14 +193,11 @@ body {
   }
 }
 
-
-
 @media (min-width: 1440px) {
   .video-title {
     font-size: 1.05rem;
   }
 
-  /* Increase video zoom to cover div better */
   .showcase-video {
     transform: scale(2.5);
   }
@@ -209,8 +206,6 @@ body {
     transform: scale(2.5);
   }
 }
-
-
 
 @media (max-width: 1024px) {
   .video-section {
@@ -246,8 +241,6 @@ body {
     padding: 24px;
   }
 }
-
-
 
 @media (max-width: 768px) {
   .video-section {
@@ -291,7 +284,6 @@ body {
     padding: 20px;
   }
 
-  /* Extra zoom for split videos */
   .video-container.split-video .showcase-video,
   .video-container.split-video:hover .showcase-video {
     transform: scale(2.8);
@@ -302,8 +294,6 @@ body {
     transform: scale(1.5);
   }
 }
-
-
 
 @media (max-width: 480px) {
   .video-container.split-video {
@@ -332,7 +322,6 @@ body {
   }
 }
 
-
 @media (max-width: 360px) {
   .video-container.split-video {
     height: 11vh;
@@ -359,8 +348,6 @@ body {
     transform: scale(2.8);
   }
 }
-
-
 
 .fullscreen-overlay {
   position: fixed;
@@ -415,8 +402,6 @@ body {
   box-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
 }
 
-
-
 @media (hover: none) and (pointer: coarse) {
   .video-container:active {
     transform: scale(0.98);
@@ -426,15 +411,11 @@ body {
   }
 }
 
-
-
 .showcase-video,
 .video-overlay,
 .video-title {
   will-change: transform, opacity;
 }
-
-
 
 @media (prefers-reduced-motion: reduce) {
   .video-container,
