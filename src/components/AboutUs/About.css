@@ -424,18 +424,21 @@
   overflow: hidden;
 }
 
+/* ✅ Fix cropped faces on larger screens:
+   - bias the crop upward (most portraits need more headroom)
+   - reduce hover zoom so faces don't get cut off */
 .member-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: 50% 22%;
   transition: transform 0.8s ease;
   filter: grayscale(0%) contrast(1.1) brightness(0.95);
   border-radius: 25px 25px 0 0;
 }
 
 .team-card:hover .member-image {
-  transform: scale(1.15);
+  transform: scale(1.08);
   filter: grayscale(0%) contrast(1.2) brightness(1.05);
 }
 
@@ -607,7 +610,7 @@
    - What We Do: 1 row (4)
    - Our Values: 1 row (4)
    - Our Team: 1 row (4)
-   - Logos: 1 row (8) on large laptop, (9) on extra wide
+   - Logos: 7 above + 7 below (2 rows) on large screens
 ========================================================= */
 
 @media (min-width: 1366px) {
@@ -633,15 +636,20 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1.6rem;
   }
-  .team-card { height: 470px; }
 
-  /* 1 row for logos (8) */
+  /* ✅ Give image a bit more vertical room so faces don't crop */
+  .team-card { height: 520px; }
+  .image-wrapper { height: 74%; }
+  .member-image { object-position: 50% 18%; }
+  .team-card:hover .member-image { transform: scale(1.06); }
+
+  /* ✅ Logos: 7 columns => 2 rows for 14 logos */
   .clients-grid {
-    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-template-columns: repeat(7, minmax(0, 1fr));
     gap: 1.05rem;
   }
 
-  /* tighten logo cards so 8 fit in one row comfortably */
+  /* tighten logo cards so 7 per row fits clean */
   .client-card {
     padding: 1.35rem 0.9rem;
     border-radius: 16px;
@@ -668,11 +676,14 @@
   .client-subtitle { font-size: 0.78rem; }
 }
 
-/* Extra wide screens: 9 logos in one row */
+/* Extra wide screens: keep 7 per row (still 7 above + 7 below) */
 @media (min-width: 1700px) {
   .clients-grid {
-    grid-template-columns: repeat(9, minmax(0, 1fr));
+    grid-template-columns: repeat(7, minmax(0, 1fr));
   }
+
+  /* a touch more headroom on ultra-wide */
+  .member-image { object-position: 50% 15%; }
 }
 
 /* ============================================ */
