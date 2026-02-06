@@ -17,14 +17,14 @@ const CorporateEvents = () => {
       type: 'video',
     },
     {
-      id: 'AxwpTJWI7ZU',
-      title: "YM@ NANAI'S CAFE PARTY",
-      type: 'video',
-    },
-    {
       id: 'KCq66d00-tc',
       title: 'Gigiri Social Club - Launch',
       type: 'video', 
+    },
+    {
+      id: 'AxwpTJWI7ZU',
+      title: "YM@ NANAI'S CAFE PARTY",
+      type: 'video',
     },
     {
       id: 'gdXG2XXJ0t4',
