@@ -1,8 +1,10 @@
-/*
-   LANDING PAGE  */
-
+/* LANDING PAGE */
 :root {
-  --navbar-height: 80px; 
+  --navbar-height: 80px;
+  --radius-desktop: 22px;
+
+  /* NEW: spacing between tiles on large screens */
+  --tile-gap-desktop: 18px;
 }
 
 .landing-page {
@@ -15,48 +17,57 @@
   position: relative;
 }
 
-/* Every section wrapper */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* ---------- SECTIONS ---------- */
+
 .video-section {
   width: 100%;
-  position: relative;
-  padding: 0 16px; 
+  padding: 0;
+  margin: 0;
 }
 
 .video-section + .video-section {
-  padding-top: 0;
+  margin-top: 0;
 }
 
-/* Containers */
+/* ---------- CONTAINERS ---------- */
+
 .split-container,
 .triple-container {
   display: flex;
   width: 100%;
-  gap: 0;
-  flex-direction: row;
+  height: 100%;
+  gap: 0; /* default (mobile/tablet keeps touch) */
 }
+
+/* ---------- VIDEO TILE ---------- */
 
 .video-container {
   position: relative;
   overflow: hidden;
   background: #000;
-  border-radius: 16px;
+  cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.5),
     0 2px 8px rgba(255, 255, 255, 0.03);
-  cursor: pointer;
-  display: block;
 }
 
+/* IFRAME FILL */
 .video-container iframe {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
-  display: block;
-  object-fit: cover;
 }
+
+/* ---------- ZOOM LOOK ---------- */
 
 .showcase-video {
   width: 100%;
@@ -65,10 +76,8 @@
   object-position: center;
   display: block;
   background: #000;
-
   transform: scale(1.5);
   transform-origin: center center;
-
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   will-change: transform;
@@ -80,14 +89,16 @@
   transform: scale(1.5);
 }
 
+/* ---------- OVERLAY ---------- */
+
 .video-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0.05) 0%,
-    rgba(0, 0, 0, 0.1) 50%,
-    rgba(0, 0, 0, 0.4) 100%
+    rgba(0, 0, 0, 0.15) 50%,
+    rgba(0, 0, 0, 0.45) 100%
   );
   display: flex;
   flex-direction: column;
@@ -97,7 +108,6 @@
   opacity: 1;
   transition: all 0.25s ease;
   z-index: 90;
-  border-radius: inherit;
   pointer-events: none;
 }
 
@@ -109,6 +119,8 @@
     rgba(0, 0, 0, 0.5) 100%
   );
 }
+
+/* ---------- TITLE ---------- */
 
 .video-title {
   color: #fff;
@@ -124,7 +136,7 @@
   line-height: 1.5;
   pointer-events: none;
   position: relative;
-   text-transform: none;
+  text-transform: none;
 }
 
 .video-container:hover .video-title {
@@ -132,106 +144,241 @@
   transform: translateY(-4px);
 }
 
-/* 
-   DESKTOP */
+/* =========================================================
+   DESKTOP / LAPTOP (1025px and above)
+   - Make tiles look separated (gap + radius on each tile)
+========================================================= */
+
 @media (min-width: 1025px) {
-  .landing-page {
-    padding-top: 0;
-  }
-
+  /* ---------- FULLSCREEN ROW ---------- */
   .video-section {
-    padding: 0;
-    margin: 0;
-  }
-
-  .hero-section {
-    padding: 0;
-    margin: 0;
-  }
-
-  .hero-section .video-container.full-width {
-    width: 100%;
     height: 100vh;
-    height: 100svh;
-    height: 100dvh;
-    border-radius: 0;
-    min-height: unset;
-    max-height: none;
   }
 
-  .hero-section .video-overlay,
-  .hero-section .showcase-video {
-    border-radius: 0;
+  /* NEW: create separation between tiles on large screens */
+  .split-container,
+  .triple-container {
+    gap: var(--tile-gap-desktop);
+    padding: var(--tile-gap-desktop);
+    box-sizing: border-box;
   }
 
-  .split-section {
-    padding: 0;
-    margin: 0;
-  }
-
-  .split-section .split-container {
+  /* If you have a full-width row and still want padding around it */
+  .video-container.full-width {
     width: 100%;
-    height: 100vh;
-    height: 100svh;
-    height: 100dvh;
-    display: flex;
-    gap: 0; /* NO gaps */
-  }
-
-  .split-section .video-container.split-video {
-    flex: 1;
-    width: 50%;
     height: 100%;
-    min-height: unset;
-    max-height: none;
-    border-radius: 0; /* base */
+    border-radius: var(--radius-desktop); /* NEW */
   }
 
-  .split-section .video-container.split-video:first-child {
-    border-top-right-radius: 22px;
-    border-bottom-right-radius: 22px;
+  /* Split tiles */
+  .video-container.split-video {
+    flex: 1;
+    height: 100%;
+    border-radius: var(--radius-desktop); /* NEW */
   }
 
-  .split-section .video-container.split-video:last-child {
-    border-top-left-radius: 22px;
-    border-bottom-left-radius: 22px;
+  /* Triple tiles (if you use them) */
+  .video-container.triple-video {
+    flex: 1;
+    height: 100%;
+    border-radius: var(--radius-desktop); /* NEW */
   }
 
-  .split-section .video-container iframe,
-  .split-section .video-container .showcase-video,
-  .split-section .video-container .video-overlay {
+  /* ---------- INHERIT ROUNDING + CLIP EVERYTHING ---------- */
+  .video-container {
+    overflow: hidden;
+  }
+
+  .video-container,
+  .video-container iframe,
+  .video-overlay,
+  .showcase-video {
     border-radius: inherit;
   }
-
-  .bottom-section {
-    padding: 0;
-    margin: 0;
-  }
-
-  .bottom-section .video-container.full-width {
-    width: 100%;
-    height: 100vh;
-    height: 100svh;
-    height: 100dvh;
-    border-radius: 0;
-    min-height: unset;
-    max-height: none;
-  }
-
-  .bottom-section .video-overlay,
-  .bottom-section .showcase-video {
-    border-radius: 0;
-  }
 }
+
+/* =========================================================
+   LARGER LAPTOP (1440px+)
+========================================================= */
 
 @media (min-width: 1440px) {
   .video-title {
     font-size: 1.05rem;
   }
+
+  /* Increase video zoom to cover div better */
+  .showcase-video {
+    transform: scale(2.5);
+  }
+
+  .video-container:hover .showcase-video {
+    transform: scale(2.5);
+  }
 }
 
-/* 
-   FULLSCREEN OVERLAY */
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1024px) {
+  .video-section {
+    height: auto;
+  }
+
+  .video-container.full-width {
+    height: 60vh;
+  }
+
+  .video-container.split-video {
+    height: 40vh;
+  }
+
+  .video-container,
+  .video-overlay {
+    border-radius: 14px;
+  }
+
+  .showcase-video {
+    transform: scale(1.5);
+  }
+
+  .video-container:hover .showcase-video {
+    transform: scale(1.5);
+  }
+
+  .video-title {
+    font-size: 0.95rem;
+  }
+
+  .video-overlay {
+    padding: 24px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  .video-section {
+    padding: 0;
+    margin: 0;
+  }
+
+  .split-container,
+  .triple-container {
+    flex-direction: row;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  .video-container.full-width {
+    width: 100%;
+    height: 50vh;
+    min-height: 350px;
+    max-height: 500px;
+  }
+
+  .video-container.split-video {
+    width: 50%;
+    height: 18vh;
+    min-height: 130px;
+    max-height: 180px;
+  }
+
+  .video-container,
+  .video-overlay,
+  .showcase-video {
+    border-radius: 0;
+  }
+
+  .video-title {
+    font-size: 0.85rem;
+  }
+
+  .video-overlay {
+    padding: 20px;
+  }
+
+  /* Extra zoom for split videos */
+  .video-container.split-video .showcase-video,
+  .video-container.split-video:hover .showcase-video {
+    transform: scale(2.8);
+  }
+
+  .video-container.full-width .showcase-video,
+  .video-container.full-width:hover .showcase-video {
+    transform: scale(1.5);
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+  .video-container.split-video {
+    height: 22vh;
+    min-height: 220px;
+    max-height: 300px;
+  }
+
+  .video-container.full-width {
+    height: 40vh;
+    min-height: 280px;
+    max-height: 400px;
+  }
+
+  .video-title {
+    font-size: 0.75rem;
+  }
+
+  .video-overlay {
+    padding: 16px;
+  }
+
+  .video-container.split-video .showcase-video,
+  .video-container.split-video:hover .showcase-video {
+    transform: scale(2.8);
+  }
+}
+
+/* =========================================================
+   EXTRA SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+  .video-container.split-video {
+    height: 11vh;
+    min-height: 100px;
+    max-height: 140px;
+  }
+
+  .video-container.full-width {
+    height: 35vh;
+    min-height: 240px;
+    max-height: 350px;
+  }
+
+  .video-title {
+    font-size: 0.7rem;
+  }
+
+  .video-overlay {
+    padding: 12px;
+  }
+
+  .video-container.split-video .showcase-video,
+  .video-container.split-video:hover .showcase-video {
+    transform: scale(2.8);
+  }
+}
+
+/* =========================================================
+   FULLSCREEN OVERLAY
+========================================================= */
+
 .fullscreen-overlay {
   position: fixed;
   inset: 0;
@@ -285,163 +432,9 @@
   box-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
 }
 
-/* 
-   TABLET */
-@media (max-width: 1024px) {
-  .video-section {
-    padding: 0 12px;
-  }
-
-  .split-container,
-  .triple-container {
-    gap: 0;
-  }
-
-  .video-title {
-    font-size: 0.95rem;
-  }
-
-  .video-overlay {
-    padding: 24px;
-  }
-
-  .video-container,
-  .video-overlay {
-    border-radius: 14px;
-  }
-
-  .showcase-video {
-    transform: scale(1.5);
-  }
-
-  .video-container:hover .showcase-video {
-    transform: scale(1.5);
-  }
-}
-
-/* 
-   MOBILE*/
-@media (max-width: 768px) {
-  .video-section {
-    padding: 0;
-    margin: 0;
-  }
-
-  .split-container,
-  .triple-container {
-    gap: 0;
-    padding: 0;
-    margin: 0;
-  }
-
-  .video-container.split-video {
-    width: 50%;
-    height: 16vh;
-    min-height: 130px;
-    max-height: 180px;
-  }
-
-  .video-container.full-width {
-    width: 100%;
-    height: 50vh;
-    min-height: 350px;
-    max-height: 500px;
-  }
-
-  .video-title {
-    font-size: 0.85rem;
-  }
-
-  .video-overlay {
-    padding: 20px;
-  }
-
-  .video-container,
-  .video-overlay {
-    border-radius: 0;
-  }
-
-  .close-button {
-    top: 20px;
-    right: 20px;
-    width: 48px;
-    height: 48px;
-  }
-
-  .video-container.split-video .showcase-video,
-  .video-container.split-video:hover .showcase-video {
-    transform: scale(2.8);
-  }
-
-  .video-container.full-width .showcase-video,
-  .video-container.full-width:hover .showcase-video {
-    transform: scale(1.5);
-  }
-}
-
-@media (max-width: 480px) {
-  .video-container.split-video {
-    height: 20vh;
-    min-height: 220px;
-    max-height: 300px;
-  }
-
-  .video-container.full-width {
-    height: 40vh;
-    min-height: 280px;
-    max-height: 400px;
-  }
-
-  .video-title {
-    font-size: 0.75rem;
-  }
-
-  .video-overlay {
-    padding: 16px;
-  }
-
-  .video-container,
-  .video-overlay {
-    border-radius: 0;
-  }
-
-  .video-container.split-video .showcase-video,
-  .video-container.split-video:hover .showcase-video {
-    transform: scale(2.8);
-  }
-}
-
-@media (max-width: 360px) {
-  .video-container.split-video {
-    height: 11vh;
-    min-height: 100px;
-    max-height: 140px;
-  }
-
-  .video-container.full-width {
-    height: 35vh;
-    min-height: 240px;
-    max-height: 350px;
-  }
-
-  .video-title {
-    font-size: 0.7rem;
-  }
-
-  .video-overlay {
-    padding: 12px;
-  }
-
-  .close-button {
-    width: 44px;
-    height: 44px;
-  }
-
-  .video-container.split-video .showcase-video,
-  .video-container.split-video:hover .showcase-video {
-    transform: scale(2.8);
-  }
-}
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
 
 @media (hover: none) and (pointer: coarse) {
   .video-container:active {
@@ -452,11 +445,19 @@
   }
 }
 
+/* =========================================================
+   PERFORMANCE
+========================================================= */
+
 .showcase-video,
 .video-overlay,
 .video-title {
   will-change: transform, opacity;
 }
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .video-container,
@@ -464,6 +465,6 @@
   .video-overlay,
   .video-title,
   .close-button {
-    transition: none;
+    transition: none !important;
   }
 }

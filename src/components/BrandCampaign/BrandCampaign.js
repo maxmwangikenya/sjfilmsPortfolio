@@ -10,7 +10,7 @@ const BrandCampaigns = () => {
       title: 'Indulgence with Baileys (Campaign) Tara Nicole',
     },
     {
-      id: '1zHCWS4JdYQ',
+      id: 'LtocS1MO9mE',
       title: 'Taji by Darling Kenya Campaign',
     },
     {
@@ -34,7 +34,7 @@ const BrandCampaigns = () => {
       title: 'Spotify Wrapped 2025 (Campaign) Maina Mind',
     },
     {
-      id: 'qsD8H-KDIkE',
+      id: 'A4jA8__RTqM',
       title: 'Krackles (Campaign) Victor Karanja x Cris Njoki',
     }
   ];

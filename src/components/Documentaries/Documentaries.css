@@ -33,7 +33,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
-  gap: 0; 
+  gap: 0;
 }
 
 /* Remove wrapper sizing issues */
@@ -103,8 +103,9 @@
 ========================================================= */
 
 @media (min-width: 1025px) {
+  /* Reduce ONLY the div/container height (not the videos) */
   .videos-row {
-    height: 100svh;
+    height: 85svh; /* was 100svh */
   }
 
   .video-container {
@@ -124,6 +125,17 @@
 
   .video-overlay {
     padding-top: calc(28px + var(--navbar-height));
+  }
+}
+
+/* =========================================================
+   LARGE LAPTOPS / BIG SCREENS (1440px+)
+   Reduce the container height more (bigger screens feel too tall)
+========================================================= */
+
+@media (min-width: 1440px) {
+  .videos-row {
+    height: 78svh; /* tuned for larger laptop screens */
   }
 }
 
@@ -154,11 +166,11 @@
 @media (max-width: 768px) {
   .videos-row {
     grid-template-columns: 1fr;
-    gap: 0; 
+    gap: 0;
   }
 
   .video-container {
-    height: 42vh;      
+    height: 42vh;
     min-height: 240px;
     max-height: 360px;
     border-radius: 14px;
@@ -166,7 +178,7 @@
 
   /* Remove radius overlap */
   .video-container:not(:first-child) {
-    margin-top: -14px; 
+    margin-top: -14px;
   }
 
   .video-overlay {

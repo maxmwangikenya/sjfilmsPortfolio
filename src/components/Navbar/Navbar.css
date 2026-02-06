@@ -118,13 +118,13 @@
 
 /* REDUCED BOOK NOW BUTTON - DESKTOP */
 .book-now-btn {
-  padding: 0.25rem 0.8rem; /* REDUCED: was 0.4rem 1rem */
+  padding: 0.25rem 0.8rem;
   background: #ff6b00;
   color: white;
   border: 2px solid #ff6b00;
-  border-radius: 40px; /* REDUCED: was 50px */
+  border-radius: 40px;
   font-weight: 400;
-  font-size: 0.8rem; /* REDUCED: was 0.9rem */
+  font-size: 0.8rem;
   letter-spacing: 1px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -134,7 +134,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(255, 107, 0, 0.15); /* REDUCED shadow */
+  box-shadow: 0 2px 8px rgba(255, 107, 0, 0.15);
 }
 
 .book-now-btn::before {
@@ -151,12 +151,12 @@
 }
 
 .book-now-btn:hover::before {
-  width: 100px; /* REDUCED: was 120px */
+  width: 100px;
   height: 100px;
 }
 
 .book-now-btn:hover {
-  transform: translateY(-2px); /* REDUCED: was -3px */
+  transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(255, 107, 0, 0.2);
   background: #e05a00;
   border-color: #e05a00;
@@ -275,13 +275,13 @@
 /* REDUCED BOOK NOW BUTTON - MOBILE MENU */
 .mobile-book-btn {
   margin-top: 1.5rem;
-  padding: 0.8rem 1.5rem; /* REDUCED: was 1.1rem 2rem */
+  padding: 0.8rem 1.5rem;
   background: #ff6b00;
   color: white;
   border: 2px solid #ff6b00;
-  border-radius: 40px; /* REDUCED: was 50px */
+  border-radius: 40px;
   font-weight: 400;
-  font-size: 1rem; /* REDUCED: was 1.1rem */
+  font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
@@ -290,11 +290,11 @@
   justify-content: center;
   text-align: center;
   letter-spacing: 1px;
-  box-shadow: 0 3px 12px rgba(255, 107, 0, 0.2); /* REDUCED shadow */
+  box-shadow: 0 3px 12px rgba(255, 107, 0, 0.2);
 }
 
 .mobile-book-btn:hover {
-  transform: scale(1.03); /* REDUCED: was 1.05 */
+  transform: scale(1.03);
   box-shadow: 0 8px 24px rgba(255, 107, 0, 0.35);
   background: #e05a00;
   border-color: #e05a00;
@@ -304,6 +304,11 @@
   .nav-desktop { display: none; }
   .mobile-menu-btn { display: block; }
 }
+
+/* =========================================================
+   LARGE SCREENS (1240px+)
+   Move CONTACT closer by tightening spacing in the link group
+========================================================= */
 
 @media (min-width: 1240px) {
   :root {
@@ -320,9 +325,14 @@
 
   .navbar-logo { height: clamp(48px, 4.4vw, 96px); }
 
-  .nav-desktop { gap: clamp(16px, 2.6vw, 48px); }
+  /* tighter overall spacing */
+  .nav-desktop { gap: clamp(12px, 1.8vw, 34px); } /* was clamp(16px, 2.6vw, 48px) */
 
-  .nav-links-group { gap: clamp(12px, 1.6vw, 36px); margin-right: clamp(12px, 2vw, 48px); }
+  /* ✅ bring CONTACT closer */
+  .nav-links-group {
+    gap: clamp(8px, 1vw, 20px);          /* was clamp(12px, 1.6vw, 36px) */
+    margin-right: clamp(4px, 0.9vw, 14px); /* was clamp(12px, 2vw, 48px) */
+  }
 
   .nav-link {
     font-size: clamp(1rem, 0.9vw, 1.2rem);
@@ -330,11 +340,10 @@
     padding: clamp(8px, 0.6vw, 14px) 0;
   }
 
-  /* REDUCED BOOK NOW BUTTON - LARGE SCREENS */
   .book-now-btn {
-    padding: clamp(0.35rem, 0.6vw, 0.8rem) clamp(1rem, 2vw, 2rem); /* REDUCED clamp values */
-    font-size: clamp(0.75rem, 0.75vw, 0.9rem); /* REDUCED font sizes */
-    border-radius: clamp(32px, 2.5vw, 48px); /* REDUCED border radius */
+    padding: clamp(0.35rem, 0.6vw, 0.8rem) clamp(0.9rem, 1.6vw, 1.7rem); /* slightly tighter too */
+    font-size: clamp(0.75rem, 0.75vw, 0.9rem);
+    border-radius: clamp(32px, 2.5vw, 48px);
   }
 
   .nav-link:hover { transform: translateY(-3px); }
