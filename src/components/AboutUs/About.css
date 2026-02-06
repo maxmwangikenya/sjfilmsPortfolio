@@ -424,7 +424,6 @@
   overflow: hidden;
 }
 
-/* ✅ TEAM IMAGE: keep centered and clean */
 .member-image {
   width: 100%;
   height: 100%;
@@ -494,7 +493,7 @@
 }
 
 /* ============================================ */
-/* CLIENTS SECTION — ONLY LOGOS CHANGED */
+/* CLIENTS SECTION */
 /* ============================================ */
 
 .clients-section {
@@ -531,7 +530,6 @@
   box-shadow: 0 18px 35px rgba(0, 0, 0, 0.55);
 }
 
-/* ✅ SMALLER BADGES (desktop default) */
 .client-logo-wrapper {
   display: inline-flex;
   align-items: center;
@@ -547,7 +545,6 @@
   transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
 }
 
-/* ✅ DARK BACKGROUND for white logos (Gigiri + YellowMoon) */
 .client-logo-wrapper.logo-dark {
   background: rgba(18, 18, 18, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -571,7 +568,6 @@
   box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
 }
 
-/* ✅ SMALLER LOGOS */
 .client-logo {
   max-height: 44px;
   max-width: 125px;
@@ -607,6 +603,79 @@
 }
 
 /* ============================================ */
+/* ✅ LARGE LAPTOP / DESKTOP (ONE ROW LAYOUTS)
+   - What We Do: 1 row (4)
+   - Our Values: 1 row (4)
+   - Our Team: 1 row (4)
+   - Logos: 1 row (8) on large laptop, (9) on extra wide
+========================================================= */
+
+@media (min-width: 1366px) {
+  /* give grids more room */
+  .services-grid,
+  .values-grid,
+  .team-grid,
+  .clients-grid {
+    max-width: 1600px;
+  }
+
+  /* 1 row for services + values */
+  .services-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.4rem; }
+  .values-grid   { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.4rem; }
+
+  /* make cards slightly tighter so they fit nicely */
+  .service-card, .value-card {
+    padding: 2.4rem 1.6rem;
+  }
+
+  /* 1 row for team (4 cards) */
+  .team-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.6rem;
+  }
+  .team-card { height: 470px; }
+
+  /* 1 row for logos (8) */
+  .clients-grid {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 1.05rem;
+  }
+
+  /* tighten logo cards so 8 fit in one row comfortably */
+  .client-card {
+    padding: 1.35rem 0.9rem;
+    border-radius: 16px;
+  }
+
+  .client-logo-wrapper {
+    width: 100%;
+    min-height: 56px;
+    padding: 8px 10px;
+    border-radius: 10px;
+  }
+
+  .client-logo {
+    max-height: 40px;
+    max-width: 110px;
+  }
+
+  .client-logo.svg-logo {
+    max-height: 44px;
+    max-width: 118px;
+  }
+
+  .client-name { font-size: 0.9rem; }
+  .client-subtitle { font-size: 0.78rem; }
+}
+
+/* Extra wide screens: 9 logos in one row */
+@media (min-width: 1700px) {
+  .clients-grid {
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+  }
+}
+
+/* ============================================ */
 /* RESPONSIVE */
 /* ============================================ */
 
@@ -621,7 +690,7 @@
   }
 }
 
-/* ✅ MOBILE: reduce logo badge width + team images centered + radius 16px */
+/* ✅ MOBILE */
 @media (max-width: 768px) {
   .about-hero {
     padding: 8rem 1rem 4rem;
@@ -629,7 +698,6 @@
   }
 
   .company-logo { max-height: 100px; }
-
   .hero-title { font-size: 2.8rem; }
   .section-title { font-size: 2.2rem; }
   .hero-description { font-size: 1.1rem; padding: 0 1rem; }
@@ -641,28 +709,21 @@
     gap: 1.5rem;
   }
 
-  /* TEAM layout better on mobile */
   .team-grid {
     grid-template-columns: 1fr;
     gap: 1.75rem;
   }
 
-  .team-card {
-    height: 460px;
-  }
+  .team-card { height: 460px; }
 
-  /* ✅ set border radius to 16px on mobile for team cards */
   .card-front,
-  .card-back {
-    border-radius: 16px;
-  }
+  .card-back { border-radius: 16px; }
 
   .member-image {
     border-radius: 16px 16px 0 0;
     object-position: center;
   }
 
-  /* CLIENTS grid on mobile */
   .clients-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
@@ -674,7 +735,6 @@
     gap: 0.75rem;
   }
 
-  /* ✅ reduce logo badge width on mobile */
   .client-logo-wrapper {
     width: min(120px, 86%);
     min-height: 52px;
@@ -706,10 +766,8 @@
 @media (max-width: 480px) {
   .hero-title { font-size: 2.2rem; }
   .section-title { font-size: 1.8rem; }
-
   .company-logo { max-height: 80px; }
 
-  /* keep 2 columns but tighter */
   .clients-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.85rem;
@@ -736,14 +794,10 @@
     max-width: 112px;
   }
 
-  /* TEAM: a bit shorter on small phones */
-  .team-card {
-    height: 440px;
-  }
+  .team-card { height: 440px; }
 }
 
 @media (max-width: 360px) {
-  /* switch logos to 1 column for tiny screens */
   .clients-grid {
     grid-template-columns: 1fr;
     gap: 0.9rem;
@@ -759,9 +813,7 @@
     max-width: 120px;
   }
 
-  .team-card {
-    height: 430px;
-  }
+  .team-card { height: 430px; }
 }
 
 /* ========================================================= */
