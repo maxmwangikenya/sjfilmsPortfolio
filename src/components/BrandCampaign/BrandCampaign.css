@@ -229,12 +229,12 @@ body {
 
   /* ✅ Make video #5 section ALSO big like hero */
   .full-section {
-    height: 73vh; /* ✅ CHANGED from 25vh -> 73vh */
+    height: 73vh;
   }
 
   /* ✅ Both triple sections remain 28vh */
   .triple-section {
-    height: 28vh; /* ✅ ensures triple under #5 matches top triple */
+    height: 28vh;
   }
 
   .triple-container {
@@ -265,30 +265,24 @@ body {
   }
 
   /* =========================================================
-     ✅ VIDEO #5 (FULL SECTION) — MAKE IT HERO-LIKE
-     - BIG SECTION HEIGHT already set to 73vh above
-     - NOW apply the same iframe overscan + zoom 1.6
+     ✅ VIDEO #5 (FULL SECTION) — INCREASE VIDEO ONLY TO FILL DIV
+     (ONLY CHANGED BLOCK)
   ========================================================= */
   .full-section .video-container.full-width iframe {
-    width: calc(100% + 200px);
-    left: -100px;
+    width: calc(100% + 320px);  /* ✅ increased */
+    left: -160px;               /* ✅ re-center */
 
-    height: calc(100% + 440px);
-    top: -220px;
+    height: calc(100% + 560px); /* ✅ increased */
+    top: -280px;                /* ✅ re-center */
 
-    transform: scale(var(--zoom-hero)) !important; /* ✅ zoom 1.6 */
+    transform: scale(var(--zoom-hero)) !important; /* keep zoom 1.6 */
   }
 
   /* =========================================================
      ✅ VIDEOS #6–#8 ONLY (TRIPLE BELOW VIDEO #5)
-     We target ONLY the 2nd triple-section using nth-of-type(4):
-       1) hero-section
-       2) triple (2-4)
-       3) full (5)
-       4) triple (6-8)  <-- THIS ONE
   ========================================================= */
   .brand-campaigns-page > .video-section.triple-section:nth-of-type(4) {
-    height: 28vh; /* ✅ explicit */
+    height: 28vh;
   }
 
   .brand-campaigns-page
