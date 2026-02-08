@@ -26,7 +26,6 @@ body {
 }
 
 /* ================= SECTIONS ================= */
-/* Each section fills the screen (minus navbar for first) */
 
 .hero-section {
   height: calc(100vh - var(--navbar-height));
@@ -52,10 +51,6 @@ body {
   width: 100%;
   height: 100%;
   display: flex;
-  gap: 0;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 /* ================= VIDEO TILE ================= */
@@ -63,13 +58,14 @@ body {
 .video-container {
   position: relative;
   background: #000;
-  overflow: hidden;
+  overflow: hidden; /* REQUIRED for overscan */
   cursor: pointer;
   width: 100%;
   height: 100%;
 }
 
-/* Rounded corners desktop only */
+/* ================= DESKTOP ONLY ================= */
+
 @media (min-width: 1025px) {
   .video-container.full-width,
   .video-container.split-video {
@@ -77,18 +73,12 @@ body {
   }
 
   .split-container {
-    /* ✅ keeps only the horizontal spacing, no vertical gaps */
     padding: 0 var(--tile-gap-desktop);
     gap: var(--tile-gap-desktop);
   }
 }
 
-/* ================= VIDEO DISPLAY (NO CROPPING) ================= */
-/*
-  We DO NOT scale or translate the iframe.
-  Instead we keep a 16:9 "stage" inside each tile,
-  so the whole video is visible.
-*/
+/* ================= VIDEO DISPLAY ================= */
 
 .video-stage {
   position: absolute;
@@ -98,23 +88,30 @@ body {
   background: #000;
 }
 
-/* The iframe is placed inside a 16:9 box */
 .video-stage-inner {
   width: 100%;
   height: 100%;
-  max-width: 100%;
-  max-height: 100%;
   aspect-ratio: 16 / 9;
-  background: #000;
   position: relative;
 }
 
-/* Fill the 16:9 inner box */
+/* =========================================================
+   🔥 ACTUAL FIX: FORCE TRUE CENTERING
+   Overscan + center to counter YouTube right bias
+========================================================= */
+
 .video-stage-inner iframe {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  top: 50%;
+  left: 50%;
+
+  /* Overscan */
+  width: 120%;
+  height: 120%;
+
+  /* True centering */
+  transform: translate(-50%, -50%);
+
   border: 0;
 }
 
@@ -130,38 +127,36 @@ body {
   pointer-events: none;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.02),
-    rgba(0, 0, 0, 0.55)
+    rgba(0,0,0,0.02),
+    rgba(0,0,0,0.55)
   );
 }
 
 .video-title {
-  margin: 0;
   color: #fff;
   font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.2px;
   text-shadow: 0 8px 22px rgba(0,0,0,0.9);
-  max-width: 80%;
 }
 
 /* ================= MIDDLE LAYOUT ================= */
 
 .video-container.split-video {
   flex: 1;
-  height: 100%;
 }
 
 /* ================= MOBILE ================= */
 
 @media (max-width: 1024px) {
-  .split-container {
-    padding: 0;
-    gap: 0;
+
+  .split-section {
+    height: 25vh;
   }
 
-  .video-container.full-width,
-  .video-container.split-video {
+  .bottom-section {
+    height: 63vh;
+  }
+
+  .video-container {
     border-radius: 0;
   }
 
@@ -174,7 +169,7 @@ body {
   }
 }
 
-/* ================= FULLSCREEN OVERLAY ================= */
+/* ================= FULLSCREEN ================= */
 
 .fullscreen-overlay {
   position: fixed;
@@ -184,13 +179,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  animation: fadeIn 0.25s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 
 .fullscreen-video {
@@ -199,18 +187,4 @@ body {
   max-width: 1600px;
   max-height: 900px;
   border-radius: 12px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
-}
-
-.close-button {
-  position: absolute;
-  top: 32px;
-  right: 32px;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.1);
-  border: 2px solid rgba(255,255,255,0.3);
-  cursor: pointer;
-  z-index: 10001;
 }
