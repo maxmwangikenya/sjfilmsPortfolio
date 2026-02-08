@@ -10,11 +10,9 @@
   --radius-desktop: 22px;
   --tile-gap-desktop: 18px;
 
-  /* default zooms for non-hero sections */
+  /* default zooms */
   --zoom-full: 1.22;
   --zoom-triple: 1.45;
-
-  /* hero base zoom (small) */
   --zoom-hero: 1.05;
 }
 
@@ -36,6 +34,8 @@ body {
   margin: 0;
   padding: 0;
   position: relative;
+
+  /* Desktop/tablet behavior */
   padding-top: var(--navbar-height);
 }
 
@@ -65,9 +65,9 @@ body {
   width: 100%;
   height: 100%;
   display: flex;
-  box-sizing: border-box;
   gap: var(--tile-gap-desktop);
   padding: var(--tile-gap-desktop);
+  box-sizing: border-box;
 }
 
 /* ================= VIDEO TILE ================= */
@@ -81,13 +81,11 @@ body {
   cursor: pointer;
 }
 
-/* full width tiles */
 .video-container.full-width {
   width: 100%;
   height: 100%;
 }
 
-/* triple tiles */
 .video-container.triple-video {
   flex: 1;
   height: 100%;
@@ -109,7 +107,7 @@ body {
 }
 
 /* ================= HERO FULL BLEED ================= */
-/* Force ONLY the first hero tile to touch edges */
+
 .hero-section .video-container.hero-video {
   width: 100vw;
   margin-left: calc(50% - 50vw);
@@ -132,50 +130,33 @@ body {
   border: 0;
   pointer-events: none;
   transform-origin: center center;
-
-  /* ✅ remove any hover transitions */
   transition: none !important;
 }
 
-/* ================= STATIC (NO HOVER CHANGE) ================= */
+/* ================= STATIC ================= */
 
 .video-container:hover iframe {
   transform: none !important;
 }
 
-/* Re-apply transforms so hover never changes anything */
 .video-container.full-width:not(.hero-video) iframe {
   transform: scale(var(--zoom-full));
-}
-.video-container.full-width:not(.hero-video):hover iframe {
-  transform: scale(var(--zoom-full)) !important;
 }
 
 .video-container.triple-video iframe {
   transform: scale(var(--zoom-triple));
 }
-.video-container.triple-video:hover iframe {
-  transform: scale(var(--zoom-triple)) !important;
-}
 
-/* ================= HERO FIRST VIDEO FIX ================= */
-/*
-  The black gaps left/right on some laptops come from YouTube’s internal
-  aspect handling. Scaling the iframe scales the black bars too.
-  Fix: oversize iframe in PX only for the first hero video and center it.
-*/
+/* ================= HERO DEFAULT OVERSCAN ================= */
+
 .video-container.hero-video iframe {
   transform: scale(var(--zoom-hero));
 }
-.video-container.hero-video:hover iframe {
-  transform: scale(var(--zoom-hero)) !important;
-}
 
-/* ✅ ONLY FIRST VIDEO gets extra width in px to kill side gaps */
 .video-container.hero-first iframe {
-  width: calc(100% + 1000px);   /* increase width in px */
-  left: -500px;               /* center the extra width */
-  height: calc(100% + 140px); /* also reduce any top/bottom bars */
+  width: calc(100% + 1000px);
+  left: -500px;
+  height: calc(100% + 140px);
   top: -70px;
   transform: scale(var(--zoom-hero)) !important;
 }
@@ -202,9 +183,8 @@ body {
   color: #fff;
   font-size: 1rem;
   font-weight: 500;
-  letter-spacing: 0.2px;
-  text-shadow: 0 8px 22px rgba(0, 0, 0, 0.9);
   max-width: 85%;
+  text-shadow: 0 8px 22px rgba(0, 0, 0, 0.9);
 }
 
 /* ================= TABLET ================= */
@@ -213,18 +193,9 @@ body {
   :root {
     --radius-desktop: 16px;
     --tile-gap-desktop: 12px;
-
     --zoom-hero: 1.03;
     --zoom-full: 1.18;
     --zoom-triple: 1.55;
-  }
-
-  .video-overlay {
-    padding: 18px;
-  }
-
-  .video-title {
-    font-size: 0.95rem;
   }
 
   .video-container.hero-first iframe {
@@ -239,35 +210,91 @@ body {
 
 @media (max-width: 768px) {
   :root {
-    --tile-gap-desktop: 10px;
-
-    --zoom-hero: 1.02;
+    --navbar-height: 85px;
+    --zoom-hero: 1.6;
     --zoom-full: 1.12;
     --zoom-triple: 1.65;
   }
 
+  .brand-campaigns-page {
+    padding-top: 0;
+  }
+
+  /* HERO (video #1) stays big */
+  .hero-section {
+    height: 73vh;
+    padding-top: var(--navbar-height);
+    box-sizing: border-box;
+  }
+
+  /* ✅ Make video #5 section ALSO big like hero */
+  .full-section {
+    height: 73vh; /* ✅ CHANGED from 25vh -> 73vh */
+  }
+
+  /* ✅ Both triple sections remain 28vh */
+  .triple-section {
+    height: 28vh; /* ✅ ensures triple under #5 matches top triple */
+  }
+
   .triple-container {
-    gap: var(--tile-gap-desktop);
-    padding: var(--tile-gap-desktop);
+    gap: 0;
+    padding: 0;
+  }
+
+  .video-container.full-width,
+  .video-container.triple-video {
+    border-radius: 0 !important;
   }
 
   .video-title {
     font-size: 0.9rem;
   }
 
-  /* keep hero full-bleed on mobile */
-  .hero-section .video-container.hero-video {
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-    border-radius: 0 !important;
+  /* =========================================================
+     VIDEO #1 (HERO) — VIDEO OVERSCAN (IFRAME ONLY)
+  ========================================================= */
+  .video-container.hero-first iframe {
+    width: calc(100% + 200px);
+    left: -100px;
+
+    height: calc(100% + 440px);
+    top: -220px;
+
+    transform: scale(var(--zoom-hero)) !important;
   }
 
-  .video-container.hero-first iframe {
-    width: calc(100% + 180px);
-    left: -90px;
-    height: calc(100% + 100px);
-    top: -50px;
+  /* =========================================================
+     ✅ VIDEO #5 (FULL SECTION) — MAKE IT HERO-LIKE
+     - BIG SECTION HEIGHT already set to 73vh above
+     - NOW apply the same iframe overscan + zoom 1.6
+  ========================================================= */
+  .full-section .video-container.full-width iframe {
+    width: calc(100% + 200px);
+    left: -100px;
+
+    height: calc(100% + 440px);
+    top: -220px;
+
+    transform: scale(var(--zoom-hero)) !important; /* ✅ zoom 1.6 */
+  }
+
+  /* =========================================================
+     ✅ VIDEOS #6–#8 ONLY (TRIPLE BELOW VIDEO #5)
+     We target ONLY the 2nd triple-section using nth-of-type(4):
+       1) hero-section
+       2) triple (2-4)
+       3) full (5)
+       4) triple (6-8)  <-- THIS ONE
+  ========================================================= */
+  .brand-campaigns-page > .video-section.triple-section:nth-of-type(4) {
+    height: 28vh; /* ✅ explicit */
+  }
+
+  .brand-campaigns-page
+    > .video-section.triple-section:nth-of-type(4)
+    .video-container.triple-video iframe {
+    transform: scale(var(--zoom-triple)) !important;
   }
 }
 
@@ -281,13 +308,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  animation: fadeIn 0.25s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 
 .fullscreen-video {
@@ -296,38 +316,4 @@ body {
   max-width: 1600px;
   max-height: 900px;
   border-radius: 12px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
-}
-
-.close-button {
-  position: absolute;
-  top: 32px;
-  right: 32px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  width: 56px;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 10001;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 0;
-}
-
-.close-button:hover {
-  background: rgba(255, 107, 0, 0.9);
-  border-color: #ff6b00;
-  transform: scale(1.1) rotate(90deg);
-  box-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .close-button {
-    transition: none !important;
-  }
 }

@@ -96,8 +96,7 @@ body {
 }
 
 /* =========================================================
-   🔥 ACTUAL FIX: FORCE TRUE CENTERING
-   Overscan + center to counter YouTube right bias
+   DEFAULT: CENTER HERO + BOTTOM (FIXES BLACK GAP RIGHT)
 ========================================================= */
 
 .video-stage-inner iframe {
@@ -109,10 +108,33 @@ body {
   width: 120%;
   height: 120%;
 
-  /* True centering */
+  /* ✅ True centering for first + last videos */
   transform: translate(-50%, -50%);
 
   border: 0;
+
+  /* kill hover shifts */
+  transition: none !important;
+  transform-origin: center center !important;
+}
+
+/* =========================================================
+   MIDDLE (SPLIT) ONLY: your bias correction
+   (applies ONLY to the two middle videos)
+========================================================= */
+
+.split-section .video-stage-inner iframe {
+  transform: translate(-50%, -50%) !important;
+}
+
+/* ✅ Neutralize any hover rule that changes fill/position */
+.video-container:hover .video-stage-inner iframe {
+  transform: translate(-50%, -50%) !important;
+}
+
+/* Keep middle videos stable even on hover */
+.split-section .video-container:hover .video-stage-inner iframe {
+  transform: translate(-80%, -40%) !important;
 }
 
 /* ================= OVERLAY ================= */
@@ -147,13 +169,12 @@ body {
 /* ================= MOBILE ================= */
 
 @media (max-width: 1024px) {
-
   .split-section {
-    height: 25vh;
+    height: 30vh;
   }
 
   .bottom-section {
-    height: 63vh;
+    height: 75vh;
   }
 
   .video-container {
@@ -166,6 +187,13 @@ body {
 
   .video-title {
     font-size: 0.9rem;
+  }
+
+  /* Mobile: simpler, true centering */
+  .video-stage-inner iframe {
+    width: 112%;
+    height: 112%;
+    transform: translate(-50%, -50%) !important;
   }
 }
 
