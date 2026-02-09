@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './Documentaries.css';
 
-
 function Documentaries() {
   const [fullscreenVideo, setFullscreenVideo] = useState(null);
 
@@ -25,25 +24,39 @@ function Documentaries() {
     setLoaded(prev => ({ ...prev, [youtubeId]: true }));
   };
 
+  const requestFs = () => {
+    const fullscreenContainer = document.querySelector('.fullscreen-overlay');
+    if (!fullscreenContainer) return;
+
+    if (fullscreenContainer.requestFullscreen) {
+      fullscreenContainer.requestFullscreen().catch(() => {});
+    } else if (fullscreenContainer.webkitRequestFullscreen) {
+      fullscreenContainer.webkitRequestFullscreen();
+    } else if (fullscreenContainer.mozRequestFullScreen) {
+      fullscreenContainer.mozRequestFullScreen();
+    } else if (fullscreenContainer.msRequestFullscreen) {
+      fullscreenContainer.msRequestFullscreen();
+    }
+  };
+
+  const exitFs = () => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen().catch(() => {});
+    } else if (document.webkitFullscreenElement) {
+      document.webkitExitFullscreen();
+    } else if (document.mozFullScreenElement) {
+      document.mozCancelFullScreen();
+    } else if (document.msFullscreenElement) {
+      document.msExitFullscreen();
+    }
+  };
+
   const handleVideoClick = (doc) => {
     setFullscreenVideo(doc);
-    
-    // Request fullscreen after a brief delay to ensure DOM is ready
+
+    // request fullscreen after DOM paint
     setTimeout(() => {
-      const fullscreenContainer = document.querySelector('.fullscreen-overlay');
-      if (fullscreenContainer) {
-        if (fullscreenContainer.requestFullscreen) {
-          fullscreenContainer.requestFullscreen().catch(err => {
-            console.log('Fullscreen request failed:', err);
-          });
-        } else if (fullscreenContainer.webkitRequestFullscreen) {
-          fullscreenContainer.webkitRequestFullscreen();
-        } else if (fullscreenContainer.mozRequestFullScreen) {
-          fullscreenContainer.mozRequestFullScreen();
-        } else if (fullscreenContainer.msRequestFullscreen) {
-          fullscreenContainer.msRequestFullscreen();
-        }
-      }
+      requestFs();
     }, 100);
   };
 
@@ -52,16 +65,21 @@ function Documentaries() {
       e.preventDefault();
       handleVideoClick(doc);
     }
-  }; 
+  };
+
+  const closeFullscreen = (e) => {
+    e.stopPropagation();
+    exitFs();
+    setFullscreenVideo(null);
+  };
 
   return (
     <div className="documentaries-container">
       <div className="docs-wrapper">
-        {/* Two Videos Side by Side */}
         <div className="videos-row">
           {documentaries.map((doc) => (
             <div key={doc.id} className="video-item">
-              <div 
+              <div
                 className={`video-container ${loaded[doc.youtubeId] ? 'loaded' : ''}`}
                 onClick={() => handleVideoClick(doc)}
                 tabIndex={0}
@@ -77,7 +95,7 @@ function Documentaries() {
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
-                
+
                 <div className="video-overlay">
                   <p className="video-title">{doc.title}</p>
                 </div>
@@ -87,52 +105,13 @@ function Documentaries() {
         </div>
       </div>
 
-      {/* Fullscreen Overlay */}
       {fullscreenVideo && (
-        <div 
-          className="fullscreen-overlay"
-          onClick={() => {
-            // Exit fullscreen
-            if (document.fullscreenElement) {
-              document.exitFullscreen().catch(err => {
-                console.log('Exit fullscreen failed:', err);
-              });
-            } else if (document.webkitFullscreenElement) {
-              document.webkitExitFullscreen();
-            } else if (document.mozFullScreenElement) {
-              document.mozCancelFullScreen();
-            } else if (document.msFullscreenElement) {
-              document.msExitFullscreen();
-            }
-            
-            setFullscreenVideo(null);
-          }}
-        >
-          <button 
-            className="close-fullscreen-top-right"
-            onClick={(e) => {
-              e.stopPropagation();
-              
-              // Exit fullscreen
-              if (document.fullscreenElement) {
-                document.exitFullscreen().catch(err => {
-                  console.log('Exit fullscreen failed:', err);
-                });
-              } else if (document.webkitFullscreenElement) {
-                document.webkitExitFullscreen();
-              } else if (document.mozFullScreenElement) {
-                document.mozCancelFullScreen();
-              } else if (document.msFullscreenElement) {
-                document.msExitFullscreen();
-              }
-              
-              setFullscreenVideo(null);
-            }}
-          >
+        <div className="fullscreen-overlay" onClick={closeFullscreen}>
+          <button className="close-fullscreen-top-right" onClick={closeFullscreen}>
             ✕
           </button>
-          
-          <div className="fullscreen-video-container">
+
+          <div className="fullscreen-video-container" onClick={(e) => e.stopPropagation()}>
             <iframe
               width="100%"
               height="100%"
