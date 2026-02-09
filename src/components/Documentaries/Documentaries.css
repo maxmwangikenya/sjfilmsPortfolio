@@ -1,7 +1,10 @@
 /* =========================================================
-   DOCUMENTARIES – BALANCED FULL SCREEN FILL
-   Laptop looks good ✅
-   Large screens scale up MORE ✅ (1440p / 4K)
+   DOCUMENTARIES – FULL SCREEN FILL (WHOLE FILE)
+   ✅ First video moved below navbar (ONLY first tile)
+   ✅ Mobile: increase VIDEO height only (div unchanged)
+   ✅ First video: video covers div without scale zoom
+   ✅ Large screens: full-bleed (no boxed small center)
+   ✅ NO GAPS on laptop and large screens
 ========================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -12,14 +15,14 @@
   --navbar-offset-mobile: 52px;
   --navbar-offset-tablet: 64px;
 
-  --radius-desktop: 22px;
+  --radius-desktop: 16px;
   --radius-tablet: 14px;
 
-  --desktop-gap: 16px;
+  --desktop-gap: 10px;
 
   /* Laptop baseline */
   --desktop-max-width: 1200px;
-  --desktop-side-padding: 16px;
+  --desktop-side-padding: 0px;
   --desktop-row-height: 62vh;
   --desktop-row-min-height: 520px;
 
@@ -46,7 +49,7 @@ body {
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
-  padding-top: var(--navbar-height);
+  padding-top: 0; /* ✅ keep page tight; we push ONLY first video below navbar */
 }
 
 /* ================= WRAPPER ================= */
@@ -64,7 +67,7 @@ body {
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
   gap: 0;
-  min-height: calc(100vh - var(--navbar-height));
+  min-height: 100vh;
 }
 
 .video-item {
@@ -88,7 +91,15 @@ body {
 }
 
 /* =========================================================
-   BALANCED VIDEO FILL (LESS ZOOM, PERFECT CENTER)
+   ✅ MOVE ONLY FIRST VIDEO BELOW NAVBAR
+========================================================= */
+
+.videos-row > .video-container:first-child {
+  margin-top: var(--navbar-height);
+}
+
+/* =========================================================
+   VIDEO FILL (DEFAULT)
 ========================================================= */
 
 .video-player,
@@ -98,9 +109,9 @@ body {
   left: 50%;
 
   width: 120%;
-  height: 145%;
+  height: 175%;
 
-  transform: translate(-50%, -50%) scale(1.55);
+  transform: translate(-50%, -50%) scale(1.52);
   transform-origin: center center;
 
   border: 0;
@@ -132,34 +143,36 @@ body {
 }
 
 /* =========================================================
-   DESKTOP / LAPTOP (NORMAL SCREENS)
+   DESKTOP / LAPTOP (1025px+)
+   ✅ NO GAPS - Full bleed layout
 ========================================================= */
 
 @media (min-width: 1025px) {
   .docs-wrapper {
-    max-width: var(--desktop-max-width);
-    margin: 0 auto;
-    padding: 0 var(--desktop-side-padding);
+    max-width: none;
+    margin: 0;
+    padding: 0;
   }
 
   .videos-row {
-    width: 100%;
-    height: var(--desktop-row-height);
-    min-height: var(--desktop-row-min-height);
-    gap: var(--desktop-gap);
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    gap: 10px;
+    padding: 10px;
+    box-sizing: border-box;
   }
 
   .video-container {
     height: 100%;
-    border-radius: var(--radius-desktop);
+    border-radius: 16px;
   }
 
-  /* Laptop zoom feel */
   .video-player,
   .video-container iframe {
-    width: 125%;
-    height: 155%;
-    transform: translate(-50%, -50%) scale(1.6);
+    width: 122%;
+    height: 185%;
+    transform: translate(-50%, -50%) scale(1.56);
   }
 
   @media (hover: hover) and (pointer: fine) {
@@ -177,50 +190,72 @@ body {
 }
 
 /* =========================================================
-   LARGE SCREENS (1440px+): BIGGER
+   LARGE SCREENS (1440px+)
+   ✅ NO GAPS - Full bleed layout
 ========================================================= */
 
 @media (min-width: 1440px) {
   .docs-wrapper {
-    max-width: 1800px;
-    padding: 0 28px;
+    max-width: none;
+    margin: 0;
+    padding: 0;
   }
 
   .videos-row {
-    height: 75vh;
-    min-height: 820px;
-    gap: 24px;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    gap: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .videos-row > .video-container:first-child {
+    margin-top: var(--navbar-height);
+  }
+
+  .video-container {
+    border-radius: 16px;
   }
 
   .video-player,
   .video-container iframe {
-    width: 125%;
-    height: 155%;
-    transform: translate(-50%, -50%) scale(1.65);
+    width: 124%;
+    height: 190%;
+    transform: translate(-50%, -50%) scale(1.56);
   }
 }
 
 /* =========================================================
-   ULTRA WIDE / 4K (1920px+): EVEN BIGGER
+   ULTRA WIDE / 4K (1920px+)
+   ✅ NO GAPS - Full bleed layout
 ========================================================= */
 
 @media (min-width: 1920px) {
   .docs-wrapper {
-    max-width: 2700px;
-    padding: 0 36px;
+    max-width: none;
+    margin: 0;
+    padding: 0;
   }
 
   .videos-row {
-    height: 92vh;
-    min-height: 950px;
-    gap: 28px;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    gap: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .video-container {
+    border-radius: 16px;
   }
 
   .video-player,
   .video-container iframe {
-    width: 122%;
-    height: 150%;
-    transform: translate(-50%, -50%) scale(1.6);
+    width: 124%;
+    height: 200%;
+    transform: translate(-50%, -50%) scale(1.56);
   }
 }
 
@@ -229,8 +264,8 @@ body {
 ========================================================= */
 
 @media (max-width: 1024px) {
-  .documentaries-container {
-    padding-top: var(--navbar-offset-tablet);
+  .videos-row > .video-container:first-child {
+    margin-top: var(--navbar-offset-tablet);
   }
 
   .videos-row {
@@ -247,8 +282,8 @@ body {
   .video-player,
   .video-container iframe {
     width: 125%;
-    height: 150%;
-    transform: translate(-50%, -50%) scale(1.6);
+    height: 175%;
+    transform: translate(-50%, -50%) scale(1.65);
   }
 }
 
@@ -257,14 +292,14 @@ body {
 ========================================================= */
 
 @media (max-width: 768px) {
-  .documentaries-container {
-    padding-top: var(--navbar-offset-mobile);
-  }
-
   .videos-row {
     grid-template-columns: 1fr;
     gap: 10px;
     padding: 10px;
+  }
+
+  .videos-row > .video-container:first-child {
+    margin-top: var(--navbar-offset-mobile);
   }
 
   .video-container {
@@ -284,13 +319,27 @@ body {
 
   .video-player,
   .video-container iframe {
-    width: 130%;
-    height: 160%;
-    transform: translate(-50%, -50%) scale(1.7);
+    width: 128%;
+    height: 220%;
+    transform: translate(-50%, -50%) scale(1.82);
+  }
+
+  .videos-row > .video-container:first-child iframe,
+  .videos-row > .video-container:first-child .video-player {
+    top: 50% !important;
+    left: 50% !important;
+
+    height: 180% !important;
+    width: 210% !important;
+
+    transform: translate(-50%, -50%) scale(1) !important;
+    transform-origin: center center !important;
   }
 }
 
-/* SMALL MOBILE */
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
 
 @media (max-width: 480px) {
   .video-container {
@@ -299,13 +348,20 @@ body {
 
   .video-player,
   .video-container iframe {
-    width: 135%;
-    height: 170%;
-    transform: translate(-50%, -50%) scale(1.8);
+    width: 130%;
+    height: 240%;
+    transform: translate(-50%, -50%) scale(1.9);
   }
 
   .video-title {
     font-size: 0.9rem;
+  }
+
+  .videos-row > .video-container:first-child iframe,
+  .videos-row > .video-container:first-child .video-player {
+    height: 210% !important;
+    width: 235% !important;
+    transform: translate(-50%, -50%) scale(1) !important;
   }
 }
 
