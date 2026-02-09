@@ -40,6 +40,10 @@
   ],
   "rewrites": [
     {
+      "source": "/videos/:path*",
+      "destination": "https://videos.sjfilmworks.com/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

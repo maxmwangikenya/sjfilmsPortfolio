@@ -100,7 +100,87 @@
   gap: 1rem;
 }
 
-/* tile = button for accessibility */
+/* =========================
+   SPECIAL GRID: GIGIRI SOCIAL
+   Force 4 columns on larger screens
+========================= */
+
+.photo-grid--social {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 600px) {
+  .photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.1rem;
+  }
+
+  .photo-grid--social {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Laptop */
+@media (min-width: 1024px) {
+  .photo-header {
+    padding: 8.5rem 2rem 3rem;
+  }
+
+  .photo-content {
+    padding: 0 2rem 6rem;
+  }
+
+  /* Default categories */
+  .photo-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.2rem;
+  }
+
+  /* Gigiri Social forced to 4 */
+  .photo-grid--social {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Larger laptop / wide screens */
+@media (min-width: 1366px) {
+  .photo-content {
+    max-width: 1600px;
+  }
+
+  /* Default categories */
+  .photo-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  /* Keep Gigiri at 4 (do not increase) */
+  .photo-grid--social {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Ultra-wide */
+@media (min-width: 1700px) {
+  .photo-content {
+    max-width: 1750px;
+  }
+
+  /* Default categories go to 5 */
+  .photo-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  /* Gigiri stays at 4 */
+  .photo-grid--social {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* =========================
+   TILE
+========================= */
+
 .photo-tile {
   border: 1px solid var(--border);
   background: var(--panel);
@@ -121,26 +201,25 @@
   outline-offset: 3px;
 }
 
-/* subtle, not aggressive */
 .photo-tile:hover {
   transform: translateY(-2px);
   background: var(--panel2);
   border-color: var(--border2);
 }
 
-/* ✅ CORRECTION: show images in FULL COLOR by default */
+/* =========================
+   IMAGE
+========================= */
+
 .photo-img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   display: block;
-
-  /* Full color (no grayscale) */
   filter: contrast(1.06) brightness(0.98) saturate(1.05);
   transition: filter 220ms ease, transform 220ms ease;
 }
 
-/* ✅ CORRECTION: hover slightly “premium” without changing to B&W */
 .photo-tile:hover .photo-img {
   filter: contrast(1.1) brightness(1.03) saturate(1.1);
   transform: scale(1.01);
@@ -176,8 +255,6 @@
   max-height: 78vh;
   object-fit: contain;
   background: #000;
-
-  /* ✅ CORRECTION: keep lightbox full color too */
   filter: none;
 }
 
@@ -213,59 +290,9 @@
 }
 
 /* =========================
-   RESPONSIVE BREAKPOINTS
-========================= */
-
-/* Mobile -> Tablet */
-@media (min-width: 600px) {
-  .photo-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.1rem;
-  }
-}
-
-/* Laptop */
-@media (min-width: 1024px) {
-  .photo-header {
-    padding: 8.5rem 2rem 3rem;
-  }
-
-  .photo-content {
-    padding: 0 2rem 6rem;
-  }
-
-  .photo-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.2rem;
-  }
-}
-
-/* Larger laptop / wide screens */
-@media (min-width: 1366px) {
-  .photo-content {
-    max-width: 1600px;
-  }
-
-  .photo-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1.25rem;
-  }
-}
-
-/* Ultra-wide */
-@media (min-width: 1700px) {
-  .photo-content {
-    max-width: 1750px;
-  }
-
-  .photo-grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-}
-
-/* =========================
    REDUCED MOTION
 ========================= */
+
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
