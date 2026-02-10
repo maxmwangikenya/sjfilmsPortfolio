@@ -1,23 +1,18 @@
 /* =========================================================
-   CORPORATE EVENTS – FULL BLEED + CENTERED COVER (NO DRIFT)
-   FINAL CSS
-   ✔ Mobile untouched
-   ✔ Laptop/Desktop first + last video fixed - NO SIDE SPACES
+   CORPORATE EVENTS – CLEAR (NOT DARK) + NO ZOOM
+   ✔ Same layout
+   ✔ No zoom / no overscan
+   ✔ Lighter overlay so videos are not dark
+   ✔ Subtle brightness/contrast to match other pages
 ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 :root {
   --navbar-height: 80px;
   --radius-desktop: 22px;
-
   --tile-gap-desktop: 16px;
-
-  --zoom-triple: 1.45;
-  --zoom-full: 1.02;
 }
-
-/* ================= BASE ================= */
 
 *,
 *::before,
@@ -32,7 +27,7 @@ body {
   width: 100%;
   overflow-x: hidden;
   background: #000;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .corporate-events-page {
@@ -71,10 +66,9 @@ body {
   display: flex;
   gap: var(--tile-gap-desktop);
   padding: var(--tile-gap-desktop);
-  overflow: hidden;
 }
 
-/* ================= VIDEO TILE ================= */
+/* ================= TILE ================= */
 
 .video-container {
   position: relative;
@@ -99,9 +93,13 @@ body {
   .video-overlay {
     border-radius: inherit;
   }
+
+  .video-container video {
+    border-radius: inherit;
+  }
 }
 
-/* ================= VIDEO STAGE ================= */
+/* ================= STAGE ================= */
 
 .video-stage,
 .video-stage-inner {
@@ -112,41 +110,22 @@ body {
   background: #000;
 }
 
-.video-container,
-.video-stage,
-.video-stage-inner,
-.video-stage-inner iframe {
-  transition: none !important;
-}
+/* ================= MP4 PREVIEW (NO ZOOM) ================= */
 
-/* ================= IFRAME DEFAULTS ================= */
-
-.video-stage-inner iframe {
+.corporate-preview {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  border: 0;
-  pointer-events: none;
-  transform-origin: center center;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+
+  /* ✅ Clearer (subtle) */
+  filter: brightness(1.08) contrast(1.06) saturate(1.06);
 }
 
-/* ================= FULL WIDTH (TOP + BOTTOM) ================= */
-
-.video-container.full-width .video-stage-inner iframe {
-  width: 180%;
-  height: 120%;
-  transform: translate(-50%, -50%) scale(var(--zoom-full));
-}
-
-/* ================= TRIPLE VIDEOS ================= */
-
-.video-container.triple-video .video-stage-inner iframe {
-  width: 140%;
-  height: 140%;
-  transform: translate(-50%, -50%) scale(var(--zoom-triple));
-}
-
-/* ================= OVERLAY ================= */
+/* ================= OVERLAY (LIGHTER) ================= */
+/* This was the main reason it looked dark */
 
 .video-overlay {
   position: absolute;
@@ -156,10 +135,12 @@ body {
   align-items: flex-end;
   padding: 28px;
   pointer-events: none;
+
+  /* ✅ lighter gradient */
   background: linear-gradient(
     to bottom,
-    rgba(0,0,0,0.02),
-    rgba(0,0,0,0.55)
+    rgba(0, 0, 0, 0.00),
+    rgba(0, 0, 0, 0.35)
   );
 }
 
@@ -168,7 +149,7 @@ body {
   color: #fff;
   font-size: 1rem;
   font-weight: 500;
-  text-shadow: 0 8px 22px rgba(0,0,0,0.9);
+  text-shadow: 0 8px 22px rgba(0, 0, 0, 0.9);
   max-width: 90%;
 }
 
@@ -178,8 +159,6 @@ body {
   :root {
     --radius-desktop: 16px;
     --tile-gap-desktop: 14px;
-    --zoom-triple: 1.55;
-    --zoom-full: 1.04;
   }
 
   .video-overlay {
@@ -191,14 +170,11 @@ body {
   }
 }
 
-/* ================= MOBILE (PHONE) ================= */
-/* ⚠️ DO NOT TOUCH — MOBILE IS PERFECT */
+/* ================= MOBILE ================= */
 
 @media (max-width: 768px) {
   :root {
     --tile-gap-desktop: 6px;
-    --zoom-full: 1.7;
-    --zoom-triple: 1.08;
   }
 
   .top-section {
@@ -214,10 +190,6 @@ body {
     height: 100%;
     padding: 6px;
     gap: 6px;
-  }
-
-  .video-container.triple-video {
-    height: 100%;
   }
 
   .bottom-section {
@@ -236,45 +208,6 @@ body {
   .video-title {
     font-size: 0.88rem;
   }
-
-  .video-container.full-width .video-stage-inner iframe {
-    width: 230% !important;
-    height: 280% !important;
-    transform: translate(-50%, -50%) scale(var(--zoom-full)) !important;
-  }
-
-  .video-container.triple-video .video-stage-inner iframe {
-    width: 200% !important;
-    height: 135% !important;
-    transform: translate(-50%, -50%) scale(var(--zoom-triple)) !important;
-  }
-}
-
-/* ================= LAPTOP/DESKTOP - NO SIDE PADDING FOR FIRST & LAST VIDEO ================= */
-
-@media (min-width: 769px) {
-  /* Remove side padding for top section (first video) */
-  .top-section {
-    padding: 0;
-  }
-  
-  /* Remove side padding for bottom section (last video) */
-  .bottom-section {
-    padding: 0;
-  }
-  
-  /* Keep top/bottom padding only */
-  .top-section .video-container.full-width,
-  .bottom-section .video-container.full-width {
-    margin: var(--tile-gap-desktop) 0;
-  }
-
-  .video-container.top-video .video-stage-inner iframe,
-  .video-container.bottom-video .video-stage-inner iframe {
-    width: 280% !important;
-    height: 120% !important;
-    transform: translate(-50%, -50%) scale(1.02) !important;
-  }
 }
 
 /* ================= FULLSCREEN ================= */
@@ -282,7 +215,7 @@ body {
 .fullscreen-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.98);
+  background: rgba(0, 0, 0, 0.98);
   z-index: 10000;
   display: flex;
   align-items: center;
@@ -295,7 +228,7 @@ body {
   max-width: 1600px;
   max-height: 900px;
   border-radius: 12px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
 }
 
 .close-button {
@@ -305,19 +238,13 @@ body {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.3);
-  background: rgba(255,255,255,0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   cursor: pointer;
 }
 
 .close-button:hover {
-  background: rgba(255,107,0,0.9);
+  background: rgba(255, 107, 0, 0.9);
   border-color: #ff6b00;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .fullscreen-overlay {
-    animation: none !important;
-  }
 }

@@ -1,63 +1,45 @@
 /* =========================================================
-   DOCUMENTARIES – FULL SCREEN FILL (WHOLE FILE)
-   ✅ First video moved below navbar (ONLY first tile)
-   ✅ Mobile: increase VIDEO height only (div unchanged)
-   ✅ First video: video covers div without scale zoom
-   ✅ Large screens: full-bleed (no boxed small center)
-   ✅ NO GAPS on laptop and large screens
+   DOCUMENTARIES – BELOW NAVBAR (FINAL CLEAN VERSION)
+   ✅ Entire grid starts below navbar
+   ✅ No double scroll
+   ✅ 10px gap
+   ✅ 16px border radius
+   ✅ Clean 4K video clarity (no zoom tricks)
 ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 :root {
   --navbar-height: 80px;
-
-  --navbar-offset-mobile: 52px;
-  --navbar-offset-tablet: 64px;
-
-  --radius-desktop: 16px;
-  --radius-tablet: 14px;
-
-  --desktop-gap: 10px;
-
-  /* Laptop baseline */
-  --desktop-max-width: 1200px;
-  --desktop-side-padding: 0px;
-  --desktop-row-height: 62vh;
-  --desktop-row-min-height: 520px;
-
-  --highlight-ring: rgba(255, 107, 0, 0.65);
-  --highlight-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+  --gap: 10px;
+  --radius: 16px;
 }
 
 /* ================= BASE ================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 html,
 body {
   margin: 0;
   padding: 0;
-  width: 100%;
+  height: 100%;
   overflow-x: hidden;
   background: #000;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
-/* ================= CONTAINER ================= */
+/* ================= PAGE CONTAINER ================= */
 
 .documentaries-container {
-  background: #000;
   width: 100%;
   min-height: 100vh;
-  overflow-x: hidden;
-  padding-top: 0; /* ✅ keep page tight; we push ONLY first video below navbar */
-}
-
-/* ================= WRAPPER ================= */
-
-.docs-wrapper {
-  width: 100%;
-  margin: 0;
-  padding: 0;
+  padding-top: var(--navbar-height); /* ✅ PUSH ENTIRE PAGE BELOW NAVBAR */
+  background: #000;
 }
 
 /* ================= GRID ================= */
@@ -65,16 +47,15 @@ body {
 .videos-row {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+
   width: 100%;
-  gap: 0;
-  min-height: 100vh;
+  min-height: calc(100vh - var(--navbar-height));
+
+  gap: var(--gap);
+  padding: var(--gap);
 }
 
-.video-item {
-  display: contents;
-}
-
-/* ================= TILE ================= */
+/* ================= VIDEO TILE ================= */
 
 .video-container {
   position: relative;
@@ -82,39 +63,26 @@ body {
   height: 100%;
   background: #000;
   overflow: hidden;
+  border-radius: var(--radius);
   cursor: pointer;
 
-  transition: transform 220ms ease, box-shadow 220ms ease, outline-color 220ms ease;
-  outline: 2px solid transparent;
-  outline-offset: 4px;
-  border-radius: 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* =========================================================
-   ✅ MOVE ONLY FIRST VIDEO BELOW NAVBAR
-========================================================= */
+/* ================= VIDEO (TRUE 4K DISPLAY) ================= */
 
-.videos-row > .video-container:first-child {
-  margin-top: var(--navbar-height);
-}
-
-/* =========================================================
-   VIDEO FILL (DEFAULT)
-========================================================= */
-
-.video-player,
-.video-container iframe {
+.video-player {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  inset: 0;
 
-  width: 120%;
-  height: 175%;
+  width: 100%;
+  height: 100%;
 
-  transform: translate(-50%, -50%) scale(1.52);
-  transform-origin: center center;
+  object-fit: cover;        /* fills container */
+  object-position: center;  /* centered */
+  transform: none;          /* no zoom */
+  filter: none;             /* no dark filter */
 
-  border: 0;
   pointer-events: none;
 }
 
@@ -123,251 +91,54 @@ body {
 .video-overlay {
   position: absolute;
   inset: 0;
-  z-index: 5;
   display: flex;
   align-items: flex-end;
-  padding: 28px;
-  pointer-events: none;
+  padding: 22px;
+
   background: linear-gradient(
-    rgba(0, 0, 0, 0.05),
-    rgba(0, 0, 0, 0.15),
-    rgba(0, 0, 0, 0.55)
+    to bottom,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.35)
   );
 }
 
 .video-title {
+  margin: 0;
   color: #fff;
   font-size: 1rem;
-  max-width: 70%;
-  text-shadow: 0 0 14px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.85);
 }
 
-/* =========================================================
-   DESKTOP / LAPTOP (1025px+)
-   ✅ NO GAPS - Full bleed layout
-========================================================= */
+/* ================= DESKTOP HOVER ================= */
 
-@media (min-width: 1025px) {
-  .docs-wrapper {
-    max-width: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .videos-row {
-    width: 100vw;
-    height: 100vh;
-    min-height: 100vh;
-    gap: 10px;
-    padding: 10px;
-    box-sizing: border-box;
-  }
-
-  .video-container {
-    height: 100%;
-    border-radius: 16px;
-  }
-
-  .video-player,
-  .video-container iframe {
-    width: 122%;
-    height: 185%;
-    transform: translate(-50%, -50%) scale(1.56);
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .video-container:hover {
-      outline-color: var(--highlight-ring);
-      box-shadow: var(--highlight-shadow);
-      transform: translateY(-3px) scale(1.01);
-    }
-  }
-
-  .video-container:focus-visible {
-    outline-color: var(--highlight-ring);
-    box-shadow: var(--highlight-shadow);
+@media (hover: hover) {
+  .video-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
   }
 }
 
-/* =========================================================
-   LARGE SCREENS (1440px+)
-   ✅ NO GAPS - Full bleed layout
-========================================================= */
-
-@media (min-width: 1440px) {
-  .docs-wrapper {
-    max-width: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .videos-row {
-    width: 100vw;
-    height: 100vh;
-    min-height: 100vh;
-    gap: 10px;
-    padding: 10px;
-    box-sizing: border-box;
-  }
-
-  .videos-row > .video-container:first-child {
-    margin-top: var(--navbar-height);
-  }
-
-  .video-container {
-    border-radius: 16px;
-  }
-
-  .video-player,
-  .video-container iframe {
-    width: 124%;
-    height: 190%;
-    transform: translate(-50%, -50%) scale(1.56);
-  }
-}
-
-/* =========================================================
-   ULTRA WIDE / 4K (1920px+)
-   ✅ NO GAPS - Full bleed layout
-========================================================= */
-
-@media (min-width: 1920px) {
-  .docs-wrapper {
-    max-width: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .videos-row {
-    width: 100vw;
-    height: 100vh;
-    min-height: 100vh;
-    gap: 10px;
-    padding: 10px;
-    box-sizing: border-box;
-  }
-
-  .video-container {
-    border-radius: 16px;
-  }
-
-  .video-player,
-  .video-container iframe {
-    width: 124%;
-    height: 200%;
-    transform: translate(-50%, -50%) scale(1.56);
-  }
-}
-
-/* =========================================================
-   TABLET
-========================================================= */
+/* ================= TABLET ================= */
 
 @media (max-width: 1024px) {
-  .videos-row > .video-container:first-child {
-    margin-top: var(--navbar-offset-tablet);
-  }
-
   .videos-row {
-    gap: 12px;
-    padding: 12px;
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .video-container {
-    aspect-ratio: 16 / 9;
-    border-radius: var(--radius-tablet);
-  }
-
-  .video-player,
-  .video-container iframe {
-    width: 125%;
-    height: 175%;
-    transform: translate(-50%, -50%) scale(1.65);
   }
 }
 
-/* =========================================================
-   MOBILE
-========================================================= */
+/* ================= MOBILE ================= */
 
 @media (max-width: 768px) {
   .videos-row {
     grid-template-columns: 1fr;
-    gap: 10px;
-    padding: 10px;
-  }
-
-  .videos-row > .video-container:first-child {
-    margin-top: var(--navbar-offset-mobile);
   }
 
   .video-container {
     height: 52vh;
-    min-height: 320px;
-    max-height: 520px;
-    border-radius: 14px;
-  }
-
-  .video-overlay {
-    padding: 18px;
-  }
-
-  .video-title {
-    font-size: 0.95rem;
-  }
-
-  .video-player,
-  .video-container iframe {
-    width: 128%;
-    height: 220%;
-    transform: translate(-50%, -50%) scale(1.82);
-  }
-
-  .videos-row > .video-container:first-child iframe,
-  .videos-row > .video-container:first-child .video-player {
-    top: 50% !important;
-    left: 50% !important;
-
-    height: 180% !important;
-    width: 210% !important;
-
-    transform: translate(-50%, -50%) scale(1) !important;
-    transform-origin: center center !important;
   }
 }
 
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
-
-@media (max-width: 480px) {
-  .video-container {
-    height: 55vh;
-  }
-
-  .video-player,
-  .video-container iframe {
-    width: 130%;
-    height: 240%;
-    transform: translate(-50%, -50%) scale(1.9);
-  }
-
-  .video-title {
-    font-size: 0.9rem;
-  }
-
-  .videos-row > .video-container:first-child iframe,
-  .videos-row > .video-container:first-child .video-player {
-    height: 210% !important;
-    width: 235% !important;
-    transform: translate(-50%, -50%) scale(1) !important;
-  }
-}
-
-/* =========================================================
-   FULLSCREEN PLAYER
-========================================================= */
+/* ================= FULLSCREEN ================= */
 
 .fullscreen-overlay {
   position: fixed;
@@ -404,21 +175,9 @@ body {
   color: #fff;
   font-size: 26px;
   cursor: pointer;
-  transition: 0.3s ease;
 }
 
 .close-fullscreen-top-right:hover {
   background: #ff6b00;
   border-color: #ff6b00;
-  transform: rotate(90deg) scale(1.1);
-}
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
-  }
 }

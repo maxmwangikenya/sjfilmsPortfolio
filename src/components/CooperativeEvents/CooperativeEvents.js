@@ -1,29 +1,38 @@
-import React, { useState } from 'react';
-import './CooperativeEvents.css';
+import React, { useEffect, useRef, useState } from "react";
+import "./CooperativeEvents.css";
 
 const CorporateEvents = () => {
   const [fullscreenVideo, setFullscreenVideo] = useState(null);
 
   const videos = [
     {
-      id: 'orSkwGpcc70',
-      title: 'Wildlife and Training Institute Conference 2025 - Day 1 Set Up',
+      id: "orSkwGpcc70",
+      title: "Wildlife and Training Institute Conference 2025 - Day 1 Set Up",
+      preview: "https://videos.sjfilmworks.com/previews/wrti-set-up-mp4-preview.mp4",
     },
     {
-      id: 'DqTsWadIHW0',
-      title: 'YM Stanchart Marathon with Savannah X Heineken',
+      id: "DqTsWadIHW0",
+      title: "YM Stanchart Marathon with Savannah X Heineken",
+      preview:
+        "https://videos.sjfilmworks.com/previews/ym-stanchart-marathon-with-savannah-x-heineken-1-mp4-preview.mp4",
     },
     {
-      id: 'KCq66d00-tc',
-      title: 'Gigiri Social Club - Launch',
+      id: "KCq66d00-tc",
+      title: "Gigiri Social Club - Launch",
+      preview:
+        "https://videos.sjfilmworks.com/previews/the-gigiri-social-club-launch-v1-1-mp4-preview.mp4",
     },
     {
-      id: 'AxwpTJWI7ZU',
+      id: "AxwpTJWI7ZU",
       title: "YM@ NANAI'S CAFE PARTY",
+      preview:
+        "https://videos.sjfilmworks.com/previews/ym-nanai-s-cafe-party-1-mp4-preview.mp4",
     },
     {
-      id: 'gdXG2XXJ0t4',
-      title: 'Wildlife Research and Training Institute - Exhibitors Day 2 2025',
+      id: "gdXG2XXJ0t4",
+      title: "Wildlife Research and Training Institute - Exhibitors Day 2 2025",
+      preview:
+        "https://videos.sjfilmworks.com/previews/wrti-day-2-exhibitors-interviews-mp4-preview.mp4",
     },
   ];
 
@@ -34,29 +43,65 @@ const CorporateEvents = () => {
     setFullscreenVideo(null);
   };
 
-  // Preview URL (minimize hover UI)
-  const buildPreviewSrc = (id) =>
-    `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}` +
-    `&controls=0&modestbranding=1&rel=0&iv_load_policy=3&fs=0&showinfo=0`;
-
-  // Fullscreen URL (keep controls, still reduce branding/related)
   const buildFullscreenSrc = (id) =>
     `https://www.youtube.com/embed/${id}?autoplay=1&controls=1` +
     `&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0`;
 
-  // Reusable stage wrapper to prevent cropping (contain behavior from CSS)
+  // ✅ autoplay nudge (helps mobile Safari/Chrome)
+  const MP4Preview = ({ src, title }) => {
+    const ref = useRef(null);
+
+    useEffect(() => {
+      const v = ref.current;
+      if (!v) return;
+
+      const tryPlay = async () => {
+        try {
+          v.muted = true;
+          v.playsInline = true;
+          const p = v.play();
+          if (p && typeof p.catch === "function") await p;
+        } catch {
+          // ignore autoplay policy
+        }
+      };
+
+      tryPlay();
+    }, [src]);
+
+    const nudge = () => {
+      const v = ref.current;
+      if (!v) return;
+      const p = v.play();
+      if (p && typeof p.catch === "function") p.catch(() => {});
+    };
+
+    return (
+      <video
+        ref={ref}
+        className="corporate-preview"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        onCanPlay={nudge}
+        onLoadedData={nudge}
+        aria-label={title}
+        disablePictureInPicture
+        controlsList="nodownload noplaybackrate noremoteplayback"
+        onError={() => console.error("Preview failed:", src)}
+      >
+        <source src={src} type="video/mp4" />
+      </video>
+    );
+  };
+
   const VideoStage = ({ video, className, onClick }) => (
-    <div className={className} onClick={onClick}>
+    <div className={className} onClick={onClick} role="button" tabIndex={0}>
       <div className="video-stage">
         <div className="video-stage-inner">
-          <iframe
-            src={buildPreviewSrc(video.id)}
-            title={video.title}
-            frameBorder="0"
-            allow="autoplay; encrypted-media"
-            allowFullScreen
-            loading="lazy"
-          />
+          <MP4Preview src={video.preview} title={video.title} />
         </div>
       </div>
 
@@ -71,9 +116,7 @@ const CorporateEvents = () => {
       {fullscreenVideo !== null && (
         <div className="fullscreen-overlay" onClick={closeFullscreen}>
           <button className="close-button" onClick={closeFullscreen} aria-label="Close">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
-              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-            </svg>
+            ✕
           </button>
 
           <iframe
@@ -87,7 +130,6 @@ const CorporateEvents = () => {
         </div>
       )}
 
-      {/* TOP (full screen) */}
       <section className="video-section top-section">
         <VideoStage
           video={videos[0]}
@@ -96,7 +138,6 @@ const CorporateEvents = () => {
         />
       </section>
 
-      {/* MIDDLE (full screen) - 3 videos */}
       <section className="video-section triple-section">
         <div className="triple-container">
           {[1, 2, 3].map((i) => (
@@ -110,7 +151,6 @@ const CorporateEvents = () => {
         </div>
       </section>
 
-      {/* BOTTOM (full screen) */}
       <section className="video-section bottom-section">
         <VideoStage
           video={videos[4]}

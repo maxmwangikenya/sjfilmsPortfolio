@@ -6,25 +6,13 @@
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes rotate {
@@ -129,7 +117,7 @@
 
 .get-in-touch-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(255, 107, 0, 0.35); /* Warmer orange */
+  box-shadow: 0 6px 20px rgba(255, 107, 0, 0.35);
   background: #e05a00;
   border-color: #e05a00;
 }
@@ -221,7 +209,7 @@
 /* Contact Info */
 .footer-contact li {
   display: flex;
-  align-items: center; /* center icons with text */
+  align-items: center;
   gap: 0.75rem;
   margin-bottom: 1rem;
   color: rgba(255, 255, 255, 0.7);
@@ -350,7 +338,12 @@
   animation: rotate 30s linear infinite;
 }
 
-/* Mobile Responsive */
+/* =========================================================
+   MOBILE ONLY CORRECTIONS (<= 768px)
+   ✅ Center "Contact Us" like the rest
+   ✅ Keep icon + text on ONE LINE (no wrapping)
+   ✅ Make email/phone break safely if needed (ellipsis)
+========================================================= */
 @media (max-width: 768px) {
   .footer-container {
     padding: 3rem 1.5rem 1.5rem;
@@ -368,6 +361,50 @@
 
   .get-in-touch-btn {
     width: 100%;
+    justify-content: center;
+  }
+
+  /* ✅ Center the entire Contact column */
+  .footer-column:nth-child(4) {
+    text-align: center;
+  }
+
+  /* ✅ Center heading underline */
+  .footer-column:nth-child(4) .footer-heading::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* ✅ Center contact list and keep each item on ONE line */
+  .footer-column:nth-child(4) .footer-contact {
+    display: grid;
+    gap: 0.8rem;
+    justify-items: center;
+    margin-top: 0.25rem;
+  }
+
+  .footer-column:nth-child(4) .footer-contact li {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    max-width: 100%;
+    white-space: nowrap;       /* ✅ prevents 2-line wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ✅ Make the text behave nicely with ellipsis */
+  .footer-column:nth-child(4) .footer-contact li span {
+    display: inline-block;
+    max-width: 75vw;           /* ✅ prevents pushing layout */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* ✅ Social icons centered */
+  .footer-column:nth-child(4) .social-links {
     justify-content: center;
   }
 }
@@ -395,12 +432,10 @@
     text-align: left;
   }
 
-  /* Contact column: keep positioned on the right but stack items neatly under heading */
   .footer-column:nth-child(4) {
     text-align: right;
   }
 
-  /* Stack contact items as a two-column grid: text (right-aligned) | icon (fixed) */
   .footer-column:nth-child(4) .footer-contact {
     display: grid;
     grid-auto-rows: auto;
@@ -410,10 +445,10 @@
 
   .footer-column:nth-child(4) .footer-contact li {
     display: grid;
-    grid-template-columns: 1fr auto; /* text | icon */
+    grid-template-columns: 1fr auto;
     align-items: center;
     gap: 0.75rem;
-    justify-items: end; /* keep items flush to the right */
+    justify-items: end;
   }
 
   .footer-column:nth-child(4) .footer-contact li span {
@@ -427,31 +462,8 @@
     margin-right: 0;
   }
 
-  /* Align social icons to the right of the column */
   .footer-column:nth-child(4) .social-links {
     justify-content: flex-end;
-  }
-
-  /* Responsive: center contact column on narrow screens */
-  @media (max-width: 768px) {
-    .footer-column:nth-child(4) {
-      text-align: center;
-    }
-    .footer-column:nth-child(4) .footer-contact {
-      align-items: center;
-    }
-    .footer-column:nth-child(4) .footer-contact li {
-      display: flex;
-      justify-content: center;
-      text-align: left;
-      gap: 0.5rem;
-    }
-    .footer-column:nth-child(4) .footer-contact li span {
-      text-align: left;
-    }
-    .footer-column:nth-child(4) .social-links {
-      justify-content: center;
-    }
   }
 
   .footer-contact,

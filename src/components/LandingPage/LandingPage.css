@@ -1,5 +1,9 @@
+/* LandingPage.css */
 /* =========================================================
    LANDING PAGE (FULL VIEWPORT SECTIONS + NO CROPPING)
+   ✅ All MP4 previews autoplay + centered + clear
+   ✅ Adds visible error overlay if a video fails
+   ✅ Keeps your structure/layout the same
 ========================================================= */
 
 :root {
@@ -58,7 +62,7 @@ body {
 .video-container {
   position: relative;
   background: #000;
-  overflow: hidden; /* REQUIRED for overscan */
+  overflow: hidden;
   cursor: pointer;
   width: 100%;
   height: 100%;
@@ -93,48 +97,71 @@ body {
   height: 100%;
   aspect-ratio: 16 / 9;
   position: relative;
+  background: #000;
 }
 
-/* =========================================================
-   DEFAULT: CENTER HERO + BOTTOM (FIXES BLACK GAP RIGHT)
-========================================================= */
+/* ✅ MP4 preview: centered + premium fill + no drifting */
+.preview-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
 
+  object-fit: cover;
+  object-position: center;
+
+  /* subtle clarity boost */
+  filter: contrast(1.06) saturate(1.06);
+
+  /* tiny scale to hide thin borders */
+  transform: scale(1.02);
+  transform-origin: center center;
+
+  background: #000;
+}
+
+/* ✅ YouTube iframe preview support (kept for compatibility) */
 .video-stage-inner iframe {
   position: absolute;
   top: 50%;
   left: 50%;
-
-  /* Overscan */
   width: 120%;
   height: 120%;
-
-  /* ✅ True centering for first + last videos */
   transform: translate(-50%, -50%);
-
   border: 0;
-
-  /* kill hover shifts */
   transition: none !important;
   transform-origin: center center !important;
 }
 
-/* =========================================================
-   MIDDLE (SPLIT) ONLY: your bias correction
-   (applies ONLY to the two middle videos)
-========================================================= */
-
-.split-section .video-stage-inner iframe {
-  transform: translate(-50%, -50%) !important;
-}
-
-/* ✅ Neutralize any hover rule that changes fill/position */
 .video-container:hover .video-stage-inner iframe {
   transform: translate(-50%, -50%) !important;
 }
 
-/* Keep middle videos stable even on hover */
-.split-section .video-container:hover .video-stage-inner iframe {
-  transform: translate(-80%, -40%) !important;
+/* ================= ERROR OVERLAY ================= */
+
+.video-error {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+}
+
+.video-error-title {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.video-error-sub {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  max-width: 420px;
 }
 
 /* ================= OVERLAY ================= */
@@ -149,15 +176,15 @@ body {
   pointer-events: none;
   background: linear-gradient(
     to bottom,
-    rgba(0,0,0,0.02),
-    rgba(0,0,0,0.55)
+    rgba(0, 0, 0, 0.02),
+    rgba(0, 0, 0, 0.55)
   );
 }
 
 .video-title {
   color: #fff;
   font-size: 1rem;
-  text-shadow: 0 8px 22px rgba(0,0,0,0.9);
+  text-shadow: 0 8px 22px rgba(0, 0, 0, 0.9);
 }
 
 /* ================= MIDDLE LAYOUT ================= */
@@ -189,11 +216,19 @@ body {
     font-size: 0.9rem;
   }
 
-  /* Mobile: simpler, true centering */
   .video-stage-inner iframe {
     width: 112%;
     height: 112%;
     transform: translate(-50%, -50%) !important;
+  }
+
+  .preview-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: contrast(1.06) saturate(1.06);
+    transform: scale(1.02);
   }
 }
 
@@ -202,7 +237,7 @@ body {
 .fullscreen-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.98);
+  background: rgba(0, 0, 0, 0.98);
   z-index: 10000;
   display: flex;
   align-items: center;
@@ -215,4 +250,19 @@ body {
   max-width: 1600px;
   max-height: 900px;
   border-radius: 12px;
+}
+
+.close-button {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  z-index: 10001;
 }
