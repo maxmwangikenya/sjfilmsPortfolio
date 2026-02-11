@@ -202,11 +202,11 @@ body {
 
   /* ✅ reduce stress: avoid locking everything to 100vh on mobile */
   .hero-section {
-    height: 62vh;
+    height: 68vh;
   }
 
   .full-section {
-    height: 56vh;
+    height: 74vh;
   }
 
   /* ✅ triple sections: allow natural scroll, but give the row a stable height */
