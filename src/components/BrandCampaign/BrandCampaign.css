@@ -3,15 +3,15 @@
    ✅ Videos fill container (no letterboxing)
    ✅ 10px gap between videos
    ✅ 16px border radius
-   ✅ No zoom tricks
+   ✅ Mobile fixes: avoid heavy 100vh locks + stable rendering
 ========================================================= */
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 
 :root {
   --navbar-height: 80px;
-  --radius-desktop: 16px;     /* ✅ 16px radius */
-  --tile-gap-desktop: 10px;   /* ✅ 10px gap */
+  --radius: 16px;
+  --tile-gap: 10px;
 }
 
 /* ================= BASE ================= */
@@ -30,6 +30,7 @@ body {
   overflow-x: hidden;
   background: #000;
   font-family: "Inter", sans-serif;
+  -webkit-overflow-scrolling: touch;
 }
 
 .brand-campaigns-page {
@@ -69,11 +70,8 @@ body {
   height: 100%;
   display: flex;
 
-  /* ✅ 10px gap */
-  gap: var(--tile-gap-desktop);
-  padding: var(--tile-gap-desktop);
-
-  box-sizing: border-box;
+  gap: var(--tile-gap);
+  padding: var(--tile-gap);
 }
 
 /* ================= VIDEO TILE ================= */
@@ -85,7 +83,12 @@ body {
   overflow: hidden;
   cursor: pointer;
   background: #000;
-  border-radius: var(--radius-desktop);
+  border-radius: var(--radius);
+
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .video-container.triple-video {
@@ -112,14 +115,14 @@ body {
   width: 100%;
   height: 100%;
 
-  object-fit: cover;          /* fills cleanly */
+  object-fit: cover;
   object-position: center;
-
-  transform: none;            /* no zoom */
-  filter: none;               /* natural clarity */
 
   border: 0;
   pointer-events: none;
+
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 /* ================= OVERLAY ================= */
@@ -133,7 +136,6 @@ body {
   padding: 28px;
   pointer-events: none;
 
-  /* lighter gradient */
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0.00),
@@ -189,33 +191,33 @@ body {
 @media (max-width: 768px) {
   :root {
     --navbar-height: 85px;
+    --radius: 14px;
+    --tile-gap: 8px;
   }
 
+  /* ✅ keep below navbar on mobile */
   .brand-campaigns-page {
-    padding-top: 0;
+    padding-top: var(--navbar-height);
   }
 
+  /* ✅ reduce stress: avoid locking everything to 100vh on mobile */
   .hero-section {
-    height: 73vh;
-    padding-top: var(--navbar-height);
-    box-sizing: border-box;
+    height: 62vh;
   }
 
   .full-section {
-    height: 73vh;
+    height: 56vh;
   }
 
+  /* ✅ triple sections: allow natural scroll, but give the row a stable height */
   .triple-section {
-    height: 28vh;
+    height: auto;
   }
 
   .triple-container {
-    gap: 6px;
-    padding: 6px;
-  }
-
-  .video-container {
-    border-radius: 0;
+    height: 26vh;
+    gap: var(--tile-gap);
+    padding: var(--tile-gap);
   }
 
   .video-overlay {
@@ -224,6 +226,14 @@ body {
 
   .video-title {
     font-size: 0.9rem;
+  }
+
+  .close-button {
+    top: 14px;
+    right: 14px;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
   }
 }
 

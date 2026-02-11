@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./BrandCampaign.css";
 
 const BrandCampaigns = () => {
@@ -49,7 +49,7 @@ const BrandCampaigns = () => {
     {
       id: "A4jA8__RTqM",
       title: "Krackles (Campaign) Victor Karanja x Cris Njoki",
-      // ✅ REPLACED with compressed 1.2MB file
+      // ✅ compressed 1.2MB file
       preview: "https://videos.sjfilmworks.com/previews/Victor-x-Cris-web.mp4",
     },
   ];
@@ -65,25 +65,66 @@ const BrandCampaigns = () => {
     `https://www.youtube.com/embed/${id}?autoplay=1&controls=1` +
     `&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0`;
 
-  const VideoTile = ({ index, className }) => (
-    <div
-      className={`video-container clickable ${className}`}
-      onClick={() => openFullscreen(index)}
-    >
+  // ✅ Mobile autoplay helper
+  const CampaignPreview = ({ src, title }) => {
+    const ref = useRef(null);
+
+    useEffect(() => {
+      const v = ref.current;
+      if (!v) return;
+
+      const tryPlay = async () => {
+        try {
+          v.muted = true;
+          v.playsInline = true;
+          const p = v.play();
+          if (p && typeof p.catch === "function") await p;
+        } catch {
+          // ignore autoplay restrictions
+        }
+      };
+
+      tryPlay();
+    }, [src]);
+
+    const nudge = () => {
+      const v = ref.current;
+      if (!v) return;
+      const p = v.play();
+      if (p && typeof p.catch === "function") p.catch(() => {});
+    };
+
+    return (
       <video
+        ref={ref}
         className="campaign-video"
         autoPlay
         muted
         loop
         playsInline
-        // ✅ better performance on mobile
         preload="metadata"
+        onCanPlay={nudge}
+        onLoadedData={nudge}
+        aria-label={title}
+        disablePictureInPicture
+        controlsList="nodownload noplaybackrate noremoteplayback"
         onError={(e) => {
-          console.log("VIDEO ERROR:", videos[index].preview, e?.target?.error);
+          console.log("VIDEO ERROR:", src, e?.target?.error);
         }}
       >
-        <source src={videos[index].preview} type="video/mp4" />
+        <source src={src} type="video/mp4" />
       </video>
+    );
+  };
+
+  const VideoTile = ({ index, className }) => (
+    <div
+      className={`video-container clickable ${className}`}
+      onClick={() => openFullscreen(index)}
+      role="button"
+      tabIndex={0}
+    >
+      <CampaignPreview src={videos[index].preview} title={videos[index].title} />
 
       <div className="video-overlay">
         <p className="video-title">{videos[index].title}</p>
@@ -95,7 +136,7 @@ const BrandCampaigns = () => {
     <div className="brand-campaigns-page">
       {fullscreenVideo !== null && (
         <div className="fullscreen-overlay" onClick={closeFullscreen}>
-          <button className="close-button" onClick={closeFullscreen}>
+          <button className="close-button" onClick={closeFullscreen} aria-label="Close">
             ✕
           </button>
 
