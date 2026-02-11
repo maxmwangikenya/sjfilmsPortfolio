@@ -195,13 +195,16 @@ body {
 
 /* ================= MOBILE ================= */
 
+/* ================= MOBILE ================= */
+
 @media (max-width: 1024px) {
   .split-section {
     height: 30vh;
   }
 
+  /* ✅ make the LAST section full screen on mobile */
   .bottom-section {
-    height: 75vh;
+    height: calc(100vh - var(--navbar-height));
   }
 
   .video-container {
@@ -216,9 +219,10 @@ body {
     font-size: 0.9rem;
   }
 
+  /* ✅ keep iframe behavior for other sections */
   .video-stage-inner iframe {
     width: 112%;
-    height: 112%;
+    height: 120%;
     transform: translate(-50%, -50%) !important;
   }
 
@@ -230,7 +234,36 @@ body {
     filter: contrast(1.06) saturate(1.06);
     transform: scale(1.02);
   }
+
+  /* =====================================================
+     ✅ BOTTOM VIDEO ONLY: remove 16:9 lock so it can fill
+     ===================================================== */
+
+  .bottom-section .video-stage {
+    display: block; /* stop grid centering from shrinking */
+  }
+
+  .bottom-section .video-stage-inner {
+    aspect-ratio: auto; /* ✅ remove 16:9 constraint */
+    width: 100%;
+    height: 100%;
+  }
+
+  .bottom-section .preview-video {
+    transform: none; /* ✅ true full bleed */
+  }
+
+  .bottom-section .video-stage-inner iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 95%;
+    top: 0;
+    left: 0;
+    transform: none !important;
+  }
 }
+
 
 /* ================= FULLSCREEN ================= */
 

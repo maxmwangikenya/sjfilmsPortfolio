@@ -3,15 +3,15 @@
    ✔ Same layout
    ✔ No zoom / no overscan
    ✔ Lighter overlay so videos are not dark
-   ✔ Subtle brightness/contrast to match other pages
+   ✔ Mobile: avoid heavy 100vh locks (prevents blank / lag)
 ========================================================= */
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 :root {
   --navbar-height: 80px;
-  --radius-desktop: 22px;
-  --tile-gap-desktop: 16px;
+  --radius: 22px;
+  --tile-gap: 16px;
 }
 
 *,
@@ -28,10 +28,11 @@ body {
   overflow-x: hidden;
   background: #000;
   font-family: "Inter", sans-serif;
+  -webkit-overflow-scrolling: touch;
 }
 
 .corporate-events-page {
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   background: #000;
   padding-top: var(--navbar-height);
@@ -64,8 +65,8 @@ body {
   width: 100%;
   height: 100%;
   display: flex;
-  gap: var(--tile-gap-desktop);
-  padding: var(--tile-gap-desktop);
+  gap: var(--tile-gap);
+  padding: var(--tile-gap);
 }
 
 /* ================= TILE ================= */
@@ -77,23 +78,31 @@ body {
   background: #000;
   overflow: hidden;
   cursor: pointer;
+
+  /* iOS paint stability */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .video-container.triple-video {
   flex: 1;
 }
 
+.video-container.full-width {
+  width: 100%;
+  height: 100%;
+}
+
 /* Desktop rounding */
 @media (min-width: 1025px) {
   .video-container.full-width,
   .video-container.triple-video {
-    border-radius: var(--radius-desktop);
+    border-radius: var(--radius);
   }
 
-  .video-overlay {
-    border-radius: inherit;
-  }
-
+  .video-overlay,
   .video-container video {
     border-radius: inherit;
   }
@@ -110,7 +119,7 @@ body {
   background: #000;
 }
 
-/* ================= MP4 PREVIEW (NO ZOOM) ================= */
+/* ================= MP4 PREVIEW ================= */
 
 .corporate-preview {
   position: absolute;
@@ -120,12 +129,15 @@ body {
   object-fit: cover;
   object-position: center;
 
-  /* ✅ Clearer (subtle) */
+  /* subtle clarity */
   filter: brightness(1.08) contrast(1.06) saturate(1.06);
+
+  /* iOS */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 /* ================= OVERLAY (LIGHTER) ================= */
-/* This was the main reason it looked dark */
 
 .video-overlay {
   position: absolute;
@@ -136,7 +148,6 @@ body {
   padding: 28px;
   pointer-events: none;
 
-  /* ✅ lighter gradient */
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0.00),
@@ -157,8 +168,8 @@ body {
 
 @media (max-width: 1024px) {
   :root {
-    --radius-desktop: 16px;
-    --tile-gap-desktop: 14px;
+    --radius: 16px;
+    --tile-gap: 14px;
   }
 
   .video-overlay {
@@ -174,31 +185,39 @@ body {
 
 @media (max-width: 768px) {
   :root {
-    --tile-gap-desktop: 6px;
+    --navbar-height: 85px;
+    --tile-gap: 6px;
+    --radius: 14px;
   }
 
+  .corporate-events-page {
+    padding-top: var(--navbar-height);
+  }
+
+  /* ✅ reduce load on mobile: avoid two huge 95vh videos + triple row */
   .top-section {
-    height: 95vh;
-  }
-
-  .triple-section {
-    height: 25vh;
-  }
-
-  .triple-container {
-    flex-direction: row;
-    height: 100%;
-    padding: 6px;
-    gap: 6px;
+    height: 62vh;
   }
 
   .bottom-section {
-    height: 95vh;
+    height: 56vh;
   }
 
+  /* ✅ allow natural scroll; give triple row a stable height */
+  .triple-section {
+    height: auto;
+  }
+
+  .triple-container {
+    height: 26vh;
+    padding: var(--tile-gap);
+    gap: var(--tile-gap);
+  }
+
+  /* keep clean rounding */
   .video-container.full-width,
   .video-container.triple-video {
-    border-radius: 0;
+    border-radius: var(--radius);
   }
 
   .video-overlay {

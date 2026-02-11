@@ -19,8 +19,8 @@ const CorporateEvents = () => {
     {
       id: "KCq66d00-tc",
       title: "Gigiri Social Club - Launch",
-      preview:
-        "https://videos.sjfilmworks.com/previews/the-gigiri-social-club-launch-v1-1-mp4-preview.mp4",
+      // ✅ FIXED: use the real file that exists on the server
+      preview: "https://videos.sjfilmworks.com/previews/gigirisocialclublaunchpreview.mp4",
     },
     {
       id: "AxwpTJWI7ZU",
@@ -84,7 +84,7 @@ const CorporateEvents = () => {
         muted
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
         onCanPlay={nudge}
         onLoadedData={nudge}
         aria-label={title}
