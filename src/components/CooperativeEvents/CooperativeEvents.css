@@ -196,11 +196,11 @@ body {
 
   /* ✅ reduce load on mobile: avoid two huge 95vh videos + triple row */
   .top-section {
-    height: 62vh;
+    height: 65vh;
   }
 
   .bottom-section {
-    height: 56vh;
+    height: 88vh;
   }
 
   /* ✅ allow natural scroll; give triple row a stable height */
