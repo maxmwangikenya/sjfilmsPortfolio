@@ -49,8 +49,8 @@ const BrandCampaigns = () => {
     {
       id: "A4jA8__RTqM",
       title: "Krackles (Campaign) Victor Karanja x Cris Njoki",
-      preview:
-        "https://videos.sjfilmworks.com/previews/victor-x-cris-krackles-v2-1-mp4-preview.mp4",
+      // ✅ REPLACED with compressed 1.2MB file
+      preview: "https://videos.sjfilmworks.com/previews/Victor-x-Cris-web.mp4",
     },
   ];
 
@@ -76,7 +76,8 @@ const BrandCampaigns = () => {
         muted
         loop
         playsInline
-        preload="auto"
+        // ✅ better performance on mobile
+        preload="metadata"
         onError={(e) => {
           console.log("VIDEO ERROR:", videos[index].preview, e?.target?.error);
         }}

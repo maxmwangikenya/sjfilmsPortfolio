@@ -11,24 +11,28 @@ const LandingPage = () => {
       id: '78n8VpI1x3w',
       title: "Mama`s House",
       previewType: 'mp4',
-      previewSrc: 'https://videos.sjfilmworks.com/previews/mamas-house-preview.mp4',
+      // ✅ switch to your compressed web file
+      previewSrc: 'https://videos.sjfilmworks.com/previews/mamashousee-web.mp4',
     },
     {
       id: 'KLF-16EwrKk',
       title: 'Gigiri Social Club',
       previewType: 'mp4',
+      // (not compressed yet — keep same)
       previewSrc: 'https://videos.sjfilmworks.com/previews/gigiri-social-club-v2-mp4-preview.mp4',
     },
     {
       id: '0or1Q3YCDv8',
       title: '2025 Cohort Launch - Densu',
       previewType: 'mp4',
-      previewSrc: 'https://videos.sjfilmworks.com/previews/densu-preview.mp4',
+      // ✅ switch to your compressed web file
+      previewSrc: 'https://videos.sjfilmworks.com/previews/Densuu-web.mp4',
     },
     {
       id: 'nQ1kJvSL8mw',
       title: 'Farova by Savara',
       previewType: 'mp4',
+      // (not compressed yet — keep same)
       previewSrc: 'https://videos.sjfilmworks.com/previews/farova-forever-sj-films-website-version-mp4-preview.mp4',
     },
   ];
@@ -83,7 +87,8 @@ const LandingPage = () => {
         muted
         loop
         playsInline
-        preload="auto"
+        // ✅ better for performance (don’t download full file immediately)
+        preload="metadata"
         onCanPlay={nudge}
         onLoadedData={nudge}
         aria-label={title}
