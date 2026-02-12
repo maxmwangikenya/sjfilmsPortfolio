@@ -1,15 +1,25 @@
 /* LandingPage.css */
 /* =========================================================
-   LANDING PAGE (FULL VIEWPORT SECTIONS + NO CROPPING)
-   ✅ All MP4 previews autoplay + centered + clear
-   ✅ Adds visible error overlay if a video fails
-   ✅ Keeps your structure/layout the same
+   LANDING PAGE (FULL VIEWPORT SECTIONS + FAST + CLEAR)
+   ✅ Clearer videos WITHOUT heavy GPU filters (no drop-shadow)
+   ✅ Keeps your layout the same
+   ✅ Mobile: last video fills screen
+   ✅ Overlay made lighter (clarity without performance cost)
 ========================================================= */
 
 :root {
   --navbar-height: 80px;
   --radius-desktop: 22px;
   --tile-gap-desktop: 18px;
+
+  /* ✅ light clarity tuning (safe/performance friendly) */
+  --clarity-contrast: 1.08;
+  --clarity-saturate: 1.08;
+  --clarity-brightness: 1.00;
+
+  --hero-clarity-contrast: 1.10;
+  --hero-clarity-saturate: 1.10;
+  --hero-clarity-brightness: 1.00;
 }
 
 /* ================= BASE ================= */
@@ -66,6 +76,12 @@ body {
   cursor: pointer;
   width: 100%;
   height: 100%;
+
+  /* ✅ mobile paint stability */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* ================= DESKTOP ONLY ================= */
@@ -100,7 +116,7 @@ body {
   background: #000;
 }
 
-/* ✅ MP4 preview: centered + premium fill + no drifting */
+/* ✅ MP4 preview: CLEAR but LIGHT (performance friendly) */
 .preview-video {
   position: absolute;
   inset: 0;
@@ -111,17 +127,30 @@ body {
   object-fit: cover;
   object-position: center;
 
-  /* subtle clarity boost */
-  filter: contrast(1.06) saturate(1.06);
+  /* ✅ light clarity (avoid heavy GPU cost) */
+  filter: brightness(var(--clarity-brightness))
+          contrast(var(--clarity-contrast))
+          saturate(var(--clarity-saturate));
 
-  /* tiny scale to hide thin borders */
-  transform: scale(1.02);
+  /* ✅ smaller scale than before = less GPU work */
+  transform: scale(1.01);
   transform-origin: center center;
 
   background: #000;
+
+  /* iOS paint stability */
+  transform: translateZ(0) scale(1.01);
+  -webkit-transform: translateZ(0) scale(1.01);
 }
 
-/* ✅ YouTube iframe preview support (kept for compatibility) */
+/* ✅ HERO (1st video) gets a tiny boost (still light) */
+.hero-section .preview-video {
+  filter: brightness(var(--hero-clarity-brightness))
+          contrast(var(--hero-clarity-contrast))
+          saturate(var(--hero-clarity-saturate));
+}
+
+/* ✅ YouTube iframe preview support */
 .video-stage-inner iframe {
   position: absolute;
   top: 50%;
@@ -174,10 +203,12 @@ body {
   align-items: flex-end;
   padding: 28px;
   pointer-events: none;
+
+  /* ✅ lighter = clearer, without GPU filters */
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.02),
-    rgba(0, 0, 0, 0.55)
+    rgba(0, 0, 0, 0.00),
+    rgba(0, 0, 0, 0.38)
   );
 }
 
@@ -192,8 +223,6 @@ body {
 .video-container.split-video {
   flex: 1;
 }
-
-/* ================= MOBILE ================= */
 
 /* ================= MOBILE ================= */
 
@@ -226,13 +255,15 @@ body {
     transform: translate(-50%, -50%) !important;
   }
 
+  /* ✅ keep clarity but still light on mobile */
   .preview-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    filter: contrast(1.06) saturate(1.06);
-    transform: scale(1.02);
+    filter: brightness(1.00) contrast(1.10) saturate(1.10);
+    transform: translateZ(0) scale(1.01);
+    -webkit-transform: translateZ(0) scale(1.01);
+  }
+
+  .hero-section .preview-video {
+    filter: brightness(1.00) contrast(1.12) saturate(1.12);
   }
 
   /* =====================================================
@@ -250,20 +281,20 @@ body {
   }
 
   .bottom-section .preview-video {
-    transform: none; /* ✅ true full bleed */
+    transform: translateZ(0); /* ✅ true full bleed */
+    -webkit-transform: translateZ(0);
   }
 
   .bottom-section .video-stage-inner iframe {
     position: absolute;
     inset: 0;
     width: 100%;
-    height: 95%;
+    height: 100%;
     top: 0;
     left: 0;
     transform: none !important;
   }
 }
-
 
 /* ================= FULLSCREEN ================= */
 
