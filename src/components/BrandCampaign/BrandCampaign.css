@@ -1,9 +1,10 @@
 /* =========================================================
    BRAND CAMPAIGNS – CLEAN FILL + GAP 10px + RADIUS 16px
    ✅ Videos fill container (no letterboxing)
-   ✅ 10px gap between videos
-   ✅ 16px border radius
-   ✅ Mobile fixes: avoid heavy 100vh locks + stable rendering
+   ✅ 10px gap between videos (desktop + mobile)
+   ✅ Radius preserved
+   ✅ Mobile: ONE video per screen (stacked; no side-by-side)
+   ✅ First video immediately below navbar for ALL views
 ========================================================= */
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
@@ -39,7 +40,10 @@ body {
   background: #000;
   margin: 0;
   padding: 0;
+
+  /* ✅ first video starts below navbar (ALL views) */
   padding-top: var(--navbar-height);
+
   overflow-x: hidden;
 }
 
@@ -51,14 +55,17 @@ body {
   padding: 0;
 }
 
+/* ✅ Hero takes full screen minus navbar */
 .hero-section {
   height: calc(100vh - var(--navbar-height));
 }
 
+/* ✅ Full sections are full viewport */
 .full-section {
   height: 100vh;
 }
 
+/* ✅ Triple section is a single viewport row on desktop */
 .triple-section {
   height: 100vh;
 }
@@ -69,7 +76,6 @@ body {
   width: 100%;
   height: 100%;
   display: flex;
-
   gap: var(--tile-gap);
   padding: var(--tile-gap);
 }
@@ -187,37 +193,56 @@ body {
 }
 
 /* ================= MOBILE ================= */
+/* ✅ On mobile:
+   - stacked layout
+   - 10px gap between stacked videos
+   - each video still feels like a full page
+*/
 
 @media (max-width: 768px) {
   :root {
     --navbar-height: 85px;
     --radius: 14px;
-    --tile-gap: 8px;
+    --tile-gap: 10px; /* ✅ force 10px on mobile */
   }
 
-  /* ✅ keep below navbar on mobile */
-  .brand-campaigns-page {
-    padding-top: var(--navbar-height);
-  }
-
-  /* ✅ reduce stress: avoid locking everything to 100vh on mobile */
+  /* ✅ Hero still feels like a full page (minus navbar) */
   .hero-section {
-    height: 68vh;
+    height: calc(100vh - var(--navbar-height));
+    padding: var(--tile-gap); /* ✅ give hero a 10px breathing space */
   }
 
+  /* ✅ Full sections: add padding so the video has 10px gap around it */
   .full-section {
-    height: 74vh;
+    height: 100vh;
+    padding: var(--tile-gap);
   }
 
-  /* ✅ triple sections: allow natural scroll, but give the row a stable height */
+  /* ✅ Triple section becomes stacked full pages */
   .triple-section {
     height: auto;
+    padding: var(--tile-gap);
   }
 
+  /* ✅ Stack videos and keep gaps */
   .triple-container {
-    height: 26vh;
-    gap: var(--tile-gap);
-    padding: var(--tile-gap);
+    flex-direction: column;
+    height: auto;
+    padding: 0;                 /* section already has padding */
+    gap: var(--tile-gap);       /* ✅ 10px between stacked videos */
+  }
+
+  /* ✅ Each stacked "triple" video is one screen minus gaps */
+  .video-container.triple-video {
+    flex: none;
+    width: 100%;
+    height: calc(100vh - var(--tile-gap)); /* ✅ full-page feel with gap */
+    border-radius: var(--radius);
+  }
+
+  /* ✅ Ensure full-width hero/full videos don't touch edges */
+  .video-container.full-width {
+    border-radius: var(--radius);
   }
 
   .video-overlay {

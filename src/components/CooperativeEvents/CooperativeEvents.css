@@ -1,9 +1,11 @@
 /* =========================================================
    CORPORATE EVENTS – CLEAR (NOT DARK) + NO ZOOM
-   ✔ Same layout
+   ✔ Same layout on desktop
    ✔ No zoom / no overscan
    ✔ Lighter overlay so videos are not dark
-   ✔ Mobile: avoid heavy 100vh locks (prevents blank / lag)
+   ✔ Mobile: ONE video per screen (stacked; no side-by-side)
+   ✔ Mobile: 10px gap (including side gaps) like Brand Campaigns
+   ✔ First video immediately below navbar for ALL views
 ========================================================= */
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
@@ -11,7 +13,10 @@
 :root {
   --navbar-height: 80px;
   --radius: 22px;
-  --tile-gap: 16px;
+
+  --tile-gap: 16px;     /* desktop/tablet gap */
+  --mobile-gap: 10px;   /* ✅ mobile gap (sides + between videos) */
+  --mobile-radius: 14px;
 }
 
 *,
@@ -35,7 +40,10 @@ body {
   width: 100%;
   min-height: 100vh;
   background: #000;
+
+  /* ✅ first section starts immediately below navbar */
   padding-top: var(--navbar-height);
+
   overflow-x: hidden;
 }
 
@@ -47,10 +55,12 @@ body {
   padding: 0;
 }
 
+/* ✅ first/top section = full screen minus navbar */
 .top-section {
   height: calc(100vh - var(--navbar-height));
 }
 
+/* ✅ desktop: triple row fills viewport */
 .triple-section {
   height: 100vh;
 }
@@ -182,42 +192,69 @@ body {
 }
 
 /* ================= MOBILE ================= */
+/* ✅ Mobile:
+   - add 10px side padding around ALL full-width sections
+   - triple videos stack with 10px gap between them
+   - each video still fills a "page" feel (100vh minus padding)
+*/
 
 @media (max-width: 768px) {
   :root {
     --navbar-height: 85px;
-    --tile-gap: 6px;
-    --radius: 14px;
+    --tile-gap: 14px; /* keep for non-mobile if needed */
   }
 
   .corporate-events-page {
     padding-top: var(--navbar-height);
   }
 
-  /* ✅ reduce load on mobile: avoid two huge 95vh videos + triple row */
+  /* ✅ side gaps like Brand Campaigns */
+  .top-section,
+  .bottom-section,
+  .triple-section {
+    padding: var(--mobile-gap);
+  }
+
+  /* ✅ top fits screen under navbar */
   .top-section {
-    height: 65vh;
+    height: calc(100vh - var(--navbar-height));
   }
 
+  /* ✅ bottom is a full page */
   .bottom-section {
-    height: 88vh;
+    height: 100vh;
   }
 
-  /* ✅ allow natural scroll; give triple row a stable height */
+  /* ✅ triple section becomes stacked pages */
   .triple-section {
     height: auto;
   }
 
+  /* ✅ stack the triple videos and keep 10px gaps */
   .triple-container {
-    height: 26vh;
-    padding: var(--tile-gap);
-    gap: var(--tile-gap);
+    flex-direction: column;
+    height: auto;
+
+    /* section already has padding, so container doesn't need extra */
+    padding: 0;
+
+    /* ✅ 10px gap between stacked videos */
+    gap: var(--mobile-gap);
   }
 
-  /* keep clean rounding */
-  .video-container.full-width,
+  /* ✅ each triple video becomes a full-page feel, with side gap */
   .video-container.triple-video {
-    border-radius: var(--radius);
+    flex: none;
+    width: 100%;
+
+    /* full-page feel but respects padding + gap */
+    height: calc(100vh - (var(--mobile-gap) * 2));
+    border-radius: var(--mobile-radius);
+  }
+
+  /* ✅ ensure top/bottom full videos also get rounded corners */
+  .video-container.full-width {
+    border-radius: var(--mobile-radius);
   }
 
   .video-overlay {

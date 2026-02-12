@@ -1,18 +1,17 @@
-/* LandingPage.css */
 /* =========================================================
-   LANDING PAGE (FULL VIEWPORT SECTIONS + FAST + CLEAR)
-   ✅ Clearer videos WITHOUT heavy GPU filters (no drop-shadow)
-   ✅ Keeps your layout the same
-   ✅ Mobile: last video fills screen
-   ✅ Overlay made lighter (clarity without performance cost)
+   LANDING PAGE – CLEAN 10px GAP SYSTEM
+   ✅ 10px gap between ALL sections
+   ✅ 10px gap between split videos
+   ✅ First video below navbar
+   ✅ Mobile: one video per screen (stacked)
 ========================================================= */
 
 :root {
   --navbar-height: 80px;
   --radius-desktop: 22px;
-  --tile-gap-desktop: 18px;
+  --section-gap: 10px;          /* ✅ global section gap */
+  --tile-gap-desktop: 10px;     /* ✅ split video gap */
 
-  /* ✅ light clarity tuning (safe/performance friendly) */
   --clarity-contrast: 1.08;
   --clarity-saturate: 1.08;
   --clarity-brightness: 1.00;
@@ -24,6 +23,7 @@
 
 /* ================= BASE ================= */
 
+html,
 body {
   margin: 0;
   padding: 0;
@@ -36,27 +36,36 @@ body {
   min-height: 100vh;
   background: #000;
   overflow-x: hidden;
+
   padding-top: var(--navbar-height);
+
+  /* ✅ global spacing between sections */
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
 }
 
 /* ================= SECTIONS ================= */
-
-.hero-section {
-  height: calc(100vh - var(--navbar-height));
-}
-
-.split-section {
-  height: 100vh;
-}
-
-.bottom-section {
-  height: 100vh;
-}
 
 .video-section {
   width: 100%;
   margin: 0;
   padding: 0;
+}
+
+/* Hero */
+.hero-section {
+  height: calc(100vh - var(--navbar-height));
+}
+
+/* Middle split */
+.split-section {
+  height: 100vh;
+}
+
+/* Bottom */
+.bottom-section {
+  height: 100vh;
 }
 
 /* ================= CONTAINERS ================= */
@@ -77,24 +86,32 @@ body {
   width: 100%;
   height: 100%;
 
-  /* ✅ mobile paint stability */
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
 
-/* ================= DESKTOP ONLY ================= */
+/* ================= DESKTOP ================= */
 
 @media (min-width: 1025px) {
+
   .video-container.full-width,
   .video-container.split-video {
     border-radius: var(--radius-desktop);
   }
 
+  /* ✅ 10px gap between split videos */
   .split-container {
-    padding: 0 var(--tile-gap-desktop);
     gap: var(--tile-gap-desktop);
+  }
+
+  /* Optional: small side padding for breathing space */
+  .split-section,
+  .hero-section,
+  .bottom-section {
+    padding-left: var(--tile-gap-desktop);
+    padding-right: var(--tile-gap-desktop);
   }
 }
 
@@ -116,7 +133,6 @@ body {
   background: #000;
 }
 
-/* ✅ MP4 preview: CLEAR but LIGHT (performance friendly) */
 .preview-video {
   position: absolute;
   inset: 0;
@@ -127,70 +143,19 @@ body {
   object-fit: cover;
   object-position: center;
 
-  /* ✅ light clarity (avoid heavy GPU cost) */
   filter: brightness(var(--clarity-brightness))
           contrast(var(--clarity-contrast))
           saturate(var(--clarity-saturate));
 
-  /* ✅ smaller scale than before = less GPU work */
-  transform: scale(1.01);
-  transform-origin: center center;
-
-  background: #000;
-
-  /* iOS paint stability */
   transform: translateZ(0) scale(1.01);
   -webkit-transform: translateZ(0) scale(1.01);
+  transform-origin: center center;
 }
 
-/* ✅ HERO (1st video) gets a tiny boost (still light) */
 .hero-section .preview-video {
   filter: brightness(var(--hero-clarity-brightness))
           contrast(var(--hero-clarity-contrast))
           saturate(var(--hero-clarity-saturate));
-}
-
-/* ✅ YouTube iframe preview support */
-.video-stage-inner iframe {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 120%;
-  height: 120%;
-  transform: translate(-50%, -50%);
-  border: 0;
-  transition: none !important;
-  transform-origin: center center !important;
-}
-
-.video-container:hover .video-stage-inner iframe {
-  transform: translate(-50%, -50%) !important;
-}
-
-/* ================= ERROR OVERLAY ================= */
-
-.video-error {
-  position: absolute;
-  inset: 0;
-  z-index: 6;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.85);
-  color: #fff;
-}
-
-.video-error-title {
-  font-weight: 700;
-  font-size: 1rem;
-  margin-bottom: 6px;
-}
-
-.video-error-sub {
-  font-size: 0.9rem;
-  opacity: 0.85;
-  max-width: 420px;
 }
 
 /* ================= OVERLAY ================= */
@@ -204,7 +169,6 @@ body {
   padding: 28px;
   pointer-events: none;
 
-  /* ✅ lighter = clearer, without GPU filters */
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0.00),
@@ -218,22 +182,27 @@ body {
   text-shadow: 0 8px 22px rgba(0, 0, 0, 0.9);
 }
 
-/* ================= MIDDLE LAYOUT ================= */
-
-.video-container.split-video {
-  flex: 1;
-}
-
 /* ================= MOBILE ================= */
 
 @media (max-width: 1024px) {
+
   .split-section {
-    height: 30vh;
+    height: auto;
   }
 
-  /* ✅ make the LAST section full screen on mobile */
+  .split-container {
+    flex-direction: column;
+    height: auto;
+    gap: var(--section-gap); /* ✅ 10px between stacked videos */
+  }
+
+  .video-container.split-video {
+    width: 100%;
+    height: 100vh;
+  }
+
   .bottom-section {
-    height: calc(100vh - var(--navbar-height));
+    height: 100vh;
   }
 
   .video-container {
@@ -248,51 +217,25 @@ body {
     font-size: 0.9rem;
   }
 
-  /* ✅ keep iframe behavior for other sections */
-  .video-stage-inner iframe {
-    width: 112%;
-    height: 120%;
-    transform: translate(-50%, -50%) !important;
+  /* Remove 16:9 lock on mobile */
+  .video-stage {
+    display: block;
   }
 
-  /* ✅ keep clarity but still light on mobile */
+  .video-stage-inner {
+    aspect-ratio: auto;
+    width: 100%;
+    height: 100%;
+  }
+
   .preview-video {
     filter: brightness(1.00) contrast(1.10) saturate(1.10);
-    transform: translateZ(0) scale(1.01);
-    -webkit-transform: translateZ(0) scale(1.01);
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
   }
 
   .hero-section .preview-video {
     filter: brightness(1.00) contrast(1.12) saturate(1.12);
-  }
-
-  /* =====================================================
-     ✅ BOTTOM VIDEO ONLY: remove 16:9 lock so it can fill
-     ===================================================== */
-
-  .bottom-section .video-stage {
-    display: block; /* stop grid centering from shrinking */
-  }
-
-  .bottom-section .video-stage-inner {
-    aspect-ratio: auto; /* ✅ remove 16:9 constraint */
-    width: 100%;
-    height: 100%;
-  }
-
-  .bottom-section .preview-video {
-    transform: translateZ(0); /* ✅ true full bleed */
-    -webkit-transform: translateZ(0);
-  }
-
-  .bottom-section .video-stage-inner iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    transform: none !important;
   }
 }
 
